@@ -29,9 +29,12 @@ class CategoryPageController extends Controller
         return Inertia::render('backend/cms/category/add');
        
     }
-    public function view()
+    public function view($id,$slug)
     {
-        return Inertia::render('backend/cms/category/view');
+        $data = CategoryPage::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+        return Inertia::render('backend/cms/category/show',[
+            'data' => $data
+        ]);
        
     }
 

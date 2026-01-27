@@ -11,6 +11,16 @@ class CategoryPage extends Model
     protected $guarded = [];
 
 
+    // --------- 
 
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'creator_id', 'id');
+    }
+
+    public function editor()
+    {
+        return $this->belongsTo(User::class, 'editor_id', 'id');
+    }
     
 }
