@@ -37,6 +37,14 @@ class CategoryPageController extends Controller
         ]);
        
     }
+    public function edit($id,$slug)
+    {
+        $data = CategoryPage::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+        return Inertia::render('backend/cms/category/edit',[
+            'data' => $data
+        ]);
+       
+    }
 
 
 
@@ -93,4 +101,67 @@ class CategoryPageController extends Controller
 
     }
 
+
+
+
+
+    /**
+     * 
+     * ============ Update information function start here ===========
+     */
+
+    public function update(Request $request){
+        /**--- validation code -- */
+        $category = CategoryPage::where('id',$request->id)->first();
+        $request->validate( [
+                'name' => ['required', 'string', 'max:255',Rule::unique('category_pages','name')->ignore($category->id)],
+                'url' => ['required', 'string', 'max:255', Rule::unique('category_pages','url')->ignore($category->id)],
+               
+            ],[
+                'name.required'=> 'Name field is Required !',
+                'url.required'=> 'Slug field is Required !',
+                'name.unique'=> 'This name already exists. !',
+                'url.unique'=> 'This URL already exists. !',
+            ]
+        );
+
+        //---------- get authenticate use id and create a slug
+        $editor_id = Auth::user()->id;
+        $slug = $request->slug;
+        $id = $request->id;
+
+        //------- make a custom url for -------
+        $categoryname = strtolower($request->name);
+        $user_input_url  = strtolower($request->url) ;
+        if(!empty($user_input_url)){
+            $url = Str::slug($user_input_url); // Output: "my-new-category-name"
+        }else{
+            $url = Str::slug($categoryname); // Output: "my-new-category-name"
+        }
+
+        // ----- insert record into database 
+        $update = CategoryPage::where('id',$id)->where('slug',$slug)->update([
+            'name'=>$request->name,
+            'title'=>$request->title,
+            'description'=>$request->description,
+            'url'=>$url,
+            'order'=>$request->order,
+            'public_status'=>$request->public_status ?? 0,
+            'editor_id' => $editor_id,
+            'updated_at' => Carbon::now()->toDateTimeString(),
+        ]);
+
+        if($update){
+            flash()->success('Information Updated successfully!');
+            return redirect()->route('category_page_view',[$id,$slug]);
+        }else{
+            flash()->error('Information Updated Faild !');
+            return redirect()->back();
+        }
+
+
+        
+         
+        
+    }
 }

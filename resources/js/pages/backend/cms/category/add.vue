@@ -32,10 +32,12 @@ const form = useForm(rememberedData.value)
 
 // ✅ submit MUST use form
 const handleSubmit = () => {
-  
-  form.post(route('category_page_submit'))
-
-    
+  form.post(route('category_page_submit'), {
+    onSuccess: () => {
+      form.reset()
+      form.forget()
+    },
+  })
 }
 </script>
 
@@ -152,6 +154,8 @@ const handleSubmit = () => {
 
   </div>
 </div>
+
+
 
 
 
