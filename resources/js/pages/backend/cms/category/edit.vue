@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Button from '@/components/ui/button/Button.vue'
+import AdminLayout from '@/layouts/AdminLayout.vue'
 import AppLayout from '@/layouts/AppLayout.vue'
 import { category_page_add } from '@/routes'
 import { type BreadcrumbItem } from '@/types'
@@ -54,7 +55,8 @@ const handleUpdate = () => {
 <template>
     <Head title="Dashboard" />
 
-    <AppLayout :breadcrumbs="breadcrumbs">
+    <AdminLayout>
+
        <form @submit.prevent="handleUpdate" class="space-y-5">
 
 
@@ -173,5 +175,5 @@ const handleUpdate = () => {
 
 
 </form>
-    </AppLayout>
+   </AdminLayout>
 </template>

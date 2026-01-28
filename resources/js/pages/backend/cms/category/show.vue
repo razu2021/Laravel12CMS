@@ -7,6 +7,7 @@ import Button from '@/components/ui/button/Button.vue';
 import { Card ,CardHeader,CardTitle ,CardDescription,CardContent,CardFooter} from '@/components/ui/card';
 
 import Separator from '@/components/ui/separator/Separator.vue';
+import AdminLayout from '@/layouts/AdminLayout.vue';
 
 
 //====== get data i
@@ -29,7 +30,7 @@ const breadcrumbs: Breadcrumbdata[] = [
 <template>
 <Head title="Details Page"></Head>
 
-<AppLayout :breadcrumbs="breadcrumbs">
+<AdminLayout>
        
 <div class="container mx-auto mt-10 space-x-6">
 
@@ -214,7 +215,7 @@ const breadcrumbs: Breadcrumbdata[] = [
   <!-- main grid end  -->
 </div>
 <!-- container end -->
-</AppLayout>
+</AdminLayout>
 </template>
 
 
