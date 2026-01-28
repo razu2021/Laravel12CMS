@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import Button from '@/components/ui/button/Button.vue';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Filter, Download } from 'lucide-vue-next';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,7 +10,18 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+
 import AppLayout from '@/layouts/AppLayout.vue';
+import { Input } from '@/components/ui/input';
 import { category_page_add, category_page_all, category_page_view } from '@/routes';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/vue3';
@@ -28,194 +41,143 @@ defineProps({
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Dashboard"></Head>
 
     <AppLayout :breadcrumbs="breadcrumbs">
 
-<div class="container mx-auto px-4">
-  <div class="mt-5 rounded-xl border border-slate-200 bg-white p-4">
+
+    <div class="container mx-auto mt-5 ">
+
+    <div class="flex flex-wrap sm:flex-row justify-between items-center gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100">
+
+  <!-- Left: Search + Filter -->
+  <div class="searchData flex flex-wrap items-center gap-3">
     
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-         <!-- RIGHT: Title & Caption -->
-      <div class="text-left sm:text-left">
-        <h2 class="text-lg font-semibold text-slate-800">
-          Category Pages
-        </h2>
-        <p class="text-sm text-slate-500">
-          Manage all category pages from here
-        </p>
-      </div>
-      <!-- LEFT: Action Buttons -->
-      <div class="flex flex-wrap gap-2">
-        <button
-          class="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700">
-          Create
-        </button>
-
-        <button
-          class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100">
-          Export
-        </button>
-
-        <button
-          class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100">
-          Settings
-        </button>
-      </div>
-
-   
-
+    <!-- Search -->
+    <div class="relative">
+    
+      <Input
+        type="text"
+        placeholder="Search data..."
+        class="pl-10 w-64 rounded-lg border-gray-200 focus:ring-2 focus:ring-blue-500"
+      />
+      <svg
+        class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
     </div>
 
+    <!-- Dropdown -->
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" class="rounded-lg border-gray-200 hover:bg-blue-50 hover:text-blue-600 transition"> Filter <Filter></Filter> </Button>
+      </DropdownMenuTrigger>
+
+      <DropdownMenuContent class="w-48 rounded-xl shadow-lg border border-gray-100">
+        <DropdownMenuGroup>
+          <DropdownMenuLabel class="text-gray-500">My Account</DropdownMenuLabel>
+          <DropdownMenuItem class="cursor-pointer">Profile</DropdownMenuItem>
+          <DropdownMenuItem class="cursor-pointer">Billing</DropdownMenuItem>
+        </DropdownMenuGroup>
+
+        <DropdownMenuSeparator />
+
+        <DropdownMenuGroup>
+          <DropdownMenuItem class="cursor-pointer">Team</DropdownMenuItem>
+          <DropdownMenuItem class="cursor-pointer">Subscription</DropdownMenuItem>
+        </DropdownMenuGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   </div>
+
+  <!-- Right: Actions -->
+  <div class="action_button flex flex-wrap items-center gap-2">
+
+    <Button class="bg-gray-100 text-gray-700 hover:bg-gray-200 rounded-lg">
+      <Download></Download>
+      Export
+    </Button>
+    <Button class="bg-blue-600 text-white hover:bg-blue-700 rounded-lg">
+      Active
+    </Button>
+    <Button class="bg-blue-600 text-white hover:bg-blue-700 rounded-lg">
+      InActive
+    </Button>
+    <Button class="bg-red-500 text-white hover:bg-red-600 rounded-lg">
+      Delete
+    </Button>
+  </div>
+
 </div>
 
+      <Table class=" overflow-hidden border border-gray-200 shadow-lg bg-white table-auto p-5">
+        <!-- Header -->
+        
+        <TableHeader class="bg-gradient-to-r from-blue-50 to-blue-100">
+          <TableRow>
+
+            <TableHead class="w-[120px] font-semibold text-gray-700"><Checkbox v-model:checked="masterChecked"></Checkbox></TableHead>
+            <TableHead class="font-semibold text-gray-700">ID</TableHead>
+            <TableHead class="font-semibold text-gray-700">Category Name</TableHead>
+            <TableHead class="font-semibold text-gray-700">Category Title</TableHead>
+            <TableHead class="font-semibold text-gray-700">Category Description</TableHead>
+            <TableHead class="font-semibold text-gray-700">Category URL</TableHead>
+            <TableHead class="font-semibold text-gray-700">Status</TableHead>
+            <TableHead class="font-semibold text-gray-700">Manage</TableHead>
+            
+
+          </TableRow>
+        </TableHeader>
+
+        <!-- Body -->
+        <TableBody class="divide-y divide-gray-100">
+
+          <TableRow class="hover:bg-blue-50 transition-colors duration-200">
+            <TableCell class="font-medium text-gray-800"><Checkbox></Checkbox></TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+
+          </TableRow>
+          <TableRow class="hover:bg-blue-50 transition-colors duration-200">
+            <TableCell class="font-medium text-gray-800"><Checkbox></Checkbox></TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+
+          </TableRow>
+          <TableRow class="hover:bg-blue-50 transition-colors duration-200">
+            <TableCell class="font-medium text-gray-800"><Checkbox></Checkbox></TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+            <TableCell class="font-medium text-gray-800">INV001</TableCell>
+
+          </TableRow>
 
 
 
-
-
-
-
-
-
-
-
-
-
-        <div class="flex h-full  flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-
-            <!-- data table  -->
-            <div class="container mx-auto">
-  
-                <div class="bg-white rounded-2xl shadow border border-gray-200 overflow-hidden">
-
-                  <!-- TABLE HEADER -->
-                  <div class="px-6 py-4 border-b bg-gray-50">
-                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                      
-                      <!-- Title -->
-                      <div>
-                        <h2 class="text-lg font-semibold text-gray-800">User List</h2>
-                        <p class="text-sm text-gray-500">Manage all users information</p>
-                      </div>
-
-                      <!-- Search & Filter -->
-                      <div class="flex gap-2">
-                        <input
-                          type="text"
-                          placeholder="Search..."
-                          class="w-full md:w-64 px-4 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
-
-                        <select
-                          class="px-3 py-2 text-sm border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        >
-                          <option>All</option>
-                          <option>Active</option>
-                          <option>Inactive</option>
-                        </select>
-                      </div>
-
-                    </div>
-                  </div>
-
-                  <!-- TABLE BODY -->
-                  <div class="overflow-x-auto">
-                    <table class="min-w-full text-sm">
-                      <thead class="bg-gray-100 text-gray-600 uppercase text-xs">
-                        <tr>
-                          <th class="px-6 py-3 text-left">ID</th>
-                          <th class="px-6 py-3 text-left">Category</th>
-                          <th class="px-6 py-3 text-left">Slug</th>
-                          <th class="px-6 py-3 text-left">Meta Title</th>
-                          <th class="px-6 py-3 text-left">Meta Description</th>
-                          <th class="px-6 py-3 text-center">Status</th>
-                          <th class="px-6 py-3 text-right">Action</th>
-                        </tr>
-                      </thead>
-
-                      <tbody class="divide-y">
-                        <tr class="hover:bg-gray-50 transition" v-for="data in alldata">
-                          <td class="px-6 py-4">1</td>
-                          <td class="px-6 py-4 font-medium text-gray-800">{{ data.name }}</td>
-                          <td class="px-6 py-4 text-gray-500">{{ data.url }}</td>
-                          <td class="px-6 py-4 text-gray-500">{{ data.title }}</td>
-                          <td class="px-6 py-4 text-gray-500">{{ data.desciption  }}</td>
-                          <td class="px-6 py-4 text-center">
-                            <span class="px-3 py-1 text-xs rounded-full bg-green-100 text-green-700">
-                              Active
-                            </span>
-                          </td>
-                          <td class="px-6 py-4 text-right space-x-2">
-                          
-                             <DropdownMenu>
-                                <DropdownMenuTrigger>Manage</DropdownMenuTrigger>
-                                <DropdownMenuContent>
-                                  <DropdownMenuLabel><Link :href="route('category_page_edit',{id: data.id, slug: data.slug})">Edit</Link></DropdownMenuLabel>
-                                  <DropdownMenuLabel><Link :href="route('category_page_view',{id: data.id, slug: data.slug})">View Details</Link></DropdownMenuLabel>
-                                  <DropdownMenuSeparator />
-                                  <DropdownMenuItem>Profile</DropdownMenuItem>
-                                  <DropdownMenuItem>Billing</DropdownMenuItem>
-                                  <DropdownMenuItem>Team</DropdownMenuItem>
-                                  <DropdownMenuItem>Subscription</DropdownMenuItem>
-                                </DropdownMenuContent>
-                              </DropdownMenu>
-
-
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-
-                  <!-- TABLE FOOTER / PAGINATION -->
-                  <div class="px-6 py-4 border-t bg-gray-50">
-                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-
-                      <!-- Info -->
-                      <p class="text-sm text-gray-500">
-                        Showing <span class="font-medium">1</span> to
-                        <span class="font-medium">10</span> of
-                        <span class="font-medium">50</span> results
-                      </p>
-
-                      <!-- Pagination -->
-                      <div class="flex items-center gap-1">
-                        <button class="px-3 py-2 text-sm border rounded-lg hover:bg-gray-100">
-                          Prev
-                        </button>
-
-                        <button class="px-3 py-2 text-sm rounded-lg bg-blue-600 text-white">
-                          1
-                        </button>
-                        <button class="px-3 py-2 text-sm border rounded-lg hover:bg-gray-100">
-                          2
-                        </button>
-                        <button class="px-3 py-2 text-sm border rounded-lg hover:bg-gray-100">
-                          3
-                        </button>
-
-                        <button class="px-3 py-2 text-sm border rounded-lg hover:bg-gray-100">
-                          Next
-                        </button>
-                      </div>
-
-                    </div>
-                  </div>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-
-        <!-- ------- data table code starat here - -->
+        </TableBody>
+      </Table>
+      </div>
+      <!-- ------- data table code starat here - -->
         
         
-
-
     </AppLayout>
 </template>

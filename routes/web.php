@@ -31,4 +31,20 @@ Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
+//--- custome route 
+
+
+Route::get('admin/dashboard',function(){
+    return Inertia::render('admin/AdminDashboard');
+});
+
+
+
+
+
+
+
+
+
 require __DIR__.'/settings.php';

@@ -5,6 +5,7 @@ import { category_page_add } from '@/routes'
 import { type BreadcrumbItem } from '@/types'
 import { Head, Link, useForm, useRemember } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
+import AdminLayout from '@/layouts/AdminLayout.vue'
 
 const breadcrumbs: BreadcrumbItem[] = [
   {
@@ -45,9 +46,9 @@ const handleSubmit = () => {
 <template>
     <Head title="Dashboard" />
 
-    <AppLayout :breadcrumbs="breadcrumbs">
+    
        
-
+<AdminLayout>
 
 
   <!-- PAGE WRAPPER -->
@@ -161,5 +162,5 @@ const handleSubmit = () => {
 
 
 
-    </AppLayout>
+</AdminLayout>
 </template>
