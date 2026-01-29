@@ -2,7 +2,7 @@
 import { useConfirmDelete } from '@/composables/useConfirmDelete';
 import Button from '@/components/ui/button/Button.vue';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Filter, Download,SquarePlus, Trash,SquarePen, Eye, Delete, ShieldCheck, ShieldMinus, DownloadCloud } from 'lucide-vue-next';
+import { Filter, Download,SquarePlus, Trash,SquarePen, Eye, Delete, ShieldCheck, ShieldMinus, DownloadCloud, DeleteIcon } from 'lucide-vue-next';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,10 +13,10 @@ import {
   DropdownMenuGroup
 } from '@/components/ui/dropdown-menu'
 import { type BreadcrumbItem } from '@/types';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, router } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 import AdminLayout from '@/layouts/AdminLayout.vue';
-import Swal from 'sweetalert2';
+import { computed, ref } from 'vue';
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Create Category Page',
@@ -24,17 +24,23 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-defineProps({
+const props = defineProps({
     alldata:Array
 })
 
 
 
 
+import { useBulkSelection } from '@/composables/useBulkSelection';
+
 
 
 /// sweet alert use 
  const {confirmDelete} = useConfirmDelete();
+
+
+const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelection()
+
 
 
 </script>
@@ -57,21 +63,19 @@ defineProps({
     </div>
     <hr class="my-3 border-gray-200">
     <!-- Top Actions / Filters -->
-    <div
-  class="flex flex-col lg:flex-row lg:items-center lg:justify-between
-         gap-4 p-5 bg-white rounded-2xl border border-gray-100"
+
+<div
+  class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 p-5 bg-white rounded-2xl border border-gray-100"
 >
-  <!-- LEFT : Search + Filter -->
-  <div class="flex flex-wrap items-center gap-3">
-    <!-- Search -->
-    <div class="relative">
+  <!-- LEFT: Search + Filter -->
+  <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+    <!-- Search Input -->
+    <div class="relative flex-1 min-w-[200px]">
       <input
         type="text"
         placeholder="Search data..."
-        class="w-64 pl-10 pr-4 py-2.5 rounded-xl
-               border border-gray-200 text-sm
-               focus:ring-2 focus:ring-blue-100 focus:border-blue-500
-               transition"
+        class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm
+               focus:ring-2 focus:ring-blue-100 focus:border-blue-500 transition"
       />
       <svg
         class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
@@ -83,13 +87,11 @@ defineProps({
     </div>
 
     <!-- Filter Dropdown -->
-    <div class="relative group">
+    <div class="relative group min-w-[120px]">
       <button
-        class="flex items-center gap-2 px-4 py-2.5 rounded-xl
+        class="flex items-center justify-between gap-2 px-4 py-2.5 rounded-xl
                border border-gray-200 bg-white text-sm font-medium
-               text-gray-700 shadow-sm
-               hover:bg-blue-50 hover:text-blue-600
-               transition"
+               text-gray-700 shadow-sm hover:bg-blue-50 hover:text-blue-600 transition w-full"
       >
         Filter
         <svg
@@ -101,6 +103,7 @@ defineProps({
         </svg>
       </button>
 
+      <!-- Dropdown Items -->
       <div
         class="absolute left-0 mt-2 w-48 rounded-xl bg-white
                border border-gray-100 shadow-xl
@@ -117,50 +120,81 @@ defineProps({
     </div>
   </div>
 
-  <!-- RIGHT : Actions -->
-  <div class="flex flex-wrap items-center gap-2">
-    <!-- Action Select -->
-    <div class="relative w-44">
-      <select
-        class="w-full appearance-none px-4 py-2.5 pr-10
-               bg-white border border-gray-200 rounded-xl
-               text-sm font-medium text-gray-700
-               shadow-sm
-               hover:border-blue-400
-               focus:ring-2 focus:ring-blue-100 focus:border-blue-500
-               transition"
-      >
-        <option value="">Action</option>
-        <option value="">Edit</option>
-        <option value="">Delete</option>
-        <option value="">View</option>
-      </select>
+  <!-- RIGHT: Action Buttons -->
+  <div class="flex flex-wrap justify-end items-center gap-2 w-full lg:w-auto">
 
-      <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M19 9l-7 7-7-7" />
-        </svg>
-      </div>
-    </div>
-
-    <!-- Delete -->
-    <Button
-      class="px-3 py-2.5 text-red-500 rounded-xl bg-white shadow-xl border border-red-200 hover:bg-red-100 transition-colors duration-200 cursor-grab"
+    <!-- Bulk Delete -->
+    <Transition
+      enter-active-class="transition transform duration-300 ease-out"
+      enter-from-class="opacity-0 scale-75 -translate-y-4"
+      enter-to-class="opacity-100 scale-105 translate-y-0"
+      leave-active-class="transition transform duration-200 ease-in"
+      leave-from-class="opacity-100 scale-100 translate-y-0"
+      leave-to-class="opacity-0 scale-90 translate-y-2"
     >
-      <Trash />
+      <Button 
+        v-show="selectedIds.length > 0"
+        @click="bulkAction('delete', props.alldata)"
+        class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded shadow-lg flex items-center gap-2 w-full sm:w-auto"
+      >
+        <DeleteIcon class="w-4 h-4"/> Delete
+      </Button>
+    </Transition>
+    <Transition
+      enter-active-class="transition transform duration-300 ease-out"
+      enter-from-class="opacity-0 scale-75 -translate-y-4"
+      enter-to-class="opacity-100 scale-105 translate-y-0"
+      leave-active-class="transition transform duration-200 ease-in"
+      leave-from-class="opacity-100 scale-100 translate-y-0"
+      leave-to-class="opacity-0 scale-90 translate-y-2"
+    >
+      <Button 
+        v-show="selectedIds.length > 0"
+        @click="bulkAction('delete', props.alldata)"
+        class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded shadow-lg flex items-center gap-2 w-full sm:w-auto"
+      >
+        <DeleteIcon class="w-4 h-4"/> Delete
+      </Button>
+    </Transition>
+    <Transition
+      enter-active-class="transition transform duration-300 ease-out"
+      enter-from-class="opacity-0 scale-75 -translate-y-4"
+      enter-to-class="opacity-100 scale-105 translate-y-0"
+      leave-active-class="transition transform duration-200 ease-in"
+      leave-from-class="opacity-100 scale-100 translate-y-0"
+      leave-to-class="opacity-0 scale-90 translate-y-2"
+    >
+      <Button 
+        v-show="selectedIds.length > 0"
+        @click="bulkAction('delete', props.alldata)"
+        class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded shadow-lg flex items-center gap-2 w-full sm:w-auto"
+      >
+        <DeleteIcon class="w-4 h-4"/> Delete
+      </Button>
+    </Transition>
+    <!-- Bulk action button end here  -->
+
+    <!-- Recycle -->
+    <Button
+      class="px-3 py-2.5 text-red-500 rounded-xl bg-white shadow-xl border border-red-200 hover:bg-red-100 transition-colors duration-200 flex items-center gap-2 w-full sm:w-auto"
+    >
+      <Trash class="w-4 h-4" />
+      <span>Recycle</span>
     </Button>
 
-    <!-- Add -->
+    <!-- Create / Add -->
     <Button
-      class="px-3 py-2.5 rounded-xl  bg-white text-green-500 shadow-lg border border-green-400 hover:bg-blue-50 transition-colors duration-200"
+      class="px-3 py-2.5 rounded-xl bg-white text-green-500 shadow-lg border border-green-400 hover:bg-blue-50 transition-colors duration-200 flex items-center gap-2 w-full sm:w-auto"
     >
-      <Link :href="route('category_page.add')">
-        <SquarePlus /> 
+      <Link :href="route('category_page.add')" class="flex items-center gap-2 w-full">
+        <SquarePlus class="w-4 h-4" />
+        <span>Create</span>
       </Link>
     </Button>
+
   </div>
 </div>
+
 
 
     <!-- Data Table -->
@@ -170,7 +204,7 @@ defineProps({
         <thead class="bg-gradient-to-r from-blue-50 to-blue-100 sticky top-0 z-10">
           <tr>
             <th class="px-4 py-3 text-left text-sm w-12">
-              <input type="checkbox" class="h-4 w-4 text-blue-600 rounded border-gray-300"/>
+              <input type="checkbox" :checked="isAnySelected" @change="toggleSelectAll(props.alldata)" class="h-4 w-4 text-blue-600 rounded border-gray-300"/>
             </th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">ID</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Category Name</th>
@@ -185,7 +219,7 @@ defineProps({
         <!-- Table Body -->
         <tbody class="divide-y divide-gray-100">
           <tr v-for="data in alldata" :key="data.id" class="hover:bg-blue-50 transition-colors duration-200">
-            <td class="px-4 py-3"><input type="checkbox" class="h-4 w-4 text-blue-600 rounded border-gray-300"/></td>
+            <td class="px-4 py-3"><input type="checkbox" :value="data.id" v-model="selectedIds"  class="h-4 w-4 text-blue-600 rounded border-gray-300"/></td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.id ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.name ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.title ?? '' }}</td>
@@ -277,5 +311,23 @@ defineProps({
     </div>
   </div>
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </AdminLayout>
 </template>

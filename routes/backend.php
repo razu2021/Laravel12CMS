@@ -35,6 +35,10 @@ Route::controller(CategoryPageController::class)->prefix('admin/dashboad/categor
     Route::delete('softdelete/{id}',[CategoryPageController::class ,'softdelete'])->name('softdelete');
     Route::delete('delete/{id}',[CategoryPageController::class ,'delete'])->name('delete');
     Route::get('recycle',[CategoryPageController::class ,'recycle'])->name('recycle');
+    
+    Route::post('bulk/action',[CategoryPageController::class ,'bulkAction'])->name('bulkAction');
+
+
 });
 
 

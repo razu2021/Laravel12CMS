@@ -232,4 +232,48 @@ class CategoryPageController extends Controller
 
 
 
+
+
+    public function bulkAction(Request $request){
+        
+        //-------- get multiple ids, type or bulk record 
+        $ids = $request->input('ids', []);
+        $action = $request->input('action');
+
+        if (empty($ids)) {
+            return response()->json(['success' => false, 'message' => 'No IDs selected.']);
+        }
+    
+
+
+        if($action === 'delete'){
+
+            $data = CategoryPage::whereIn('id',$ids)->delete();
+
+          
+
+            return back();
+            
+        }
+
+
+
+
+
+
+
+      
+        return back();
+
+    }
+
+
+
+
+
+
+
+
+
+
 }
