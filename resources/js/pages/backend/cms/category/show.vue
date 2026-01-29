@@ -19,7 +19,7 @@ const {data} = defineProps<{
 const breadcrumbs: Breadcrumbdata[] = [
     {
       title: 'Create Category Page',
-      href: route('category_page_view',{id: data.id ,slug: data.slug})
+      href: route('category_page.view',{id: data.id ,slug: data.slug})
     },
 ];
 
@@ -45,7 +45,7 @@ const breadcrumbs: Breadcrumbdata[] = [
        
         <button
           class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-white/20 transition">
-          <Link :href="route('category_page_all')"><Button>All Information</Button></Link>
+          <Link :href="route('category_page.all')"><Button>All Information</Button></Link>
         </button>
       </div>
     </div>

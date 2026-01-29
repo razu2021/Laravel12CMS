@@ -4,7 +4,7 @@
     Manage Products
   </span>
   <!-- Horizontal Line after text -->
-  <div class="flex-1 h-px bg-green-300"></div>
+  <div class="flex-1 h-px bg-gray-300"></div>
 </div>
 </template>
 <script>

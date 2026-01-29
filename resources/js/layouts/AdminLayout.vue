@@ -1,10 +1,33 @@
 <script setup>
+import { ref } from 'vue';
 import AdminFooter from '@/components/admin/AdminFooter.vue';
 import AdminHeader from '@/components/admin/AdminHeader.vue';
 import AdminSidebar from '@/components/admin/AdminSidebar.vue';
-import { ref } from 'vue';
+import { usePage } from '@inertiajs/vue3'
+import flasher from '@flasher/flasher';
+import { computed, watch } from 'vue';
 const sidebarCollapsed = ref(false)
 const mobileSidebar = ref(false)
+
+//Acces share data from inertia 
+
+const page = usePage();
+const messages = computed(()=> page.props.messages)
+
+
+// watch for changes in flash messages
+watch(
+  messages,
+  (newMessages) => {
+    if (newMessages) {
+      flasher.render(newMessages)
+    }
+  },
+  { immediate: true }
+)
+
+
+
 </script>
 
 

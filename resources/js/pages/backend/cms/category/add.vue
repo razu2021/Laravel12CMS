@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import Button from '@/components/ui/button/Button.vue'
-import AppLayout from '@/layouts/AppLayout.vue'
-import { category_page_add } from '@/routes'
 import { type BreadcrumbItem } from '@/types'
 import { Head, Link, useForm, useRemember } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
@@ -10,7 +8,7 @@ import AdminLayout from '@/layouts/AdminLayout.vue'
 const breadcrumbs: BreadcrumbItem[] = [
   {
     title: 'create page',
-    href: category_page_add().url,
+    href: route('category_page.add')
   },
 ]
 
@@ -33,7 +31,7 @@ const form = useForm(rememberedData.value)
 
 // ✅ submit MUST use form
 const handleSubmit = () => {
-  form.post(route('category_page_submit'), {
+  form.post(route('category_page.submit'), {
     onSuccess: () => {
       form.reset()
       form.forget()
@@ -68,7 +66,7 @@ const handleSubmit = () => {
        
         <button
           class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-white/20 transition">
-          <Link :href="route('category_page_all')">All Information</Link>
+          <Link :href="route('category_page.all')">All Information</Link>
         </button>
       </div>
     </div>

@@ -153,15 +153,83 @@ class CategoryPageController extends Controller
 
         if($update){
             flash()->success('Information Updated successfully!');
-            return redirect()->route('category_page_view',[$id,$slug]);
+            return redirect()->route('category_page.view',[$id,$slug]);
         }else{
             flash()->error('Information Updated Faild !');
             return redirect()->back();
         }
 
-
-        
-         
         
     }
+
+
+
+
+    /**
+     * ======== Active Functionality Start here ==========
+     */
+    public function active($id,$slug){
+        $active = CategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
+            'public_status' => 1,
+        ]);
+
+        if($active){
+            flash()->success('Status Updated Successfully !');
+        }else{
+            flash()->error('Status Updated Faild !');
+        }
+
+        return redirect()->back();
+    }
+
+    /**
+     * ======== De Active Functionality Start here ==========
+     */
+    public function deactive($id,$slug){
+
+        $active = CategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
+            'public_status' => 0,
+        ]);
+
+        if($active){
+            flash()->success('Status Updated Successfully !');
+        }else{
+            flash()->error('Status Updated Faild !');
+        }
+
+        return redirect()->back();
+    }
+    /**
+     * ======== Soft Delete Functionality Start here ==========
+     */
+    public function softdelete($id){
+        $data= CategoryPage::where('id',$id)->first();
+        $data->delete();
+
+        if ($data) {
+        flash()->success('Record deleted successfully!');
+        } else {
+            flash()->error('Failed to delete record!');
+        }
+
+        return back();
+    }
+    /**
+     * ========  Delete Functionality Start here ==========
+     */
+    public function delete($id,$slug){
+        return 'ok';
+    }
+    /**
+     * ========  Recycle Functionality Start here ==========
+     */
+    public function recycle($id,$slug){
+        return 'ok';
+    }
+
+
+
+
+
+
 }
