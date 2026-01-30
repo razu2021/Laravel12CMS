@@ -34,7 +34,7 @@ export function useBulkSelection(items: Item[]){
         if(!selectedIds.value.length) return
 
 
-        Swal.fire({
+    Swal.fire({
       title: 'Are you sure?',
       text: `You are going to ${actionType} ${selectedIds.value.length} item(s).`,
       icon: 'warning',

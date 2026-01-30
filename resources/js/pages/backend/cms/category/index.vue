@@ -1,124 +1,150 @@
 <script setup lang="ts">
-import { useConfirmDelete } from '@/composables/useConfirmDelete';
-import Button from '@/components/ui/button/Button.vue';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Filter, Download,SquarePlus, Trash,SquarePen, Eye, Delete, ShieldCheck, ShieldMinus, DownloadCloud, DeleteIcon } from 'lucide-vue-next';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-  DropdownMenuGroup
-} from '@/components/ui/dropdown-menu'
-import { type BreadcrumbItem } from '@/types';
-import { Head, Link, router } from '@inertiajs/vue3';
-import { route } from 'ziggy-js';
 import AdminLayout from '@/layouts/AdminLayout.vue';
-import { computed, ref } from 'vue';
-const breadcrumbs: BreadcrumbItem[] = [
-    {
-        title: 'Create Category Page',
-        href: route('category_page.all'),
-    },
-];
+import Button from '@/components/ui/button/Button.vue';
+import { Form, Head, Link } from '@inertiajs/vue3';
+import { route } from 'ziggy-js';
+import { SquarePlus, Trash,SquarePen, Eye, ShieldCheck, ShieldMinus, DownloadCloud, DeleteIcon, RotateCcwIcon } from 'lucide-vue-next';
+import {DropdownMenu, DropdownMenuContent, DropdownMenuItem,DropdownMenuSeparator,DropdownMenuTrigger,DropdownMenuGroup} from '@/components/ui/dropdown-menu'
+import { useBulkSelection } from '@/composables/useBulkSelection'; // use for bulk action 
+import { useConfirmDelete } from '@/composables/useConfirmDelete'; // use for sweet alert 
+// ----- use sweet alert delete function 
+ const {confirmDelete} = useConfirmDelete();
+ // -- use bulk action function 
+import { useDataTable } from '@/composables/useDataTable';
+import { useFilter } from '@/composables/useFilter';
 
+/**===================
+ * ======================================
+ *   Get Intertia Controller Data or Data Manageble Section Start here 
+ * ======================================
+ *  ================== */
+
+
+// -----------------------------
+// Props from inertia controller 
+// -----------------------------
 const props = defineProps({
-    alldata:Array
+    alldata: Object,
+    filters : Object ,
 })
 
+const {rows,links,meta} = useDataTable(props)
 
+const {form} = useFilter(props)
 
+const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelection(rows.value)
 
-import { useBulkSelection } from '@/composables/useBulkSelection';
+// //------------------------------- 
+// //get table row (current page onlu )
+// // Using computed to automatically update when props.alldata is chenged 
+// //------------------------------- 
+// const rows = computed(()=>props.alldata?.data?? [])
 
+// //------------------------------- 
+// // Using computed for Reactivity and pagination links for navigation  only
+// //------------------------------- 
+// const links = computed(()=>props.alldata?.links?? [])
 
+// //------------------------------- 
+// //Using Computed for get extra information for UI Logic ,, pagination  
+// //------------------------------- 
+// const meta = computed(()=>({
+//   from: props.alldata?.from ?? 0 ,
+//   to: props.alldata?.to ?? 0 ,
+//   total: props.alldata?.total ?? 0 ,
+//   current_page: props.alldata?.current_page ?? 0 ,
+//   last_page: props.alldata?.last_page ?? 0 ,
+//   per_page: props.alldata?.per_page ?? 0 ,
+//   first_page_url: props.alldata?.first_page_url ?? '' ,
+//   last_page_url: props.alldata?.last_page_url ?? '' ,
+//   next_page_url: props.alldata?.next_page_url ?? '' ,
+//   prev_page_url: props.alldata?.prev_page_url ?? '',
+//   path:props.alldata?.path ?? '' 
+// }))
 
-/// sweet alert use 
- const {confirmDelete} = useConfirmDelete();
+/**===================
+ * ======================================
+ *   Search and Filter Section
+ * ======================================
+ *  ================== */
+//------------------------------- 
+// Using Reactive for user Interection . & Search and filter  
+// it is a local state 
+//------------------------------- 
+// const form = reactive({
+//   search: props.filters?.search ??  '',
+//   status: props.filters?.status ?? '' 
+// })
 
-
-const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelection()
-
-
+// //------------------------------- 
+// // Watch User interections , when typing->backend call -> props change .->computed update ->UI Change . 
+// //------------------------------- 
+// watch(
+//   form,
+//   debounce((newForm) => {
+//     router.get(
+//       route('category_page.all'),
+//       { search: newForm.search, status: newForm.status },
+//       {
+//         preserveState: true,
+//         replace: true,
+//       }
+//     )
+//   }, 400),
+//   { deep: true } 
+// )
 
 </script>
+<!-- ================= Script Code End Heer ================ -->
 
 <template>
-    <Head title="Dashboard"></Head>
+  <Head title="Dashboard"></Head>
 
-   <AdminLayout>
+  <AdminLayout>
 
     
 
-    <div class="container mx-auto mt-5 space-y-4 bg-white p-5 rounded-xl border border-gray-100 shadow-lg">
-      <div class="leading-tight">
-      <h1 class="text-sm font-semibold text-gray-800">
-        Database Record Management
-      </h1>
-      <p class="text-xs text-gray-500">
-        You can easily manage your data below with actions like <span class="font-medium text-gray-700">Create, Edit, View, Delete, Restore, Activate, Deactivate</span>, and more.
-      </p>
-    </div>
-    <hr class="my-3 border-gray-200">
-    <!-- Top Actions / Filters -->
+      <div class="container mx-auto mt-5 space-y-4 bg-white p-5 rounded-xl border border-gray-100 shadow-lg">
+        <div class="leading-tight">
+        <h1 class="text-sm font-semibold text-gray-800">
+          Database Record Management
+        </h1>
+        <p class="text-xs text-gray-500">
+          You can easily manage your data below with actions like <span class="font-medium text-gray-700">Create, Edit, View, Delete, Restore, Activate, Deactivate</span>, and more.
+        </p>
+      </div>
+      <hr class="my-3 border-gray-200">
+      <!-- Top Actions / Filters -->
 
-<div
-  class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 p-5 bg-white rounded-2xl border border-gray-100"
->
-  <!-- LEFT: Search + Filter -->
-  <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto">
-    <!-- Search Input -->
-    <div class="relative flex-1 min-w-[200px]">
-      <input
-        type="text"
-        placeholder="Search data..."
-        class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm
-               focus:ring-2 focus:ring-blue-100 focus:border-blue-500 transition"
-      />
-      <svg
-        class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
-        fill="none" stroke="currentColor" viewBox="0 0 24 24"
-      >
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
-      </svg>
-    </div>
-
-    <!-- Filter Dropdown -->
-    <div class="relative group min-w-[120px]">
-      <button
-        class="flex items-center justify-between gap-2 px-4 py-2.5 rounded-xl
-               border border-gray-200 bg-white text-sm font-medium
-               text-gray-700 shadow-sm hover:bg-blue-50 hover:text-blue-600 transition w-full"
-      >
-        Filter
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 p-5 bg-white rounded-2xl border border-gray-100">
+    <!-- LEFT: Search + Filter -->
+    <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+      <!-- Search Input -->
+      <div class="relative flex-1 min-w-[200px]">
+        <input
+          type="text"
+          v-model="form.search"
+          placeholder="Search data..."
+          class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm
+                focus:ring-2 focus:ring-blue-100 focus:border-blue-500 transition"
+        />
         <svg
-          class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180"
+          class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"
           fill="none" stroke="currentColor" viewBox="0 0 24 24"
         >
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M19 9l-7 7-7-7" />
+            d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
-      </button>
-
-      <!-- Dropdown Items -->
-      <div
-        class="absolute left-0 mt-2 w-48 rounded-xl bg-white
-               border border-gray-100 shadow-xl
-               opacity-0 invisible scale-95
-               group-hover:opacity-100 group-hover:visible group-hover:scale-100
-               transition-all duration-200 z-50"
-      >
-        <ul class="py-2 text-sm">
-          <li class="px-4 py-2 hover:bg-blue-50 hover:text-blue-600 cursor-pointer">📅 Latest</li>
-          <li class="px-4 py-2 hover:bg-blue-50 hover:text-blue-600 cursor-pointer">⭐ Popular</li>
-          <li class="px-4 py-2 hover:bg-blue-50 hover:text-blue-600 cursor-pointer">💰 Price</li>
-        </ul>
       </div>
+
+      <!-- Filter Dropdown -->
+    <select v-model="form.status"  class="px-3 py-2 border rounded-lg text-sm">
+      <option value="">Short By</option>
+      <option value="1">Active</option>
+      <option value="0">Inactive</option>
+    </select>
+        <Link v-show="form.search || form.status" class="text-sm bg-green-200 p-2 rounded-full text-white hover:bg-green-600 transition-all" :href="route('category_page.all')"><RotateCcwIcon/></Link>
     </div>
-  </div>
 
   <!-- RIGHT: Action Buttons -->
   <div class="flex flex-wrap justify-end items-center gap-2 w-full lg:w-auto">
@@ -134,10 +160,10 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
     >
       <Button 
         v-show="selectedIds.length > 0"
-        @click="bulkAction('delete', props.alldata)"
-        class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded shadow-lg flex items-center gap-2 w-full sm:w-auto"
+        @click="bulkAction('active', rows)"
+        class="bg-green-500 hover:bg-green-700  text-white px-4 py-2 rounded shadow-lg flex items-center gap-2 w-full sm:w-auto"
       >
-        <DeleteIcon class="w-4 h-4"/> Delete
+        <ShieldCheck class="w-4 h-4"/> Active
       </Button>
     </Transition>
     <Transition
@@ -150,10 +176,10 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
     >
       <Button 
         v-show="selectedIds.length > 0"
-        @click="bulkAction('delete', props.alldata)"
-        class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded shadow-lg flex items-center gap-2 w-full sm:w-auto"
+        @click="bulkAction('InActive', rows)"
+        class="bg-indigo-500 hover:bg-red-200 text-white px-4 py-2 rounded shadow-lg flex items-center gap-2 w-full sm:w-auto"
       >
-        <DeleteIcon class="w-4 h-4"/> Delete
+        <ShieldMinus class="w-4 h-4"/> InActive
       </Button>
     </Transition>
     <Transition
@@ -166,7 +192,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
     >
       <Button 
         v-show="selectedIds.length > 0"
-        @click="bulkAction('delete', props.alldata)"
+        @click="bulkAction('delete', rows)"
         class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded shadow-lg flex items-center gap-2 w-full sm:w-auto"
       >
         <DeleteIcon class="w-4 h-4"/> Delete
@@ -204,7 +230,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
         <thead class="bg-gradient-to-r from-blue-50 to-blue-100 sticky top-0 z-10">
           <tr>
             <th class="px-4 py-3 text-left text-sm w-12">
-              <input type="checkbox" :checked="isAnySelected" @change="toggleSelectAll(props.alldata)" class="h-4 w-4 text-blue-600 rounded border-gray-300"/>
+              <input type="checkbox" :checked="isAnySelected" @change="toggleSelectAll(rows)" class="h-4 w-4 text-blue-600 rounded border-gray-300"/>
             </th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">ID</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Category Name</th>
@@ -218,7 +244,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
 
         <!-- Table Body -->
         <tbody class="divide-y divide-gray-100">
-          <tr v-for="data in alldata" :key="data.id" class="hover:bg-blue-50 transition-colors duration-200">
+          <tr v-for="data in rows" :key="data.id" class="hover:bg-blue-50 transition-colors duration-200">
             <td class="px-4 py-3"><input type="checkbox" :value="data.id" v-model="selectedIds"  class="h-4 w-4 text-blue-600 rounded border-gray-300"/></td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.id ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.name ?? '' }}</td>
@@ -249,7 +275,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
                       </DropdownMenuItem>
                       <!-- end -->
                       <DropdownMenuItem>
-                        <button @click="confirmDelete('category_page.softdelete',{id:data.id})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-red-300 rounded-lg">
+                        <button @click="confirmDelete('category_page.softdelete',data.id)" class="w-full inline-flex items-center gap-2  text-sm font-medium text-red-300 rounded-lg">
                           <span class="flex items-center"><Trash /></span>
                           <span> Delete </span>
                         </button>
@@ -298,16 +324,37 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
       </table>
 
       <!-- Footer / Pagination -->
-      <div class="flex flex-col sm:flex-row justify-between items-center p-4 border-t border-gray-200">
-        <div class="text-sm text-gray-500">Showing 1 to 10 of 50 entries</div>
-        <div class="flex gap-2 mt-2 sm:mt-0">
-          <button class="px-3 py-1 rounded border border-gray-300 hover:bg-gray-100 transition">Prev</button>
-          <button class="px-3 py-1 rounded border border-gray-300 hover:bg-gray-100 transition">1</button>
-          <button class="px-3 py-1 rounded border border-gray-300 hover:bg-gray-100 transition">2</button>
-          <button class="px-3 py-1 rounded border border-gray-300 hover:bg-gray-100 transition">3</button>
-          <button class="px-3 py-1 rounded border border-gray-300 hover:bg-gray-100 transition">Next</button>
-        </div>
-      </div>
+<div class="flex flex-col sm:flex-row items-center justify-between gap-4 mt-4 p-3 bg-white rounded-lg shadow-sm border">
+  
+  <!-- Left: Summary -->
+  <div class="text-gray-600 text-sm">
+  Showing 
+   <span class="font-medium">{{ meta?.from }}</span>
+  to 
+  <span class="font-medium">{{ meta?.to }}</span> 
+  of 
+  <span class="font-medium">{{ meta?.total }}</span> items
+</div>
+
+  <!-- Right: Pagination -->
+  <div class="flex flex-wrap gap-1">
+    <Link
+      v-for="(link, index) in links"
+      :key="index"
+      :href="link.url ?? '#'"
+      v-html="link.label"
+      class="px-3 py-1 border rounded transition-colors duration-200 text-gray-700 hover:bg-blue-100 hover:text-blue-700"
+      :class="{ 
+        'bg-blue-500 text-white border-blue-500': link.active,
+        'cursor-not-allowed opacity-50': !link.url
+      }"
+    />
+  </div>
+
+</div>
+
+
+      <!-- pagination end here -->
     </div>
   </div>
         

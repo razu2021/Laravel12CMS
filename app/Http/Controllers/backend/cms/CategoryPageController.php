@@ -15,11 +15,31 @@ use Inertia\Inertia;
 
 class CategoryPageController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $alldata = CategoryPage::get();
+        $query = CategoryPage::query(); 
+
+
+       
+        if($request->filled('search')){
+            $query->where('name','LIKE', '%' .$request->search .'%');
+        }
+
+            // 📅 Status Filter
+        if ($request->filled('status')) {
+            $query->where('public_status', $request->status);
+        }
+
+
+
+
+        $alldata = $query->paginate(10)->withQueryString();
+
+       
+
         return Inertia::render('backend/cms/category/index',[
-            'alldata' => $alldata 
+            'alldata' => $alldata ,
+            'filters' => $request->only(['search','status'])
         ]);
     }
 
@@ -232,7 +252,11 @@ class CategoryPageController extends Controller
 
 
 
-
+/**
+ * ============== Bulk Action Function start here=====================
+ * ==========================
+ * =======================================================================================================================
+ */
 
     public function bulkAction(Request $request){
         
@@ -245,20 +269,25 @@ class CategoryPageController extends Controller
         }
     
 
-
+        // ---------- soft delete code start here 
         if($action === 'delete'){
-
             $data = CategoryPage::whereIn('id',$ids)->delete();
-
-          
-
             return back();
-            
         }
 
-
-
-
+        // ---------- Multiple Items active code start here ----------
+        if($action === 'active'){
+            $categorys = CategoryPage::whereIn('id',$ids)->where('public_status',0)->update([
+                'public_status'=>1,
+            ]);
+ 
+        }
+        // ---------- Multiple Items Inactive code start here ----------
+        if($action === 'InActive'){
+            $categorys = CategoryPage::whereIn('id',$ids)->where('public_status',1)->update([
+                'public_status'=>0,
+            ]);
+        }
 
 
 
