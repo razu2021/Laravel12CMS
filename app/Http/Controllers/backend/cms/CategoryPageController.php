@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
 use Carbon\Carbon; //----------  defualt -------
+use Barryvdh\DomPDF\Facade\Pdf;//-------------- export pdf
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\CategoryPageExport;
 use Illuminate\Support\Str;
 use App\Models\CategoryPage;
 
@@ -299,6 +302,28 @@ class CategoryPageController extends Controller
 
 
 
+
+    /**
+     * 
+     * ================= export function start here 
+     */
+
+    public function exportPdf($id,$slug){
+
+        $data = CategoryPage::where('id',$id)->where('slug',$slug)->firstOrFail();
+        $fileName = $data->name.'-'.now().'.pdf';
+        $pdf = pdf::loadView('backend/export/category/export_singlepdf',compact('data'))->setPaper('a4', 'portrait');
+        return $pdf->download($fileName);
+
+    }
+
+
+    public function export_excel(){
+        return Excel::download(new CategoryPageExport, now().'.xlsx');
+    }
+    public function export_csv(){
+        return Excel::download(new CategoryPageExport, now().'.csv');
+    }
 
 
 

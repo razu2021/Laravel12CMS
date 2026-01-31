@@ -3,7 +3,7 @@ import AdminLayout from '@/layouts/AdminLayout.vue';
 import Button from '@/components/ui/button/Button.vue';
 import { Form, Head, Link } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
-import { SquarePlus, Trash,SquarePen, Eye, ShieldCheck, ShieldMinus, DownloadCloud, DeleteIcon, RotateCcwIcon } from 'lucide-vue-next';
+import { SquarePlus, Trash,SquarePen, Eye, ShieldCheck, ShieldMinus, DownloadCloud, DeleteIcon, RotateCcwIcon, Download } from 'lucide-vue-next';
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem,DropdownMenuSeparator,DropdownMenuTrigger,DropdownMenuGroup} from '@/components/ui/dropdown-menu'
 import { useBulkSelection } from '@/composables/useBulkSelection'; // use for bulk action 
 import { useConfirmDelete } from '@/composables/useConfirmDelete'; // use for sweet alert 
@@ -12,6 +12,9 @@ import { useConfirmDelete } from '@/composables/useConfirmDelete'; // use for sw
  // -- use bulk action function 
 import { useDataTable } from '@/composables/useDataTable';
 import { useFilter } from '@/composables/useFilter';
+
+
+
 
 /**===================
  * ======================================
@@ -28,71 +31,13 @@ const props = defineProps({
     filters : Object ,
 })
 
+
 const {rows,links,meta} = useDataTable(props)
 
 const {form} = useFilter(props)
 
 const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelection(rows.value)
 
-// //------------------------------- 
-// //get table row (current page onlu )
-// // Using computed to automatically update when props.alldata is chenged 
-// //------------------------------- 
-// const rows = computed(()=>props.alldata?.data?? [])
-
-// //------------------------------- 
-// // Using computed for Reactivity and pagination links for navigation  only
-// //------------------------------- 
-// const links = computed(()=>props.alldata?.links?? [])
-
-// //------------------------------- 
-// //Using Computed for get extra information for UI Logic ,, pagination  
-// //------------------------------- 
-// const meta = computed(()=>({
-//   from: props.alldata?.from ?? 0 ,
-//   to: props.alldata?.to ?? 0 ,
-//   total: props.alldata?.total ?? 0 ,
-//   current_page: props.alldata?.current_page ?? 0 ,
-//   last_page: props.alldata?.last_page ?? 0 ,
-//   per_page: props.alldata?.per_page ?? 0 ,
-//   first_page_url: props.alldata?.first_page_url ?? '' ,
-//   last_page_url: props.alldata?.last_page_url ?? '' ,
-//   next_page_url: props.alldata?.next_page_url ?? '' ,
-//   prev_page_url: props.alldata?.prev_page_url ?? '',
-//   path:props.alldata?.path ?? '' 
-// }))
-
-/**===================
- * ======================================
- *   Search and Filter Section
- * ======================================
- *  ================== */
-//------------------------------- 
-// Using Reactive for user Interection . & Search and filter  
-// it is a local state 
-//------------------------------- 
-// const form = reactive({
-//   search: props.filters?.search ??  '',
-//   status: props.filters?.status ?? '' 
-// })
-
-// //------------------------------- 
-// // Watch User interections , when typing->backend call -> props change .->computed update ->UI Change . 
-// //------------------------------- 
-// watch(
-//   form,
-//   debounce((newForm) => {
-//     router.get(
-//       route('category_page.all'),
-//       { search: newForm.search, status: newForm.status },
-//       {
-//         preserveState: true,
-//         replace: true,
-//       }
-//     )
-//   }, 400),
-//   { deep: true } 
-// )
 
 </script>
 <!-- ================= Script Code End Heer ================ -->
@@ -101,8 +46,6 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
   <Head title="Dashboard"></Head>
 
   <AdminLayout>
-
-    
 
       <div class="container mx-auto mt-5 space-y-4 bg-white p-5 rounded-xl border border-gray-100 shadow-lg">
         <div class="leading-tight">
@@ -201,6 +144,37 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
     <!-- Bulk action button end here  -->
 
     <!-- Recycle -->
+              <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline"><Download/> Export </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuGroup>
+                      <DropdownMenuItem>
+                        <a target="_blank" :href="route('category_page.export_pdf')" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
+                          <span> PDF </span>
+                        </a>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <a target="_blank" :href="route('category_page.export_excel')" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
+                          <span> Excel </span>
+                        </a>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <a target="_blank" :href="route('category_page.export_csv')" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
+                          <span> CSV </span>
+                        </a>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <a target="_blank" :href="route('category_page.excel')" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
+                          <span> Zip </span>
+                        </a>
+                      </DropdownMenuItem>
+                    
+                    </DropdownMenuGroup>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
     <Button
       class="px-3 py-2.5 text-red-500 rounded-xl bg-white shadow-xl border border-red-200 hover:bg-red-100 transition-colors duration-200 flex items-center gap-2 w-full sm:w-auto"
     >
@@ -302,17 +276,17 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
                        <DropdownMenuSeparator />
                         <!-- end -->
                       <DropdownMenuItem>
-                        <Link :href="route('category_page.edit',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-cyan-600 rounded-lg">
+                        <a target="_blank" :href="route('category_page.single_pdf_export',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-cyan-600 rounded-lg">
                           <span class="flex items-center"><DownloadCloud /></span>
                           <span> Export .PDF </span>
-                      </Link>
+                        </a>
                       </DropdownMenuItem>
                         <!-- end -->
                       <DropdownMenuItem>
-                        <Link :href="route('category_page.edit',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-cyan-600 rounded-lg">
+                        <a target="_blank" :href="route('category_page.excel')" class="w-full inline-flex items-center gap-2  text-sm font-medium text-cyan-600 rounded-lg">
                           <span class="flex items-center"><DownloadCloud /></span>
                           <span> Export .xlsx </span>
-                      </Link>
+                        </a>
                       </DropdownMenuItem>
                       <!-- end -->
                     </DropdownMenuGroup>

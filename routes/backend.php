@@ -37,7 +37,11 @@ Route::controller(CategoryPageController::class)->prefix('admin/dashboad/categor
     Route::get('recycle',[CategoryPageController::class ,'recycle'])->name('recycle');
     
     Route::post('bulk/action',[CategoryPageController::class ,'bulkAction'])->name('bulkAction');
-
+    //----------  Export route start here 
+     Route::get('export/single/pdf/{id}/{slug}',[CategoryPageController::class ,'exportPdf'])->name('single_pdf_export');
+     Route::get('export/excel',[CategoryPageController::class ,'export_excel'])->name('export_excel');
+     Route::get('export/excel',[CategoryPageController::class ,'export_csv'])->name('export_csv');
+     Route::get('export/excel',[CategoryPageController::class ,'export_pdf'])->name('export_pdf');
 
 });
 
