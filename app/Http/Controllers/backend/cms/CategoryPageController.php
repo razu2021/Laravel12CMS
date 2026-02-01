@@ -15,6 +15,7 @@ use App\Models\CategoryPage;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
+use Symfony\Component\CssSelector\Node\FunctionNode;
 
 class CategoryPageController extends Controller
 {
@@ -294,6 +295,38 @@ class CategoryPageController extends Controller
 
 
 
+
+        // ------------ Multiple Item Export as an PDF -------------------------------
+        if($action === 'export_pdf'){
+          
+            $category = CategoryPage::whereIn('id',$ids)->get();
+
+            $fileName = now()->format('Y-m-d_H-i-s') . '.pdf';
+
+             $pdf = Pdf::loadView('backend.export.category.export_pdf', [
+                'dataJson' => $category->toArray()
+            ])->setPaper('a4', 'portrait');
+
+            return $pdf->stream($fileName);
+        }
+
+        // ------------ Multiple Item Export as an Excel file -------------------------------
+
+        if($action === 'export_excel'){
+
+            return Excel::download(new CategoryPageExport($ids), now().'.xlsx');
+        }
+        if($action === 'export_csv'){
+
+            return Excel::download(new CategoryPageExport($ids), now().'.csv');
+        }
+
+
+
+
+
+        
+
       
         return back();
 
@@ -316,6 +349,20 @@ class CategoryPageController extends Controller
         return $pdf->download($fileName);
 
     }
+
+
+
+
+    public function export_pdf(){
+        $data = CategoryPage::get();
+        $fileName =now().'.pdf';
+        $pdf = pdf::loadView('backend/export/category/export_pdf',[
+            'dataJson' => $data->toArray()
+        ])->setPaper('a4', 'portrait');
+        return $pdf->download($fileName);
+       
+    }
+
 
 
     public function export_excel(){

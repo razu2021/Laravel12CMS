@@ -21,12 +21,11 @@ class CategoryPageExport implements FromCollection , WithHeadings
         return [
             'ID',           // 1st column heading
             'name',  // 4th column heading
-              'url',  // 4th column heading
-
+            'url',  // 4th column heading
             'title',  // 4th column heading
             'description',  // 4th column heading
-          
             'order',  // 4th column heading
+
             'Slug', 
             'careator', 
             'editor', 

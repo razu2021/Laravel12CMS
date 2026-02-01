@@ -12,6 +12,7 @@ import { useConfirmDelete } from '@/composables/useConfirmDelete'; // use for sw
  // -- use bulk action function 
 import { useDataTable } from '@/composables/useDataTable';
 import { useFilter } from '@/composables/useFilter';
+import { ref } from 'vue';
 
 
 
@@ -36,7 +37,9 @@ const {rows,links,meta} = useDataTable(props)
 
 const {form} = useFilter(props)
 
-const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelection(rows.value)
+const bulkRoute = ref('category_page.bulkAction')
+
+const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelection(rows.value, bulkRoute)
 
 
 </script>
@@ -46,6 +49,8 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
   <Head title="Dashboard"></Head>
 
   <AdminLayout>
+    
+    
 
       <div class="container mx-auto mt-5 space-y-4 bg-white p-5 rounded-xl border border-gray-100 shadow-lg">
         <div class="leading-tight">
@@ -55,6 +60,51 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
         <p class="text-xs text-gray-500">
           You can easily manage your data below with actions like <span class="font-medium text-gray-700">Create, Edit, View, Delete, Restore, Activate, Deactivate</span>, and more.
         </p>
+      </div>
+      <div>
+                      <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline"><Download/> Export </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuGroup>
+                      <DropdownMenuItem>
+                        <a :href=" route('category_page.export_pdf') " target="_blank" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
+                          <span class="flex items-center"><SquarePen /></span>
+                          <span>  Export Pdf</span>
+                        </a>
+                      </DropdownMenuItem>
+                      <!-- end -->
+                      <DropdownMenuItem>
+                        <a :href=" route('category_page.export_pdf') " target="_blank" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
+                          <span class="flex items-center"><SquarePen /></span>
+                          <span>  Export Excel</span>
+                        </a>
+                      </DropdownMenuItem>
+                      <!-- end -->
+                      <DropdownMenuItem>
+                        <a :href="route('category_page.export_pdf')" target="_blank" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
+                          <span class="flex items-center"><SquarePen /></span>
+                          <span>  Export CSV</span>
+                        </a>
+                      </DropdownMenuItem>
+                      <!-- end -->
+                      <DropdownMenuItem>
+                        <a :href="route('category_page.export_pdf')" target="_blank" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
+                          <span class="flex items-center"><SquarePen /></span>
+                          <span>  Export ZIP</span>
+                        </a>
+                      </DropdownMenuItem>
+                      <!-- end -->
+                    
+                   
+                        <!-- end -->
+                     
+                      <!-- end -->
+                    </DropdownMenuGroup>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
       </div>
       <hr class="my-3 border-gray-200">
       <!-- Top Actions / Filters -->
@@ -144,36 +194,69 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
     <!-- Bulk action button end here  -->
 
     <!-- Recycle -->
-              <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline"><Download/> Export </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuGroup>
-                      <DropdownMenuItem>
-                        <a target="_blank" :href="route('category_page.export_pdf')" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
-                          <span> PDF </span>
-                        </a>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <a target="_blank" :href="route('category_page.export_excel')" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
-                          <span> Excel </span>
-                        </a>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <a target="_blank" :href="route('category_page.export_csv')" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
-                          <span> CSV </span>
-                        </a>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <a target="_blank" :href="route('category_page.excel')" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
-                          <span> Zip </span>
-                        </a>
-                      </DropdownMenuItem>
-                    
-                    </DropdownMenuGroup>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+     <div  v-show="selectedIds.length > 0">
+<DropdownMenu>
+  <DropdownMenuTrigger asChild>
+    <Button
+      variant="outline"
+      class="flex items-center gap-2 w-full sm:w-auto"
+    >
+      <Download class="w-4 h-4" />
+      <span>Export</span>
+    </Button>
+  </DropdownMenuTrigger>
+
+  <DropdownMenuContent
+    align="end"
+    class="w-48 rounded-xl shadow-lg"
+  >
+    <DropdownMenuGroup>
+
+      <!-- PDF -->
+      <DropdownMenuItem asChild>
+        <button
+          @click="bulkAction('export_pdf', rows)"
+          class="flex w-full items-center gap-3 px-3 py-2 text-sm
+                 text-red-600 hover:bg-red-50 rounded-lg"
+        >
+          <FileText class="w-4 h-4" />
+          <span>Export PDF</span>
+        </button>
+      </DropdownMenuItem>
+
+      <!-- Excel -->
+      <DropdownMenuItem asChild>
+        <button
+          @click="bulkAction('export_excel', rows)"
+          class="flex w-full items-center gap-3 px-3 py-2 text-sm
+                 text-green-600 hover:bg-green-50 rounded-lg"
+        >
+          <FileSpreadsheet class="w-4 h-4" />
+          <span>Export Excel</span>
+        </button>
+      </DropdownMenuItem>
+
+      <!-- CSV -->
+      <DropdownMenuItem asChild>
+        <button
+          @click="bulkAction('export_csv', rows)"
+          class="flex w-full items-center gap-3 px-3 py-2 text-sm
+                 text-blue-600 hover:bg-blue-50 rounded-lg"
+        >
+          <File class="w-4 h-4" />
+          <span>Export CSV</span>
+        </button>
+      </DropdownMenuItem>
+
+    </DropdownMenuGroup>
+  </DropdownMenuContent>
+</DropdownMenu>
+
+     </div>
+
+
+
+              
 
     <Button
       class="px-3 py-2.5 text-red-500 rounded-xl bg-white shadow-xl border border-red-200 hover:bg-red-100 transition-colors duration-200 flex items-center gap-2 w-full sm:w-auto"
@@ -282,12 +365,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
                         </a>
                       </DropdownMenuItem>
                         <!-- end -->
-                      <DropdownMenuItem>
-                        <a target="_blank" :href="route('category_page.excel')" class="w-full inline-flex items-center gap-2  text-sm font-medium text-cyan-600 rounded-lg">
-                          <span class="flex items-center"><DownloadCloud /></span>
-                          <span> Export .xlsx </span>
-                        </a>
-                      </DropdownMenuItem>
+                     
                       <!-- end -->
                     </DropdownMenuGroup>
                   </DropdownMenuContent>
