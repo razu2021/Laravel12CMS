@@ -1,16 +1,10 @@
 <script setup lang="ts">
 import Button from '@/components/ui/button/Button.vue'
 import AdminLayout from '@/layouts/AdminLayout.vue'
-import { type BreadcrumbItem } from '@/types'
-import { Head, Link, useForm, useRemember } from '@inertiajs/vue3'
+import { Head, Link, useForm } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
 
-const breadcrumbs: BreadcrumbItem[] = [
-  {
-    title: 'create page',
-    href: route('category_page.add'),
-  },
-]
+
 
 
 const props= defineProps<{
@@ -52,7 +46,7 @@ const handleUpdate = () => {
 
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Update Informations" />
 
     <AdminLayout>
 
@@ -87,8 +81,8 @@ const handleUpdate = () => {
             <div class="rounded-2xl bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,0.06)] space-y-6">
 
                 <div class="border-b pb-4">
-                <h2 class="text-base font-semibold text-slate-800">Basic Information</h2>
-                <p class="text-sm text-slate-500">Main content related data</p>
+                <h2 class="text-base font-semibold text-slate-800">Update Information</h2>
+                <p class="text-sm text-slate-500">Update Infromation below</p>
                 </div>
 
                 
@@ -169,9 +163,6 @@ const handleUpdate = () => {
 
         </div>
         </div>
-
-
-
 
 </form>
    </AdminLayout>
