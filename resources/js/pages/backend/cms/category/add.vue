@@ -50,6 +50,7 @@ const handleSubmit = () => {
 
 
   <!-- PAGE WRAPPER -->
+    <form @submit.prevent="handleSubmit" class="space-y-5">
 <div class="container  mx-auto my-10 px-4">
 
   <!-- PAGE WRAPPER -->
@@ -80,7 +81,7 @@ const handleSubmit = () => {
           <p class="text-sm text-slate-500">Main content related data</p>
         </div>
 
-        <form @submit.prevent="handleSubmit" class="space-y-5">
+       
           <div>
             <label class="text-sm font-medium text-slate-600">Name</label>
             <input type="text" placeholder="Enter title" v-model="form.name"
@@ -105,9 +106,9 @@ const handleSubmit = () => {
             <div class="text-small text-red-500" v-if="form.errors.description">{{ form.errors.description }}</div>
             </div>
           <div>
-            <Button type="submit" :disabled="form.processing">{{ form.processing ? 'Saving...' : 'Submit' }}</Button>
+            
           </div>
-        </form>
+      
 
       </div>
     </div>
@@ -147,6 +148,7 @@ const handleSubmit = () => {
               <div class="text-small text-red-500" v-if="form.errors.order">{{ form.errors.order }}</div>
           </div>
           <!-- end -->
+           <Button type="submit" class="mt-5 w-full" :disabled="form.processing">{{ form.processing ? 'Saving...' : 'Submit' }}</Button>
         </div>
       </div>
     </div>
@@ -156,7 +158,7 @@ const handleSubmit = () => {
 
 
 
-
+  </form>
 
 
 
