@@ -3,7 +3,7 @@ import AdminLayout from '@/layouts/AdminLayout.vue';
 import Button from '@/components/ui/button/Button.vue';
 import { Form, Head, Link } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
-import { SquarePlus, Trash,SquarePen, Eye, ShieldCheck, ShieldMinus, DownloadCloud, DeleteIcon, RotateCcwIcon, Download, DatabaseBackup } from 'lucide-vue-next';
+import { SquarePlus, Trash,SquarePen, Eye, ShieldCheck, ShieldMinus, DownloadCloud, DeleteIcon, RotateCcwIcon, Download, DatabaseBackup, InfoIcon, RefreshCcw } from 'lucide-vue-next';
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem,DropdownMenuSeparator,DropdownMenuTrigger,DropdownMenuGroup} from '@/components/ui/dropdown-menu'
 import { useBulkSelection } from '@/composables/useBulkSelection'; // use for bulk action 
 import { useConfirmDelete } from '@/composables/useConfirmDelete'; // use for sweet alert 
@@ -55,46 +55,14 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
       <div class="container mx-auto mt-5 space-y-4 bg-white p-5 rounded-xl border border-gray-100 shadow-lg">
         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 p-5 bg-black  rounded-2xl border border-gray-100">
         <div class="leading-tight">
-          <h1 class="text-sm font-semibold text-white">
-            Database Record Management
+          <h1 class="text-lg font-semibold text-white">
+           {{ route().current() }}
           </h1>
           <p class="text-xs text-white">
-            You can easily manage your data below with actions like <span class="font-medium text-red-300">Create, Edit, View, Delete, Restore, Activate, Deactivate</span>, and more.
+            You can easily manage your data below with actions like <span class="font-medium text-red-300">Create,  Delete, Restore</span>, and more.
           </p>
       </div>
-      <div>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline"><DatabaseBackup/> Download Database </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuGroup>
-                      <DropdownMenuItem>
-                        <a :href=" route('category_page.export_pdf') " target="_blank" class="w-full inline-flex items-center gap-2  text-sm font-medium text-yellow-600 rounded-lg">
-                          <span class="flex items-center"><Download /></span>
-                          <span>  Export Pdf</span>
-                        </a>
-                      </DropdownMenuItem>
-                      <!-- end -->
-                      <DropdownMenuItem>
-                        <a :href=" route('category_page.export_pdf') " target="_blank" class="w-full inline-flex items-center gap-2  text-sm font-medium text-green-600 rounded-lg">
-                          <span class="flex items-center"><Download /></span>
-                          <span>  Export Excel</span>
-                        </a>
-                      </DropdownMenuItem>
-                      <!-- end -->
-                      <DropdownMenuItem>
-                        <a :href="route('category_page.export_pdf')" target="_blank" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
-                          <span class="flex items-center"><Download /></span>
-                          <span>  Export CSV</span>
-                        </a>
-                      </DropdownMenuItem>
-                      <!-- end -->
-                    </DropdownMenuGroup>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-
-      </div>
+      <div> <Link :href="route('category_page.all')" class="bg-white hover:bg-gray-100  text-dark px-4 py-2 rounded shadow-lg flex items-center gap-2 w-full sm:w-auto sm:text-center"> <InfoIcon class="text-green-600"/> View Information </Link> </div>
       </div>
 
       <hr class="my-3 border-gray-200">
@@ -133,7 +101,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
   <!-- RIGHT: Action Buttons -->
   <div class="flex flex-wrap justify-end items-center gap-2 w-full lg:w-auto">
 
-    <!-- Bulk Delete -->
+   
     <Transition
       enter-active-class="transition transform duration-300 ease-out"
       enter-from-class="opacity-0 scale-75 -translate-y-4"
@@ -144,28 +112,13 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
     >
       <Button 
         v-show="selectedIds.length > 0"
-        @click="bulkAction('active', rows)"
-        class="bg-green-500 hover:bg-green-700  text-white px-4 py-2 rounded shadow-lg flex items-center gap-2 w-full sm:w-auto"
-      >
-        <ShieldCheck class="w-4 h-4"/> Active
-      </Button>
-    </Transition>
-    <Transition
-      enter-active-class="transition transform duration-300 ease-out"
-      enter-from-class="opacity-0 scale-75 -translate-y-4"
-      enter-to-class="opacity-100 scale-105 translate-y-0"
-      leave-active-class="transition transform duration-200 ease-in"
-      leave-from-class="opacity-100 scale-100 translate-y-0"
-      leave-to-class="opacity-0 scale-90 translate-y-2"
-    >
-      <Button 
-        v-show="selectedIds.length > 0"
-        @click="bulkAction('InActive', rows)"
+        @click="bulkAction('Restore', rows)"
         class="bg-indigo-500 hover:bg-red-200 text-white px-4 py-2 rounded shadow-lg flex items-center gap-2 w-full sm:w-auto"
       >
-        <ShieldMinus class="w-4 h-4"/> InActive
+        <RefreshCcw class="w-4 h-4"/> Restore
       </Button>
     </Transition>
+
     <Transition
       enter-active-class="transition transform duration-300 ease-out"
       enter-from-class="opacity-0 scale-75 -translate-y-4"
@@ -176,7 +129,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
     >
       <Button 
         v-show="selectedIds.length > 0"
-        @click="bulkAction('delete', rows)"
+        @click="bulkAction('Heard_Delete', rows)"
         class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded shadow-lg flex items-center gap-2 w-full sm:w-auto"
       >
         <DeleteIcon class="w-4 h-4"/> Delete
@@ -185,76 +138,8 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
     <!-- Bulk action button end here  -->
 
     <!-- Recycle -->
-     <div  v-show="selectedIds.length > 0">
-<DropdownMenu>
-  <DropdownMenuTrigger asChild>
-    <Button
-      variant="outline"
-      class="flex items-center gap-2 w-full sm:w-auto"
-    >
-      <Download class="w-4 h-4" />
-      <span>Export</span>
-    </Button>
-  </DropdownMenuTrigger>
-
-  <DropdownMenuContent
-    align="end"
-    class="w-48 rounded-xl shadow-lg"
-  >
-    <DropdownMenuGroup>
-
-      <!-- PDF -->
-      <DropdownMenuItem asChild>
-        <button
-          @click="bulkAction('export_pdf', rows)"
-          class="flex w-full items-center gap-3 px-3 py-2 text-sm
-                 text-red-600 hover:bg-red-50 rounded-lg"
-        >
-          <FileText class="w-4 h-4" />
-          <span>Export PDF</span>
-        </button>
-      </DropdownMenuItem>
-
-      <!-- Excel -->
-      <DropdownMenuItem asChild>
-        <button
-          @click="bulkAction('export_excel', rows)"
-          class="flex w-full items-center gap-3 px-3 py-2 text-sm
-                 text-green-600 hover:bg-green-50 rounded-lg"
-        >
-          <FileSpreadsheet class="w-4 h-4" />
-          <span>Export Excel</span>
-        </button>
-      </DropdownMenuItem>
-
-      <!-- CSV -->
-      <DropdownMenuItem asChild>
-        <button
-          @click="bulkAction('export_csv', rows)"
-          class="flex w-full items-center gap-3 px-3 py-2 text-sm
-                 text-blue-600 hover:bg-blue-50 rounded-lg"
-        >
-          <File class="w-4 h-4" />
-          <span>Export CSV</span>
-        </button>
-      </DropdownMenuItem>
-
-    </DropdownMenuGroup>
-  </DropdownMenuContent>
-</DropdownMenu>
-
-     </div>
 
 
-
-              
-
-    <Link :href="route('category_page.recycle')"
-      class="px-3 py-2.5 text-red-500 rounded-xl bg-white shadow-xl border border-red-200 hover:bg-red-100 transition-colors duration-200 flex items-center gap-2 w-full sm:w-auto"
-    >
-      <Trash class="w-4 h-4" />
-      <span>Recycle</span>
-    </Link>
 
     <!-- Create / Add -->
     <Button
@@ -262,7 +147,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
     >
       <Link :href="route('category_page.add')" class="flex items-center gap-2 w-full">
         <SquarePlus class="w-4 h-4" />
-        <span>Create</span>
+        <span>Create New Item</span>
       </Link>
     </Button>
 
@@ -310,20 +195,13 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
                     <DropdownMenuGroup>
                       <DropdownMenuItem>
                         <Link :href="route('category_page.edit',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
-                          <span class="flex items-center"><SquarePen /></span>
-                          <span>  Edit</span>
+                          <span class="flex items-center"><RefreshCcw /></span>
+                          <span>Restore</span>
                       </Link>
                       </DropdownMenuItem>
                       <!-- end -->
                       <DropdownMenuItem>
-                        <Link :href="route('category_page.view',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-gray-600 rounded-lg">
-                          <span class="flex items-center"><Eye /></span>
-                          <span> View</span>
-                      </Link>
-                      </DropdownMenuItem>
-                      <!-- end -->
-                      <DropdownMenuItem>
-                        <button @click="confirmDelete('category_page.softdelete',data.id)" class="w-full inline-flex items-center gap-2  text-sm font-medium text-red-300 rounded-lg">
+                        <button @click="confirmDelete('category_page.delete',data.id)" class="w-full inline-flex items-center gap-2  text-sm font-medium text-red-300 rounded-lg">
                           <span class="flex items-center"><Trash /></span>
                           <span> Delete </span>
                         </button>
@@ -331,34 +209,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
                       <!-- end -->
                       
                     </DropdownMenuGroup>
-                    <DropdownMenuGroup>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem>
-                        <Link :href="route('category_page.active',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-green-600 rounded-lg">
-                          <span class="flex items-center"><ShieldCheck /></span>
-                          <span> Active </span>
-                      </Link>
-                      </DropdownMenuItem>
-                      <!-- end -->
-                      <DropdownMenuItem>
-                        <Link :href="route('category_page.deactive',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-yellow-600 rounded-lg">
-                          <span class="flex items-center"><ShieldMinus /></span>
-                          <span> InActive </span>
-                      </Link>
-                      </DropdownMenuItem>
-                      <!-- end -->
-                       <DropdownMenuSeparator />
-                        <!-- end -->
-                      <DropdownMenuItem>
-                        <a target="_blank" :href="route('category_page.single_pdf_export',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-cyan-600 rounded-lg">
-                          <span class="flex items-center"><DownloadCloud /></span>
-                          <span> Export .PDF </span>
-                        </a>
-                      </DropdownMenuItem>
-                        <!-- end -->
-                     
-                      <!-- end -->
-                    </DropdownMenuGroup>
+                    
                   </DropdownMenuContent>
                 </DropdownMenu>
             </td>

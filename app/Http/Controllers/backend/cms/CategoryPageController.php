@@ -241,14 +241,51 @@ class CategoryPageController extends Controller
     /**
      * ========  Delete Functionality Start here ==========
      */
-    public function delete($id,$slug){
-        return 'ok';
+    public function delete($id){
+        $data= CategoryPage::onlyTrashed()->where('id',$id)->first();
+        
+        if ($data) {
+        $data->forceDelete();
+        flash()->success('Record deleted successfully!');
+        } else {
+            flash()->error('Failed to delete record!');
+        }
+
+        return back();
     }
+
     /**
      * ========  Recycle Functionality Start here ==========
      */
-    public function recycle($id,$slug){
-        return 'ok';
+    public function recycle(Request $request){
+
+    
+
+        $query = CategoryPage::query(); 
+
+        $query->onlyTrashed();
+
+       
+        if($request->filled('search')){
+            $query->where('name','LIKE', '%' .$request->search .'%');
+        }
+
+            // 📅 Status Filter
+        if ($request->filled('status')) {
+            $query->where('public_status', $request->status);
+        }
+
+
+
+
+        $alldata = $query->paginate(10)->withQueryString();
+
+       
+
+        return Inertia::render('backend/cms/category/recycle',[
+            'alldata' => $alldata ,
+            'filters' => $request->only(['search','status'])
+        ]);
     }
 
 
@@ -291,6 +328,24 @@ class CategoryPageController extends Controller
             $categorys = CategoryPage::whereIn('id',$ids)->where('public_status',1)->update([
                 'public_status'=>0,
             ]);
+        }
+        // ---------- Multiple Items Heard Delete code start here ----------
+        if($action === 'Heard_Delete'){
+            $categorys = CategoryPage::onlyTrashed()->whereIn('id',$ids)->get();
+
+                foreach ($categorys as $category) {
+                    $category->forceDelete();
+                }
+
+        }
+        // ---------- Multiple Items Heard Delete code start here ----------
+        if($action === 'Restore'){
+            $categorys = CategoryPage::onlyTrashed()->whereIn('id',$ids)->get();
+
+                foreach ($categorys as $category) {
+                    $category->restore();
+                }
+
         }
 
 
