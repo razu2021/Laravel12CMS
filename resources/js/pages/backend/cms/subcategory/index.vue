@@ -244,7 +244,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
                   
 
         <Link :href="route('sub_category_page.recycle')"
-          class="px-3 py-2.5 text-red-500 rounded-xl bg-white shadow-xl border border-red-200 hover:bg-red-100 transition-colors duration-200 flex items-center gap-2 w-full sm:w-auto" >
+          class="px-3 py-2.5 text-red-500 rounded-xl text-sm bg-white shadow-xl border border-red-200 hover:bg-red-100 transition-colors duration-200 flex items-center gap-2 w-full sm:w-auto" >
           <Trash class="w-4 h-4" />
           <span>Recycle</span>
         </Link>
