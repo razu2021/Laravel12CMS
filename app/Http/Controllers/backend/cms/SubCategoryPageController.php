@@ -7,22 +7,24 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon; //----------  defualt -------
 use Barryvdh\DomPDF\Facade\Pdf;//-------------- export pdf
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\CategoryPageExport;
-use Illuminate\Support\Str;
+use App\Exports\SubCategoryPageExport;
 use App\Models\CategoryPage;
+use Illuminate\Support\Str;
+use App\Models\SubCategoryPage;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 
-class CategoryPageController extends Controller
+class SubCategoryPageController extends Controller
 {
     /**
      * ======== index page function 
      */
     public function index(Request $request)
     {
-        $query = CategoryPage::query(); 
+        $query = SubCategoryPage::query(); 
+        $query->with(['category']);
 
         if($request->filled('search')){
             $query->where('name','LIKE', '%' .$request->search .'%');
@@ -35,7 +37,7 @@ class CategoryPageController extends Controller
 
         $alldata = $query->paginate(10)->withQueryString();
 
-        return Inertia::render('backend/cms/category/index',[
+        return Inertia::render('backend/cms/subcategory/index',[
             'alldata' => $alldata ,
             'filters' => $request->only(['search','status'])
         ]);
@@ -47,7 +49,10 @@ class CategoryPageController extends Controller
 
     public function add()
     {
-        return Inertia::render('backend/cms/category/add');
+        $allcategory = CategoryPage::where('public_status',1)->get();
+        return Inertia::render('backend/cms/subcategory/add',[
+            'allcategory'=> $allcategory
+        ]);
        
     }
 
@@ -56,8 +61,8 @@ class CategoryPageController extends Controller
      */
     public function view($id,$slug)
     {
-        $data = CategoryPage::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
-        return Inertia::render('backend/cms/category/show',[
+        $data = SubCategoryPage::with(['creator','editor','category'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+        return Inertia::render('backend/cms/subcategory/show',[
             'data' => $data
         ]);
        
@@ -68,9 +73,12 @@ class CategoryPageController extends Controller
      */
     public function edit($id,$slug)
     {
-        $data = CategoryPage::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
-        return Inertia::render('backend/cms/category/edit',[
-            'data' => $data
+        $allcategory = CategoryPage::where('public_status',1)->get();
+
+        $data = SubCategoryPage::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+        return Inertia::render('backend/cms/subcategory/edit',[
+            'data' => $data,
+            'allcategory' => $allcategory
         ]);
        
     }
@@ -86,14 +94,16 @@ class CategoryPageController extends Controller
     public function insert(Request $request){
          /**--- validation code -- */
         $request->validate( [
-                'name' => ['required', 'string', 'max:255',Rule::unique('category_pages','name')],
-                'slug' => ['required', 'string', 'max:255', Rule::unique('category_pages','url')],
+                'name' => ['required', 'string', 'max:255',Rule::unique('sub_category_pages','name')],
+                'slug' => ['required', 'string', 'max:255', Rule::unique('sub_category_pages','url')],
+                'category_id' => 'required',
                
             ],[
                 'name.required'=> 'Name field is Required !',
                 'slug.required'=> 'Slug field is Required !',
                 'name.unique'=> 'This name already exists. !',
                 'slug.unique'=> 'This URL already exists. !',
+                'category_id'=> 'Select a Categories. !',
             ]
         );
 
@@ -111,7 +121,8 @@ class CategoryPageController extends Controller
         }
 
         // ----- insert record into database 
-        $insert = CategoryPage::create([
+        $insert = SubCategoryPage::create([
+            'category_id'=>$request->category_id,
             'name'=>$request->name,
             'title'=>$request->title,
             'description'=>$request->description,
@@ -145,16 +156,18 @@ class CategoryPageController extends Controller
 
     public function update(Request $request){
         /**--- validation code -- */
-        $category = CategoryPage::where('id',$request->id)->first();
+        $category = SubCategoryPage::where('id',$request->id)->first();
         $request->validate( [
-                'name' => ['required', 'string', 'max:255',Rule::unique('category_pages','name')->ignore($category->id)],
-                'url' => ['required', 'string', 'max:255', Rule::unique('category_pages','url')->ignore($category->id)],
+                'name' => ['required', 'string', 'max:255',Rule::unique('sub_category_pages','name')->ignore($category->id)],
+                'url' => ['required', 'string', 'max:255', Rule::unique('sub_category_pages','url')->ignore($category->id)],
+                'category_id' =>'required',
                
             ],[
                 'name.required'=> 'Name field is Required !',
                 'url.required'=> 'Slug field is Required !',
                 'name.unique'=> 'This name already exists. !',
                 'url.unique'=> 'This URL already exists. !',
+                'category_id'=> 'Select Categories !',
             ]
         );
 
@@ -173,7 +186,8 @@ class CategoryPageController extends Controller
         }
 
         // ----- insert record into database 
-        $update = CategoryPage::where('id',$id)->where('slug',$slug)->update([
+        $update = SubCategoryPage::where('id',$id)->where('slug',$slug)->update([
+            'category_id'=>$request->category_id,
             'name'=>$request->name,
             'title'=>$request->title,
             'description'=>$request->description,
@@ -186,7 +200,7 @@ class CategoryPageController extends Controller
 
         if($update){
             flash()->success('Information Updated successfully!');
-            return redirect()->route('category_page.view',[$id,$slug]);
+            return redirect()->route('sub_category_page.view',[$id,$slug]);
         }else{
             flash()->error('Information Updated Faild !');
             return redirect()->back();
@@ -200,7 +214,7 @@ class CategoryPageController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = CategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
+        $active = SubCategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
             'public_status' => 1,
         ]);
 
@@ -218,7 +232,7 @@ class CategoryPageController extends Controller
      */
     public function deactive($id,$slug){
 
-        $active = CategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
+        $active = SubCategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
             'public_status' => 0,
         ]);
 
@@ -234,7 +248,7 @@ class CategoryPageController extends Controller
      * ======== Soft Delete Functionality Start here ==========
      */
     public function softdelete($id){
-        $data= CategoryPage::where('id',$id)->first();
+        $data= SubCategoryPage::where('id',$id)->first();
         $data->delete();
 
         if ($data) {
@@ -249,7 +263,7 @@ class CategoryPageController extends Controller
      * ========  Delete Functionality Start here ==========
      */
     public function delete($id){
-        $data= CategoryPage::onlyTrashed()->where('id',$id)->first();
+        $data= SubCategoryPage::onlyTrashed()->where('id',$id)->first();
         
         if ($data) {
         $data->forceDelete();
@@ -265,7 +279,7 @@ class CategoryPageController extends Controller
      * ========  Recycle Functionality Start here ==========
      */
     public function recycle(Request $request){
-        $query = CategoryPage::query(); 
+        $query = SubCategoryPage::query(); 
 
         $query->onlyTrashed();
 
@@ -281,7 +295,7 @@ class CategoryPageController extends Controller
 
         $alldata = $query->paginate(10)->withQueryString();
 
-        return Inertia::render('backend/cms/category/recycle',[
+        return Inertia::render('backend/cms/subcategory/recycle',[
             'alldata' => $alldata ,
             'filters' => $request->only(['search','status'])
         ]);
@@ -311,26 +325,26 @@ class CategoryPageController extends Controller
 
         // ---------- soft delete code start here 
         if($action === 'delete'){
-            $data = CategoryPage::whereIn('id',$ids)->delete();
+            $data = SubCategoryPage::whereIn('id',$ids)->delete();
             return back();
         }
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = CategoryPage::whereIn('id',$ids)->where('public_status',0)->update([
+            $categorys = SubCategoryPage::whereIn('id',$ids)->where('public_status',0)->update([
                 'public_status'=>1,
             ]);
  
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = CategoryPage::whereIn('id',$ids)->where('public_status',1)->update([
+            $categorys = SubCategoryPage::whereIn('id',$ids)->where('public_status',1)->update([
                 'public_status'=>0,
             ]);
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){
-            $categorys = CategoryPage::onlyTrashed()->whereIn('id',$ids)->get();
+            $categorys = SubCategoryPage::onlyTrashed()->whereIn('id',$ids)->get();
 
                 foreach ($categorys as $category) {
                     $category->forceDelete();
@@ -339,7 +353,7 @@ class CategoryPageController extends Controller
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Restore'){
-            $categorys = CategoryPage::onlyTrashed()->whereIn('id',$ids)->get();
+            $categorys = SubCategoryPage::onlyTrashed()->whereIn('id',$ids)->get();
 
                 foreach ($categorys as $category) {
                     $category->restore();
@@ -353,7 +367,7 @@ class CategoryPageController extends Controller
         // ------------ Multiple Item Export as an PDF -------------------------------
         if($action === 'export_pdf'){
           
-            $category = CategoryPage::whereIn('id',$ids)->get();
+            $category = SubCategoryPage::whereIn('id',$ids)->get();
 
             $fileName = now()->format('Y-m-d_H-i-s') . '.pdf';
 
@@ -368,11 +382,11 @@ class CategoryPageController extends Controller
 
         if($action === 'export_excel'){
 
-            return Excel::download(new CategoryPageExport($ids), now().'.xlsx');
+            return Excel::download(new SubCategoryPageExport($ids), now().'.xlsx');
         }
         if($action === 'export_csv'){
 
-            return Excel::download(new CategoryPageExport($ids), now().'.csv');
+            return Excel::download(new SubCategoryPageExport($ids), now().'.csv');
         }
         return back();
 
@@ -389,9 +403,9 @@ class CategoryPageController extends Controller
 
     public function exportPdf($id,$slug){
 
-        $data = CategoryPage::where('id',$id)->where('slug',$slug)->firstOrFail();
+        $data = SubCategoryPage::where('id',$id)->where('slug',$slug)->firstOrFail();
         $fileName = $data->name.'-'.now().'.pdf';
-        $pdf = pdf::loadView('backend/export/category/export_singlepdf',compact('data'))->setPaper('a4', 'portrait');
+        $pdf = pdf::loadView('backend/export/subcategory/export_singlepdf',compact('data'))->setPaper('a4', 'portrait');
         return $pdf->download($fileName);
 
     }
@@ -402,9 +416,9 @@ class CategoryPageController extends Controller
      * ================= export all pdf  function start here ===========================
      */
     public function export_pdf(){
-        $data = CategoryPage::get();
+        $data = SubCategoryPage::get();
         $fileName =now().'.pdf';
-        $pdf = pdf::loadView('backend/export/category/export_pdf',[
+        $pdf = pdf::loadView('backend/export/subcategory/export_pdf',[
             'dataJson' => $data->toArray()
         ])->setPaper('a4', 'portrait');
         return $pdf->download($fileName);
@@ -417,14 +431,14 @@ class CategoryPageController extends Controller
      * ================= export Excel function start here ===========================
      */
     public function export_excel(){
-        return Excel::download(new CategoryPageExport, now().'.xlsx');
+        return Excel::download(new SubCategoryPageExport, now().'.xlsx');
     }
     /**
      * 
      * ================= export csv function start here ===========================
      */
     public function export_csv(){
-        return Excel::download(new CategoryPageExport, now().'.csv');
+        return Excel::download(new SubCategoryPageExport, now().'.csv');
     }
 
 

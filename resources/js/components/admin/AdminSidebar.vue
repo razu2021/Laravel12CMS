@@ -62,9 +62,9 @@ const toggleMenu = (key:string)=>{
           <Link :href="route('category_page.all')"class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
             All Category
           </Link>
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
+          <Link :href="route('sub_category_page.all')" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
             Sub Category
-          </a>
+          </Link>
           <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
             Chid Category
           </a>

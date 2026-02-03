@@ -4,14 +4,6 @@ import AdminLayout from '@/layouts/AdminLayout.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
 
-
-
-
-
-
-
-
-
 const props= defineProps<{
     data: {
         order: number,
@@ -22,8 +14,10 @@ const props= defineProps<{
         //-------------
         public_status: boolean,
         id: number,
+        category_id: number,
         slug: string,
-    }
+    },
+    allcategory : any[]
 }>()
 
 // ✅ remember data
@@ -31,6 +25,7 @@ const form  = useForm(
   {
     id: props.data.id,
     name: props.data.name,
+    category_id : props.data.category_id,
     title: props.data.title,
     description: props.data.description,
     url: props.data.url,
@@ -44,7 +39,7 @@ const form  = useForm(
 
 // ✅ submit MUST use form
 const handleUpdate = () => {
-  form.patch(route('category_page.update'))
+  form.patch(route('sub_category_page.update'))
   
 }
 </script>
@@ -76,7 +71,7 @@ const handleUpdate = () => {
             
                 <button
                 class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-white/20 transition">
-                <Link :href="route('category_page.all')">All Information</Link>
+                <Link :href="route('sub_category_page.all')">All Information</Link>
                 </button>
             </div>
             </div>
@@ -96,6 +91,18 @@ const handleUpdate = () => {
                     <input type="hidden"  v-model="form.slug">
                 </div>
                 <!-- end -->
+                  <div class="mb-4">
+                <label for="category" class="block text-sm font-medium text-slate-700 mb-1" >Select Category Name</label>
+
+                <select id="category" v-model="form.category_id" required class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:outline-none transition-colors duration-200">
+                  <option value="">-- Select Category --</option>
+                  <option v-for="item in props.allcategory" :key="item.id" :value="item.id">
+                    {{ item.name }}
+                  </option>
+                </select>
+                <p v-if="form.errors.category_id"class="mt-1 text-sm text-red-500"> {{ form.errors.category_id }}</p>
+              </div>
+              <!-- end -->
                 <div>
                     <label class="text-sm font-medium text-slate-600">Name</label>
                     <input type="text" placeholder="Enter title" v-model="form.name"

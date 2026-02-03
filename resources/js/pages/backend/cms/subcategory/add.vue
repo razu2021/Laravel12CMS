@@ -3,10 +3,23 @@ import Button from '@/components/ui/button/Button.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
 import AdminLayout from '@/layouts/AdminLayout.vue'
+import { computed } from 'vue';
+
+
+
+//------- get the main category list 
+
+const props = defineProps<{
+  allcategory : any[]
+}>()
+
+
+
 
 
 // UseForm with remembering state
-const form = useForm('category_page', {
+const form = useForm('sub_category_page', {
+  category_id:'',
   name: '',
   title: '',
   description: '',
@@ -17,7 +30,7 @@ const form = useForm('category_page', {
 
   // ✅ submit MUST use form
   const handleSubmit = () => {
-    form.post(route('category_page.submit'), {
+    form.post(route('sub_category_page.submit'), {
       onSuccess: () => {
         form.reset()
       },
@@ -44,7 +57,7 @@ const form = useForm('category_page', {
           
             <button
               class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-white/20 transition">
-              <Link :href="route('category_page.all')">All Information</Link>
+              <Link :href="route('sub_category_page.all')">All Information</Link>
             </button>
           </div>
         </div>
@@ -59,11 +72,24 @@ const form = useForm('category_page', {
             </div>
 
           
+             <div class="mb-4">
+                <label for="category" class="block text-sm font-medium text-slate-700 mb-1" >Select Category Name</label>
+
+                <select id="category" v-model="form.category_id" required class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:outline-none transition-colors duration-200">
+                  <option value="">-- Select Category --</option>
+                  <option v-for="item in props.allcategory" :key="item.id" :value="item.id">
+                    {{ item.name }}
+                  </option>
+                </select>
+                <p v-if="form.errors.category_id"class="mt-1 text-sm text-red-500"> {{ form.errors.category_id }}</p>
+              </div>
+
+              <!-- end -->
               <div>
                 <label class="text-sm font-medium text-slate-600">Name</label>
-                <input type="text" placeholder="Enter title" v-model="form.name"
+                <input type="text" placeholder="Enter Name" v-model="form.name" required
                   class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                  <div class="text-small text-red-500" v-if="form.errors.name">{{ form.errors.name }}</div>
+                  <p class="text-small text-red-500" v-if="form.errors.name">{{ form.errors.name }}</p>
               </div>
                 <!-- end -->
               <div>
@@ -113,9 +139,9 @@ const form = useForm('category_page', {
               </h3>
               <div>
                 <label class="text-sm font-medium text-slate-600"> Slug </label>
-                <input type="text" placeholder="Enter title" v-model="form.slug"
+                <input type="text" placeholder="Enter Slug"  v-model="form.slug" required
                   class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                  <div class="text-small text-red-500" v-if="form.errors.slug">{{ form.errors.slug }}</div>
+                  <p class="text-small text-red-500" v-if="form.errors.slug">{{ form.errors.slug }}</p>
               </div>
               <!-- end -->
               <div>
