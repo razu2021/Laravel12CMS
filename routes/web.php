@@ -16,6 +16,15 @@ use Inertia\Inertia;
 
 Route::get('/',[frontendController::class , 'index'])->name('home');
 
+// --- category page route start here -----
+Route::get('/{category}',[frontendController::class , 'categoryPage'])->name('categorypage');
+
+// --- Sub category page route start here -----
+Route::get('/{category}/{subcategory}',[frontendController::class , 'subCategoryPage'])->name('sub_categorypage');
+
+
+// --- Sub category page route start here -----
+Route::get('/{category}/{subcategory}/{childcategory}',[frontendController::class , 'childCategoryPage'])->name('child_CategoryPage');
 
 
 

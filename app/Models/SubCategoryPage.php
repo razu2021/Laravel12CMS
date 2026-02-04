@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Symfony\Component\CssSelector\Node\FunctionNode;
+
 class SubCategoryPage extends Model
 {
     use SoftDeletes;
@@ -24,8 +26,17 @@ class SubCategoryPage extends Model
         return $this->belongsTo(User::class, 'editor_id', 'id');
     }
 
+    //----  child category relationship 
+    public Function childCategory(){
+        return $this->hasMany(ChildCategoryPage::class ,'subcategory_id','id');
+    }
+
+
+
     //----- category relationship --
     public function category(){
         return $this->belongsTo(CategoryPage::class);
     }
+
+
 }

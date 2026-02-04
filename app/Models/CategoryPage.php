@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -25,4 +24,23 @@ class CategoryPage extends Model
         return $this->belongsTo(User::class, 'editor_id', 'id');
     }
     
+
+    //--------------- Relationship with sub category model 
+
+    public function subCategory(){
+        return $this->hasMany(SubCategoryPage::class,'category_id','id');
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
