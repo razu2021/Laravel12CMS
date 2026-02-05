@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('child_category_pages', function (Blueprint $table) {
+        Schema::create('page_sections', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('subcategory_id')->constrained('sub_category_pages')->onDelete('cascade');
-            $table->string('name')->nullable();
-            $table->string('url')->nullable();
-            $table->string('title')->nullable();
+            $table->string('section_key')->nullable();
+            $table->morphs('sectionable');
+
+
+            $table->string('section_heading')->nullable();
+            $table->string('section_title')->nullable();
             $table->string('description')->nullable();
             $table->integer('order')->nullable();
             $table->string('slug',255)->nullable();
@@ -26,6 +28,7 @@ return new class extends Migration
             $table->integer('public_status')->default(0);
             $table->timestamps();
             $table->softDeletes();
+
         });
     }
 
@@ -34,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('child_category_pages');
+        Schema::dropIfExists('page_sections');
     }
 };

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\backend\cms\CategoryPageController;
 use App\Http\Controllers\backend\cms\ChildCategoryPageController;
+use App\Http\Controllers\backend\cms\PageSectionController;
 use App\Http\Controllers\backend\cms\SubCategoryPageController;
 
 /**
@@ -79,9 +80,31 @@ Route::controller(ChildCategoryPageController::class)->prefix('admin/dashboad/ca
     Route::get('export/excel','export_excel')->name('export_excel');
     Route::get('export/csv','export_csv')->name('export_csv');
     Route::get('export/pdf','export_pdf')->name('export_pdf');
-
-
     Route::get('get/subcategory/{categoryId}','getSubcategory')->name('getsubcategory');
+});
+/**============ Page section manage Route Start here =========== */
+Route::controller(PageSectionController::class)->prefix('admin/dashboad/manage/page-section/')->name('page_section.')->group(function(){
+    Route::get('all','index')->name('all');
+    Route::get('add','add')->name('add');
+    Route::get('view/{id}/{slug}','view')->name('view');
+    Route::get('edit/{id}/{slug}','edit')->name('edit');
+    Route::post('submit','insert')->name('submit');
+    Route::patch('update','update')->name('update');
+    Route::get('active/{id}/{slug}','active')->name('active');
+    Route::get('deactive/{id}/{slug}','deactive')->name('deactive');
+    Route::delete('softdelete/{id}','softdelete')->name('softdelete');
+    Route::delete('delete/{id}','delete')->name('delete');
+    Route::get('recycle','recycle')->name('recycle');
+    Route::post('bulk/action' ,'bulkAction')->name('bulkAction');
+    Route::get('export/single/pdf/{id}/{slug}','exportPdf')->name('single_pdf_export');
+    Route::get('export/excel','export_excel')->name('export_excel');
+    Route::get('export/csv','export_csv')->name('export_csv');
+    Route::get('export/pdf','export_pdf')->name('export_pdf');
+
+
+    Route::get('get/category/page','getCategory')->name('getCategory');
+    Route::get('get/subcategory/page','getSubcategory')->name('getsubcategory');
+    Route::get('get/childcategory/page','getChildcategory')->name('getchildcategory');
 });
 
   
