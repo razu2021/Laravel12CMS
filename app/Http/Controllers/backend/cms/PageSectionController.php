@@ -82,8 +82,11 @@ class PageSectionController extends Controller
     public function view($id,$slug)
     {
         $data = PageSection::with(['creator','editor','subcategory'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+
+
         return Inertia::render('backend/cms/pagesection/show',[
-            'data' => $data
+            'data' => $data,
+
         ]);
        
     }
@@ -95,10 +98,23 @@ class PageSectionController extends Controller
     {
         $allcategory = CategoryPage::where('public_status',1)->get();
 
-        $data = PageSection::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+        $data = PageSection::with(['creator','editor','sectionable'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+
+        $currentCategory = null;
+
+        if($data->sectionable  instanceof  CategoryPage){
+            $currentCategory = 'category_page';
+        }elseif($data->sectionable  instanceof SubCategoryPage){
+            $currentCategory = 'subcategory_page';
+        }elseif($data->sectionable  instanceof ChildCategoryPage){
+            $currentCategory = 'childcategory_page';
+        }
+
+
         return Inertia::render('backend/cms/pagesection/edit',[
             'data' => $data,
-            'allcategory' => $allcategory
+            'allcategory' => $allcategory,
+            'currentCategory'=> $currentCategory,
         ]);
        
     }

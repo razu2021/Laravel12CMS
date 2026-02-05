@@ -18,8 +18,10 @@ Route::middleware('auth')->group(function(){
 * ======== middleware group start here ====================================
 */
 
-Route::get('admin/dashboard',[AdminController::class,'adminDashboard'])->name('admin_dashboard');
+Route::prefix('site/manage/admin/')->group(function(){
+    Route::get('/dashboard',[AdminController::class,'adminDashboard'])->name('admin_dashboard');
 
+});
 
 
 

@@ -3,7 +3,9 @@ import Button from '@/components/ui/button/Button.vue'
 import AdminLayout from '@/layouts/AdminLayout.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3'
 import { Section } from 'lucide-vue-next';
+import { ref, watch } from 'vue';
 import { route } from 'ziggy-js'
+import axios from 'axios'
 
 const props= defineProps<{
     data: {
@@ -14,14 +16,16 @@ const props= defineProps<{
 
         page_type:string,
         section_key:string,
-
+        sectionable_type  :string,
+        sectionable_id:number,
         //-------------
         public_status: boolean,
         id: number,
         category_id: number,
         slug: string,
     },
-    allcategory : any[]
+    allcategory : any[],
+    currentCategory:string,
 }>()
 
 // ✅ remember data
@@ -36,12 +40,67 @@ const form  = useForm(
     public_status : Boolean(props.data.public_status),
     slug :props.data.slug,
 
-    page_type:'',
-    section_key:props.data.section_key,
-
+  section_key: props.data.section_key,
+  page_type: props.currentCategory,  // category_page / subcategory_page / childcategory_page
+  categorypage_id: props.data.sectionable_id || '',
+  subcategorypage_id: props.data.sectionable_id || '',
+  childcategorypage_id: props.data.sectionable_id || ''
   })
 
 // ✅ wrap remembered data with useForm
+
+
+// ----- get all pages category list 
+const pages = ref<{
+  categorypage: any[],
+  subcategorypage: any[],
+  childcategorypage: any[]
+}>({
+  categorypage: [],
+  subcategorypage: [] ,
+  childcategorypage: []
+})
+
+// --- call pages 
+watch(()=>form.page_type,async(newType)=>{
+  form.categorypage_id = ''
+  form.subcategorypage_id = ''
+  form.childcategorypage_id = ''
+
+
+  if(newType === 'category_page') {
+    pages.value.categorypage = await axios.get(route('page_section.getCategory')).then(res => res.data)
+    // active page 
+    if (props.data.sectionable_id) {
+      pages.value.categorypage.sort((a, b) => a.id === props.data.sectionable_id ? -1 : 0)
+      form.categorypage_id = props.data.sectionable_id
+    }
+
+
+  } else if(newType === 'subcategory_page') {
+    pages.value.subcategorypage = await axios.get(route('page_section.getsubcategory')).then(res => res.data)
+    if (props.data.sectionable_id) {
+      pages.value.subcategorypage.sort((a, b) => a.id === props.data.sectionable_id ? -1 : 0)
+      form.subcategorypage_id = props.data.sectionable_id
+    }
+
+  } else if(newType === 'childcategory_page') {
+    pages.value.childcategorypage = await axios.get(route('page_section.getchildcategory')).then(res => res.data)
+    if (props.data.sectionable_id) {
+      pages.value.childcategorypage.sort((a, b) => a.id === props.data.sectionable_id ? -1 : 0)
+      form.childcategorypage_id = props.data.sectionable_id
+    }
+  }
+
+} ,{ immediate: true })
+
+
+
+
+
+
+
+
 
 
 // ✅ submit MUST use form
@@ -99,12 +158,30 @@ const handleUpdate = () => {
                 </div>
                 <!-- end -->
 
-             <!-- Page Type -->
+
             <select required v-model="form.page_type" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:outline-none transition-colors duration-200">
               <option value="">-- Select Page Type --</option>
               <option value="category_page">Category</option>
               <option value="subcategory_page">Sub Category</option>
               <option value="childcategory_page">Child Category</option>
+            </select>
+
+            <!-- Category -->
+            <select required v-if="form.page_type==='category_page'" v-model="form.categorypage_id" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:outline-none transition-colors duration-200">
+              <option value="">-- Select Category --</option>
+              <option v-for="cat in pages.categorypage" :key="cat.id" :value="cat.id">{{ cat.name }}</option>
+            </select>
+
+            <!-- SubCategory -->
+            <select  v-if="form.page_type==='subcategory_page'" v-model="form.subcategorypage_id" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:outline-none transition-colors duration-200">
+              <option value="">-- Select SubCategory --</option>
+              <option v-for="sub in pages.subcategorypage" :key="sub.id" :value="sub.id">{{ sub.name }}</option>
+            </select>
+
+            <!-- ChildCategory -->
+            <select v-if="form.page_type==='childcategory_page'" v-model="form.childcategorypage_id" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:outline-none transition-colors duration-200">
+              <option value="">-- Select ChildCategory --</option>
+              <option v-for="child in pages.childcategorypage" :key="child.id" :value="child.id">{{ child.name }}</option>
             </select>
 
 

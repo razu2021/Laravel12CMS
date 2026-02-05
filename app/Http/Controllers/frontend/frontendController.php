@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\CategoryPage;
+use App\Models\SubCategoryPage;
 use Illuminate\Http\Request;
 
 class frontendController extends Controller
@@ -20,11 +21,12 @@ class frontendController extends Controller
 
     public function categoryPage($category){
 
+
         return view('frontend.category');
     }
 
     public function subCategoryPage($category,$subcategory){
-
+    
         return view('frontend.subcategory');
     }
     public function childCategoryPage($category,$subcategory,$childcategory){
