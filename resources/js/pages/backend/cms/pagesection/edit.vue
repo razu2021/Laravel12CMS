@@ -96,18 +96,13 @@ watch(()=>form.page_type,async(newType)=>{
 
 
 
-
-
-
-
-
-
-
 // ✅ submit MUST use form
 const handleUpdate = () => {
   form.patch(route('page_section.update'))
   
 }
+
+
 </script>
 
 
@@ -201,21 +196,6 @@ const handleUpdate = () => {
 
 
 
-
-
-
-
-                <div class="mb-4">
-                <label for="category" class="block text-sm font-medium text-slate-700 mb-1" >Select Category Name</label>
-
-                <select id="category" v-model="form.category_id" required class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:outline-none transition-colors duration-200">
-                  <option value="">-- Select Category --</option>
-                  <option v-for="item in props.allcategory" :key="item.id" :value="item.id">
-                    {{ item.name }}
-                  </option>
-                </select>
-                <p v-if="form.errors.category_id"class="mt-1 text-sm text-red-500"> {{ form.errors.category_id }}</p>
-              </div>
               <!-- end -->
                 <div>
                     <label class="text-sm font-medium text-slate-600">Name</label>

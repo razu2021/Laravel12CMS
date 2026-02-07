@@ -8,8 +8,10 @@ import AdminLayout from '@/layouts/AdminLayout.vue';
 
 
 //====== get data i
-const {data} = defineProps<{
-  data: any 
+const {data,currentCategory,current_page} = defineProps<{
+  data: any ,
+  current_page:any,
+  currentCategory:any,
 }>()
 
 
@@ -60,38 +62,45 @@ const {data} = defineProps<{
                       <!-- Table Body -->
                       <tbody class="divide-y divide-gray-200">
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800">Sub Category Name</td>
+                          <td class="py-3 px-5 text-gray-800"> Category Name </td>
                           <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800">{{ data.subcategory.name ?? '' }}</td>
+                          <td class="py-3 px-5 text-gray-800">{{ currentCategory ?? 'N/A' }}</td>
                         </tr>
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800">Sub Category Name</td>
+                          <td class="py-3 px-5 text-gray-800"> Current Page </td>
                           <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800">{{ data.name }}</td>
+                          <td class="py-3 px-5 text-gray-800">{{ current_page ?? 'N/A' }}</td>
+                        </tr>
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800"> Section Name </td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.section_key ?? 'N/A' }}</td>
+                        </tr>
+
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">Section Heading</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.section_heading ?? 'N/A' }}</td>
                         </tr>
                         <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800">Sub Category URL</td>
+                          <td class="py-3 px-5 text-gray-800">Section Title</td>
                           <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800">{{ data.url }}</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.section_title ?? 'N/A' }}</td>
                         </tr>
                         <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
                           <td class="py-3 px-5 text-gray-800">Sub Category Order</td>
                           <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800">{{ data.order }}</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.order ?? 'N/A'}}</td>
                         </tr>
                         <!-- end -->
-                        <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800">Meta Title</td>
-                          <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800">{{ data.title }}</td>
-                        </tr>
+                       
                         <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
                           <td class="py-3 px-5 text-gray-800">Meta Description</td>
                           <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800">{{ data.description ?? '' }}</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.description ?? 'N/A' }}</td>
                         </tr>
                         <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">

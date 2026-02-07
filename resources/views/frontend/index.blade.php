@@ -32,6 +32,9 @@ ul.navbar-nav li a:hover {
     <h1>This is home page </h1>
 <a href="{{ route('login') }}">login</a>
 
+    <button><a href="{{route('ajax_data.all')}}" target="_blank">Ajax all Data </a></button>
+
+
     <ul>
         @foreach ($category as $cat)
             <li><a href="{{ route('categorypage',$cat->url) }}">{{ $cat->name }}</a>

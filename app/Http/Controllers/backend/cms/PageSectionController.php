@@ -26,7 +26,8 @@ class PageSectionController extends Controller
     public function index(Request $request)
     {
         $query = PageSection::query(); 
-        $query->with(['subcategory']);
+
+        $query->with(['subcategory','sectionable']);
 
         if($request->filled('search')){
             $query->where('name','LIKE', '%' .$request->search .'%');
@@ -37,7 +38,19 @@ class PageSectionController extends Controller
             $query->where('public_status', $request->status);
         }
 
+   
+
         $alldata = $query->paginate(10)->withQueryString();
+
+
+
+
+
+
+     
+
+    dd($alldata );
+
 
         return Inertia::render('backend/cms/pagesection/index',[
             'alldata' => $alldata ,
@@ -81,11 +94,26 @@ class PageSectionController extends Controller
      */
     public function view($id,$slug)
     {
-        $data = PageSection::with(['creator','editor','subcategory'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+        $data = PageSection::with(['creator','editor','sectionable'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+
+        if($data->sectionable  instanceof  CategoryPage){
+            $current_page = CategoryPage::where('id',$data->sectionable_id)->value('name');
+            $currentCategory = 'Category Page';
+        }elseif($data->sectionable  instanceof SubCategoryPage){
+            $current_page = SubCategoryPage::where('id',$data->sectionable_id)->value('name');
+            $currentCategory = 'Sub Category Page';
+        }elseif($data->sectionable  instanceof ChildCategoryPage){
+            $current_page = ChildCategoryPage::where('id',$data->sectionable_id)->value('name');
+            $currentCategory = 'Child Category Page';
+        }
+
+     
 
 
         return Inertia::render('backend/cms/pagesection/show',[
             'data' => $data,
+            'current_page' =>$current_page,
+            'currentCategory' => $currentCategory,
 
         ]);
        
