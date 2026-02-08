@@ -45,13 +45,6 @@ class PageSectionController extends Controller
 
 
 
-
-
-     
-
-    dd($alldata );
-
-
         return Inertia::render('backend/cms/pagesection/index',[
             'alldata' => $alldata ,
             'filters' => $request->only(['search','status'])

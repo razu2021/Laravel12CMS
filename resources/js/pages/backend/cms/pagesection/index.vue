@@ -272,11 +272,11 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
               <input type="checkbox" :checked="isAnySelected" @change="toggleSelectAll(rows)" class="h-4 w-4 text-blue-600 rounded border-gray-300"/>
             </th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">ID</th>
-            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Sub Category Name</th>
-            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Link With </th>
-            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Meta Title</th>
-            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Meta Description</th>
-            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">URL</th>
+            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Section key </th>
+            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Page Name </th>
+            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Parent Model </th>
+            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Heading</th>
+            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Title</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Status</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Manage</th>
           </tr>
@@ -286,12 +286,13 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
         <tbody class="divide-y divide-gray-100">
           <tr v-for="data in rows" :key="data.id" class="hover:bg-blue-50 transition-colors duration-200">
             <td class="px-4 py-3"><input type="checkbox" :value="data.id" v-model="selectedIds"  class="h-4 w-4 text-blue-600 rounded border-gray-300"/></td>
+
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.id ?? '' }}</td>
-            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.name ?? '' }}</td>
-            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.subcategory.name ?? '' }}</td>
-            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.title ?? '' }}</td>
-            <td class="px-4 py-3 font-medium text-gray-800 text-sm"> {{ data.description ?? '' }}</td>
-            <td class="px-4 py-3 font-medium text-gray-800 text-sm"> {{ data.url ?? '' }}</td>
+            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.section_key ?? '' }}</td>
+            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.sectionable.name ?? '' }}</td>
+            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.sectionable_type }}</td>
+            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.section_heading ?? 'N/A' }}</td>
+            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.section_title ?? 'N/A' }}</td>
             <td class="px-4 py-3 font-medium text-green-600 text-sm" v-if="data.public_status == 1">Active </td>
             <td class="px-4 py-3 font-medium text-red-600 text-sm" v-else="data.public_status == 0">Inactive </td>
             <td class="px-4 py-3 font-medium text-gray-800">

@@ -13,7 +13,9 @@ class frontendController extends Controller
 
     public function index(){
 
-        $category = CategoryPage::with(['subCategory.childCategory'])->where('public_status',1)->get();
+        $category = CategoryPage::with(['getCategorySection'])->where('public_status',1)->where('name','home')->first();
+
+       
 
         return view('frontend.index',compact('category'));
     }
@@ -21,8 +23,9 @@ class frontendController extends Controller
 
     public function categoryPage($category){
 
+        $category = CategoryPage::with(['getCategorySection'])->where('public_status',1)->where('url',$category)->first();
+        return view('frontend.category',compact('category'));
 
-        return view('frontend.category');
     }
 
     public function subCategoryPage($category,$subcategory){

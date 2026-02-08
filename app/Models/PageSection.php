@@ -36,4 +36,28 @@ class PageSection extends Model
     {
         return $this->morphTo();
     }
+    
+    
+    //---category page relationship 
+    public function isCategory(){
+        return $this->sectionable_type === \App\Models\CategoryPage::class;
+    }
+
+    //---category page relationship 
+    public function isSubCategory(){
+        return $this->sectionable_type === \App\Models\SubCategoryPage::class;
+    }
+    //---category page relationship 
+    public function isChildCategory(){
+        return $this->sectionable_type === \App\Models\ChildCategoryPage::class;
+    }
+
+
+
+
+
+
+
+
+
 }

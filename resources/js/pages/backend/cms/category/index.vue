@@ -275,6 +275,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Category Name</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Title</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Description</th>
+            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Order</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">URL</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Status</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Manage</th>
@@ -289,6 +290,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.name ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.title ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm"> {{ data.description ?? '' }}</td>
+            <td class="px-4 py-3 font-medium text-gray-800 text-sm"> {{ data.order ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm"> {{ data.url ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-green-600 text-sm" v-if="data.public_status == 1">Active </td>
             <td class="px-4 py-3 font-medium text-red-600 text-sm" v-else="data.public_status == 0">Inactive </td>

@@ -98,9 +98,6 @@ $('#formSubmit').on('submit',function(e){
                 $('#success_messages').fadeOut();
             },300);
 
-           
-
-
 
             $('#formSubmit')[0].reset();
         },

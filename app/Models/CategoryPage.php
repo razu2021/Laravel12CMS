@@ -33,7 +33,11 @@ class CategoryPage extends Model
 
 
 
+    /**===========  section get === */
 
+    public function getCategorySection(){
+        return $this->morphMany(PageSection::class, 'sectionable');
+    }
 
 
 

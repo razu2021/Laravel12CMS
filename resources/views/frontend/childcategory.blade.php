@@ -1,1 +1,5 @@
-<h1> child category page </h1>
+@extends('layouts/frontend')
+@section('web_content')
+<h1>Child Category  page </h1>
+
+@endsection

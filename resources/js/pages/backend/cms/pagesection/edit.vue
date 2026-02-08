@@ -187,11 +187,8 @@ const handleUpdate = () => {
                <option value="">-- Select Section --</option>
 
                 <option value="hero">Hero</option>
-                <option value="breadcrumb">Breadcrumb</option>
                 <option value="about">About</option>
-                <option value="testimonial">Testimonial</option>
-                <option value="faq">FAQ</option>
-                <option value="banner">Banner</option>
+                <option value="service">Service </option>
             </select>
 
 

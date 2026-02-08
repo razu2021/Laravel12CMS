@@ -9,20 +9,20 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/',[frontendController::class , 'index'])->name('home');
+Route::get('/',[frontendController::class , 'index'])->name('index');
 
 
 
 // home route start here =========
-    // --- category page route start here -----
-    // Route::get('{category}',[frontendController::class , 'categoryPage'])->name('categorypage');
+  
+    Route::get('{category}',[frontendController::class , 'categoryPage'])->name('categorypage');
 
-    // // --- Sub category page route start here -----
-    // Route::get('{category}/{subcategory}',[frontendController::class , 'subCategoryPage'])->name('sub_categorypage');
+    // --- Sub category page route start here -----
+    Route::get('{category}/{subcategory}',[frontendController::class , 'subCategoryPage'])->name('sub_categorypage');
 
 
-    // // --- Sub category page route start here -----
-    // Route::get('{category}/{subcategory}/{childcategory}',[frontendController::class , 'childCategoryPage'])->name('child_CategoryPage');
+    // --- Sub category page route start here -----
+    Route::get('{category}/{subcategory}/{childcategory}',[frontendController::class , 'childCategoryPage'])->name('child_CategoryPage');
 
 
 

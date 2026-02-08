@@ -1,0 +1,473 @@
+
+//---------------partner page or other programe page css start here ------------------
+#sections{
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    display: grid;
+}
+.section_images{
+    position: relative;
+    overflow: hidden;
+    &::after{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height:30rem;
+        background-image: url('../img/vactor/images1.png');
+        background-repeat: no-repeat;
+        background-size:contain;
+        background-position: right;
+        z-index: -1;
+
+    }
+    &::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height:30rem;
+        background-image: url('../img/vactor/images1.png');
+        background-repeat: no-repeat;
+        background-size:contain;
+        background-position: left;
+        z-index: -1;
+    }
+}
+.about_program_image{
+    position: relative;
+    &::before{
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -45%;
+            width: 100%;
+            height:15rem;
+            background-image: url('../img/vactor/shap3.png');
+            background-repeat: no-repeat;
+            background-size:contain;
+            background-attachment: fixed;
+            background-position: center;
+            z-index: -1;
+            animation: shaproteation 15s infinite;
+    }
+    @keyframes shaproteation {
+        0% {
+          
+            transform: rotate(30deg);
+          
+        }
+        100% {
+    
+            transform: rotate(360deg);
+        }
+    }
+    img{
+        height: 60rem;
+        width: 100%;
+        object-fit: cover;
+        border-top-right-radius: 10rem;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+       
+    }
+}
+.programe_content{
+    background: rgba(255,255,255,0.85);
+    padding: 2rem;
+    z-index: +1;
+    h2{
+        @include heading1($color:$color3);
+        
+        span{
+            font-size: 4.5rem;
+            color: red;
+            -webkit-text-stroke: 1px #F8F8F8;
+            text-shadow: 0px 2px 4px blue;
+        }
+        
+    }
+    p{
+        text-align: justify;
+    }
+
+}
+
+// -----------  become a volunteer page css 
+.meet_v_bg{
+    background: rgba(221,143,33,0.15);
+}
+.volunteer_application{
+    height: 100%;
+    width: 100%;
+    
+}
+.application_image{
+    height: 100%;
+   
+    img{
+        border: 4rem solid #fff;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    }
+}
+.application_form{
+    margin: 0 auto;
+    background: white;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    padding: 2rem;
+    display: block;
+    h1{
+        text-align: center;
+        @include heading1($color:$color3);
+    }
+}
+
+// ------
+.meet_our_volunteer{
+    background: #fff;
+    padding: 1rem ;
+}
+.volunteer_image{
+    height: 35.5rem;
+    width: 100%;
+    object-fit: cover;
+    img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+.volunteer_info{
+    h3{
+        text-transform: capitalize;
+        font-weight: 700;
+        &:hover{
+          a{
+            color: red;
+          }
+            
+        }
+    }
+    strong{
+        text-transform: capitalize;
+        padding: 1rem 0rem ;
+        color: green;
+    }
+}
+
+// ----------  valuable donner ccss
+
+.main-section{
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: scroll;
+    background-color: #F0F2F5;
+}
+.alldonnerarea {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: hidden; /* Makes sidebars scrollable */
+    background-color: #F0F2F5; /* Sidebar background color */
+}
+.alldonnerarea:hover {
+    overflow-y: scroll; /* Activate scroll on hover for smoother interaction */
+}
+.donner_search{
+    input{
+        border: none;
+        border-radius: .8rem;
+        background-color: #E4E6E9;
+    }
+    button{
+        background-color: #E4E6E9;
+        border: none;
+    }
+}
+
+// ================
+.alldonner_pro a{
+    height: 4rem;
+    width: 4rem;
+    object-fit: cover;
+    border-radius: 50%;
+   
+    img{
+        height: 4rem;
+        width: 4rem;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    span{
+        padding: 0rem 1rem;
+        color: #1F2020;
+    }
+}
+.donner_card_area{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: .7rem;
+    background-color: #fff;
+    padding: .8rem ;
+    width: 75%;
+    margin: 0 auto;
+}
+.donor_canvas{
+    background-color: transparent;
+    padding: .8rem ;
+   width: 100%;
+   padding: .8rem ;
+    button{
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        border-radius: .7rem;
+        background-color: #fff;
+        border: none;
+        padding: 1rem;
+        font-size: 2.0rem;
+        display: none;
+        margin-right: 10%;
+
+    }
+}
+.donner_top{
+    display: flex;
+    justify-content: start;
+
+
+}
+.or_log{
+    background-color: #fff;
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right:1rem;
+    img{
+        height: 6rem;
+        width: 6rem;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 1px solid #0861F2;
+        padding: .2rem;
+    }
+
+}
+.or_name{
+   h3{
+    font-weight: 700;
+    padding-bottom: .5rem;
+   }
+   h6{
+    color: #050505;
+    font-weight: 500;
+    font-size: 1.8rem;
+    span{color:#939497};
+    
+   }
+   p{
+    color: #939497;
+    font-size: 1.5rem;
+   }
+}
+.donner_profile{
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+    img{
+        height: auto;
+        width: 100%;
+        object-fit: cover;
+    }
+}
+.donner_bottom{
+    display: flex;
+    justify-content: space-between;
+   padding: 0rem 1rem;
+}
+.d_social{
+    ul li{
+        span{
+            color: #8d8e8f;
+            padding-right:  .8rem;
+         }
+    }
+    a{
+        color: #8d8e8f;
+    }
+}
+// programs
+.programs{
+    p{
+        color: #050505;
+        span{
+            color: #2371e6;
+            font-size: 2.3rem ;
+            margin-right:1rem;
+        };
+    }
+}
+.short_content {
+    display: none;
+}
+//  our impact page css start here 
+.main_impact_section{
+    background-color: #F0F2F5;  
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: scroll;
+}
+.impact_card{
+    box-shadow: rgba(158, 162, 167, 0.2) 0px 8px 24px;
+    border-radius: .7rem;
+    background-color: #fff;
+    padding: .8rem ;
+    margin: 0 auto;
+    width: 85%;
+}
+.impact-side-bar{
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: hidden;
+    &:hover{
+        overflow-y: scroll;
+    }
+}
+// 
+.sitemap{
+    h4{
+        font-weight: 400;
+    }
+    ul li{
+        padding: .4rem 0rem;
+        span{
+            color: #2371e6;
+            transition: all 0.5s;
+        }
+    }
+}
+// project details image 
+.details_main_section{
+  height: 100vh;
+  position: sticky;
+  background-color: #F0F2F5;
+  overflow-y: scroll;
+}
+.post_side_bar{
+    height: 100vh;
+    position: sticky;
+    top: 5%;
+    overflow-y: hidden;
+    transition: all 0.40s;
+    &:hover{
+        overflow-y: scroll;
+        transition: all 0.40s;
+    }
+}
+.project_details_area{
+    width: 75%;
+    margin: 0 auto;
+}
+.post_details{
+    box-shadow: rgba(158, 162, 167, 0.2) 0px 8px 24px;
+    border-radius: .7rem;
+    background-color: #fff;
+    padding: .8rem ;
+    margin: 0 auto;
+    width: 85%;
+}
+.pro_head{
+    padding: 2rem 0rem;
+    h4{
+        font-weight: 700;
+        color: #2371e6;
+        border-bottom: .3rem solid #2371e6;
+        display: inline-block;
+    }
+    h1{
+        padding: 2rem 0rem;
+        font-weight: 700;
+    }
+}
+.pro_image{
+    padding: 1.5rem 0rem;
+    margin: 0rem 4rem;
+    img{
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+    p{
+        padding: .5rem 0rem;
+        border-bottom: 1px solid #000;
+    }
+}
+.goolge_ads{
+    img{
+        height: 20rem;
+        width: auto;
+        margin: 0 auto
+    };
+}
+
+.pro_dates{
+    background-color: #FFF7F7;
+    padding: 2rem;
+}
+.hands_product{
+    padding: 1.5rem;
+}
+.sidebar_product{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    padding: 1rem;
+    background: #ffffff;
+    img{
+        height: 25rem;
+        width: auto;
+    }
+// where we work
+}
+.branchnote{
+    padding:2rem;
+    border: 1px solid #fff;
+    border-radius: .8rem;
+    p{
+        a{
+            color: #ffff;
+        }
+    }
+}
+.wedo_service{
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    background-color:#19032C ;
+    height: 10rem;
+    padding: 1rem;
+    overflow-y: hidden;
+    &:hover{
+        overflow-y: scroll;
+    }
+}
+.wedo_over_cont{
+    h4{
+        a{
+            color: #fff;
+            font-weight: 700;
+        }
+       
+    }
+    p{
+        color: #fff;
+    }
+    &:hover{
+        h4 a{
+            color: #0861F2;
+        }
+    }
+
+}
+

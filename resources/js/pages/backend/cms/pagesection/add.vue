@@ -132,6 +132,7 @@ watch(()=>form.page_type,async(newType)=>{
               <option value="">-- Select Section  --</option>
               <option value="hero">hreo </option>
               <option value="about">about </option>
+              <option value="service">Service </option>
               
             </select>
 
