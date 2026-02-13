@@ -1,33 +1,29 @@
 <?php
 
-namespace App\Http\Controllers\backend\cms;
+namespace App\Http\Controllers\backend\cms\manage;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon; //----------  defualt -------
 use Barryvdh\DomPDF\Facade\Pdf;//-------------- export pdf
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\PageSectionExport;
-use App\Models\CategoryPage;
+use App\Exports\heroExport;
 use Illuminate\Support\Str;
-use App\Models\ChildCategoryPage;
+use App\Models\Hero;
 use App\Models\PageSection;
-use App\Models\SubCategoryPage;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 
-class PageSectionController extends Controller
+class heroController extends Controller
 {
     /**
      * ======== index page function 
      */
     public function index(Request $request)
     {
-        $query = PageSection::query(); 
-
-        $query->with(['subcategory','sectionable']);
+        $query = Hero::query(); 
 
         if($request->filled('search')){
             $query->where('name','LIKE', '%' .$request->search .'%');
@@ -38,14 +34,9 @@ class PageSectionController extends Controller
             $query->where('public_status', $request->status);
         }
 
-   
-
         $alldata = $query->paginate(10)->withQueryString();
 
-
-
-
-        return Inertia::render('backend/cms/pagesection/index',[
+        return Inertia::render('backend/cms/hero/index',[
             'alldata' => $alldata ,
             'filters' => $request->only(['search','status'])
         ]);
@@ -55,30 +46,11 @@ class PageSectionController extends Controller
      * ======== create page or add page function 
      */
 
-    public function getCategory(){
-
-        return CategoryPage::where('public_status',1)->get();
-       
-    }
-    public function getSubcategory(){
-        return SubCategoryPage::where('public_status',1)->get();
-       
-    }
-    public function getChildcategory(){
-        return ChildCategoryPage::where('public_status',1)->get();
-       
-    }
-
-
-
-
-
-    public function add()
+    public function add($id,$slug)
     {
-        $allcategory = CategoryPage::where('public_status',1)->get();
-        return Inertia::render('backend/cms/pagesection/add',[
-            'allcategory'=> $allcategory
-        ]);
+        $section = PageSection::where('id',$id)->where('slug',$slug)->value('id');
+      
+        return Inertia::render('backend/cms/hero/add',['section_id'=>$section]);
        
     }
 
@@ -87,27 +59,9 @@ class PageSectionController extends Controller
      */
     public function view($id,$slug)
     {
-        $data = PageSection::with(['creator','editor','sectionable'])->where('id',$id)->where('slug',$slug)->firstOrFail();
-
-        if($data->sectionable  instanceof  CategoryPage){
-            $current_page = CategoryPage::where('id',$data->sectionable_id)->value('name');
-            $currentCategory = 'Category Page';
-        }elseif($data->sectionable  instanceof SubCategoryPage){
-            $current_page = SubCategoryPage::where('id',$data->sectionable_id)->value('name');
-            $currentCategory = 'Sub Category Page';
-        }elseif($data->sectionable  instanceof ChildCategoryPage){
-            $current_page = ChildCategoryPage::where('id',$data->sectionable_id)->value('name');
-            $currentCategory = 'Child Category Page';
-        }
-
-     
-
-
-        return Inertia::render('backend/cms/pagesection/show',[
-            'data' => $data,
-            'current_page' =>$current_page,
-            'currentCategory' => $currentCategory,
-
+        $data = Hero::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+        return Inertia::render('backend/cms/hero/show',[
+            'data' => $data
         ]);
        
     }
@@ -117,25 +71,9 @@ class PageSectionController extends Controller
      */
     public function edit($id,$slug)
     {
-        $allcategory = CategoryPage::where('public_status',1)->get();
-
-        $data = PageSection::with(['creator','editor','sectionable'])->where('id',$id)->where('slug',$slug)->firstOrFail();
-
-        $currentCategory = null;
-
-        if($data->sectionable  instanceof  CategoryPage){
-            $currentCategory = 'category_page';
-        }elseif($data->sectionable  instanceof SubCategoryPage){
-            $currentCategory = 'subcategory_page';
-        }elseif($data->sectionable  instanceof ChildCategoryPage){
-            $currentCategory = 'childcategory_page';
-        }
-
-
-        return Inertia::render('backend/cms/pagesection/edit',[
-            'data' => $data,
-            'allcategory' => $allcategory,
-            'currentCategory'=> $currentCategory,
+        $data = Hero::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+        return Inertia::render('backend/cms/hero/edit',[
+            'data' => $data
         ]);
        
     }
@@ -149,58 +87,39 @@ class PageSectionController extends Controller
      * =======================================================================
      */
     public function insert(Request $request){
-       
          /**--- validation code -- */
-        // $request->validate( [
-        //         'name' => ['required', 'string', 'max:255',Rule::unique('sub_category_pages','name')],
-        //         'slug' => ['required', 'string', 'max:255', Rule::unique('sub_category_pages','url')],
-        //         'sub_category_id' => 'required',
+        $request->validate( [
+                'name' => ['required', 'string', 'max:255',Rule::unique('category_pages','name')],
+                'slug' => ['required', 'string', 'max:255', Rule::unique('category_pages','url')],
                
-        //     ],[
-        //         'name.required'=> 'Name field is Required !',
-        //         'slug.required'=> 'Slug field is Required !',
-        //         'name.unique'=> 'This name already exists. !',
-        //         'slug.unique'=> 'This URL already exists. !',
-        //         'sub_category_id'=> 'Select a Categories. !',
-        //     ]
-        // );
+            ],[
+                'name.required'=> 'Name field is Required !',
+                'slug.required'=> 'Slug field is Required !',
+                'name.unique'=> 'This name already exists. !',
+                'slug.unique'=> 'This URL already exists. !',
+            ]
+        );
 
         //---------- get authenticate use id and create a slug
         $creator_id = Auth::user()->id;
         $slug = uniqid('20').Str::random(20) . '_'.mt_rand(10000, 100000).'-'.time();
 
         //------- make a custom url for -------
-        $pagetype = $request->page_type;
-
-        //--  create dynamic route ---
-        $sectionkey = $request->section_key;
-        $baseSection = Str::before($sectionkey,'_');
-
-
-
-
-        if($pagetype === 'category_page'){
-           $category = CategoryPage::where('id',$request->categorypage_id)->first();
-        }elseif($pagetype === 'subcategory_page'){
-            $category = SubCategoryPage::where('id',$request->subcategorypage_id)->first();
-        }elseif($pagetype === 'childcategory_page'){
-            $category = ChildCategoryPage::where('id',$request->childcategorypage_id)->first();
+        $categoryname = strtolower($request->name);
+        $user_input_url  = strtolower($request->slug) ;
+        if(!empty($user_input_url)){
+            $url = Str::slug($user_input_url); // Output: "my-new-category-name"
+        }else{
+            $url = Str::slug($categoryname); // Output: "my-new-category-name"
         }
 
-   
-
-
-
         // ----- insert record into database 
-        $insert = PageSection::create([
-            'section_key'=>$request->section_key,
-            'sectionable_type'=> get_class($category),
-            'sectionable_id'=> $category->id,
-            'section_heading'=>$request->name,
-            'section_title'=>$request->title,
+        $insert = Hero::create([
+            'name'=>$request->name,
+            'title'=>$request->title,
             'description'=>$request->description,
+            'url'=>$url,
             'order'=>$request->order,
-            'dynamic_route'=>$baseSection,
             'public_status'=>$request->public_status ?? 0,
             'slug'=>$slug,
             'creator_id' => $creator_id,
@@ -229,20 +148,18 @@ class PageSectionController extends Controller
 
     public function update(Request $request){
         /**--- validation code -- */
-     
-        // $request->validate( [
-        //         'name' => ['required', 'string', 'max:255',Rule::unique('sub_category_pages','name')->ignore($category->id)],
-        //         'url' => ['required', 'string', 'max:255', Rule::unique('sub_category_pages','url')->ignore($category->id)],
-        //         'sub_category_id' =>'required',
+        $category = Hero::where('id',$request->id)->first();
+        $request->validate( [
+                'name' => ['required', 'string', 'max:255',Rule::unique('category_pages','name')->ignore($category->id)],
+                'url' => ['required', 'string', 'max:255', Rule::unique('category_pages','url')->ignore($category->id)],
                
-        //     ],[
-        //         'name.required'=> 'Name field is Required !',
-        //         'url.required'=> 'Slug field is Required !',
-        //         'name.unique'=> 'This name already exists. !',
-        //         'url.unique'=> 'This URL already exists. !',
-        //         'sub_category_id'=> 'Select Categories !',
-        //     ]
-        // );
+            ],[
+                'name.required'=> 'Name field is Required !',
+                'url.required'=> 'Slug field is Required !',
+                'name.unique'=> 'This name already exists. !',
+                'url.unique'=> 'This URL already exists. !',
+            ]
+        );
 
         //---------- get authenticate use id and create a slug
         $editor_id = Auth::user()->id;
@@ -250,23 +167,20 @@ class PageSectionController extends Controller
         $id = $request->id;
 
         //------- make a custom url for -------
-        $pagetype = $request->page_type;
-       
-        if($pagetype === 'category_page'){
-           $category = CategoryPage::where('id',$request->categorypage_id)->first();
-        }elseif($pagetype === 'subcategory_page'){
-            $category = SubCategoryPage::where('id',$request->subcategorypage_id)->first();
-        }elseif($pagetype === 'childcategory_page'){
-            $category = ChildCategoryPage::where('id',$request->childcategorypage_id)->first();
+        $categoryname = strtolower($request->name);
+        $user_input_url  = strtolower($request->url) ;
+        if(!empty($user_input_url)){
+            $url = Str::slug($user_input_url); // Output: "my-new-category-name"
+        }else{
+            $url = Str::slug($categoryname); // Output: "my-new-category-name"
         }
+
         // ----- insert record into database 
-        $update = PageSection::where('id',$id)->where('slug',$slug)->update([
-            'section_key'=>$request->section_key,
-            'sectionable_type'=> get_class($category),
-            'sectionable_id'=> $category->id,
-            'section_heading'=>$request->name,
-            'section_title'=>$request->title,
+        $update = Hero::where('id',$id)->where('slug',$slug)->update([
+            'name'=>$request->name,
+            'title'=>$request->title,
             'description'=>$request->description,
+            'url'=>$url,
             'order'=>$request->order,
             'public_status'=>$request->public_status ?? 0,
             'editor_id' => $editor_id,
@@ -275,7 +189,7 @@ class PageSectionController extends Controller
 
         if($update){
             flash()->success('Information Updated successfully!');
-            return redirect()->route('page_section.view',[$id,$slug]);
+            return redirect()->route('category_page.view',[$id,$slug]);
         }else{
             flash()->error('Information Updated Faild !');
             return redirect()->back();
@@ -289,7 +203,7 @@ class PageSectionController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = PageSection::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
+        $active = Hero::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
             'public_status' => 1,
         ]);
 
@@ -307,7 +221,7 @@ class PageSectionController extends Controller
      */
     public function deactive($id,$slug){
 
-        $active = PageSection::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
+        $active = Hero::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
             'public_status' => 0,
         ]);
 
@@ -323,7 +237,7 @@ class PageSectionController extends Controller
      * ======== Soft Delete Functionality Start here ==========
      */
     public function softdelete($id){
-        $data= PageSection::where('id',$id)->first();
+        $data= Hero::where('id',$id)->first();
         $data->delete();
 
         if ($data) {
@@ -338,7 +252,7 @@ class PageSectionController extends Controller
      * ========  Delete Functionality Start here ==========
      */
     public function delete($id){
-        $data= PageSection::onlyTrashed()->where('id',$id)->first();
+        $data= Hero::onlyTrashed()->where('id',$id)->first();
         
         if ($data) {
         $data->forceDelete();
@@ -354,7 +268,7 @@ class PageSectionController extends Controller
      * ========  Recycle Functionality Start here ==========
      */
     public function recycle(Request $request){
-        $query = PageSection::query(); 
+        $query = Hero::query(); 
 
         $query->onlyTrashed();
 
@@ -370,7 +284,7 @@ class PageSectionController extends Controller
 
         $alldata = $query->paginate(10)->withQueryString();
 
-        return Inertia::render('backend/cms/pagesection/recycle',[
+        return Inertia::render('backend/cms/hero/recycle',[
             'alldata' => $alldata ,
             'filters' => $request->only(['search','status'])
         ]);
@@ -400,26 +314,26 @@ class PageSectionController extends Controller
 
         // ---------- soft delete code start here 
         if($action === 'delete'){
-            $data = PageSection::whereIn('id',$ids)->delete();
+            $data = Hero::whereIn('id',$ids)->delete();
             return back();
         }
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = PageSection::whereIn('id',$ids)->where('public_status',0)->update([
+            $categorys = Hero::whereIn('id',$ids)->where('public_status',0)->update([
                 'public_status'=>1,
             ]);
  
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = PageSection::whereIn('id',$ids)->where('public_status',1)->update([
+            $categorys = Hero::whereIn('id',$ids)->where('public_status',1)->update([
                 'public_status'=>0,
             ]);
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){
-            $categorys = PageSection::onlyTrashed()->whereIn('id',$ids)->get();
+            $categorys = Hero::onlyTrashed()->whereIn('id',$ids)->get();
 
                 foreach ($categorys as $category) {
                     $category->forceDelete();
@@ -428,7 +342,7 @@ class PageSectionController extends Controller
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Restore'){
-            $categorys = PageSection::onlyTrashed()->whereIn('id',$ids)->get();
+            $categorys = Hero::onlyTrashed()->whereIn('id',$ids)->get();
 
                 foreach ($categorys as $category) {
                     $category->restore();
@@ -442,7 +356,7 @@ class PageSectionController extends Controller
         // ------------ Multiple Item Export as an PDF -------------------------------
         if($action === 'export_pdf'){
           
-            $category = PageSection::whereIn('id',$ids)->get();
+            $category = Hero::whereIn('id',$ids)->get();
 
             $fileName = now()->format('Y-m-d_H-i-s') . '.pdf';
 
@@ -457,11 +371,11 @@ class PageSectionController extends Controller
 
         if($action === 'export_excel'){
 
-            return Excel::download(new PageSectionExport($ids), now().'.xlsx');
+            return Excel::download(new heroExport($ids), now().'.xlsx');
         }
         if($action === 'export_csv'){
 
-            return Excel::download(new PageSectionExport($ids), now().'.csv');
+            return Excel::download(new heroExport($ids), now().'.csv');
         }
         return back();
 
@@ -478,9 +392,9 @@ class PageSectionController extends Controller
 
     public function exportPdf($id,$slug){
 
-        $data = PageSection::where('id',$id)->where('slug',$slug)->firstOrFail();
+        $data = Hero::where('id',$id)->where('slug',$slug)->firstOrFail();
         $fileName = $data->name.'-'.now().'.pdf';
-        $pdf = pdf::loadView('backend/export/pagesection/export_singlepdf',compact('data'))->setPaper('a4', 'portrait');
+        $pdf = pdf::loadView('backend/export/hero/export_singlepdf',compact('data'))->setPaper('a4', 'portrait');
         return $pdf->download($fileName);
 
     }
@@ -491,9 +405,9 @@ class PageSectionController extends Controller
      * ================= export all pdf  function start here ===========================
      */
     public function export_pdf(){
-        $data = PageSection::get();
+        $data = Hero::get();
         $fileName =now().'.pdf';
-        $pdf = pdf::loadView('backend/export/pagesection/export_pdf',[
+        $pdf = pdf::loadView('backend/export/hero/export_pdf',[
             'dataJson' => $data->toArray()
         ])->setPaper('a4', 'portrait');
         return $pdf->download($fileName);
@@ -506,14 +420,14 @@ class PageSectionController extends Controller
      * ================= export Excel function start here ===========================
      */
     public function export_excel(){
-        return Excel::download(new PageSectionExport, now().'.xlsx');
+        return Excel::download(new heroExport, now().'.xlsx');
     }
     /**
      * 
      * ================= export csv function start here ===========================
      */
     public function export_csv(){
-        return Excel::download(new PageSectionExport, now().'.csv');
+        return Excel::download(new heroExport, now().'.csv');
     }
 
 

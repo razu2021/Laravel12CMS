@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('section_title')->nullable();
             $table->string('description')->nullable();
             $table->integer('order')->nullable();
+            $table->string('dynamic_route')->nullable();
             $table->string('slug',255)->nullable();
             $table->integer('creator_id')->nullable();
             $table->integer('editor_id')->nullable();
