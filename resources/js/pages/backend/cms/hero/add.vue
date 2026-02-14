@@ -3,6 +3,12 @@ import Button from '@/components/ui/button/Button.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
 import AdminLayout from '@/layouts/AdminLayout.vue'
+import { ref } from 'vue'
+
+
+//--- image preview 
+const preview = ref('')
+const thumbpreview = ref('')
 
 
 //=== defineprops 
@@ -13,13 +19,48 @@ const props = defineProps<{
 // UseForm with remembering state
 const form = useForm('hero', {
   section_id:  props.section_id,
-  name: '',
+  heading: '',
   title: '',
   description: '',
-  slug: '',
+  button: '',
+  button_url: '',
+  cover_image: null as File | null,
+  thumbnail: null as File | null,
   order: '',
   public_status: false,
 })
+
+//----cover image upload function 
+const handleImageUpload = (event: Event)=>{
+  const input = event.target as HTMLInputElement;
+  const file  = input.files?.[0];
+  if(!file) return ;
+
+  form.cover_image = file ;
+
+   if (preview.value) {
+    URL.revokeObjectURL(preview.value);
+  }
+  preview.value = URL.createObjectURL(file);
+}
+
+
+//====== thumbnail uploads 
+
+const handleThumbnailUpload = (event:Event)=>{
+  const input =  event.target as HTMLInputElement;
+  const file = input.files?.[0];
+
+  if(!file) return ;
+
+  form.thumbnail= file;
+
+  if(thumbpreview.value){
+    URL.revokeObjectURL(thumbpreview.value);
+  }
+  thumbpreview.value = URL.createObjectURL(file);
+
+}
 
   // ✅ submit MUST use form
   const handleSubmit = () => {
@@ -30,9 +71,9 @@ const form = useForm('hero', {
     })
   }
 </script>
-
+<!-- ==================== Script end here ============ -->
 <template>
-    <Head title="Create Information " />
+    <Head title="Create Information "/>
 <AdminLayout>
   <!-- PAGE WRAPPER -->
     <form @submit.prevent="handleSubmit" class="space-y-5">
@@ -46,8 +87,6 @@ const form = useForm('hero', {
               <h1 class="text-lg font-semibold">Create New Entry</h1>
               <p class="text-xs text-slate-300">Fill in the details below</p>
             </div>
-
-          
             <button
               class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-white/20 transition">
               <Link :href="route('hero.all')">All Information</Link>
@@ -63,19 +102,16 @@ const form = useForm('hero', {
               <h2 class="text-base font-semibold text-slate-800">Basic Information</h2>
               <p class="text-sm text-slate-500">Main content related data</p>
             </div>
-
-              <input type="text" name="section_id" id="section_id" v-model="form.section_id"/>
-            
-            
+              <input type="hidden" name="section_id" id="section_id" v-model="form.section_id"/>
               <div>
-                <label class="text-sm font-medium text-slate-600">Name</label>
-                <input type="text" placeholder="Enter title" v-model="form.name"
+                <label class="text-sm font-medium text-slate-600">Heading</label>
+                <input type="text" placeholder="Enter Heading" v-model="form.heading"
                   class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                  <div class="text-small text-red-500" v-if="form.errors.name">{{ form.errors.name }}</div>
+                  <div class="text-small text-red-500" v-if="form.errors.heading">{{ form.errors.heading }}</div>
               </div>
                 <!-- end -->
               <div>
-                <label class="text-sm font-medium text-slate-600">Meta Title</label>
+                <label class="text-sm font-medium text-slate-600">Title</label>
                 <input type="text" placeholder="Enter title" v-model="form.title"
                   class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
                   <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.title }}</div>
@@ -83,25 +119,74 @@ const form = useForm('hero', {
                 <!-- end -->
 
               <div>
-                <label class="text-sm font-medium text-slate-600">Meta Description</label>
+                <label class="text-sm font-medium text-slate-600">Description</label>
                 <textarea
                   rows="5"
                   placeholder="Write something meaningful..." v-model="form.description"
                   class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500"></textarea>
                 <div class="text-small text-red-500" v-if="form.errors.description">{{ form.errors.description }}</div>
                 </div>
+                <!-- end  -->
+                <div class="grid grid-cols-12 gap-4">
+                  <div class="col-span-12 md:col-span-6">
+                    <div>
+                      <label class="text-sm font-medium text-slate-600">Button Name</label>
+                      <input type="text" placeholder="About us" v-model="form.button"
+                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                        <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.button }}</div>
+                    </div>
+                  </div>
+                  <!-- col end -->
+                  <div class="col-span-12 md:col-span-6">
+                    <div>
+                      <label class="text-sm font-medium text-slate-600">Button URL</label>
+                      <input type="text" placeholder="Button url" v-model="form.button_url"
+                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                        <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.button_url }}</div>
+                    </div>
+                  </div>
+                  <!-- col end -->
+                </div>
               <div>
-                
               </div>
-          
-
           </div>
         </div>
 
         <!-- ================= RIGHT SETTINGS (4 COL) ================= -->
         <div class="col-span-12 lg:col-span-4">
           <div class="space-y-6">
-
+            <!-- Cover photo-->
+            <div class="rounded-2xl bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
+                <h3 class="text-sm font-semibold text-slate-800 mb-4">Upload Cover Photo</h3>
+                <label class="flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 px-4 py-6 cursor-pointer hover:bg-slate-100 transition">
+                  <div v-if="preview">
+                    <img :src="preview" class="w-auto h-50 object-cover rounded-xl shadow"/>
+                  </div>
+                  <div v-else class="text-sm text-slate-500">
+                    Click to upload image
+                  </div>
+                  <input type="file"  class="hidden" accept="image/*" @change="handleImageUpload"/>
+                </label>
+                <div class="text-sm text-red-500 mt-2" v-if="form.errors.cover_image">
+                  {{ form.errors.cover_image }}
+                </div>
+              </div>
+            <!-- Thumbnail photo-->
+            <div class="rounded-2xl bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
+                <h3 class="text-sm font-semibold text-slate-800 mb-4">Upload Thumbnail</h3>
+                <label class="flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 px-4 py-6 cursor-pointer hover:bg-slate-100 transition">
+                  <div v-if="thumbpreview">
+                    <img :src="thumbpreview" class="w-auto h-50 object-cover rounded-xl shadow"/>
+                  </div>
+                  <div v-else class="text-sm text-slate-500">
+                    Click to upload Thumbnail
+                  </div>
+                  <input type="file"  class="hidden" accept="image/*" @change="handleThumbnailUpload"/>
+                </label>
+                <div class="text-sm text-red-500 mt-2" v-if="form.errors.thumbnail">
+                  {{ form.errors.thumbnail }}
+                </div>
+              </div>
             <!-- STATUS CARD -->
             <div class="rounded-2xl bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
               <h3 class="text-sm font-semibold text-slate-800 mb-4">
@@ -116,15 +201,6 @@ const form = useForm('hero', {
             </div>
             <!-- STATUS CARD -->
             <div class="rounded-2xl bg-slet p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
-              <h3 class="text-sm font-semibold mb-3">
-                Actions
-              </h3>
-              <div>
-                <label class="text-sm font-medium text-slate-600"> Slug </label>
-                <input type="text" placeholder="Enter title" v-model="form.slug"
-                  class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                  <div class="text-small text-red-500" v-if="form.errors.slug">{{ form.errors.slug }}</div>
-              </div>
               <!-- end -->
               <div>
                 <label class="text-sm font-medium text-slate-600">Order  </label>
@@ -141,6 +217,5 @@ const form = useForm('hero', {
       </div>
     </div>
   </form>
-
 </AdminLayout>
 </template>

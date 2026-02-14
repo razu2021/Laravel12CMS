@@ -24,6 +24,17 @@ class PageSection extends Model
         return $this->belongsTo(User::class, 'editor_id', 'id');
     }
     
+    //=== define Relationship with Section Content model ->>>>>>>> start here =========
+    public function heroSection(){
+        return $this->hasMany(Hero::class,'page_section_id','id');
+    }
+
+
+
+    //=== define Relationship with Section Content model ->>>>>>>> emd here =========
+
+
+
 
     //--------------- Relationship with sub category model 
 
