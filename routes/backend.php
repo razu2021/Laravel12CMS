@@ -31,6 +31,13 @@ Route::prefix('site/manage/admin/')->group(function(){
 Route::controller(pageManagementController::class)->prefix('admin/dashboad/manage/pages/')->name('all_pages.')->group(function(){
     Route::get('category','categoryPage')->name('categorypage');
     Route::get('category/page/{section}','categoryPageSection')->name('categorypage_section');
+    //--------- subcategory route start  here --------
+    Route::get('sub-category','subCategoryPage')->name('Subcategorypage');
+    Route::get('sub-category/page/{section}','subCategoryPageSection')->name('sub_categorypage_section');
+    //--------- subcategory route start  here --------
+    Route::get('child-category','childCategoryPage')->name('Child_Category_page');
+    Route::get('child-category/page/{section}','childCategoryPageSection')->name('child_categorypage_section');
+
 
 
 });

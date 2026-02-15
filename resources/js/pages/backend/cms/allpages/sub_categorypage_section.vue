@@ -34,7 +34,7 @@
         </div>
         <!-- end -->
       <div>
-        <Button @click="goBack">Go Back</Button>
+        <Button @click="goBack"> Go Back</Button>
       </div>
     </div>
     

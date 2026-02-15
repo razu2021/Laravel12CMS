@@ -4,11 +4,11 @@
     import { Form, Head, Link } from '@inertiajs/vue3';
     import { ref } from 'vue'
     import Button from '@/components/ui/button/Button.vue';
+
     //-- go back function 
     const goBack = () => {
         window.history.back()
     }
-
 
     //====  get data form inertia controller 
    const {sections}= defineProps<{

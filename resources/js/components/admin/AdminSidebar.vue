@@ -90,14 +90,14 @@ const toggleMenu = (key:string)=>{
         <div class="ml-6 flex flex-col space-y-1 mt-1 overflow-hidden transition-all duration-300 ease-in-out"
           :style="openMenus['pages'] ? 'max-height: 500px;' : 'max-height: 0;'">
           <Link :href="route('all_pages.categorypage')"class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
-             Category Page
+             Category Pages
           </Link>
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
-            Sub Category
-          </a>
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
-            Chid Category
-          </a>
+          <Link :href="route('all_pages.Subcategorypage')" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
+            Sub Category Pages
+          </Link>
+          <Link :href="route('all_pages.Child_Category_page')" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
+            Chid Category Pages 
+          </Link>
         </div>
       </div>
       <!-- ====== dropdown menu end here ====== -->

@@ -29,4 +29,11 @@ class ChildCategoryPage extends Model
     public function subcategory(){
         return $this->belongsTo(SubCategoryPage::class);
     }
+
+
+    /**===========  section get === */
+
+    public function getCategorySection(){
+        return $this->morphMany(PageSection::class, 'sectionable');
+    }
 }

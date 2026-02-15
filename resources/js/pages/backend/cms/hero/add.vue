@@ -4,6 +4,11 @@ import Button from '@/components/ui/button/Button.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
 import { useImageUploads } from '@/composables/useImageUpload'
+//-- go back function 
+  const goBack = () => {
+    window.history.back()
+}
+
 //=== defineprops =================
 const props = defineProps<{
   section_id:any
@@ -49,15 +54,21 @@ const handleSubmit = () => {
       <div class="grid grid-cols-12 gap-8">
         <!-- ================= TOP HEADER ================= -->
         <div class="col-span-12">
-          <div class="flex items-center justify-between rounded-2xl bg-black py-4 px-5 text-white shadow-lg">
+          <div class="flex flex-wrap justify-between rounded-2xl bg-black py-4 px-5 text-white shadow-lg">
             <div>
               <h1 class="text-lg font-semibold">Create New Entry</h1>
               <p class="text-xs text-slate-300">Fill in the details below</p>
             </div>
-            <button
+           <div>
+             <button
               class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-white/20 transition">
               <Link :href="route('hero.all')">All Information</Link>
             </button>
+             <Button @click="goBack" class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-white/20 transition mx-2">
+              Go Back
+            </Button>
+           </div>
+            
           </div>
         </div>
         <!-- ================= MAIN FORM (8 COL) ================= -->

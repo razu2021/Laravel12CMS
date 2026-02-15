@@ -288,12 +288,16 @@ class heroController extends Controller
         if ($data) {
 
         /**=========== delete image form folder ===== */
-             $file_paths = public_path($data->cover_image);
-            
+            $file_paths = public_path($data->cover_image);
                 if (file_exists($file_paths)) {
                     File::delete($file_paths);
             }
 
+            $file_paths = public_path($data->thumbnail);
+                if (file_exists($file_paths)) {
+                    File::delete($file_paths);
+            }
+        /**=========== delete image form folder end here ===== */
 
 
         $data->forceDelete();
@@ -377,6 +381,20 @@ class heroController extends Controller
             $categorys = Hero::onlyTrashed()->whereIn('id',$ids)->get();
 
                 foreach ($categorys as $category) {
+                    /**=========== delete image form folder ===== */
+                    $file_paths = public_path($category->cover_image);
+                        if (file_exists($file_paths)) {
+                            File::delete($file_paths);
+                    }
+
+                    $file_paths = public_path($category->thumbnail);
+                        if (file_exists($file_paths)) {
+                            File::delete($file_paths);
+                    }
+                /**=========== delete image form folder end here ===== */
+
+
+
                     $category->forceDelete();
                 }
 
