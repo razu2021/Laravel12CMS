@@ -1,22 +1,14 @@
 <script setup lang="ts">
+import AdminLayout from '@/layouts/AdminLayout.vue'
 import Button from '@/components/ui/button/Button.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
-import AdminLayout from '@/layouts/AdminLayout.vue'
-import { ref } from 'vue'
-
-
-//--- image preview 
-const preview = ref('')
-const thumbpreview = ref('')
-
-
-//=== defineprops 
-
+import { useImageUploads } from '@/composables/useImageUpload'
+//=== defineprops =================
 const props = defineProps<{
   section_id:any
 }>()
-// UseForm with remembering state
+// UseForm with remembering state=====================
 const form = useForm('hero', {
   section_id:  props.section_id,
   heading: '',
@@ -29,44 +21,19 @@ const form = useForm('hero', {
   order: '',
   public_status: false,
 })
-
-//----cover image upload function 
-const handleImageUpload = (event: Event)=>{
-  const input = event.target as HTMLInputElement;
-  const file  = input.files?.[0];
-  if(!file) return ;
-
-  form.cover_image = file ;
-
-   if (preview.value) {
-    URL.revokeObjectURL(preview.value);
-  }
-  preview.value = URL.createObjectURL(file);
-}
-
-
-//====== thumbnail uploads 
-
-const handleThumbnailUpload = (event:Event)=>{
-  const input =  event.target as HTMLInputElement;
-  const file = input.files?.[0];
-
-  if(!file) return ;
-
-  form.thumbnail= file;
-
-  if(thumbpreview.value){
-    URL.revokeObjectURL(thumbpreview.value);
-  }
-  thumbpreview.value = URL.createObjectURL(file);
-
-}
-
-  // ✅ submit MUST use form
-  const handleSubmit = () => {
-    form.post(route('hero.submit'), {
+//--- - image upload composeable uses -----
+const {preview:image_preview ,handleUpload:handleImageUpload ,clearPreview:clearImagePreview} = useImageUploads(form, 'cover_image');
+const {preview:thumbnail_preview ,handleUpload:handleThumbnailUpload ,clearPreview:clearThumbnailPreview} = useImageUploads(form, 'thumbnail');
+//===================== ✅ submit MUST use form========================
+const handleSubmit = () => {
+  form.post(route('hero.submit'), {
+      // -- its work as like multipart-form/Data --- 
+      forceFormData: true,
       onSuccess: () => {
-        form.reset()
+        // -- clear input feild after upload
+        form.reset();
+        clearImagePreview();
+        clearThumbnailPreview();
       },
     })
   }
@@ -93,7 +60,6 @@ const handleThumbnailUpload = (event:Event)=>{
             </button>
           </div>
         </div>
-
         <!-- ================= MAIN FORM (8 COL) ================= -->
         <div class="col-span-12 lg:col-span-8">
           <div class="rounded-2xl bg-white p-6 shadow-[0_10px_30px_rgba(0,0,0,0.06)] space-y-6">
@@ -159,8 +125,8 @@ const handleThumbnailUpload = (event:Event)=>{
             <div class="rounded-2xl bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
                 <h3 class="text-sm font-semibold text-slate-800 mb-4">Upload Cover Photo</h3>
                 <label class="flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 px-4 py-6 cursor-pointer hover:bg-slate-100 transition">
-                  <div v-if="preview">
-                    <img :src="preview" class="w-auto h-50 object-cover rounded-xl shadow"/>
+                  <div v-if="image_preview">
+                    <img :src="image_preview" class="w-auto h-50 object-cover rounded-xl shadow"/>
                   </div>
                   <div v-else class="text-sm text-slate-500">
                     Click to upload image
@@ -171,15 +137,15 @@ const handleThumbnailUpload = (event:Event)=>{
                   {{ form.errors.cover_image }}
                 </div>
               </div>
-            <!-- Thumbnail photo-->
+            <!-- Thumbnail upload-->
             <div class="rounded-2xl bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
                 <h3 class="text-sm font-semibold text-slate-800 mb-4">Upload Thumbnail</h3>
                 <label class="flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 px-4 py-6 cursor-pointer hover:bg-slate-100 transition">
-                  <div v-if="thumbpreview">
-                    <img :src="thumbpreview" class="w-auto h-50 object-cover rounded-xl shadow"/>
+                  <div v-if="thumbnail_preview">
+                    <img :src="thumbnail_preview" class="w-auto h-50 object-cover rounded-xl shadow"/>
                   </div>
                   <div v-else class="text-sm text-slate-500">
-                    Click to upload Thumbnail
+                    Click to upload image
                   </div>
                   <input type="file"  class="hidden" accept="image/*" @change="handleThumbnailUpload"/>
                 </label>
@@ -187,6 +153,7 @@ const handleThumbnailUpload = (event:Event)=>{
                   {{ form.errors.thumbnail }}
                 </div>
               </div>
+       
             <!-- STATUS CARD -->
             <div class="rounded-2xl bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
               <h3 class="text-sm font-semibold text-slate-800 mb-4">

@@ -3,7 +3,7 @@
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\frontend\frontendController;
 use Illuminate\Support\Facades\Route;
-
+use Inertia\Inertia;
 
 
 
@@ -53,9 +53,9 @@ Route::get('/',[frontendController::class , 'index'])->name('index');
 
 
 
-// Route::get('dashboard', function () {
-//     return Inertia::render('Dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 
 //--- custome route 

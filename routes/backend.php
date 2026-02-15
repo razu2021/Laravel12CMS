@@ -137,6 +137,9 @@ Route::controller(PageSectionController::class)->prefix('admin/dashboad/manage/p
  * -=========================== Manage content route start here ==============
  * ====================================================================================
  */
+
+
+
 /**============ Page section manage Route Start here =========== */
 Route::controller(heroController::class)->prefix('admin/dashboad/manage/section/hero')->name('hero.')->group(function(){
     Route::get('all','index')->name('all');

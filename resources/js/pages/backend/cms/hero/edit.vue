@@ -3,23 +3,18 @@ import Button from '@/components/ui/button/Button.vue'
 import AdminLayout from '@/layouts/AdminLayout.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
+import { useImageUploads } from '@/composables/useImageUpload'
 
-
-
-
-
-
-
-
-
+/**==========  define props get data from inertia controller ========== */
 const props= defineProps<{
     data: {
         order: number,
-        name: string,
+        heading: string,
         title: string,
         url: string,
         description: string,
-        //-------------
+        cover_image: File | string | null,
+        thumbnail: File | string | null,
         public_status: boolean,
         id: number,
         slug: string,
@@ -30,23 +25,35 @@ const props= defineProps<{
 const form  = useForm(
   {
     id: props.data.id,
-    name: props.data.name,
+    heading: props.data.heading,
     title: props.data.title,
     description: props.data.description,
+    cover_image : props.data.cover_image  || null,
+    thumbnail : props.data.thumbnail  || null,
     url: props.data.url,
     order: props.data.order,
     public_status : Boolean(props.data.public_status),
     slug :props.data.slug
   })
 
-// ✅ wrap remembered data with useForm
+//--- - image upload composeable uses -----
 
+const imagepath = form.cover_image ? `/${form.cover_image}` : null;
+const thumbnail_path = form.thumbnail ? `/${form.thumbnail}` : null;
 
-// ✅ submit MUST use form
+const {preview:image_preview ,handleUpload:handleImageUpload ,clearPreview:clearImagePreview} = useImageUploads(form, 'cover_image', imagepath);
+const {preview:thumbnail_preview ,handleUpload:handleThumbnailUpload ,clearPreview:clearThumbnailPreview} = useImageUploads(form,'thumbnail',thumbnail_path);
+
+/**========  update function ========== */
 const handleUpdate = () => {
-  form.patch(route('hero.update'))
-  
-}
+  form.transform((data) => ({
+    ...(data as any),
+    _method: 'patch',
+  })).post(route('hero.update'), {
+    forceFormData: true,
+    onSuccess: () => console.log('Updated'),
+  });
+};
 </script>
 
 
@@ -97,14 +104,14 @@ const handleUpdate = () => {
                 </div>
                 <!-- end -->
                 <div>
-                    <label class="text-sm font-medium text-slate-600">Name</label>
-                    <input type="text" placeholder="Enter title" v-model="form.name"
+                    <label class="text-sm font-medium text-slate-600">Heading</label>
+                    <input type="text" placeholder="Enter title" v-model="form.heading"
                     class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                    <div class="text-small text-red-500" v-if="form.errors.name">{{ form.errors.name }}</div>
+                    <div class="text-small text-red-500" v-if="form.errors.heading">{{ form.errors.heading }}</div>
                 </div>
                     <!-- end -->
                 <div>
-                    <label class="text-sm font-medium text-slate-600">Meta Title</label>
+                    <label class="text-sm font-medium text-slate-600"> Title</label>
                     <input type="text" placeholder="Enter title" v-model="form.title"
                     class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
                     <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.title }}</div>
@@ -112,7 +119,7 @@ const handleUpdate = () => {
                     <!-- end -->
 
                 <div>
-                    <label class="text-sm font-medium text-slate-600">Meta Description</label>
+                    <label class="text-sm font-medium text-slate-600">Description</label>
                     <textarea
                     rows="5"
                     placeholder="Write something meaningful..." v-model="form.description"
@@ -127,6 +134,40 @@ const handleUpdate = () => {
             <!-- ================= RIGHT SETTINGS (4 COL) ================= -->
             <div class="col-span-12 lg:col-span-4">
             <div class="space-y-6">
+                
+                <!-- Cover photo-->
+                <div class="rounded-2xl bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
+                    <h3 class="text-sm font-semibold text-slate-800 mb-4">Upload Cover Photo</h3>
+                    <label class="flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 px-4 py-6 cursor-pointer hover:bg-slate-100 transition">
+                    <div v-if="image_preview">
+                        <img :src="image_preview" class="w-auto h-50 object-cover rounded-xl shadow"/>
+                    </div>
+                    <div v-else class="text-sm text-slate-500">
+                        Click to upload image
+                    </div>
+                    <input type="file"  class="hidden" accept="image/*" @change="handleImageUpload"/>
+                    </label>
+                    <div class="text-sm text-red-500 mt-2" v-if="form.errors.cover_image">
+                    {{ form.errors.cover_image }}
+                    </div>
+                </div>
+                <!-- Thumbnail upload-->
+                <div class="rounded-2xl bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
+                    <h3 class="text-sm font-semibold text-slate-800 mb-4">Upload Thumbnail</h3>
+                    <label class="flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 px-4 py-6 cursor-pointer hover:bg-slate-100 transition">
+                    <div v-if="thumbnail_preview">
+                        <img :src="thumbnail_preview" class="w-auto h-50 object-cover rounded-xl shadow"/>
+                    </div>
+                    <div v-else class="text-sm text-slate-500">
+                        Click to upload image
+                    </div>
+                    <input type="file"  class="hidden" accept="image/*" @change="handleThumbnailUpload"/>
+                    </label>
+                    <div class="text-sm text-red-500 mt-2" v-if="form.errors.thumbnail">
+                    {{ form.errors.thumbnail }}
+                    </div>
+                   
+                </div>
 
                 <!-- STATUS CARD -->
                 <div class="rounded-2xl bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">

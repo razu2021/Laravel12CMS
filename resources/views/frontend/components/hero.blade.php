@@ -9,5 +9,5 @@
             </div>
         </div>
     </div>
-    @endforeach
+    @endforeach 
 @endif

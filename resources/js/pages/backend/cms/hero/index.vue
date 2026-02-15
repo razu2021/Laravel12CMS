@@ -252,7 +252,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
         <!-- Create / Add -->
         <Button
           class="px-3 py-2.5 rounded-xl bg-white text-green-500 shadow-lg border border-green-400 hover:bg-blue-50 transition-colors duration-200 flex items-center gap-2 w-full sm:w-auto">
-          <Link :href="route('hero.add')" class="flex items-center gap-2 w-full">
+          <Link href="#" class="flex items-center gap-2 w-full">
             <SquarePlus class="w-4 h-4" />
             <span>Create</span>
           </Link>
@@ -272,11 +272,11 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
               <input type="checkbox" :checked="isAnySelected" @change="toggleSelectAll(rows)" class="h-4 w-4 text-blue-600 rounded border-gray-300"/>
             </th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">ID</th>
-            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Category Name</th>
+            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Heading</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Title</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Description</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Order</th>
-            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">URL</th>
+            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Image</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Status</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Manage</th>
           </tr>
@@ -287,11 +287,11 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
           <tr v-for="data in rows" :key="data.id" class="hover:bg-blue-50 transition-colors duration-200">
             <td class="px-4 py-3"><input type="checkbox" :value="data.id" v-model="selectedIds"  class="h-4 w-4 text-blue-600 rounded border-gray-300"/></td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.id ?? '' }}</td>
-            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.name ?? '' }}</td>
+            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.heading ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.title ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm"> {{ data.description ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm"> {{ data.order ?? '' }}</td>
-            <td class="px-4 py-3 font-medium text-gray-800 text-sm"> {{ data.url ?? '' }}</td>
+            <td class="px-4 py-3 font-medium text-gray-800 text-sm"> <img class=" h-20 w-auto rounded-lg shadow-lg" v-if="data.cover_image" :src="`/${data.cover_image}`" alt="image"></td>
             <td class="px-4 py-3 font-medium text-green-600 text-sm" v-if="data.public_status == 1">Active </td>
             <td class="px-4 py-3 font-medium text-red-600 text-sm" v-else="data.public_status == 0">Inactive </td>
             <td class="px-4 py-3 font-medium text-gray-800">

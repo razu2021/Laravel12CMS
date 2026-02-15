@@ -13,7 +13,9 @@ use App\Models\Hero;
 use App\Models\PageSection;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\File; 
 use Inertia\Inertia;
+use App\Services\ImageUploadService;
 
 
 class heroController extends Controller
@@ -120,6 +122,31 @@ class heroController extends Controller
             'created_at' => Carbon::now()->toDateTimeString(),
         ]);
 
+
+        /**======== upload Cover image image via the service class start ====== */
+            $id = $insert->id;
+        if ($request->hasFile('cover_image')) {
+            // upload image in local folder path via tha service class
+            $upload = (new ImageUploadService($request->file('cover_image')))
+                        ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
+            // ------  save image in database 
+            $insert = Hero::where('id', $id)
+                        ->where('id', $id)->update([
+                            'cover_image' => $upload,
+                        ]);
+        }
+        /**======== upload Thumbnail image via the service class start ====== */
+        if ($request->hasFile('thumbnail')) {
+            // upload image in local folder path via tha service class
+            $upload = (new ImageUploadService($request->file('thumbnail')))
+                        ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
+            // ------  save image in database 
+            $insert = Hero::where('id', $id)
+                        ->where('id', $id)->update([
+                            'thumbnail' => $upload,
+                        ]);
+        }
+
         //---------------------- if insert ------
         if($insert){
             flash()->success('created successfully!');
@@ -130,8 +157,6 @@ class heroController extends Controller
 
           return redirect()->back();
         
-
-
     }
 
 
@@ -141,49 +166,61 @@ class heroController extends Controller
      */
 
     public function update(Request $request){
-        /**--- validation code -- */
-        $category = Hero::where('id',$request->id)->first();
-        $request->validate( [
-                'name' => ['required', 'string', 'max:255',Rule::unique('category_pages','name')->ignore($category->id)],
-                'url' => ['required', 'string', 'max:255', Rule::unique('category_pages','url')->ignore($category->id)],
-               
-            ],[
-                'name.required'=> 'Name field is Required !',
-                'url.required'=> 'Slug field is Required !',
-                'name.unique'=> 'This name already exists. !',
-                'url.unique'=> 'This URL already exists. !',
-            ]
-        );
-
+     
+       
         //---------- get authenticate use id and create a slug
         $editor_id = Auth::user()->id;
         $slug = $request->slug;
         $id = $request->id;
 
-        //------- make a custom url for -------
-        $categoryname = strtolower($request->name);
-        $user_input_url  = strtolower($request->url) ;
-        if(!empty($user_input_url)){
-            $url = Str::slug($user_input_url); // Output: "my-new-category-name"
-        }else{
-            $url = Str::slug($categoryname); // Output: "my-new-category-name"
-        }
 
         // ----- insert record into database 
         $update = Hero::where('id',$id)->where('slug',$slug)->update([
-            'name'=>$request->name,
+            'heading'=>$request->heading,
             'title'=>$request->title,
             'description'=>$request->description,
-            'url'=>$url,
             'order'=>$request->order,
             'public_status'=>$request->public_status ?? 0,
             'editor_id' => $editor_id,
             'updated_at' => Carbon::now()->toDateTimeString(),
         ]);
 
+        /**======== upload image via the service class start ====== */
+        if ($request->hasFile('cover_image')) {
+            //---- find old image for delete -----
+            $exixtimage = Hero::where('id', $id)->first();
+            $oldimage = $exixtimage->cover_image;
+            // upload image in local folder path via tha service class
+            $upload = (new ImageUploadService($request->file('cover_image')))
+                        ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
+            // ------  save image in database 
+            $insert = Hero::where('id', $id)
+                        ->where('slug', $slug)->update([
+                            'cover_image' => $upload,
+                        ]);
+        }
+        /**======== upload image via the service end ====== */
+        if ($request->hasFile('thumbnail')) {
+            //---- find old image for delete -----
+            $exixtimage = Hero::where('id', $id)->first();
+            $oldimage = $exixtimage->thumbnail;
+            // upload image in local folder path via tha service class
+            $upload = (new ImageUploadService($request->file('thumbnail')))
+                        ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
+            // ------  save image in database 
+            $insert = Hero::where('id', $id)
+                        ->where('slug', $slug)->update([
+                            'thumbnail' => $upload,
+                        ]);
+        }
+        /**======== upload image via the service end ====== */
+
+
+
+
         if($update){
             flash()->success('Information Updated successfully!');
-            return redirect()->route('category_page.view',[$id,$slug]);
+            return redirect()->route('hero.view',[$id,$slug]);
         }else{
             flash()->error('Information Updated Faild !');
             return redirect()->back();
@@ -249,10 +286,20 @@ class heroController extends Controller
         $data= Hero::onlyTrashed()->where('id',$id)->first();
         
         if ($data) {
+
+        /**=========== delete image form folder ===== */
+             $file_paths = public_path($data->cover_image);
+            
+                if (file_exists($file_paths)) {
+                    File::delete($file_paths);
+            }
+
+
+
         $data->forceDelete();
         flash()->success('Record deleted successfully!');
         } else {
-            flash()->error('Failed to delete record!');
+            flash()->error('Failed to delete record !');
         }
 
         return back();
