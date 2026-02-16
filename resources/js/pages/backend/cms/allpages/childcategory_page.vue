@@ -2,7 +2,7 @@
     import AdminLayout from '@/layouts/AdminLayout.vue';
     import { route } from 'ziggy-js';
     import { Form, Head, Link } from '@inertiajs/vue3';
-
+    
 
 
     //====  get data form inertia controller 
