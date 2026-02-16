@@ -1,5 +1,13 @@
 @extends('layouts/frontend')
 @section('web_content')
-<h1>Sub Category page </h1>
+    @if(!empty($subcategorys))
+
+    @foreach ($subcategorys->getCategorySection as $sections)
+            @includeIf('frontend/components/'.$sections->section_key,[
+                'contents' => $sections->heroSection
+            ])
+    @endforeach
+
+    @endif
 
 @endsection

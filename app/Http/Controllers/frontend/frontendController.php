@@ -5,6 +5,7 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use App\Models\CategoryPage;
 use App\Models\SubCategoryPage;
+
 use Illuminate\Http\Request;
 
 class frontendController extends Controller
@@ -13,9 +14,7 @@ class frontendController extends Controller
 
     public function index(){
 
-        $category = CategoryPage::with(['getCategorySection.heroSection'])->where('public_status',1)->where('name','home')->first();
-
-      
+        $category = CategoryPage::with(['getCategorySection'])->where('public_status',1)->where('name','home')->first();
 
         return view('frontend.index',compact('category'));
     }
@@ -23,15 +22,23 @@ class frontendController extends Controller
 
     public function categoryPage($category){
 
-        $category = CategoryPage::with(['getCategorySection.heroSection'])->where('public_status',1)->where('url',$category)->first();
+        $category = CategoryPage::with(['getCategorySection'])->where('public_status',1)->where('url',$category)->first();
+   
         return view('frontend.category',compact('category'));
 
     }
 
+
+    /**==
+     * ============== Subcategory page functionality start here -=============
+     * ======================
+     */
+
     public function subCategoryPage($category,$subcategory){
-        
-    
-        return view('frontend.subcategory');
+        $category = CategoryPage::where('url',$category)->value('id');
+        $subcategorys = SubCategoryPage::with(['getCategorySection.contents'])->where('category_id',$category)->firstOrFail();
+      
+        return view('frontend.subcategory',compact('subcategorys'));
     }
     public function childCategoryPage($category,$subcategory,$childcategory){
 
