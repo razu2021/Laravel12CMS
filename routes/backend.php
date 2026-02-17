@@ -135,6 +135,11 @@ Route::controller(PageSectionController::class)->prefix('admin/dashboad/manage/p
     Route::get('get/category/page','getCategory')->name('getCategory');
     Route::get('get/subcategory/page','getSubcategory')->name('getsubcategory');
     Route::get('get/childcategory/page','getChildcategory')->name('getchildcategory');
+
+    //change theme section 
+    Route::get('change/section/theme/{id}/{slug}','changeTheme')->name('changeTheme');
+
+
 });
 
   

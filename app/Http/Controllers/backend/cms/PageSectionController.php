@@ -517,4 +517,23 @@ class PageSectionController extends Controller
     }
 
 
+
+    //---------- change theme for each section 
+    public function changeTheme($id,$slug){
+        $data = PageSection::where('id',$id)->where('slug',$slug)->firstOrFail();
+        return Inertia::render('backend/cms/pagesection/change_theme',[
+            'data'=>$data,
+        ]);
+    }
+
+
+
+
+
+
+
+
+
+
+
 }

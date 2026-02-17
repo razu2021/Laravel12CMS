@@ -350,6 +350,13 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
                         </a>
                       </DropdownMenuItem>
                         <!-- end -->
+                      <DropdownMenuItem>
+                        <Link :href="route('page_section.changeTheme',{id:data.id,slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-cyan-600 rounded-lg">
+                          <span class="flex items-center"><DownloadCloud /></span>
+                          <span> Choose Section Theme </span>
+                        </Link>
+                      </DropdownMenuItem>
+                        <!-- end -->
                      
                       <!-- end -->
                     </DropdownMenuGroup>
