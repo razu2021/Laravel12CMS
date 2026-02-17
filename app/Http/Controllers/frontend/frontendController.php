@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\CategoryPage;
+use App\Models\ChildCategoryPage;
 use App\Models\SubCategoryPage;
 
 use Illuminate\Http\Request;
@@ -55,7 +56,9 @@ class frontendController extends Controller
 
     public function childCategoryPage($category,$subcategory,$childcategory){
 
-        return view('frontend.childcategory');
+        $childCategorys = ChildCategoryPage::with(['getCategorySection'])->where('url',$childcategory)->first();
+
+        return view('frontend.childcategory',compact('childCategorys'));
     }
 
     

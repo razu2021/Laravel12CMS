@@ -30,10 +30,14 @@ class PageSection extends Model
     public function heroSection(){
         return $this->hasMany(Hero::class,'page_section_id','id');
     }
+    public function postSection(){
+        return $this->hasMany(Post::class,'page_section_id','id');
+    }
 
     
     protected array $sectionRelations = [
         'hero' => 'heroSection',
+        'post' => 'postSection',
 
         // future 50+ models
     ];
@@ -44,10 +48,7 @@ class PageSection extends Model
     {
 
         $relation = $this->sectionRelations[$this->dynamic_route] ?? null;
-        Log::info('dynamic_route : '.$this->dynamic_route);
-        Log::info('relation : '.$relation);
-
-        
+       
         if (!$relation || !method_exists($this, $relation)) {
             return collect(); // empty collection if no relation
         }
