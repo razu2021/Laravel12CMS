@@ -66,7 +66,7 @@ const handleSubmit = () => {
             </button>
              <Button @click="goBack" class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-white/20 transition mx-2">
               Go Back
-            </Button>
+            </Button>  
            </div>
             
           </div>

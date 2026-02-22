@@ -53,9 +53,9 @@ Route::get('/',[frontendController::class , 'index'])->name('index');
 
 
 
-Route::get('dashboard', function () {
+Route::get('site/manage/users/dashboard/', function () {
     return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified','role_check:user'])->name('dashboard');
 
 
 //--- custome route 

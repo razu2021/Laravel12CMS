@@ -16,7 +16,7 @@ use App\Http\Controllers\backend\cms\SubCategoryPageController;
  * ============================== Route Group with Middleware =============
  * =============
  */
-Route::middleware('auth')->group(function(){
+Route::middleware(['auth','role_check:admin'])->group(function(){
 /**
 * ======== middleware group start here ====================================
 */
