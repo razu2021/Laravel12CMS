@@ -10,13 +10,13 @@ class LoginResponse implements LoginResponseContract
     {
         $user = $request->user();
 
-        // এখানে আপনার রোল অনুযায়ী লজিক লিখুন
+        //- redirect dashboard based on the  user role 
         if ($user->role === 'admin') {
             return redirect()->intended(route('admin_dashboard'));
         }elseif ($user->role === 'user') {
             return redirect()->intended(route('dashboard'));
         }
 
-        // return redirect()->intended(route('dashboard'));
+        
     }
 }
