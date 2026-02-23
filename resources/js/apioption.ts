@@ -4,7 +4,7 @@ export interface apioption{
 }
 
 
-export const group: apioption[] = [
+export const groups: apioption[] = [
     {
         key: 'API',
         name : 'API'
@@ -22,4 +22,21 @@ export const group: apioption[] = [
         name : 'WEBHOOK'
     },
    
-]
+];
+
+//---------- api keys list 
+
+export const apikeys: apioption[] = [
+    {
+        key: 'google_maps_api_key',
+        name : 'Google map Api Key'
+    },
+    {
+        key: 'recaptcha_site_key',
+        name : 'Recaptcha Site Key'
+    },
+    {
+        key: 'recaptcha_secret_key',
+        name : 'Recaptcha Secret Key'
+    },
+];

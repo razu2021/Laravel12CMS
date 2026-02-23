@@ -361,23 +361,13 @@ const toggleMenu = (key:string)=>{
         <!-- Dropdown Items -->
         <div class="ml-6 flex flex-col space-y-1 mt-1 overflow-hidden transition-all duration-300 ease-in-out"
           :style="openMenus['api_setting'] ? 'max-height: 500px;' : 'max-height: 0;'">
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
-           Google Maps API
-          </a>
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
-            reCAPTCHA key
-          </a>
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
-           Payment gateway keys
-          </a>
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
-           SMS API
-          </a>
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
-          Third-party webhook URL
-          </a>
+          <Link :href="route('api_setting.all')" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
+            Manage All API
+          </Link>
+         
         </div>
       </div>
+       
       <!-- ====== dropdown menu end here ====== -->
     <div class="flex flex-col space-y-1">
         <!-- Parent Button -->
