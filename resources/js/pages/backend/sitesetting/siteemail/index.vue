@@ -34,10 +34,10 @@ const props = defineProps({
 const {rows,links,meta} = useDataTable(props)
 
 // --- cuse composebles for filter data
-const {form} = useFilter(props,'post.all')
+const {form} = useFilter(props,'contact_email.all')
 
 // --- use for bulk action
-const bulkRoute = ref('post.bulkAction')
+const bulkRoute = ref('contact_email.bulkAction')
 
 const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelection(rows.value, bulkRoute)
 
@@ -70,21 +70,21 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
           <DropdownMenuContent>
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <a :href=" route('post.export_pdf') " target="_blank" class="w-full inline-flex items-center gap-2  text-sm font-medium text-yellow-600 rounded-lg">
+                <a :href=" route('contact_email.export_pdf') " target="_blank" class="w-full inline-flex items-center gap-2  text-sm font-medium text-yellow-600 rounded-lg">
                   <span class="flex items-center"><Download /></span>
                   <span>  Export Pdf</span>
                 </a>
               </DropdownMenuItem>
               <!-- end -->
               <DropdownMenuItem>
-                <a :href=" route('post.export_pdf') " target="_blank" class="w-full inline-flex items-center gap-2  text-sm font-medium text-green-600 rounded-lg">
+                <a :href=" route('contact_email.export_pdf') " target="_blank" class="w-full inline-flex items-center gap-2  text-sm font-medium text-green-600 rounded-lg">
                   <span class="flex items-center"><Download /></span>
                   <span>  Export Excel</span>
                 </a>
               </DropdownMenuItem>
               <!-- end -->
               <DropdownMenuItem>
-                <a :href="route('post.export_pdf')" target="_blank" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
+                <a :href="route('contact_email.export_pdf')" target="_blank" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
                   <span class="flex items-center"><Download /></span>
                   <span>  Export CSV</span>
                 </a>
@@ -125,7 +125,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
           <option value="1">Active</option>
           <option value="0">Inactive</option>
         </select>
-            <Link v-show="form.search || form.status" class="text-sm bg-green-200 p-2 rounded-full text-white hover:bg-green-600 transition-all" :href="route('post.all')"><RotateCcwIcon/></Link>
+            <Link v-show="form.search || form.status" class="text-sm bg-green-200 p-2 rounded-full text-white hover:bg-green-600 transition-all" :href="route('contact_email.all')"><RotateCcwIcon/></Link>
       </div>
 
   <!-- RIGHT: Action Buttons -->
@@ -243,7 +243,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
 
                   
 
-        <Link :href="route('post.recycle')"
+        <Link :href="route('contact_email.recycle')"
           class="px-3 py-2.5 text-red-500 rounded-xl bg-white shadow-xl border border-red-200 hover:bg-red-100 transition-colors duration-200 flex items-center gap-2 w-full sm:w-auto" >
           <Trash class="w-4 h-4" />
           <span>Recycle</span>
@@ -252,7 +252,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
         <!-- Create / Add -->
         <Button
           class="px-3 py-2.5 rounded-xl bg-white text-green-500 shadow-lg border border-green-400 hover:bg-blue-50 transition-colors duration-200 flex items-center gap-2 w-full sm:w-auto">
-          <Link href="#" class="flex items-center gap-2 w-full">
+          <Link :href="route('contact_email.add')" class="flex items-center gap-2 w-full">
             <SquarePlus class="w-4 h-4" />
             <span>Create</span>
           </Link>
@@ -272,11 +272,11 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
               <input type="checkbox" :checked="isAnySelected" @change="toggleSelectAll(rows)" class="h-4 w-4 text-blue-600 rounded border-gray-300"/>
             </th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">ID</th>
-            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Heading</th>
+            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">type</th>
+            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Email</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Title</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Description</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Order</th>
-            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Image</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Status</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Manage</th>
           </tr>
@@ -287,11 +287,11 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
           <tr v-for="data in rows" :key="data.id" class="hover:bg-blue-50 transition-colors duration-200">
             <td class="px-4 py-3"><input type="checkbox" :value="data.id" v-model="selectedIds"  class="h-4 w-4 text-blue-600 rounded border-gray-300"/></td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.id ?? '' }}</td>
-            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.heading ?? '' }}</td>
+            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.type ?? '' }}</td>
+            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.email ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.title ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm"> {{ data.description ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm"> {{ data.order ?? '' }}</td>
-            <td class="px-4 py-3 font-medium text-gray-800 text-sm"> <img class=" h-20 w-auto rounded-lg shadow-lg" v-if="data.cover_image" :src="`/${data.cover_image}`" alt="image"></td>
             <td class="px-4 py-3 font-medium text-green-600 text-sm" v-if="data.public_status == 1">Active </td>
             <td class="px-4 py-3 font-medium text-red-600 text-sm" v-else="data.public_status == 0">Inactive </td>
             <td class="px-4 py-3 font-medium text-gray-800">
@@ -302,21 +302,21 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
                   <DropdownMenuContent>
                     <DropdownMenuGroup>
                       <DropdownMenuItem>
-                        <Link :href="route('post.edit',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
+                        <Link :href="route('contact_email.edit',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
                           <span class="flex items-center"><SquarePen /></span>
                           <span>  Edit</span>
                       </Link>
                       </DropdownMenuItem>
                       <!-- end -->
                       <DropdownMenuItem>
-                        <Link :href="route('post.view',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-gray-600 rounded-lg">
+                        <Link :href="route('contact_email.view',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-gray-600 rounded-lg">
                           <span class="flex items-center"><Eye /></span>
                           <span> View</span>
                       </Link>
                       </DropdownMenuItem>
                       <!-- end -->
                       <DropdownMenuItem>
-                        <button @click="confirmDelete('post.softdelete',data.id)" class="w-full inline-flex items-center gap-2  text-sm font-medium text-red-300 rounded-lg">
+                        <button @click="confirmDelete('contact_email.softdelete',data.id)" class="w-full inline-flex items-center gap-2  text-sm font-medium text-red-300 rounded-lg">
                           <span class="flex items-center"><Trash /></span>
                           <span> Delete </span>
                         </button>
@@ -327,14 +327,14 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
                     <DropdownMenuGroup>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>
-                        <Link :href="route('post.active',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-green-600 rounded-lg">
+                        <Link :href="route('contact_email.active',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-green-600 rounded-lg">
                           <span class="flex items-center"><ShieldCheck /></span>
                           <span> Active </span>
                       </Link>
                       </DropdownMenuItem>
                       <!-- end -->
                       <DropdownMenuItem>
-                        <Link :href="route('post.deactive',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-yellow-600 rounded-lg">
+                        <Link :href="route('contact_email.deactive',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-yellow-600 rounded-lg">
                           <span class="flex items-center"><ShieldMinus /></span>
                           <span> InActive </span>
                       </Link>
@@ -343,7 +343,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
                        <DropdownMenuSeparator />
                         <!-- end -->
                       <DropdownMenuItem>
-                        <a target="_blank" :href="route('post.single_pdf_export',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-cyan-600 rounded-lg">
+                        <a target="_blank" :href="route('contact_email.single_pdf_export',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-cyan-600 rounded-lg">
                           <span class="flex items-center"><DownloadCloud /></span>
                           <span> Export .PDF </span>
                         </a>

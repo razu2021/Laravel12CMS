@@ -34,7 +34,7 @@ const props = defineProps({
 const {rows,links,meta} = useDataTable(props)
 
 // --- cuse composebles for filter data
-const {form} = useFilter(props)
+const {form} = useFilter(props,'child_category_page.all')
 
 // --- use for bulk action
 const bulkRoute = ref('child_category_page.bulkAction')

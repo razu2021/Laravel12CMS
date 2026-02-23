@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('apisettings', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('type')->nullable();
+            $table->string('group')->nullable();
+            $table->string('key')->unique();
+            $table->longText('value')->nullable();
             $table->string('slug',255)->nullable();
             $table->integer('creator_id')->nullable();
             $table->integer('editor_id')->nullable();

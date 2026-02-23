@@ -13,7 +13,7 @@ interface FilterProps{
     }
 }
 
-export function useFilter(props:FilterProps){
+export function useFilter(props:FilterProps, RouteName:string){
 
     const form = reactive({
     search: props.filters?.search ??  '',
@@ -27,7 +27,7 @@ export function useFilter(props:FilterProps){
     form,
     debounce((newForm) => {
         router.get(
-        route('category_page.all'),
+        route(RouteName),
         { search: newForm.search, status: newForm.status },
         {
             preserveState: true,

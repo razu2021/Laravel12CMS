@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('site_addresses', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->enum('type',['primary','secondary'])->default('secondary');
             $table->string('address')->nullable();
+            $table->string('title')->nullable();
+            $table->string('description')->nullable();
+            $table->integer('order')->nullable();
             $table->string('slug',255)->nullable();
             $table->integer('creator_id')->nullable();
             $table->integer('editor_id')->nullable();

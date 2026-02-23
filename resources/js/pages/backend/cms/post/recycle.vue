@@ -35,7 +35,7 @@ const props = defineProps({
 
 const {rows,links,meta} = useDataTable(props)
 
-const {form} = useFilter(props)
+const {form} = useFilter(props,'post.all')
 
 const bulkRoute = ref('post.bulkAction')
 

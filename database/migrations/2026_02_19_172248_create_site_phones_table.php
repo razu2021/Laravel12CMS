@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('site_phones', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('phone_type')->nullable();
+            $table->enum('type',['primary','secondary'])->default('secondary');
             $table->string('phone')->nullable();
+            $table->string('title')->nullable();
+            $table->string('description')->nullable();
+            $table->integer('order')->nullable();
             $table->string('slug',255)->nullable();
             $table->integer('creator_id')->nullable();
             $table->integer('editor_id')->nullable();
