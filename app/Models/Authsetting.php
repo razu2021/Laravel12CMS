@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-class Apisetting extends Model
+class Authsetting extends Model
 {
     use SoftDeletes;
     

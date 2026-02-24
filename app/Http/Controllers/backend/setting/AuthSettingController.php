@@ -7,35 +7,35 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon; //----------  defualt -------
 use Barryvdh\DomPDF\Facade\Pdf;//-------------- export pdf
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\sitesetting\AnaliticTrackingExport;
+use App\Exports\sitesetting\AuthsettingExport;
 use Illuminate\Support\Str;
-use App\Models\AnaliticsTracking;
+use App\Models\Authsetting;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 
-class AnaliticsTrackingController extends Controller
+class AuthSettingController extends Controller
 {
     /**
      * ======== index page function 
      */
     public function index(Request $request)
     {
-        $query = AnaliticsTracking::query(); 
+        $query = Authsetting::query(); 
 
         if($request->filled('search')){
             $query->where('group','LIKE', '%' .$request->search .'%');
         }
 
-            // 📅 Status Filter
+        // 📅 Status Filter
         if ($request->filled('status')) {
             $query->where('public_status', $request->status);
         }
 
         $alldata = $query->paginate(10)->withQueryString();
 
-        return Inertia::render('backend/sitesetting/analiticstracking/index',[
+        return Inertia::render('backend/sitesetting/authsetting/index',[
             'alldata' => $alldata ,
             'filters' => $request->only(['search','status'])
         ]);
@@ -47,7 +47,7 @@ class AnaliticsTrackingController extends Controller
 
     public function add()
     {
-        return Inertia::render('backend/sitesetting/analiticstracking/add');
+        return Inertia::render('backend/sitesetting/authsetting/add');
        
     }
 
@@ -56,8 +56,8 @@ class AnaliticsTrackingController extends Controller
      */
     public function view($id,$slug)
     {
-        $data = AnaliticsTracking::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
-        return Inertia::render('backend/sitesetting/analiticstracking/show',[
+        $data = Authsetting::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+        return Inertia::render('backend/sitesetting/authsetting/show',[
             'data' => $data
         ]);
        
@@ -68,8 +68,8 @@ class AnaliticsTrackingController extends Controller
      */
     public function edit($id,$slug)
     {
-        $data = AnaliticsTracking::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
-        return Inertia::render('backend/sitesetting/analiticstracking/edit',[
+        $data = Authsetting::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+        return Inertia::render('backend/sitesetting/authsetting/edit',[
             'data' => $data
         ]);
        
@@ -87,7 +87,7 @@ class AnaliticsTrackingController extends Controller
          /**--- validation code -- */
         $request->validate( [
                 'group' => ['required'],
-                'key' => ['required', 'string',Rule::unique('analitics_trackings',column: 'key')],
+                'key' => ['required', 'string',Rule::unique('authsettings',column: 'key')],
                 'value' => ['required', 'string',],
 
             ],[
@@ -105,7 +105,7 @@ class AnaliticsTrackingController extends Controller
 
 
         // ----- insert record into database 
-        $insert = AnaliticsTracking::create([
+        $insert = Authsetting::create([
             'group'=>$request->group,
             'key'=>$request->key,
             'value'=>$request->value,
@@ -138,7 +138,7 @@ class AnaliticsTrackingController extends Controller
         /**--- validation code -- */
         $request->validate( [
                 'group' => ['required'],
-                'key' => ['required', 'string',Rule::unique('analitics_trackings',column: 'key')],
+                'key' => ['required', 'string',Rule::unique('authsettings',column: 'key')],
                 'value' => ['required', 'string',],
             ],[
                 'group.required'=> 'Group field is Required !',
@@ -151,7 +151,7 @@ class AnaliticsTrackingController extends Controller
         $slug = $request->slug;
         $id = $request->id;
         // ----- insert record into database 
-        $update = AnaliticsTracking::where('id',$id)->where('slug',$slug)->update([
+        $update = Authsetting::where('id',$id)->where('slug',$slug)->update([
             'group'=>$request->group,
             'key'=>$request->key,
             'value'=>$request->value,
@@ -161,7 +161,7 @@ class AnaliticsTrackingController extends Controller
         ]);
         if($update){
             flash()->success('Information Updated successfully!');
-            return redirect()->route('analitics_tracking.view',[$id,$slug]);
+            return redirect()->route('auth_setting.view',[$id,$slug]);
         }else{
             flash()->error('Information Updated Faild !');
             return redirect()->back();
@@ -173,7 +173,7 @@ class AnaliticsTrackingController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = AnaliticsTracking::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
+        $active = Authsetting::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
             'public_status' => 1,
         ]);
 
@@ -190,7 +190,7 @@ class AnaliticsTrackingController extends Controller
      * ======== De Active Functionality Start here ==========
      */
     public function deactive($id,$slug){
-        $active = AnaliticsTracking::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
+        $active = Authsetting::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
             'public_status' => 0,
         ]);
 
@@ -206,7 +206,7 @@ class AnaliticsTrackingController extends Controller
      * ======== Soft Delete Functionality Start here ==========
      */
     public function softdelete($id){
-        $data= AnaliticsTracking::where('id',$id)->first();
+        $data= Authsetting::where('id',$id)->first();
         $data->delete();
 
         if ($data) {
@@ -221,7 +221,7 @@ class AnaliticsTrackingController extends Controller
      * ========  Delete Functionality Start here ==========
      */
     public function delete($id){
-        $data= AnaliticsTracking::onlyTrashed()->where('id',$id)->first();
+        $data= Authsetting::onlyTrashed()->where('id',$id)->first();
         
         if ($data) {
         $data->forceDelete();
@@ -237,7 +237,7 @@ class AnaliticsTrackingController extends Controller
      * ========  Recycle Functionality Start here ==========
      */
     public function recycle(Request $request){
-        $query = AnaliticsTracking::query(); 
+        $query = Authsetting::query(); 
 
         $query->onlyTrashed();
 
@@ -253,7 +253,7 @@ class AnaliticsTrackingController extends Controller
 
         $alldata = $query->paginate(10)->withQueryString();
 
-        return Inertia::render('backend/sitesetting/analiticstracking/recycle',[
+        return Inertia::render('backend/sitesetting/authsetting/recycle',[
             'alldata' => $alldata ,
             'filters' => $request->only(['search','status'])
         ]);
@@ -283,26 +283,26 @@ class AnaliticsTrackingController extends Controller
 
         // ---------- soft delete code start here 
         if($action === 'delete'){
-            $data = AnaliticsTracking::whereIn('id',$ids)->delete();
+            $data = Authsetting::whereIn('id',$ids)->delete();
             return back();
         }
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = AnaliticsTracking::whereIn('id',$ids)->where('public_status',0)->update([
+            $categorys = Authsetting::whereIn('id',$ids)->where('public_status',0)->update([
                 'public_status'=>1,
             ]);
  
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = AnaliticsTracking::whereIn('id',$ids)->where('public_status',1)->update([
+            $categorys = Authsetting::whereIn('id',$ids)->where('public_status',1)->update([
                 'public_status'=>0,
             ]);
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){
-            $categorys = AnaliticsTracking::onlyTrashed()->whereIn('id',$ids)->get();
+            $categorys = Authsetting::onlyTrashed()->whereIn('id',$ids)->get();
 
                 foreach ($categorys as $category) {
                     $category->forceDelete();
@@ -311,7 +311,7 @@ class AnaliticsTrackingController extends Controller
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Restore'){
-            $categorys = AnaliticsTracking::onlyTrashed()->whereIn('id',$ids)->get();
+            $categorys = Authsetting::onlyTrashed()->whereIn('id',$ids)->get();
 
                 foreach ($categorys as $category) {
                     $category->restore();
@@ -325,7 +325,7 @@ class AnaliticsTrackingController extends Controller
         // ------------ Multiple Item Export as an PDF -------------------------------
         if($action === 'export_pdf'){
           
-            $category = AnaliticsTracking::whereIn('id',$ids)->get();
+            $category = Authsetting::whereIn('id',$ids)->get();
 
             $fileName = now()->format('Y-m-d_H-i-s') . '.pdf';
 
@@ -340,11 +340,11 @@ class AnaliticsTrackingController extends Controller
 
         if($action === 'export_excel'){
 
-            return Excel::download(new AnaliticTrackingExport($ids), now().'.xlsx');
+            return Excel::download(new AuthsettingExport($ids), now().'.xlsx');
         }
         if($action === 'export_csv'){
 
-            return Excel::download(new AnaliticTrackingExport($ids), now().'.csv');
+            return Excel::download(new AuthsettingExport($ids), now().'.csv');
         }
         return back();
 
@@ -361,7 +361,7 @@ class AnaliticsTrackingController extends Controller
 
     public function exportPdf($id,$slug){
 
-        $data = AnaliticsTracking::where('id',$id)->where('slug',$slug)->firstOrFail();
+        $data = Authsetting::where('id',$id)->where('slug',$slug)->firstOrFail();
         $fileName = $data->name.'-'.now().'.pdf';
         $pdf = pdf::loadView('backend/export/category/export_singlepdf',compact('data'))->setPaper('a4', 'portrait');
         return $pdf->download($fileName);
@@ -374,7 +374,7 @@ class AnaliticsTrackingController extends Controller
      * ================= export all pdf  function start here ===========================
      */
     public function export_pdf(){
-        $data = AnaliticsTracking::get();
+        $data = Authsetting::get();
         $fileName =now().'.pdf';
         $pdf = pdf::loadView('backend/export/category/export_pdf',[
             'dataJson' => $data->toArray()
@@ -389,14 +389,14 @@ class AnaliticsTrackingController extends Controller
      * ================= export Excel function start here ===========================
      */
     public function export_excel(){
-        return Excel::download(new AnaliticTrackingExport, now().'.xlsx');
+        return Excel::download(new AuthsettingExport, now().'.xlsx');
     }
     /**
      * 
      * ================= export csv function start here ===========================
      */
     public function export_csv(){
-        return Excel::download(new AnaliticTrackingExport, now().'.csv');
+        return Excel::download(new AuthsettingExport, now().'.csv');
     }
 
 

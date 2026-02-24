@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('analitics_trackings', function (Blueprint $table) {
+        Schema::create('authsettings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('group')->nullable();
             $table->string('key')->unique();
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('analitics_trackings');
+        Schema::dropIfExists('authsettings');
     }
 };

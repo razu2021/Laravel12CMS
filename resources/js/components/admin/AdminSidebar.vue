@@ -219,15 +219,10 @@ const toggleMenu = (key:string)=>{
         <!-- Dropdown Items -->
         <div class="ml-6 flex flex-col space-y-1 mt-1 overflow-hidden transition-all duration-300 ease-in-out"
           :style="openMenus['auth_set'] ? 'max-height: 500px;' : 'max-height: 0;'">
-          <a :href="route('page_section.all')"class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
-            All Section
-          </a>
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
-            Sub Category
-          </a>
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
-            Chid Category
-          </a>
+          <Link :href="route('auth_setting.all')"class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
+            Auth Settings
+          </Link>
+         
         </div>
       </div>
       <!-- ====== dropdown menu end here ====== -->
@@ -331,9 +326,9 @@ const toggleMenu = (key:string)=>{
         <!-- Dropdown Items -->
         <div class="ml-6 flex flex-col space-y-1 mt-1 overflow-hidden transition-all duration-300 ease-in-out"
           :style="openMenus['privecy_polcy'] ? 'max-height: 500px;' : 'max-height: 0;'">
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
+          <Link :href="route('privacy_policy.all')" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
             Privacy Policy
-          </a>
+          </Link>
           <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
             Terms & Conditions
           </a>
@@ -387,21 +382,9 @@ const toggleMenu = (key:string)=>{
         <!-- Dropdown Items -->
         <div class="ml-6 flex flex-col space-y-1 mt-1 overflow-hidden transition-all duration-300 ease-in-out"
           :style="openMenus['any_trac'] ? 'max-height: 500px;' : 'max-height: 0;'">
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
-           Google Analytics ID
-          </a>
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
-           Google Tag Manager
-          </a>
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
-            Meta Pixel
-          </a>
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
-           Custom header scripts
-          </a>
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
-            Custom footer scripts
-          </a>
+          <Link :href="route('analitics_tracking.all')" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
+              Tracking Management 
+          </Link>
         </div>
       </div>
       <!-- ====== dropdown menu end here ====== -->

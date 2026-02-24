@@ -25,7 +25,7 @@ class ApiSettingController extends Controller
         $query = Apisetting::query(); 
 
         if($request->filled('search')){
-            $query->where('address','LIKE', '%' .$request->search .'%');
+            $query->where('group','LIKE', '%' .$request->search .'%');
         }
 
             // 📅 Status Filter
