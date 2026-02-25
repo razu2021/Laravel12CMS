@@ -12,10 +12,7 @@ const {data} = defineProps<{
   data: any 
 }>()
 
-
-
 </script>
-
 
 
 <template>
@@ -95,7 +92,6 @@ const {data} = defineProps<{
                   </div>
               </CardContent>
             </Card>
-
       </div>
       <!-- span end -->
       <div class="col-span-12 sm:col-span-12 md:col-span-4 lg:col-span-4 xl:col-span-4 2xl:col-span-4 ">

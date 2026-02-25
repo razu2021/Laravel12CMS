@@ -10,6 +10,7 @@ import { initializeTheme } from './composables/useAppearance';
 import { configureEcho } from '@laravel/echo-vue';
 import flasher from '@flasher/flasher';
 import { HSStaticMethods } from 'preline'
+import TextareaEditor from './components/TextareaEditor.vue';
 configureEcho({
     broadcaster: 'reverb',
 });
@@ -35,6 +36,8 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
+            // ✅ Global component register (TS safe)
+            .component('TextareaEditor', TextareaEditor)
             .mount(el);
     },
 
