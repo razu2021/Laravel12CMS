@@ -163,6 +163,22 @@
     --sidebar: hsl(240 5.9% 10%);
 }
 
+/* TipTap basic fixes */
+.ProseMirror {
+  min-height: 150px;
+  outline: none;
+}
+
+.ProseMirror p {
+  margin: 0.5em 0;
+}
+
+.ProseMirror:focus {
+  outline: none;
+}
+
+
+
 @layer base {
     * {
         @apply border-border outline-ring/50;

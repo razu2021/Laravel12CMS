@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\backend\setting;
 
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon; //----------  defualt -------
 use Barryvdh\DomPDF\Facade\Pdf;//-------------- export pdf
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\sitesetting\SiteEmailExport;
+use App\Exports\CategoryPageExport;
 use Illuminate\Support\Str;
-use App\Models\SiteEmail;
+use App\Models\CategoryPage;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
@@ -18,14 +19,14 @@ use Inertia\Inertia;
 class SiteEmailController extends Controller
 {
     /**
-     * ======== index page function 
+     * ======== index page function =============
      */
     public function index(Request $request)
     {
-        $query = SiteEmail::query(); 
+        $query = CategoryPage::query(); 
 
         if($request->filled('search')){
-            $query->where('email','LIKE', '%' .$request->search .'%');
+            $query->where('name','LIKE', '%' .$request->search .'%');
         }
 
             // 📅 Status Filter
@@ -35,41 +36,41 @@ class SiteEmailController extends Controller
 
         $alldata = $query->paginate(10)->withQueryString();
 
-        return Inertia::render('backend/sitesetting/siteemail/index',[
+        return Inertia::render('backend/cms/category/index',[
             'alldata' => $alldata ,
             'filters' => $request->only(['search','status'])
         ]);
     }
 
     /**
-     * ======== create page or add page function 
+     * ======== create page or add page function ===========
      */
 
     public function add()
     {
-        return Inertia::render('backend/sitesetting/siteemail/add');
+        return Inertia::render('backend/cms/category/add');
        
     }
 
     /**
-     * ======= view page or show page function 
+     * ======= view page or show page function =============
      */
     public function view($id,$slug)
     {
-        $data = SiteEmail::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
-        return Inertia::render('backend/sitesetting/siteemail/show',[
+        $data = CategoryPage::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+        return Inertia::render('backend/cms/category/show',[
             'data' => $data
         ]);
        
     }
 
     /**
-     * ======= edit or update page function 
+     * ======= edit or update page function =========================
      */
     public function edit($id,$slug)
     {
-        $data = SiteEmail::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
-        return Inertia::render('backend/sitesetting/siteemail/edit',[
+        $data = CategoryPage::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+        return Inertia::render('backend/cms/category/edit',[
             'data' => $data
         ]);
        
@@ -86,12 +87,14 @@ class SiteEmailController extends Controller
     public function insert(Request $request){
          /**--- validation code -- */
         $request->validate( [
-                'type' => ['required'],
-                'email' => ['required', 'string', 'max:255'],
-
+                'name' => ['required', 'string', 'max:255',Rule::unique('category_pages','name')],
+                'slug' => ['required', 'string', 'max:255', Rule::unique('category_pages','url')],
+               
             ],[
-                'email.required'=> 'Email field is Required !',
-                'type.required'=> 'Type field is Required !',
+                'name.required'=> 'Name field is Required !',
+                'slug.required'=> 'Slug field is Required !',
+                'name.unique'=> 'This name already exists. !',
+                'slug.unique'=> 'This URL already exists. !',
             ]
         );
 
@@ -99,13 +102,21 @@ class SiteEmailController extends Controller
         $creator_id = Auth::user()->id;
         $slug = uniqid('20').Str::random(20) . '_'.mt_rand(10000, 100000).'-'.time();
 
+        //------- make a custom url for -------
+        $categoryname = strtolower($request->name);
+        $user_input_url  = strtolower($request->slug) ;
+        if(!empty($user_input_url)){
+            $url = Str::slug($user_input_url); // Output: "my-new-category-name"
+        }else{
+            $url = Str::slug($categoryname); // Output: "my-new-category-name"
+        }
 
         // ----- insert record into database 
-        $insert = SiteEmail::create([
-            'type'=>$request->type,
-            'email'=>$request->email,
+        $insert = CategoryPage::create([
+            'name'=>$request->name,
             'title'=>$request->title,
             'description'=>$request->description,
+            'url'=>$url,
             'order'=>$request->order,
             'public_status'=>$request->public_status ?? 0,
             'slug'=>$slug,
@@ -122,7 +133,8 @@ class SiteEmailController extends Controller
         //---------------------- if insert ------
 
           return redirect()->back();
-    
+        
+
 
     }
 
@@ -134,15 +146,16 @@ class SiteEmailController extends Controller
 
     public function update(Request $request){
         /**--- validation code -- */
-        $category = SiteEmail::where('id',$request->id)->first();
-         /**--- validation code -- */
+        $category = CategoryPage::where('id',$request->id)->first();
         $request->validate( [
-                'type' => ['required'],
-                'email' => ['required', 'string', 'max:255'],
-
+                'name' => ['required', 'string', 'max:255',Rule::unique('category_pages','name')->ignore($category->id)],
+                'url' => ['required', 'string', 'max:255', Rule::unique('category_pages','url')->ignore($category->id)],
+               
             ],[
-                'email.required'=> 'Email field is Required !',
-                'type.required'=> 'Type field is Required !',
+                'name.required'=> 'Name field is Required !',
+                'url.required'=> 'Slug field is Required !',
+                'name.unique'=> 'This name already exists. !',
+                'url.unique'=> 'This URL already exists. !',
             ]
         );
 
@@ -150,12 +163,22 @@ class SiteEmailController extends Controller
         $editor_id = Auth::user()->id;
         $slug = $request->slug;
         $id = $request->id;
+
+        //------- make a custom url for -------
+        $categoryname = strtolower($request->name);
+        $user_input_url  = strtolower($request->url) ;
+        if(!empty($user_input_url)){
+            $url = Str::slug($user_input_url); // Output: "my-new-category-name"
+        }else{
+            $url = Str::slug($categoryname); // Output: "my-new-category-name"
+        }
+
         // ----- insert record into database 
-        $update = SiteEmail::where('id',$id)->where('slug',$slug)->update([
-            'type'=>$request->type,
-            'email'=>$request->email,
+        $update = CategoryPage::where('id',$id)->where('slug',$slug)->update([
+            'name'=>$request->name,
             'title'=>$request->title,
             'description'=>$request->description,
+            'url'=>$url,
             'order'=>$request->order,
             'public_status'=>$request->public_status ?? 0,
             'editor_id' => $editor_id,
@@ -163,9 +186,8 @@ class SiteEmailController extends Controller
         ]);
 
         if($update){
-            SiteEmail::normalizeOrder();
             flash()->success('Information Updated successfully!');
-            return redirect()->route('contact_email.view',[$id,$slug]);
+            return redirect()->route('category_page.view',[$id,$slug]);
         }else{
             flash()->error('Information Updated Faild !');
             return redirect()->back();
@@ -179,7 +201,7 @@ class SiteEmailController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = SiteEmail::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
+        $active = CategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
             'public_status' => 1,
         ]);
 
@@ -197,7 +219,7 @@ class SiteEmailController extends Controller
      */
     public function deactive($id,$slug){
 
-        $active = SiteEmail::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
+        $active = CategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
             'public_status' => 0,
         ]);
 
@@ -213,7 +235,7 @@ class SiteEmailController extends Controller
      * ======== Soft Delete Functionality Start here ==========
      */
     public function softdelete($id){
-        $data= SiteEmail::where('id',$id)->first();
+        $data= CategoryPage::where('id',$id)->first();
         $data->delete();
 
         if ($data) {
@@ -228,7 +250,7 @@ class SiteEmailController extends Controller
      * ========  Delete Functionality Start here ==========
      */
     public function delete($id){
-        $data= SiteEmail::onlyTrashed()->where('id',$id)->first();
+        $data= CategoryPage::onlyTrashed()->where('id',$id)->first();
         
         if ($data) {
         $data->forceDelete();
@@ -244,7 +266,7 @@ class SiteEmailController extends Controller
      * ========  Recycle Functionality Start here ==========
      */
     public function recycle(Request $request){
-        $query = SiteEmail::query(); 
+        $query = CategoryPage::query(); 
 
         $query->onlyTrashed();
 
@@ -260,7 +282,7 @@ class SiteEmailController extends Controller
 
         $alldata = $query->paginate(10)->withQueryString();
 
-        return Inertia::render('backend/sitesetting/siteemail/recycle',[
+        return Inertia::render('backend/cms/category/recycle',[
             'alldata' => $alldata ,
             'filters' => $request->only(['search','status'])
         ]);
@@ -290,26 +312,26 @@ class SiteEmailController extends Controller
 
         // ---------- soft delete code start here 
         if($action === 'delete'){
-            $data = SiteEmail::whereIn('id',$ids)->delete();
+            $data = CategoryPage::whereIn('id',$ids)->delete();
             return back();
         }
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = SiteEmail::whereIn('id',$ids)->where('public_status',0)->update([
+            $categorys = CategoryPage::whereIn('id',$ids)->where('public_status',0)->update([
                 'public_status'=>1,
             ]);
  
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = SiteEmail::whereIn('id',$ids)->where('public_status',1)->update([
+            $categorys = CategoryPage::whereIn('id',$ids)->where('public_status',1)->update([
                 'public_status'=>0,
             ]);
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){
-            $categorys = SiteEmail::onlyTrashed()->whereIn('id',$ids)->get();
+            $categorys = CategoryPage::onlyTrashed()->whereIn('id',$ids)->get();
 
                 foreach ($categorys as $category) {
                     $category->forceDelete();
@@ -318,7 +340,7 @@ class SiteEmailController extends Controller
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Restore'){
-            $categorys = SiteEmail::onlyTrashed()->whereIn('id',$ids)->get();
+            $categorys = CategoryPage::onlyTrashed()->whereIn('id',$ids)->get();
 
                 foreach ($categorys as $category) {
                     $category->restore();
@@ -327,12 +349,10 @@ class SiteEmailController extends Controller
         }
 
 
-
-
         // ------------ Multiple Item Export as an PDF -------------------------------
         if($action === 'export_pdf'){
           
-            $category = SiteEmail::whereIn('id',$ids)->get();
+            $category = CategoryPage::whereIn('id',$ids)->get();
 
             $fileName = now()->format('Y-m-d_H-i-s') . '.pdf';
 
@@ -347,11 +367,11 @@ class SiteEmailController extends Controller
 
         if($action === 'export_excel'){
 
-            return Excel::download(new SiteEmailExport($ids), now().'.xlsx');
+            return Excel::download(new CategoryPageExport($ids), now().'.xlsx');
         }
         if($action === 'export_csv'){
 
-            return Excel::download(new SiteEmailExport($ids), now().'.csv');
+            return Excel::download(new CategoryPageExport($ids), now().'.csv');
         }
         return back();
 
@@ -368,7 +388,7 @@ class SiteEmailController extends Controller
 
     public function exportPdf($id,$slug){
 
-        $data = SiteEmail::where('id',$id)->where('slug',$slug)->firstOrFail();
+        $data = CategoryPage::where('id',$id)->where('slug',$slug)->firstOrFail();
         $fileName = $data->name.'-'.now().'.pdf';
         $pdf = pdf::loadView('backend/export/category/export_singlepdf',compact('data'))->setPaper('a4', 'portrait');
         return $pdf->download($fileName);
@@ -381,7 +401,7 @@ class SiteEmailController extends Controller
      * ================= export all pdf  function start here ===========================
      */
     public function export_pdf(){
-        $data = SiteEmail::get();
+        $data = CategoryPage::get();
         $fileName =now().'.pdf';
         $pdf = pdf::loadView('backend/export/category/export_pdf',[
             'dataJson' => $data->toArray()
@@ -396,14 +416,14 @@ class SiteEmailController extends Controller
      * ================= export Excel function start here ===========================
      */
     public function export_excel(){
-        return Excel::download(new SiteEmailExport, now().'.xlsx');
+        return Excel::download(new CategoryPageExport, now().'.xlsx');
     }
     /**
      * 
      * ================= export csv function start here ===========================
      */
     public function export_csv(){
-        return Excel::download(new SiteEmailExport, now().'.csv');
+        return Excel::download(new CategoryPageExport, now().'.csv');
     }
 
 

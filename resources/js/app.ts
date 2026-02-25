@@ -10,7 +10,36 @@ import { initializeTheme } from './composables/useAppearance';
 import { configureEcho } from '@laravel/echo-vue';
 import flasher from '@flasher/flasher';
 import { HSStaticMethods } from 'preline'
-import TextareaEditor from './components/TextareaEditor.vue';
+import RichEditor from './components/RichEditor.vue'
+
+
+/* TinyMCE core */
+import 'tinymce/tinymce'
+
+// theme
+import 'tinymce/themes/silver'
+
+// icons
+import 'tinymce/icons/default'
+
+// FREE plugins
+import 'tinymce/plugins/link'
+import 'tinymce/plugins/image'
+import 'tinymce/plugins/lists'
+import 'tinymce/plugins/table'
+import 'tinymce/plugins/code'
+import 'tinymce/plugins/wordcount'
+
+
+
+
+
+
+
+
+
+
+
 configureEcho({
     broadcaster: 'reverb',
 });
@@ -36,8 +65,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
-            // ✅ Global component register (TS safe)
-            .component('TextareaEditor', TextareaEditor)
+            .component('RichEditor', RichEditor)
             .mount(el);
     },
 

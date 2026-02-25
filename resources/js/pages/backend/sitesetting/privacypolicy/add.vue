@@ -86,8 +86,13 @@ const handleSubmit = () => {
                   class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500"></textarea>
                 <div class="text-small text-red-500" v-if="form.errors.description">{{ form.errors.description }}</div>
                 </div> -->
-                <!-- end  -->
-                <TextareaEditor  v-model="form.description"/>
+                
+                   <RichEditor v-model="form.description" /> 
+
+
+             
+        
+    
               <div>
               </div>
           </div>
