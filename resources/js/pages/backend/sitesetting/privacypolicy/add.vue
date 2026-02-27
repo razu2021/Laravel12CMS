@@ -4,6 +4,8 @@ import Button from '@/components/ui/button/Button.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
 import { useImageUploads } from '@/composables/useImageUpload'
+import CKEditor from '@/components/CKEditor.vue' // Component import
+
 // UseForm with remembering state=====================
 const form = useForm('privacy_policy', {
   heading: '',
@@ -87,9 +89,7 @@ const handleSubmit = () => {
                 <div class="text-small text-red-500" v-if="form.errors.description">{{ form.errors.description }}</div>
                 </div> -->
                 
-                   <RichEditor v-model="form.description" /> 
-
-
+             <CKEditor v-model="form.description" label="Description" />
              
         
     
