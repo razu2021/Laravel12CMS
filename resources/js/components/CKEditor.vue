@@ -1,120 +1,123 @@
-<template>
-  <div>
-    <label v-if="label" class="mb-1 block font-semibold">
-      {{ label }}
-    </label>
-
-    <Ckeditor
-      :editor="ClassicEditor"
-      :model-value="content"
-      @update:model-value="val => content = val"
-      :config="editorConfig"
-    />
-  </div>
-</template>
-
 <script setup>
-import { ref, watch } from 'vue'
+// ১. @tiptap/vue-3 থেকে সব প্রয়োজনীয় জিনিস একবারে নিন
+import { useEditor, EditorContent, BubbleMenu, FloatingMenu } from '@tiptap/vue-3'
+import StarterKit from '@tiptap/starter-kit'
+import Underline from '@tiptap/extension-underline'
+import Link from '@tiptap/extension-link'
+import Placeholder from '@tiptap/extension-placeholder'
 
-// ✅ CKEditor Vue wrapper
-import { Ckeditor } from '@ckeditor/ckeditor5-vue'
-
-// ✅ Classic build
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-
-// Props & Emits
-const props = defineProps({
-  modelValue: String,
-  label: String
-})
+const props = defineProps({ modelValue: String })
 const emit = defineEmits(['update:modelValue'])
 
-// Reactive content synced with parent
-const content = ref(props.modelValue || '')
-
-watch(() => props.modelValue, val => {
-  content.value = val
-})
-watch(content, val => emit('update:modelValue', val))
-
-// Editor configuration
-const editorConfig = {
-  licenseKey: 'GPL',
-
-  toolbar: {
-    items: [
-      'undo','redo','|',
-      'heading','|',
-      'fontFamily','fontSize','fontColor','fontBackgroundColor','|',
-      'bold','italic','underline','strikethrough','|',
-      'alignment','|',
-      'numberedList','bulletedList','outdent','indent','|',
-      'link','blockQuote','insertTable','mediaEmbed','|',
-      'imageUpload','imageInsert','|',
-      'codeBlock'
-    ]
-  },
-
-  heading: {
-    options: [
-      { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-      { model: 'heading1', view: 'h1', title: 'Heading 1' },
-      { model: 'heading2', view: 'h2', title: 'Heading 2' },
-      { model: 'heading3', view: 'h3', title: 'Heading 3' },
-      { model: 'heading4', view: 'h4', title: 'Heading 4' }
-    ]
-  },
-
-  fontSize: {
-    options: [10,12,14,'default',18,20,24,28,32,36],
-    supportAllValues: true
-  },
-
-  fontFamily: {
-    options: [
-      'default',
-      'Arial, Helvetica, sans-serif',
-      'Courier New, Courier, monospace',
-      'Georgia, serif',
-      'Lucida Sans Unicode, Lucida Grande, sans-serif',
-      'Tahoma, Geneva, sans-serif',
-      'Times New Roman, Times, serif',
-      'Trebuchet MS, Helvetica, sans-serif',
-      'Verdana, Geneva, sans-serif'
+const editor = useEditor({
+    content: props.modelValue,
+    extensions: [
+        StarterKit,
+        Underline,
+        Link.configure({ openOnClick: false }),
+        Placeholder.configure({
+            placeholder: "Notion-এর মতো এখানে লিখুন...",
+        }),
+        // নোট: এখানে BubbleMenu বা FloatingMenu এক্সটেনশন হিসেবে দেওয়ার দরকার নেই 
+        // কারণ আমরা সরাসরি Vue কম্পোনেন্ট ব্যবহার করছি।
     ],
-    supportAllValues: true
-  },
-
-  image: {
-    toolbar: [
-      'imageTextAlternative',
-      'imageStyle:inline',
-      'imageStyle:block',
-      'imageStyle:side'
-    ]
-  },
-
-  table: {
-    contentToolbar: [
-      'tableColumn',
-      'tableRow',
-      'mergeTableCells'
-    ]
-  },
-
-  link: {
-    addTargetToExternalLinks: true,
-    defaultProtocol: 'https://'
-  },
-
-  mediaEmbed: {
-    previewsInData: true
-  }
-}
+    onUpdate: ({ editor }) => {
+        emit('update:modelValue', editor.getHTML())
+    },
+    editorProps: {
+        attributes: {
+            // Notion লুকের জন্য প্যাডিং এবং বর্ডার
+            class: 'prose max-w-none p-10 min-h-[400px] focus:outline-none bg-white mx-auto shadow-sm border rounded-lg',
+        },
+    },
+})
 </script>
 
-<style>
-.ck-editor__editable {
-  min-height: 250px;
+<template>
+    <div v-if="editor" class="relative max-w-4xl mx-auto mt-10">
+        
+        <bubble-menu 
+            :editor="editor" 
+            :tippy-options="{ duration: 100 }"
+            v-if="editor"
+            class="bubble-menu-wrapper"
+        >
+            <button type="button" @click="editor.chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }" class="bubble-btn">B</button>
+            <button type="button" @click="editor.chain().focus().toggleItalic().run()" :class="{ 'is-active': editor.isActive('italic') }" class="bubble-btn">I</button>
+            <button type="button" @click="editor.chain().focus().toggleHeading({ level: 1 }).run()" class="bubble-btn">H1</button>
+        </bubble-menu>
+
+        <floating-menu 
+            :editor="editor" 
+            :tippy-options="{ duration: 100 }"
+            v-if="editor"
+            class="floating-menu-wrapper"
+        >
+            <button type="button" @click="editor.chain().focus().toggleHeading({ level: 1 }).run()" class="float-btn">H1</button>
+            <button type="button" @click="editor.chain().focus().toggleHeading({ level: 2 }).run()" class="float-btn">H2</button>
+            <button type="button" @click="editor.chain().focus().toggleBulletList().run()" class="float-btn">List</button>
+        </floating-menu>
+
+        <editor-content :editor="editor" />
+    </div>
+</template>
+
+<style scoped>
+/* মেনুগুলোর ডিজাইন */
+.bubble-menu-wrapper {
+    display: flex;
+    background-color: #1f2937; /* Dark Gray */
+    padding: 4px;
+    border-radius: 8px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    z-index: 50;
+}
+
+.floating-menu-wrapper {
+    display: flex;
+    gap: 5px;
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    padding: 5px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+}
+
+.bubble-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+}
+.bubble-btn:hover { background: #374151; }
+.bubble-btn.is-active { color: #60a5fa; }
+
+.float-btn {
+    background: #f9fafb;
+    border: 1px solid #d1d5db;
+    padding: 3px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.float-btn:hover { background: #e5e7eb; }
+
+/* Notion Vibe */
+:deep(.tiptap) {
+    font-family: 'Inter', sans-serif;
+    outline: none !important;
+}
+
+:deep(.tiptap p.is-editor-empty:first-child::before) {
+    content: attr(data-placeholder);
+    float: left;
+    color: #adb5bd;
+    pointer-events: none;
+    height: 0;
 }
 </style>
