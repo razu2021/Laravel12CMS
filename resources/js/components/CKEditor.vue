@@ -1,123 +1,125 @@
 <script setup>
-// ১. @tiptap/vue-3 থেকে সব প্রয়োজনীয় জিনিস একবারে নিন
-import { useEditor, EditorContent, BubbleMenu, FloatingMenu } from '@tiptap/vue-3'
+import { ref, onBeforeUnmount } from 'vue'
+import { Editor, EditorContent, useEditor } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
-import Underline from '@tiptap/extension-underline'
-import Link from '@tiptap/extension-link'
-import Placeholder from '@tiptap/extension-placeholder'
 
-const props = defineProps({ modelValue: String })
-const emit = defineEmits(['update:modelValue'])
 
+
+// editor instance
 const editor = useEditor({
-    content: props.modelValue,
-    extensions: [
-        StarterKit,
-        Underline,
-        Link.configure({ openOnClick: false }),
-        Placeholder.configure({
-            placeholder: "Notion-এর মতো এখানে লিখুন...",
-        }),
-        // নোট: এখানে BubbleMenu বা FloatingMenu এক্সটেনশন হিসেবে দেওয়ার দরকার নেই 
-        // কারণ আমরা সরাসরি Vue কম্পোনেন্ট ব্যবহার করছি।
-    ],
-    onUpdate: ({ editor }) => {
-        emit('update:modelValue', editor.getHTML())
-    },
-    editorProps: {
-        attributes: {
-            // Notion লুকের জন্য প্যাডিং এবং বর্ডার
-            class: 'prose max-w-none p-10 min-h-[400px] focus:outline-none bg-white mx-auto shadow-sm border rounded-lg',
-        },
-    },
+  extensions: [
+    StarterKit,
+   
+  ],
+  content: `
+    <h2>Welcome to Simple Tiptap Editor!</h2>
+    <p>You can format your text <strong>bold</strong>, <em>italic</em>, or <u>underline</u>.</p>
+    <ul>
+      <li>Bullet list item</li>
+      <li>Another item</li>
+    </ul>
+    <h1>Heading 1</h1>
+    <h2>Heading 2</h2>
+    <pre><code>const x = 10;</code></pre>
+    <blockquote>This is a blockquote example.</blockquote>
+  `,
+})
+
+// destroy editor on unmount
+onBeforeUnmount(() => {
+  if (editor.value) editor.value.destroy()
 })
 </script>
 
 <template>
-    <div v-if="editor" class="relative max-w-4xl mx-auto mt-10">
-        
-        <bubble-menu 
-            :editor="editor" 
-            :tippy-options="{ duration: 100 }"
-            v-if="editor"
-            class="bubble-menu-wrapper"
-        >
-            <button type="button" @click="editor.chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }" class="bubble-btn">B</button>
-            <button type="button" @click="editor.chain().focus().toggleItalic().run()" :class="{ 'is-active': editor.isActive('italic') }" class="bubble-btn">I</button>
-            <button type="button" @click="editor.chain().focus().toggleHeading({ level: 1 }).run()" class="bubble-btn">H1</button>
-        </bubble-menu>
-
-        <floating-menu 
-            :editor="editor" 
-            :tippy-options="{ duration: 100 }"
-            v-if="editor"
-            class="floating-menu-wrapper"
-        >
-            <button type="button" @click="editor.chain().focus().toggleHeading({ level: 1 }).run()" class="float-btn">H1</button>
-            <button type="button" @click="editor.chain().focus().toggleHeading({ level: 2 }).run()" class="float-btn">H2</button>
-            <button type="button" @click="editor.chain().focus().toggleBulletList().run()" class="float-btn">List</button>
-        </floating-menu>
-
-        <editor-content :editor="editor" />
+  <div class="editor-wrapper">
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <button @click="editor.chain().focus().toggleBold().run()">B</button>
+ 
     </div>
+
+    <!-- Editor Content -->
+    <EditorContent :editor="editor" class="editor-content" />
+  </div>
 </template>
 
 <style scoped>
-/* মেনুগুলোর ডিজাইন */
-.bubble-menu-wrapper {
-    display: flex;
-    background-color: #1f2937; /* Dark Gray */
-    padding: 4px;
-    border-radius: 8px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-    z-index: 50;
+.editor-wrapper {
+  max-width: 900px;
+  margin: 30px auto;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.floating-menu-wrapper {
-    display: flex;
-    gap: 5px;
-    background-color: white;
-    border: 1px solid #e5e7eb;
-    padding: 5px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    z-index: 50;
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
 }
 
-.bubble-btn {
-    background: transparent;
-    border: none;
-    color: white;
-    padding: 5px 12px;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 4px;
+.toolbar button {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
 }
-.bubble-btn:hover { background: #374151; }
-.bubble-btn.is-active { color: #60a5fa; }
-
-.float-btn {
-    background: #f9fafb;
-    border: 1px solid #d1d5db;
-    padding: 3px 10px;
-    font-size: 11px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-weight: bold;
+.toolbar button:hover {
+  background: #eee;
 }
-.float-btn:hover { background: #e5e7eb; }
-
-/* Notion Vibe */
-:deep(.tiptap) {
-    font-family: 'Inter', sans-serif;
-    outline: none !important;
+.toolbar button.active {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
 }
 
-:deep(.tiptap p.is-editor-empty:first-child::before) {
-    content: attr(data-placeholder);
-    float: left;
-    color: #adb5bd;
-    pointer-events: none;
-    height: 0;
+.editor-content .ProseMirror {
+  min-height: 400px;
+  outline: none;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+}
+
+/* Headings */
+.editor-content h1 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+.editor-content h2 {
+  font-size: 1.3rem;
+  margin-top: 1.2rem;
+}
+
+/* Lists */
+.editor-content ul, .editor-content ol {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+.editor-content li {
+  margin: 5px 0;
+}
+
+/* Code Block */
+.editor-content pre {
+  background: #111;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+/* Blockquote */
+.editor-content blockquote {
+  border-left: 3px solid #ccc;
+  padding-left: 12px;
+  color: #555;
+  margin: 10px 0;
+  font-style: italic;
 }
 </style>
