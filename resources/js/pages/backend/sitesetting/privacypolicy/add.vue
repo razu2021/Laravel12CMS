@@ -89,7 +89,7 @@ const handleSubmit = () => {
                 <div class="text-small text-red-500" v-if="form.errors.description">{{ form.errors.description }}</div>
                 </div> -->
                 
-             <CKEditor v-model="form.description" label="Description" />
+                <CKEditor v-model="form.description" label="Description" />
              
         
     
