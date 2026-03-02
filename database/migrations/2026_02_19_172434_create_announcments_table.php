@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('announcments', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->enum('type',['header','popup'])->default('header');
+            $table->string(column: 'heading')->nullable();
             $table->string(column: 'title')->nullable();
             $table->string(column: 'description')->nullable();
+            $table->string(column: 'thumbnail')->nullable();
             $table->string('slug',255)->nullable();
             $table->integer('creator_id')->nullable();
             $table->integer('editor_id')->nullable();

@@ -192,9 +192,9 @@ const toggleMenu = (key:string)=>{
           <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
             Send Email
           </a>
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
+          <Link :href="route('notice_board.all')" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
             Notice Board
-          </a>
+          </Link>
           <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
             Announcment
           </a>
@@ -329,12 +329,12 @@ const toggleMenu = (key:string)=>{
           <Link :href="route('privacy_policy.all')" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
             Privacy Policy
           </Link>
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
+          <Link :href="route('terms_condition.all')" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
             Terms & Conditions
-          </a>
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
+          </Link>
+          <Link :href="route('cookie_policy.all')" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
             Cookie Policy
-          </a>
+          </Link>
         </div>
       </div>
       <!-- ====== dropdown menu end here ====== -->

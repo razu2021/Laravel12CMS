@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('noticeboards', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('heading')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->string('slug',255)->nullable();

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('customescripts', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->enum('type',['header','footer'])->default('footer');
             $table->string('script_note')->nullable();
             $table->longText('custom_script')->nullable();
             $table->string('slug',255)->nullable();

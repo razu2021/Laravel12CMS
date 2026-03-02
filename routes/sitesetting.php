@@ -3,10 +3,13 @@
 use App\Http\Controllers\backend\setting\AnaliticsTrackingController;
 use App\Http\Controllers\backend\setting\ApiSettingController;
 use App\Http\Controllers\backend\setting\AuthSettingController;
+use App\Http\Controllers\backend\setting\CookiePolicyController;
+use App\Http\Controllers\backend\setting\NoticeBoardController;
 use App\Http\Controllers\backend\setting\PrivacyPolicyController;
 use App\Http\Controllers\backend\setting\SiteAddressController;
 use App\Http\Controllers\backend\setting\SiteEmailController;
 use App\Http\Controllers\backend\setting\SitePhoneController;
+use App\Http\Controllers\backend\setting\TreamsConditionController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -138,6 +141,63 @@ Route::controller(AuthSettingController::class)->prefix('admin/dashboad/manage/s
 });
 /**============ privacy and policy Route Start here =========== */
 Route::controller(PrivacyPolicyController::class)->prefix('admin/dashboad/manage/setting/privacy-policy/')->name('privacy_policy.')->group(function(){
+    Route::get('all','index')->name('all');
+    Route::get('add','add')->name('add');
+    Route::get('view/{id}/{slug}','view')->name('view');
+    Route::get('edit/{id}/{slug}','edit')->name('edit');
+    Route::post('submit','insert')->name('submit');
+    Route::patch('update','update')->name('update');
+    Route::get('active/{id}/{slug}','active')->name('active');
+    Route::get('deactive/{id}/{slug}','deactive')->name('deactive');
+    Route::delete('softdelete/{id}','softdelete')->name('softdelete');
+    Route::delete('delete/{id}','delete')->name('delete');
+    Route::get('recycle','recycle')->name('recycle');
+    Route::post('bulk/action' ,'bulkAction')->name('bulkAction');
+    Route::get('export/single/pdf/{id}/{slug}','exportPdf')->name('single_pdf_export');
+    Route::get('export/excel','export_excel')->name('export_excel');
+    Route::get('export/csv','export_csv')->name('export_csv');
+    Route::get('export/pdf','export_pdf')->name('export_pdf');
+});
+/**============ treams & condition  Route Start here =========== */
+Route::controller(TreamsConditionController::class)->prefix('admin/dashboad/manage/setting/terms-condition/')->name('terms_condition.')->group(function(){
+    Route::get('all','index')->name('all');
+    Route::get('add','add')->name('add');
+    Route::get('view/{id}/{slug}','view')->name('view');
+    Route::get('edit/{id}/{slug}','edit')->name('edit');
+    Route::post('submit','insert')->name('submit');
+    Route::patch('update','update')->name('update');
+    Route::get('active/{id}/{slug}','active')->name('active');
+    Route::get('deactive/{id}/{slug}','deactive')->name('deactive');
+    Route::delete('softdelete/{id}','softdelete')->name('softdelete');
+    Route::delete('delete/{id}','delete')->name('delete');
+    Route::get('recycle','recycle')->name('recycle');
+    Route::post('bulk/action' ,'bulkAction')->name('bulkAction');
+    Route::get('export/single/pdf/{id}/{slug}','exportPdf')->name('single_pdf_export');
+    Route::get('export/excel','export_excel')->name('export_excel');
+    Route::get('export/csv','export_csv')->name('export_csv');
+    Route::get('export/pdf','export_pdf')->name('export_pdf');
+});
+/**============ treams & condition  Route Start here =========== */
+Route::controller(CookiePolicyController::class)->prefix('admin/dashboad/manage/setting/Cookie-policy/')->name('cookie_policy.')->group(function(){
+    Route::get('all','index')->name('all');
+    Route::get('add','add')->name('add');
+    Route::get('view/{id}/{slug}','view')->name('view');
+    Route::get('edit/{id}/{slug}','edit')->name('edit');
+    Route::post('submit','insert')->name('submit');
+    Route::patch('update','update')->name('update');
+    Route::get('active/{id}/{slug}','active')->name('active');
+    Route::get('deactive/{id}/{slug}','deactive')->name('deactive');
+    Route::delete('softdelete/{id}','softdelete')->name('softdelete');
+    Route::delete('delete/{id}','delete')->name('delete');
+    Route::get('recycle','recycle')->name('recycle');
+    Route::post('bulk/action' ,'bulkAction')->name('bulkAction');
+    Route::get('export/single/pdf/{id}/{slug}','exportPdf')->name('single_pdf_export');
+    Route::get('export/excel','export_excel')->name('export_excel');
+    Route::get('export/csv','export_csv')->name('export_csv');
+    Route::get('export/pdf','export_pdf')->name('export_pdf');
+});
+/**============ Notice Board Route Start here =========== */
+Route::controller(NoticeBoardController::class)->prefix('admin/dashboad/manage/setting/notice-board/')->name('notice_board.')->group(function(){
     Route::get('all','index')->name('all');
     Route::get('add','add')->name('add');
     Route::get('view/{id}/{slug}','view')->name('view');

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('preloaders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('text')->nullable();
+            $table->string('title')->nullable();
             $table->string('image')->nullable();
             $table->string('slug',255)->nullable();
             $table->integer('creator_id')->nullable();
