@@ -92,11 +92,8 @@ class PrivacyPolicyController extends Controller
          /**--- validation code -- */
         $request->validate( [
                 'description' => ['required', 'string'],
-                
-               
             ],[
-                'description.required'=> 'Description field is Required !',
-               
+                'description.required'=> 'Description field is Required !', 
             ]
         );
 
@@ -104,7 +101,6 @@ class PrivacyPolicyController extends Controller
         $creator_id = Auth::user()->id;
         $slug = uniqid('20').Str::random(20) . '_'.mt_rand(10000, 100000).'-'.time();
 
-       
         // ----- insert record into database 
         $insert = PrivacyPolicy::create([
             'heading'=>$request->heading,
@@ -180,7 +176,7 @@ class PrivacyPolicyController extends Controller
 
         if($update){
             flash()->success('Information Updated successfully!');
-            return redirect()->route('hero.view',[$id,$slug]);
+            return redirect()->route('privacy_policy.view',[$id,$slug]);
         }else{
             flash()->error('Information Updated Faild !');
             return redirect()->back();

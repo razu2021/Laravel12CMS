@@ -13,7 +13,9 @@ import { useConfirmDelete } from '@/composables/useConfirmDelete'; // use for sw
 import { useDataTable } from '@/composables/useDataTable';
 import { useFilter } from '@/composables/useFilter';
 import { ref } from 'vue';
-
+//---- set word limit. how may words you want to show 
+import { useText } from '@/composables/useStrLimit';
+const {truncateWords}= useText();
 
 /**===================
  * ======================================
@@ -288,7 +290,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.id ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.heading ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.title ?? '' }}</td>
-            <td class="px-4 py-3 font-medium text-gray-800 text-sm"> {{ data.description ?? '' }}</td>
+            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ truncateWords(data.description, 10) }} </td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm"> <img class=" h-20 w-auto rounded-lg shadow-lg" v-if="data.thumbnail" :src="`/${data.thumbnail}`" alt="image"></td>
             <td class="px-4 py-3 font-medium text-green-600 text-sm" v-if="data.public_status == 1">Active </td>
             <td class="px-4 py-3 font-medium text-red-600 text-sm" v-else="data.public_status == 0">Inactive </td>

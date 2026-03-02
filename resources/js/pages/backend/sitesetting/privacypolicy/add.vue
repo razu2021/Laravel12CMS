@@ -4,7 +4,7 @@ import Button from '@/components/ui/button/Button.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
 import { useImageUploads } from '@/composables/useImageUpload'
-import CKEditor from '@/components/CKEditor.vue' // Component import
+import tiptap from '@/components/TipTap.vue'
 
 // UseForm with remembering state=====================
 const form = useForm('privacy_policy', {
@@ -71,7 +71,7 @@ const handleSubmit = () => {
                   class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
                   <div class="text-small text-red-500" v-if="form.errors.heading">{{ form.errors.heading }}</div>
               </div>
-                <!-- end -->
+               
               <div>
                 <label class="text-sm font-medium text-slate-600">Title</label>
                 <input type="text" placeholder="Enter title" v-model="form.title"
@@ -80,17 +80,9 @@ const handleSubmit = () => {
               </div>
                 <!-- end -->
 
-              <!-- <div>
-                <label class="text-sm font-medium text-slate-600">Description</label>
-                <textarea
-                  rows="5"
-                  placeholder="Write something meaningful..." v-model="form.description"
-                  class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500"></textarea>
-                <div class="text-small text-red-500" v-if="form.errors.description">{{ form.errors.description }}</div>
-                </div> -->
-                
-                <CKEditor v-model="form.description" label="Description" />
-             
+                <tiptap v-model="form.description" />
+          
+              
         
     
               <div>

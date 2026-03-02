@@ -4,7 +4,7 @@ import AdminLayout from '@/layouts/AdminLayout.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
 import { useImageUploads } from '@/composables/useImageUpload'
-
+import tiptap from '@/components/TipTap.vue'
 /**==========  define props get data from inertia controller ========== */
 const props= defineProps<{
     data: {
@@ -41,7 +41,6 @@ const form  = useForm(
 const imagepath = form.cover_image ? `/${form.cover_image}` : null;
 const thumbnail_path = form.thumbnail ? `/${form.thumbnail}` : null;
 
-const {preview:image_preview ,handleUpload:handleImageUpload ,clearPreview:clearImagePreview} = useImageUploads(form, 'cover_image', imagepath);
 const {preview:thumbnail_preview ,handleUpload:handleThumbnailUpload ,clearPreview:clearThumbnailPreview} = useImageUploads(form,'thumbnail',thumbnail_path);
 
 /**========  update function ========== */
@@ -120,12 +119,9 @@ const handleUpdate = () => {
 
                 <div>
                     <label class="text-sm font-medium text-slate-600">Description</label>
-                    <textarea
-                    rows="5"
-                    placeholder="Write something meaningful..." v-model="form.description"
-                    class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500"></textarea>
+                    <tiptap v-model="form.description" />
                     <div class="text-small text-red-500" v-if="form.errors.description">{{ form.errors.description }}</div>
-                    </div>
+                </div>
                 
 
             </div>
@@ -135,22 +131,6 @@ const handleUpdate = () => {
             <div class="col-span-12 lg:col-span-4">
             <div class="space-y-6">
                 
-                <!-- Cover photo-->
-                <div class="rounded-2xl bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
-                    <h3 class="text-sm font-semibold text-slate-800 mb-4">Upload Cover Photo</h3>
-                    <label class="flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 px-4 py-6 cursor-pointer hover:bg-slate-100 transition">
-                    <div v-if="image_preview">
-                        <img :src="image_preview" class="w-auto h-50 object-cover rounded-xl shadow"/>
-                    </div>
-                    <div v-else class="text-sm text-slate-500">
-                        Click to upload image
-                    </div>
-                    <input type="file"  class="hidden" accept="image/*" @change="handleImageUpload"/>
-                    </label>
-                    <div class="text-sm text-red-500 mt-2" v-if="form.errors.cover_image">
-                    {{ form.errors.cover_image }}
-                    </div>
-                </div>
                 <!-- Thumbnail upload-->
                 <div class="rounded-2xl bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
                     <h3 class="text-sm font-semibold text-slate-800 mb-4">Upload Thumbnail</h3>
@@ -186,19 +166,7 @@ const handleUpdate = () => {
                 <h3 class="text-sm font-semibold mb-3">
                     Actions
                 </h3>
-                <div>
-                    <label class="text-sm font-medium text-slate-600">Slug </label>
-                    <input type="text" placeholder="Enter title" v-model="form.url"
-                    class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                    <div class="text-small text-red-500" v-if="form.errors.url">{{ form.errors.url }}</div>
-                </div>
-                <!-- end -->
-                <div>
-                    <label class="text-sm font-medium text-slate-600">Order  </label>
-                    <input type="number" placeholder="Enter title" v-model="form.order"
-                    class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                    <div class="text-small text-red-500" v-if="form.errors.order">{{ form.errors.order }}</div>
-                </div>
+                
                 <!-- end -->
                 <div class="mt-4">
                     <Button class="w-full" type="submit" :disabled="form.processing">{{ form.processing ? 'Saving...' : 'Save Changes' }}</Button>

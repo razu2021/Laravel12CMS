@@ -71,7 +71,7 @@ const {data} = defineProps<{
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
                           <td class="py-3 px-5 text-gray-800"> Description</td>
                           <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800">{{ data.description ?? 'M/A' }}</td>
+                          <td class="py-3 px-5 text-gray-800 prose lg:prose-xl max-w-none prose-slate" v-html="data.description ?? 'M/A' "></td>
                         </tr>
                         <!--  -->
                        
