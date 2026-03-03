@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('preloaders', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->enum('type',['is_image','is_text'])->default('is_text');
             $table->string('title')->nullable();
-            $table->string('image')->nullable();
+            $table->string('thumbnail')->nullable();
             $table->string('slug',255)->nullable();
             $table->integer('creator_id')->nullable();
             $table->integer('editor_id')->nullable();

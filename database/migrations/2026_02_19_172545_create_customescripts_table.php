@@ -16,6 +16,7 @@ return new class extends Migration
             $table->enum('type',['header','footer'])->default('footer');
             $table->string('script_note')->nullable();
             $table->longText('custom_script')->nullable();
+            $table->integer('order')->nullable();
             $table->string('slug',255)->nullable();
             $table->integer('creator_id')->nullable();
             $table->integer('editor_id')->nullable();
