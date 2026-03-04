@@ -26,27 +26,5 @@ class Copyright extends Model
     
  
 
-    /**------ order auto incriment --------- */
-    protected static function booted()
-    {
-        static::creating(function ($model) {
-            if (!$model->order) {
-                $model->order = (self::max('order') ?? 0) + 1;
-            }
-        });
-    }
-
-
-    public static function normalizeOrder()
-    {
-        $items = self::orderBy('order')->get();
-
-        foreach ($items as $index => $item) {
-            $item->order = $index + 1;
-            $item->saveQuietly();
-        }
-    }
-    /**------ order auto incriment --------- */
-
 
 }

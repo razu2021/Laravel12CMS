@@ -159,9 +159,9 @@ const toggleMenu = (key:string)=>{
           <Link :href="route('contact_address.all')" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
             Address
           </Link>
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
+          <Link :href="route('contact_social.all')" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
             Social Media
-          </a>
+          </Link>
         </div>
       </div>
       <!-- ====== dropdown menu end here ====== -->

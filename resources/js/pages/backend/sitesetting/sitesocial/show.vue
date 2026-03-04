@@ -34,7 +34,7 @@ const {data} = defineProps<{
           </div>
           <button
             class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-white/20 transition">
-            <Link :href="route('copyright.all')"><Button>All Information</Button></Link>
+            <Link :href="route('contact_social.all')"><Button>All Information</Button></Link>
           </button>
         </div>
       </div>
@@ -59,41 +59,34 @@ const {data} = defineProps<{
                     <table class="min-w-full bg-white rounded-xl shadow-lg border border-gray-200">
                       <!-- Table Body -->
                       <tbody class="divide-y divide-gray-200">
-                        <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800">Owner Name</td>
+                          <td class="py-3 px-5 text-gray-800">Type</td>
                           <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800">{{ data.receved_by ?? '' }}</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.type ?? '' }}</td>
                         </tr>
                         <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800"> Owner Url</td>
+                          <td class="py-3 px-5 text-gray-800"> Title</td>
                           <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800">{{ data.receiver_url ?? '0'}}</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.title ?? ''}}</td>
                         </tr>
                         <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800"> owner icon</td>
+                          <td class="py-3 px-5 text-gray-800">Icon</td>
                           <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800"><i :class="data.receiver_icon ?? ''"></i></td>
+                          <td class="py-3 px-5 text-gray-800"><i :class="data.icon ?? ''"> </i></td>
                         </tr>
                         <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800"> Developed By</td>
+                          <td class="py-3 px-5 text-gray-800"> URL</td>
                           <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800">{{ data.design_by ?? '' }}</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.url ?? '' }}</td>
                         </tr>
-                        <!-- end -->
+                          <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800"> Developer URL</td>
+                          <td class="py-3 px-5 text-gray-800"> Order</td>
                           <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800">{{ data.designer_url ?? '' }}</td>
-                        </tr>
-                        <!-- end -->
-                        <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800"> Icon</td>
-                          <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800"><i :class="data.designer_icon"></i></td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.order ?? '0'}}</td>
                         </tr>
                         <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">

@@ -35,9 +35,9 @@ const props = defineProps({
 
 const {rows,links,meta} = useDataTable(props)
 
-const {form} = useFilter(props,'copyright.all')
+const {form} = useFilter(props,'contact_social.all')
 
-const bulkRoute = ref('copyright.bulkAction')
+const bulkRoute = ref('contact_social.bulkAction')
 
 const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelection(rows.value, bulkRoute)
 
@@ -62,7 +62,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
             You can easily manage your data below with actions like <span class="font-medium text-red-300">Create,  Delete, Restore</span>, and more.
           </p>
       </div>
-      <div> <Link :href="route('copyright.all')" class="bg-white hover:bg-gray-100  text-dark px-4 py-2 rounded shadow-lg flex items-center gap-2 w-full sm:w-auto sm:text-center"> <InfoIcon class="text-green-600"/> View Information </Link> </div>
+      <div> <Link :href="route('contact_social.all')" class="bg-white hover:bg-gray-100  text-dark px-4 py-2 rounded shadow-lg flex items-center gap-2 w-full sm:w-auto sm:text-center"> <InfoIcon class="text-green-600"/> View Information </Link> </div>
       </div>
 
       <hr class="my-3 border-gray-200">
@@ -95,7 +95,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
       <option value="1">Active</option>
       <option value="0">Inactive</option>
     </select>
-        <Link v-show="form.search || form.status" class="text-sm bg-green-200 p-2 rounded-full text-white hover:bg-green-600 transition-all" :href="route('copyright.all')"><RotateCcwIcon/></Link>
+        <Link v-show="form.search || form.status" class="text-sm bg-green-200 p-2 rounded-full text-white hover:bg-green-600 transition-all" :href="route('contact_social.all')"><RotateCcwIcon/></Link>
     </div>
 
   <!-- RIGHT: Action Buttons -->
@@ -145,7 +145,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
     <Button
       class="px-3 py-2.5 rounded-xl bg-white text-green-500 shadow-lg border border-green-400 hover:bg-blue-50 transition-colors duration-200 flex items-center gap-2 w-full sm:w-auto"
     >
-      <Link :href="route('copyright.add')" class="flex items-center gap-2 w-full">
+      <Link :href="route('contact_social.add')" class="flex items-center gap-2 w-full">
         <SquarePlus class="w-4 h-4" />
         <span>Create New Item</span>
       </Link>
@@ -166,10 +166,10 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
               <input type="checkbox" :checked="isAnySelected" @change="toggleSelectAll(rows)" class="h-4 w-4 text-blue-600 rounded border-gray-300"/>
             </th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">ID</th>
-            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Owner</th>
-            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Dev</th>
-            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Onwe Url</th>
-            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Dev Url</th>
+            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">type</th>
+            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Title</th>
+            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Icon</th>
+            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Url</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Status</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Manage</th>
           </tr>
@@ -180,10 +180,11 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
           <tr v-for="data in rows" :key="data.id" class="hover:bg-blue-50 transition-colors duration-200">
             <td class="px-4 py-3"><input type="checkbox" :value="data.id" v-model="selectedIds"  class="h-4 w-4 text-blue-600 rounded border-gray-300"/></td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.id ?? '' }}</td>
-            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.receved_by ?? '' }}</td>
-            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.receiver_url ?? '' }}</td>
-            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.design_by ?? '' }}</td>
-            <td class="px-4 py-3 font-medium text-gray-800 text-sm"> {{ data.designer_url ?? '' }}</td>
+            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.type ?? '' }}</td>
+            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.title ?? '' }}</td>
+            <td class="px-4 py-3 font-medium text-gray-800 text-sm"> <i :class="data.icon ?? ''"></i></td>
+            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.url ?? '' }}</td>
+            <td class="px-4 py-3 font-medium text-gray-800 text-sm"> {{ data.order ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-green-600 text-sm" v-if="data.public_status == 1">Active </td>
             <td class="px-4 py-3 font-medium text-red-600 text-sm" v-else="data.public_status == 0">Inactive </td>
             <td class="px-4 py-3 font-medium text-gray-800">
@@ -194,14 +195,14 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
                   <DropdownMenuContent>
                     <DropdownMenuGroup>
                       <DropdownMenuItem>
-                        <Link :href="route('copyright.edit',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
+                        <Link :href="route('contact_social.edit',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
                           <span class="flex items-center"><RefreshCcw /></span>
                           <span>Restore</span>
                       </Link>
                       </DropdownMenuItem>
                       <!-- end -->
                       <DropdownMenuItem>
-                        <button @click="confirmDelete('copyright.delete',data.id)" class="w-full inline-flex items-center gap-2  text-sm font-medium text-red-300 rounded-lg">
+                        <button @click="confirmDelete('contact_social.delete',data.id)" class="w-full inline-flex items-center gap-2  text-sm font-medium text-red-300 rounded-lg">
                           <span class="flex items-center"><Trash /></span>
                           <span> Delete </span>
                         </button>

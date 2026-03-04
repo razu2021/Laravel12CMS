@@ -74,8 +74,10 @@ class ManageCopyrightController extends Controller
     public function edit($id,$slug)
     {
         $data = Copyright::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+        $icons = Faveicon::pluck('icons');
         return Inertia::render('backend/sitesetting/copyright/edit',[
-            'data' => $data
+            'data' => $data,
+            'iconlist'=> $icons,
         ]);
        
     }
@@ -91,12 +93,10 @@ class ManageCopyrightController extends Controller
     public function insert(Request $request){
          /**--- validation code -- */
         $request->validate( [
-                'type' => ['required'],
-                'address' => ['required', 'string', 'max:255'],
-
+                'receved_by' => ['required'],
             ],[
-                'address.required'=> 'Phone field is Required !',
-                'type.required'=> 'Type field is Required !',
+                'receved_by.required'=> 'Owner field is Required !',
+                
             ]
         );
 
@@ -107,11 +107,12 @@ class ManageCopyrightController extends Controller
 
         // ----- insert record into database 
         $insert = Copyright::create([
-            'type'=>$request->type,
-            'address'=>$request->address,
-            'title'=>$request->title,
-            'description'=>$request->description,
-            'order'=>$request->order,
+            'receved_by'=>$request->receved_by,
+            'receiver_url'=>$request->receiver_url,
+            'receiver_icon'=>$request->receiver_icon,
+            'design_by'=>$request->design_by,
+            'designer_url'=>$request->designer_url,
+            'designer_icon'=>$request->designer_icon,
             'public_status'=>$request->public_status ?? 0,
             'slug'=>$slug,
             'creator_id' => $creator_id,
@@ -139,15 +140,11 @@ class ManageCopyrightController extends Controller
 
     public function update(Request $request){
         /**--- validation code -- */
-        $category = Copyright::where('id',$request->id)->first();
-         /**--- validation code -- */
         $request->validate( [
-                'type' => ['required'],
-                'address' => ['required', 'string', 'max:255'],
-
+                'receved_by' => ['required'],
             ],[
-                'address.required'=> 'Email field is Required !',
-                'type.required'=> 'Type field is Required !',
+                'receved_by.required'=> 'Owner field is Required !',
+                
             ]
         );
 
@@ -157,28 +154,25 @@ class ManageCopyrightController extends Controller
         $id = $request->id;
         // ----- insert record into database 
         $update = Copyright::where('id',$id)->where('slug',$slug)->update([
-            'type'=>$request->type,
-            'address'=>$request->address,
-            'title'=>$request->title,
-            'description'=>$request->description,
-            'order'=>$request->order,
+            'receved_by'=>$request->receved_by,
+            'receiver_url'=>$request->receiver_url,
+            'receiver_icon'=>$request->receiver_icon,
+            'design_by'=>$request->design_by,
+            'designer_url'=>$request->designer_url,
+            'designer_icon'=>$request->designer_icon,
             'public_status'=>$request->public_status ?? 0,
             'editor_id' => $editor_id,
             'updated_at' => Carbon::now()->toDateTimeString(),
         ]);
 
         if($update){
-            Copyright::normalizeOrder();
             flash()->success('Information Updated successfully!');
             return redirect()->route('copyright.view',[$id,$slug]);
         }else{
             flash()->error('Information Updated Faild !');
             return redirect()->back();
         }
-
-        
     }
-
 
     /**
      * ======== Active Functionality Start here ==========

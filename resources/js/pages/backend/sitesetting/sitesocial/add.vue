@@ -3,7 +3,6 @@ import Button from '@/components/ui/button/Button.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
 import AdminLayout from '@/layouts/AdminLayout.vue'
-import { computed, ref } from 'vue'
 import Iconpicker from '@/components/Iconpicker.vue'
 
 //---------- get icons from intertia controller 
@@ -12,54 +11,24 @@ const props = defineProps<{
   iconlist: any[] 
 }>();
 
-
 // UseForm with remembering state
-const form = useForm('copyright', {
-  receved_by: '',
-  receiver_url: '',
-  receiver_icon: '',
-  design_by: '',
-  designer_url: '',
-  designer_icon: '',
-  slug: '',
+const form = useForm('contact_social', {
+  type: '',
+  title: '',
+  icon: '',
+  url: '',
   order: '',
   public_status: false,
 })
 
   // ✅ submit MUST use form
   const handleSubmit = () => {
-    form.post(route('copyright.submit'), {
+    form.post(route('contact_social.submit'), {
       onSuccess: () => {
         form.reset()
       },
     })
   }
-
-
-
-// ========== icon modal open or close 
-const modalOpen = ref(false)
-const search = ref('') // search keyword
-
-// Filtered icons
-const filteredIcons = computed(() => {
-  if (!search.value) return props.iconlist
-  return props.iconlist.filter(icon =>
-    icon.toLowerCase().includes(search.value.toLowerCase())
-  )
-})
-
-// Select icon
-// select icon function
-const selectIcon = (icon: string) => {
-  form.receiver_icon = icon   // ✅ important: use form.data
-  modalOpen.value = false
-
-  // optionally clear error
-  if (form.errors.receiver_icon) {
-    delete form.errors.receiver_icon
-  }
-}
 </script>
 
 <template>
@@ -81,7 +50,7 @@ const selectIcon = (icon: string) => {
           
             <button
               class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-white/20 transition">
-              <Link :href="route('copyright.all')">All Information</Link>
+              <Link :href="route('contact_social.all')">All Information</Link>
             </button>
           </div>
         </div>
@@ -96,47 +65,41 @@ const selectIcon = (icon: string) => {
             </div>
 
           
-  
               <div>
-                <label class="text-sm font-medium text-slate-600">Reserved Name / Owner By</label>
-                <input type="text"  v-model="form.receved_by" required
+                <label class="text-sm font-medium text-slate-600">Select Type</label>
+                  <select name="type" id="type" required  v-model="form.type" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:outline-none transition-colors duration-200">
+                    <option value="">Select  Type</option>
+                    <option value="primary">Primary</option>
+                    <option value="secondary">Secondary</option>
+                  </select>
+                  <div class="text-small text-red-500" v-if="form.errors.type">{{ form.errors.type }}</div>
+              </div>
+              <!-- end -->
+              <div>
+                <label class="text-sm font-medium text-slate-600">Title</label>
+                <input type="text" placeholder="Write here !" v-model="form.title" required
                   class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                  <div class="text-small text-red-500" v-if="form.errors.receved_by">{{ form.errors.receved_by }}</div>
+                  <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.title }}</div>
               </div>
                 <!-- end -->
               <div>
-                <label class="text-sm font-medium text-slate-600">Site URL</label>
-                <input type="text"  v-model="form.receiver_url" required
-                  class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                  <div class="text-small text-red-500" v-if="form.errors.receiver_url">{{ form.errors.receiver_url }}</div>
+                <label class="text-sm font-medium text-slate-600"> Social Icon </label>
+                <Iconpicker v-model="form.icon" :iconlist="props.iconlist" /> 
+                  <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.title }}</div>
               </div>
                 <!-- end -->
-              <div>
-                <label class="text-sm font-medium text-slate-600">Icon</label>
-                  <Iconpicker v-model="form.receiver_icon" :iconlist="props.iconlist" />
-                  <div class="text-small text-red-500" v-if="form.errors.receiver_icon">{{ form.errors.receiver_icon }}</div>
-              </div>
-                <!-- end -->
-                 <hr>
-              <div>
-                <label class="text-sm font-medium text-slate-600">Developer Name </label>
-                <input type="text"  v-model="form.design_by" 
-                  class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                  <div class="text-small text-red-500" v-if="form.errors.design_by">{{ form.errors.design_by }}</div>
-              </div>
-                <!-- end -->
-              <div>
-                <label class="text-sm font-medium text-slate-600">Developer URL</label>
-                <input type="text"  v-model="form.designer_url" 
-                  class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                  <div class="text-small text-red-500" v-if="form.errors.designer_url">{{ form.errors.designer_url }}</div>
-              </div>
-          
-                <Iconpicker v-model="form.designer_icon" :iconlist="props.iconlist" />
-              
 
-              
-           
+              <div>
+                <label class="text-sm font-medium text-slate-600"> Social URL</label>
+                <textarea
+                  rows="5"
+                  placeholder="Write something meaningful..." v-model="form.url"
+                  class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500"></textarea>
+                <div class="text-small text-red-500" v-if="form.errors.url">{{ form.errors.url }}</div>
+                </div>
+              <div>
+                
+              </div>
           
 
           </div>
@@ -164,6 +127,12 @@ const selectIcon = (icon: string) => {
                 Actions
               </h3>
               <!-- end -->
+              <div>
+                <label class="text-sm font-medium text-slate-600">Order  </label>
+                <input type="number" placeholder="Enter title" v-model="form.order"
+                  class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                  <div class="text-small text-red-500" v-if="form.errors.order">{{ form.errors.order }}</div>
+              </div>
               <!-- end -->
               <Button type="submit" class="mt-5 w-full" :disabled="form.processing">{{ form.processing ? 'Saving...' : 'Submit' }}</Button>
             </div>
@@ -176,14 +145,3 @@ const selectIcon = (icon: string) => {
 
 </AdminLayout>
 </template>
-<style scoped>
-/* fade animation for modal */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s;
-}
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-</style>

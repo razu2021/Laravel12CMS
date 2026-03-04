@@ -5,7 +5,7 @@ import { ref, computed } from 'vue'
 // Props: icon list from DB
 const props = defineProps<{
   iconlist: any[]
-  modelValue?: string   // for v-model
+  modelValue?: string   
 }>();
 
 
@@ -20,13 +20,13 @@ const search = ref('')
 const filteredIcons = computed(() => {
   if (!search.value) return props.iconlist
   return props.iconlist.filter(icon =>
-    icon.icons.toLowerCase().includes(search.value.toLowerCase())
+    icon.toLowerCase().includes(search.value.toLowerCase())
   )
 })
 
 // Select icon
-const selectIcon = (icon:props.iconlist ) => {
-  emit('update:modelValue', icon.icons)
+const selectIcon = (icon:string ) => {
+  emit('update:modelValue', icon)
   modalOpen.value = false
 }
 </script>
@@ -78,8 +78,7 @@ const selectIcon = (icon:props.iconlist ) => {
               @click="selectIcon(icon)"
             >
               <i :class="icon + ' text-2xl text-indigo-600'"></i>
-              <span class="text-xs mt-1 text-gray-700 break-words text-center">{{ icon }}</span>
-
+              <!-- <span class="text-xs mt-1 text-gray-700 break-words text-center">{{ icon }}</span> -->
               <!-- Highlight selected icon -->
               <div
                 v-if="modelValue === icon"

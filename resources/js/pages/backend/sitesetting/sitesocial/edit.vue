@@ -8,12 +8,11 @@ import Iconpicker from '@/components/Iconpicker.vue'
 
 const props= defineProps<{
     data: {
-        receved_by: number,
-        receiver_url: string,
-        receiver_icon: string,
-        design_by: string,
-        designer_url: string,
-        designer_icon: string,
+        order: number,
+        type: string,
+        title: string,
+        icon: string,
+        url: string,
         //-------------
         public_status: boolean,
         id: number,
@@ -26,12 +25,11 @@ const props= defineProps<{
 const form  = useForm(
   {
     id: props.data.id,
-    receved_by: props.data.receved_by,
-    receiver_url: props.data.receiver_url,
-    receiver_icon: props.data.receiver_icon,
-    design_by: props.data.design_by,
-    designer_url: props.data.designer_url,
-    designer_icon: props.data.designer_icon,
+    type: props.data.type,
+    title: props.data.title,
+    icon: props.data.icon,
+    url: props.data.url,
+    order: props.data.order,
     public_status : Boolean(props.data.public_status),
     slug :props.data.slug
   })
@@ -41,17 +39,23 @@ const form  = useForm(
 
 // ✅ submit MUST use form
 const handleUpdate = () => {
-  form.patch(route('copyright.update'))
+  form.patch(route('contact_social.update'))
   
 }
 </script>
 
+
 <template>
     <Head title="Update Informations" />
+
     <AdminLayout>
-    <form @submit.prevent="handleUpdate" class="space-y-5">
-        <!-- PAGE WRAPPER -->
-        <div class="container  mx-auto my-10 px-4">
+
+       <form @submit.prevent="handleUpdate" class="space-y-5">
+
+
+
+  <!-- PAGE WRAPPER -->
+<div class="container  mx-auto my-10 px-4">
 
   <!-- PAGE WRAPPER -->
   <div class="grid grid-cols-12 gap-8">
@@ -67,7 +71,7 @@ const handleUpdate = () => {
             
                 <button
                 class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-white/20 transition">
-                <Link :href="route('copyright.all')">All Information</Link>
+                <Link :href="route('contact_social.all')">All Information</Link>
                 </button>
             </div>
             </div>
@@ -86,43 +90,38 @@ const handleUpdate = () => {
                     <input type="hidden"  v-model="form.id">
                     <input type="hidden"  v-model="form.slug">
                 </div>
-              <!-- end -->
+                <!-- end -->
                 <div>
-                <label class="text-sm font-medium text-slate-600">Reserved Name / Owner By</label>
-                <input type="text"  v-model="form.receved_by" required
-                  class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                  <div class="text-small text-red-500" v-if="form.errors.receved_by">{{ form.errors.receved_by }}</div>
+                    <label class="text-sm font-medium text-slate-600">Select Type</label>
+                        <select name="type" id="type" required  v-model="form.type" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:outline-none transition-colors duration-200">
+                            <option value="">Select  Type</option>
+                            <option value="primary">Primary</option>
+                            <option value="secondary">Secondary</option>
+                        </select>
+                        <div class="text-small text-red-500" v-if="form.errors.type">{{ form.errors.type }}</div>
               </div>
+            
                 <!-- end -->
-              <div>
-                <label class="text-sm font-medium text-slate-600">Site URL</label>
-                <input type="text"  v-model="form.receiver_url" required
-                  class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                  <div class="text-small text-red-500" v-if="form.errors.receiver_url">{{ form.errors.receiver_url }}</div>
-              </div>
+                <div>
+                    <label class="text-sm font-medium text-slate-600"> Title</label>
+                    <input type="text" placeholder="Enter title" v-model="form.title"
+                    class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                    <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.title }}</div>
+                </div>
                 <!-- end -->
-              <div>
-                <label class="text-sm font-medium text-slate-600">Icon</label>
-                  <Iconpicker v-model="form.receiver_icon" :iconlist="props.iconlist" />
-                  <div class="text-small text-red-500" v-if="form.errors.receiver_icon">{{ form.errors.receiver_icon }}</div>
-              </div>
+                <div>
+                    <label class="text-sm font-medium text-slate-600"> Icon</label>
+                    <Iconpicker v-model="form.icon" :iconlist="props.iconlist" />
+                    <div class="text-small text-red-500" v-if="form.errors.icon">{{ form.errors.icon }}</div>
+                </div>
+
                 <!-- end -->
-                 <hr>
-              <div>
-                <label class="text-sm font-medium text-slate-600">Developer Name </label>
-                <input type="text"  v-model="form.design_by" 
-                  class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                  <div class="text-small text-red-500" v-if="form.errors.design_by">{{ form.errors.design_by }}</div>
-              </div>
-                <!-- end -->
-              <div>
-                <label class="text-sm font-medium text-slate-600">Developer URL</label>
-                <input type="text"  v-model="form.designer_url" 
-                  class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                  <div class="text-small text-red-500" v-if="form.errors.designer_url">{{ form.errors.designer_url }}</div>
-              </div>
-          
-                <Iconpicker v-model="form.designer_icon" :iconlist="props.iconlist" />
+                <div>
+                    <label class="text-sm font-medium text-slate-600"> Url</label>
+                    <input type="text" placeholder="Enter title" v-model="form.url"
+                    class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                    <div class="text-small text-red-500" v-if="form.errors.url">{{ form.errors.url }}</div>
+                </div>
                 
 
             </div>
@@ -149,7 +148,19 @@ const handleUpdate = () => {
                 <h3 class="text-sm font-semibold mb-3">
                     Actions
                 </h3>
-              
+                <div>
+                    <label class="text-sm font-medium text-slate-600">Slug </label>
+                    <input type="text" placeholder="Enter title" v-model="form.url"
+                    class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                    <div class="text-small text-red-500" v-if="form.errors.url">{{ form.errors.url }}</div>
+                </div>
+                <!-- end -->
+                <div>
+                    <label class="text-sm font-medium text-slate-600">Order  </label>
+                    <input type="number" placeholder="Enter title" v-model="form.order"
+                    class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                    <div class="text-small text-red-500" v-if="form.errors.order">{{ form.errors.order }}</div>
+                </div>
                 <!-- end -->
                 <div class="mt-4">
                     <Button class="w-full" type="submit" :disabled="form.processing">{{ form.processing ? 'Saving...' : 'Save Changes' }}</Button>
@@ -160,6 +171,7 @@ const handleUpdate = () => {
 
         </div>
         </div>
-    </form>
+
+</form>
    </AdminLayout>
 </template>

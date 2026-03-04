@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('site_socials', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->enum('type',['primary','secondary'])->default('secondary');
             $table->string('title')->nullable();
             $table->string('icon')->nullable();
             $table->string('url')->nullable();
