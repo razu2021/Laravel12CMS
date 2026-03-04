@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('creator_id')->nullable();
             $table->integer('editor_id')->nullable();
             $table->integer('status')->default(1);
+            $table->integer('public_status')->default(0);
             $table->timestamps();
             $table->softDeletes(); 
         });

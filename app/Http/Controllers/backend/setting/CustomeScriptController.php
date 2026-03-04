@@ -138,7 +138,6 @@ class CustomeScriptController extends Controller
             ],[
                 'type.required'=> 'Type field is Required !',
                 'script_note.required'=> 'Note field is Required !',
-                
             ]
         );
 

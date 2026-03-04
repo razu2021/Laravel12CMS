@@ -250,9 +250,9 @@ const toggleMenu = (key:string)=>{
           <Link :href="route('preloader.all')" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
             Pre Loader
           </Link>
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
+          <Link :href="route('faveicon.all')" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
             Import Faveicons
-          </a>
+          </Link>
           <Link :href="route('custom_css.all')" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
             Custom CSS 
           </Link>
@@ -265,9 +265,9 @@ const toggleMenu = (key:string)=>{
           <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
             Manage footer
           </a>
-          <a href="#" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
+          <Link :href="route('copyright.all')" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
             Copy Ritght 
-          </a>
+          </Link>
         </div>
       </div>
       <!-- ====== dropdown menu end here ====== -->
