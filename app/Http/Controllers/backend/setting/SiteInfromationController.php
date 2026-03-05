@@ -214,8 +214,9 @@ class SiteInfromationController extends Controller
         /**======== upload image via the service end ====== */
 
         if($update){
+             SiteInfo::normalizeOrder();
             flash()->success('Information Updated successfully!');
-            return redirect()->route('hero.view',[$id,$slug]);
+            return redirect()->route('site_info.view',[$id,$slug]);
         }else{
             flash()->error('Information Updated Faild !');
             return redirect()->back();

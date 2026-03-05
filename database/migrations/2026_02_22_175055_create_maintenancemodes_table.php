@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('maintenancemodes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->enum('type',['header','global','draft'])->default('draft');
             $table->string('title')->nullable();
-            $table->text('caption')->nullable();
-            $table->boolean('is_active')->default(false); // Maintenance Mode On/Off
+            $table->text('description')->nullable();
+            $table->integer('order')->nullable();
             $table->string('slug',255)->nullable();
             $table->integer('creator_id')->nullable();
             $table->integer('editor_id')->nullable();
