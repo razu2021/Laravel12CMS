@@ -13,15 +13,17 @@ return new class extends Migration
     {
         Schema::create('admin_emails', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('mail_user')->nullable();
+            $table->enum('type',['primary','secondary'])->default('secondary');
+            $table->string('title')->nullable();
             $table->string('mail')->nullable();
+            $table->integer('order')->nullable();
             $table->string('slug',255)->nullable();
             $table->integer('creator_id')->nullable();
             $table->integer('editor_id')->nullable();
             $table->integer('status')->default(1);
             $table->integer('public_status')->default(0);
             $table->timestamps();
-            $table->softDeletes();
+            $table->softDeletes(); 
         });
     }
 

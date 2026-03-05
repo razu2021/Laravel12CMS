@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('mail_encryption')->default('tls');
             $table->string('mail_from_address')->default('tls');
             $table->string('mail_from_name')->default('tls');
+            $table->integer('order')->nullable();
             $table->string('slug',255)->nullable();
             $table->integer('creator_id')->nullable();
             $table->integer('editor_id')->nullable();

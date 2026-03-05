@@ -17,8 +17,9 @@ return new class extends Migration
         $table->string('site_title')->nullable();
         $table->string('site_slogan')->nullable();
         $table->text('site_description')->nullable();
-        $table->string('site_logo')->nullable();
-        $table->string('site_faveicon')->nullable();
+        $table->string('cover_image')->nullable();
+        $table->string('thumbnail')->nullable();
+        $table->integer('order')->nullable();
         $table->string('slug',255)->nullable();
         $table->integer('creator_id')->nullable();
         $table->integer('editor_id')->nullable();
