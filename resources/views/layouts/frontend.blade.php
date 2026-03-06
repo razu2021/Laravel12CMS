@@ -24,6 +24,17 @@
 
 </head>
 <body>
+    @if($manageheader->isNotEmpty())
+        @foreach ($manageheader as $headers)
+            @includeIf('frontend.manageheader.'.$headers->theme ?? '')
+        @endforeach
+    @else
+        @includeIf('frontend.manageheader.main_header_defualt')
+    @endif
+
+
+
+
        <header>
         <div class="container">
             <div class="mobile__header ">

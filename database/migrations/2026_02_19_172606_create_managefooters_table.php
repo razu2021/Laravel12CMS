@@ -13,14 +13,18 @@ return new class extends Migration
     {
         Schema::create('managefooters', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('script_note')->nullable();
+            $table->string('type')->unique();
+             $table->string('theme')->nullable();
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
+            $table->integer('order')->nullable();
             $table->string('slug',255)->nullable();
             $table->integer('creator_id')->nullable();
             $table->integer('editor_id')->nullable();
             $table->integer('status')->default(1);
             $table->integer('public_status')->default(0);
             $table->timestamps();
-            $table->softDeletes(); 
+            $table->softDeletes();
         });
     }
 
