@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('theme')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->integer('order')->nullable();
+            $table->integer('order')->index();
             $table->string('slug',255)->nullable();
             $table->integer('creator_id')->nullable();
             $table->integer('editor_id')->nullable();

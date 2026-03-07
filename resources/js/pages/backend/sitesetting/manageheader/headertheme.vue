@@ -2,15 +2,8 @@
 import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
 import AdminLayout from '@/layouts/AdminLayout.vue';
-import { HeaderTheme,theme_mainheader } from '@/headertheme/headertheme';
+import { HeaderTheme,theme_mainheader ,theme_topheader,theme_socialheader} from '@/headertheme/headertheme';
 
-
- //-- go back function 
-    const goBack = () => {
-        window.history.back()
-    }
-
-    
 const props= defineProps<{
     data: {
         id: number,
@@ -90,6 +83,59 @@ const updateTheme = (key:string) => {
       <div v-if="form.theme === theme.key" class="absolute inset-0 border-4 border-indigo-500 rounded-xl pointer-events-none"></div>
     </label>
   </div>
+
+
+  <!-- main header end here  -->
+   <div v-if="data.type === 'top_header'" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+    <label v-for="theme in theme_topheader" :key="theme.key" class="border rounded-xl overflow-hidden shadow hover:shadow-xl transition relative cursor-pointer group">
+      
+      <!-- Preview Image -->
+      <img :src="theme.preview" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300" />
+
+      <!-- Card Footer -->
+      <div class="p-4 flex justify-between items-center bg-white">
+        <span class="font-semibold text-gray-800">{{ theme.name }}</span>
+        <input
+            type="radio"
+            name="theme"
+            class="accent-indigo-600 w-5 h-5"
+            :value="theme.key"
+            v-model="form.theme"
+            @change="updateTheme(theme.key)"
+            >
+      </div>
+
+      <!-- Highlight Border if selected -->
+      <div v-if="form.theme === theme.key" class="absolute inset-0 border-4 border-indigo-500 rounded-xl pointer-events-none"></div>
+    </label>
+  </div>
+  <!-- main header end here  -->
+
+
+   <div v-if="data.type === 'social_header'" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+    <label v-for="theme in theme_socialheader" :key="theme.key" class="border rounded-xl overflow-hidden shadow hover:shadow-xl transition relative cursor-pointer group">
+      
+      <!-- Preview Image -->
+      <img :src="theme.preview" class="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300" />
+
+      <!-- Card Footer -->
+      <div class="p-4 flex justify-between items-center bg-white">
+        <span class="font-semibold text-gray-800">{{ theme.name }}</span>
+        <input
+            type="radio"
+            name="theme"
+            class="accent-indigo-600 w-5 h-5"
+            :value="theme.key"
+            v-model="form.theme"
+            @change="updateTheme(theme.key)"
+            >
+      </div>
+
+      <!-- Highlight Border if selected -->
+      <div v-if="form.theme === theme.key" class="absolute inset-0 border-4 border-indigo-500 rounded-xl pointer-events-none"></div>
+    </label>
+  </div>
+  <!-- main header end here  -->
  
 
 </AdminLayout>

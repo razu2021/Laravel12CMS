@@ -29,4 +29,51 @@ export const theme_mainheader: HeaderTheme[] = [
   }
 ];
 
+// top header  themes
+export const theme_topheader: HeaderTheme[] = [
+  {
+    key: 'top_header',
+    name: 'Top Header',
+    preview: 'https://picsum.photos/400/250?1'
+  },
+  {
+    key: 'top_header_theme1',
+    name: 'Theme 1',
+    preview: 'https://picsum.photos/400/250?2'
+  },
+  {
+    key: 'top_header_theme2',
+    name: 'Theme 2',
+    preview: 'https://picsum.photos/400/250?3'
+  },
+  {
+    key: 'tio_header_theme3',
+    name: 'Theme 3',
+    preview: 'https://picsum.photos/400/250?4'
+  }
+];
+// social header  themes
+export const theme_socialheader: HeaderTheme[] = [
+  {
+    key: 'social_header',
+    name: 'Top Header',
+    preview: 'https://picsum.photos/400/250?1'
+  },
+  {
+    key: 'social_header_theme1',
+    name: 'Theme 1',
+    preview: 'https://picsum.photos/400/250?2'
+  },
+  {
+    key: 'social_header_theme2',
+    name: 'Theme 2',
+    preview: 'https://picsum.photos/400/250?3'
+  },
+  {
+    key: 'social_header_theme3',
+    name: 'Theme 3',
+    preview: 'https://picsum.photos/400/250?4'
+  }
+];
+
 

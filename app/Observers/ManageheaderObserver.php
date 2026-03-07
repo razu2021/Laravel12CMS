@@ -4,6 +4,8 @@ namespace App\Observers;
 
 use App\Models\Manageheader;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
+
 class ManageheaderObserver
 {
     /**
@@ -20,6 +22,7 @@ class ManageheaderObserver
      */
     public function updated(Manageheader $manageheader): void
     {
+        Log::info('update is working ');
         //======= forget cache ----
         Cache::forget('manageheader');
     }

@@ -163,7 +163,7 @@ class ManageHeaderController extends Controller
     public function update(Request $request){
          /**--- validation code -- */
         $request->validate( [
-                'type' => ['required','string',Rule::unique('manageheaders','type')],
+                'type' => ['required','string',Rule::unique('manageheaders','type')->ignore($request->id)],
                 'title' => ['required', 'string', 'max:255'],
 
             ],[
@@ -177,21 +177,20 @@ class ManageHeaderController extends Controller
         $slug = $request->slug;
         $id = $request->id;
         // ----- insert record into database 
-        $update = Manageheader::where('id',$id)->where('slug',$slug)->update([
+        $update =  Manageheader::where('id',$id)->where('slug',$slug)->first();
+
+        if($update){
+            $update->update([
             'type'=>$request->type,
-            'address'=>$request->address,
             'title'=>$request->title,
             'description'=>$request->description,
             'order'=>$request->order,
             'public_status'=>$request->public_status ?? 0,
             'editor_id' => $editor_id,
-            'updated_at' => Carbon::now()->toDateTimeString(),
-        ]);
+            ]);
 
-        if($update){
-            Manageheader::normalizeOrder();
             flash()->success('Information Updated successfully!');
-            return redirect()->route('sytem_maintenance.view',[$id,$slug]);
+            return redirect()->route('manage_header.view',[$id,$slug]);
         }else{
             flash()->error('Information Updated Faild !');
             return redirect()->back();
@@ -205,11 +204,11 @@ class ManageHeaderController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = Manageheader::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
-            'public_status' => 1,
-        ]);
-
+        $active = Manageheader::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail();
         if($active){
+            $active->update([
+                'public_status'=> 1,
+            ]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -222,11 +221,13 @@ class ManageHeaderController extends Controller
      * ======== De Active Functionality Start here ==========
      */
     public function deactive($id,$slug){
-        $active = Manageheader::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
-            'public_status' => 0,
-        ]);
+        $deactive = Manageheader::where('id',$id)->where('slug',$slug)->where('public_status',1)->firstOrFail();
 
-        if($active){
+        if($deactive){
+            $deactive->update([
+                'public_status'=> 0 ,
+            ]);
+            
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -321,16 +322,20 @@ class ManageHeaderController extends Controller
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = Manageheader::whereIn('id',$ids)->where('public_status',0)->update([
-                'public_status'=>1,
-            ]);
+            $categorys = Manageheader::whereIn('id',$ids)->where('public_status',0)->get();
+            foreach($categorys as $item){
+                $item->public_status = 1;
+                $item->save(); // observer trigger হবে
+            }
  
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = Manageheader::whereIn('id',$ids)->where('public_status',1)->update([
-                'public_status'=>0,
-            ]);
+            $categorys = Manageheader::whereIn('id',$ids)->where('public_status',1)->get();
+           foreach($categorys as $item){
+                $item->public_status = 0;
+                $item->save(); // observer trigger হবে
+            }
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){
