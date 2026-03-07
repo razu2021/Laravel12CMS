@@ -26,7 +26,7 @@
 <body>
     @if($manageheader->isNotEmpty())
         @foreach ($manageheader as $headers)
-            @includeIf('frontend.manageheader.'.$headers->theme ?? '')
+            @includeIf('frontend.manageheader.'.$headers->theme ?? 'main_header')
         @endforeach
     @else
         @includeIf('frontend.manageheader.main_header_defualt')
@@ -124,9 +124,24 @@
     {{-- =================  all content load here -============= --}}
 
 
-    <footer>
-        <h1 class="bg-success ">footer </h1>
-    </footer>
+   
+    
+    @if($managefooter->isNotEmpty())
+        @foreach ($managefooter as $footers)
+            @includeIf('frontend.managefooter.'.$footers->theme ?? 'main_footer')
+        @endforeach
+    @else
+        @includeIf('frontend.managefooter.main_footer')
+    @endif
+
+
+  
+
+
+
+
+
+
 
     <script src="https://handsbd.org/contents/assets/website/assets/js/jquery-3.7.1.min.js"></script>
     <script src="https://handsbd.org/contents/assets/website/assets/js/bootstrap.min.js"></script>

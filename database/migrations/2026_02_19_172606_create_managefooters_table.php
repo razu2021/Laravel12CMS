@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('managefooters', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('type')->unique();
-             $table->string('theme')->nullable();
+            $table->string('theme')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->integer('order')->nullable();

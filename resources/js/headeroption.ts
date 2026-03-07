@@ -17,7 +17,20 @@ export const allheaders: headeroption[] = [
         key: 'social_header',
         name : 'Social Media Header'
     },
-   
-   
+];
+
+export const header_themes: headeroption[] = [
+    {
+        key: 'main_header',
+        name : 'Header for Main Navbar'
+    },
+    {
+        key: 'top_header',
+        name : 'Header For Top Navbar'
+    },
+    {
+        key: 'social_header',
+        name : 'Header for Social Media'
+    },
 ];
 

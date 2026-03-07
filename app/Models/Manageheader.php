@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 class Manageheader extends Model
 {
     use SoftDeletes;
-    //use Orderable;
+    use Orderable;
 
     protected $primaryKey = 'id';
     protected $guarded = [];

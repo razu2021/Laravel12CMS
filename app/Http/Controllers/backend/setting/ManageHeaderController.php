@@ -116,6 +116,7 @@ class ManageHeaderController extends Controller
          /**--- validation code -- */
         $request->validate( [
                 'type' => ['required','string',Rule::unique('manageheaders','type')],
+                'theme' => ['required','string',Rule::unique('manageheaders','theme')],
                 'title' => ['required', 'string', 'max:255'],
 
             ],[
@@ -132,6 +133,7 @@ class ManageHeaderController extends Controller
         // ----- insert record into database 
         $insert = Manageheader::create([
             'type'=>$request->type,
+            'theme'=>$request->theme,
             'title'=>$request->title,
             'description'=>$request->description,
             'order'=>$request->order,
@@ -164,6 +166,7 @@ class ManageHeaderController extends Controller
          /**--- validation code -- */
         $request->validate( [
                 'type' => ['required','string',Rule::unique('manageheaders','type')->ignore($request->id)],
+                'theme' => ['required','string',Rule::unique('manageheaders','theme')->ignore($request->id)],
                 'title' => ['required', 'string', 'max:255'],
 
             ],[
@@ -182,6 +185,7 @@ class ManageHeaderController extends Controller
         if($update){
             $update->update([
             'type'=>$request->type,
+            'theme'=>$request->theme,
             'title'=>$request->title,
             'description'=>$request->description,
             'order'=>$request->order,
@@ -316,7 +320,10 @@ class ManageHeaderController extends Controller
 
         // ---------- soft delete code start here 
         if($action === 'delete'){
-            $data = Manageheader::whereIn('id',$ids)->delete();
+            $data = Manageheader::whereIn('id',$ids)->get();
+            foreach($data as $item){
+                $item->delete();
+            }
             return back();
         }
 
@@ -353,7 +360,6 @@ class ManageHeaderController extends Controller
                 foreach ($categorys as $category) {
                     $category->restore();
                 }
-
         }
 
 

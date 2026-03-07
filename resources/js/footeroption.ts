@@ -17,7 +17,21 @@ export const allfooters: footeroption[] = [
         key: 'Subscriber',
         name : 'Subscriber'
     },
-   
-   
+];
+
+
+export const footerthemes: footeroption[] = [
+    {
+        key: 'main_footer',
+        name : 'Main Footer Theme'
+    },
+    {
+        key: 'copyright',
+        name : 'Copyright Theme'
+    },
+    {
+        key: 'subscriber',
+        name : 'Subscriber theme'
+    },
 ];
 

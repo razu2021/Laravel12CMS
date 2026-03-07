@@ -90,12 +90,11 @@ class ManageFooterController extends Controller
     public function themeUpdate(Request $request){
         $id = $request->id ;
         $slug = $request->slug;
-        $themeupdate = Managefooter::where('id',$id)->where('slug',$slug)->update([
-            'theme' => $request->theme,
-        ]);
-
+        $themeupdate = Managefooter::where('id',$id)->where('slug',$slug)->firstOrFail();
         //---------------------- if insert ------
         if($themeupdate){
+            $themeupdate->theme = $request->theme;
+            $themeupdate->save();
             flash()->success('Theme Updated successfully!');
         }else{
              flash()->error('Opps ! Theme Updated  Faild!');
@@ -103,8 +102,6 @@ class ManageFooterController extends Controller
         //---------------------- if insert ------
 
           return redirect()->back();
-
-
     }
 
 
@@ -117,6 +114,7 @@ class ManageFooterController extends Controller
          /**--- validation code -- */
         $request->validate( [
                 'type' => ['required','string',Rule::unique('manageheaders','type')],
+                'theme' => ['required','string',Rule::unique('manageheaders','theme')],
                 'title' => ['required', 'string', 'max:255'],
 
             ],[
@@ -133,6 +131,7 @@ class ManageFooterController extends Controller
         // ----- insert record into database 
         $insert = Managefooter::create([
             'type'=>$request->type,
+            'theme'=>$request->theme,
             'title'=>$request->title,
             'description'=>$request->description,
             'order'=>$request->order,
@@ -151,8 +150,6 @@ class ManageFooterController extends Controller
         //---------------------- if insert ------
 
           return redirect()->back();
-    
-
     }
 
 
@@ -164,7 +161,8 @@ class ManageFooterController extends Controller
     public function update(Request $request){
          /**--- validation code -- */
         $request->validate( [
-                'type' => ['required','string',Rule::unique('manageheaders','type')],
+                'type' => ['required','string',Rule::unique('manageheaders','type')->ignore($request->id)],
+                'theme' => ['required','string',Rule::unique('manageheaders','theme')->ignore($request->id)],
                 'title' => ['required', 'string', 'max:255'],
 
             ],[
@@ -178,21 +176,21 @@ class ManageFooterController extends Controller
         $slug = $request->slug;
         $id = $request->id;
         // ----- insert record into database 
-        $update = Managefooter::where('id',$id)->where('slug',$slug)->update([
+        $update =  Managefooter::where('id',$id)->where('slug',$slug)->first();
+
+        if($update){
+            $update->update([
             'type'=>$request->type,
-            'address'=>$request->address,
+            'theme'=>$request->theme,
             'title'=>$request->title,
             'description'=>$request->description,
             'order'=>$request->order,
             'public_status'=>$request->public_status ?? 0,
             'editor_id' => $editor_id,
-            'updated_at' => Carbon::now()->toDateTimeString(),
-        ]);
+            ]);
 
-        if($update){
-            Managefooter::normalizeOrder();
             flash()->success('Information Updated successfully!');
-            return redirect()->route('sytem_maintenance.view',[$id,$slug]);
+            return redirect()->route('manage_header.view',[$id,$slug]);
         }else{
             flash()->error('Information Updated Faild !');
             return redirect()->back();
@@ -206,11 +204,11 @@ class ManageFooterController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = Managefooter::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
-            'public_status' => 1,
-        ]);
-
+        $active = Managefooter::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail();
         if($active){
+            $active->update([
+                'public_status'=> 1,
+            ]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -223,11 +221,13 @@ class ManageFooterController extends Controller
      * ======== De Active Functionality Start here ==========
      */
     public function deactive($id,$slug){
-        $active = Managefooter::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
-            'public_status' => 0,
-        ]);
+        $deactive = Managefooter::where('id',$id)->where('slug',$slug)->where('public_status',1)->firstOrFail();
 
-        if($active){
+        if($deactive){
+            $deactive->update([
+                'public_status'=> 0 ,
+            ]);
+            
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -316,22 +316,29 @@ class ManageFooterController extends Controller
 
         // ---------- soft delete code start here 
         if($action === 'delete'){
-            $data = Managefooter::whereIn('id',$ids)->delete();
+            $data = Managefooter::whereIn('id',$ids)->get();
+            foreach($data as $item){
+                $item->delete();
+            }
             return back();
         }
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = Managefooter::whereIn('id',$ids)->where('public_status',0)->update([
-                'public_status'=>1,
-            ]);
+            $categorys = Managefooter::whereIn('id',$ids)->where('public_status',0)->get();
+            foreach($categorys as $item){
+                $item->public_status = 1;
+                $item->save(); // observer trigger হবে
+            }
  
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = Managefooter::whereIn('id',$ids)->where('public_status',1)->update([
-                'public_status'=>0,
-            ]);
+            $categorys = Managefooter::whereIn('id',$ids)->where('public_status',1)->get();
+           foreach($categorys as $item){
+                $item->public_status = 0;
+                $item->save(); // observer trigger হবে
+            }
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){
@@ -349,7 +356,6 @@ class ManageFooterController extends Controller
                 foreach ($categorys as $category) {
                     $category->restore();
                 }
-
         }
 
 

@@ -1,0 +1,1 @@
+<p class="text-center bg-dark text-white p-2">Copyright ©2021 HANDS. Designed By Technical Hotline Ltd</p>

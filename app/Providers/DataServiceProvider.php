@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Managefooter;
 use App\Models\Manageheader;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
@@ -33,6 +34,10 @@ class DataServiceProvider extends ServiceProvider
             $manageheader = cache()->rememberForever('manageheader',function(){
                 return Manageheader::where('public_status',1)->orderBy('order','ASC')->get();
             });
+            /**======== Footer cache  =========== */
+            $managefooter = cache()->rememberForever('managefooter',function(){
+                return Managefooter::where('public_status',1)->orderBy('order','ASC')->get();
+            });
            
 
 
@@ -46,7 +51,8 @@ class DataServiceProvider extends ServiceProvider
 
             // ====== share data globaly================
             $view->with([
-                'manageheader' => $manageheader
+                'manageheader' => $manageheader,
+                'managefooter' => $managefooter,
             ]);
 
         });
