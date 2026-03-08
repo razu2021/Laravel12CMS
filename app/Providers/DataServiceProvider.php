@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Customcss;
+use App\Models\Customescript;
 use App\Models\Managefooter;
 use App\Models\Manageheader;
 use Illuminate\Support\ServiceProvider;
@@ -34,9 +36,19 @@ class DataServiceProvider extends ServiceProvider
             $manageheader = cache()->rememberForever('manageheader',function(){
                 return Manageheader::where('public_status',1)->orderBy('order','ASC')->get();
             });
+
             /**======== Footer cache  =========== */
             $managefooter = cache()->rememberForever('managefooter',function(){
                 return Managefooter::where('public_status',1)->orderBy('order','ASC')->get();
+            });
+
+            /**======== Custom Script cache  =========== */
+            $customscript = cache()->rememberForever('customscript',function(){
+                return Customescript::where('public_status',1)->orderBy('order','ASC')->get();
+            });
+            /**======== Custom Script cache  =========== */
+            $customcss = cache()->rememberForever('customscss',function(){
+                return Customcss::where('public_status',1)->orderBy('order','ASC')->get();
             });
            
 
@@ -53,6 +65,8 @@ class DataServiceProvider extends ServiceProvider
             $view->with([
                 'manageheader' => $manageheader,
                 'managefooter' => $managefooter,
+                'customscript' => $customscript,
+                'customcss' => $customcss,
             ]);
 
         });

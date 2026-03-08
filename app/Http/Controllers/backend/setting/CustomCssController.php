@@ -87,6 +87,7 @@ class CustomCssController extends Controller
          /**--- validation code -- */
         $request->validate( [
                 'css_note' => ['required'],
+                'custom_css' => ['required','not_regex:/<[^>]*>/'],
             ],[
                 'css_note.required'=> 'Note field is Required !',
                 
@@ -132,6 +133,7 @@ class CustomCssController extends Controller
          /**--- validation code -- */
         $request->validate( [
                 'css_note' => ['required'],
+                'custom_css' => ['required','not_regex:/<[^>]*>/'],
             ],[
                 'css_note.required'=> 'Note field is Required !',
                 
@@ -143,17 +145,17 @@ class CustomCssController extends Controller
         $slug = $request->slug;
         $id = $request->id;
         // ----- insert record into database 
-        $update = Customcss::where('id',$id)->where('slug',$slug)->update([
-            'css_note'=>$request->css_note,
-            'custom_css'=>$request->custom_css,
-            'order'=>$request->order,
-            'public_status'=>$request->public_status ?? 0,
-            'editor_id' => $editor_id,
-            'updated_at' => Carbon::now()->toDateTimeString(),
-        ]);
+        $update = Customcss::where('id',$id)->where('slug',$slug)->firstOrFail();
 
         if($update){
-            Customcss::normalizeOrder();
+          $update->update([
+                'css_note'=>$request->css_note,
+                'custom_css'=>$request->custom_css,
+                'order'=>$request->order,
+                'public_status'=>$request->public_status ?? 0,
+                'editor_id' => $editor_id,
+                'updated_at' => Carbon::now()->toDateTimeString(),
+            ]);
             flash()->success('Information Updated successfully!');
             return redirect()->route('custom_css.view',[$id,$slug]);
         }else{
@@ -169,11 +171,10 @@ class CustomCssController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = Customcss::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
-            'public_status' => 1,
-        ]);
+        $active = Customcss::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail();
 
         if($active){
+            $active->update(['public_status' => 1,]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -186,11 +187,10 @@ class CustomCssController extends Controller
      * ======== De Active Functionality Start here ==========
      */
     public function deactive($id,$slug){
-        $active = Customcss::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
-            'public_status' => 0,
-        ]);
+        $active = Customcss::where('id',$id)->where('slug',$slug)->where('public_status',1)->firstOrFail(); 
 
         if($active){
+            $active->update(['public_status' => 0,]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -285,16 +285,21 @@ class CustomCssController extends Controller
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = Customcss::whereIn('id',$ids)->where('public_status',0)->update([
-                'public_status'=>1,
-            ]);
- 
+            $categorys = Customcss::whereIn('id',$ids)->where('public_status',0)->get();
+            foreach($categorys as $items){
+                $items->update([
+                    'public_status'=>1,
+                ]);
+            }
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = Customcss::whereIn('id',$ids)->where('public_status',1)->update([
-                'public_status'=>0,
-            ]);
+            $categorys = Customcss::whereIn('id',$ids)->where('public_status',1)->firstOrFail();
+             foreach($categorys as $items){
+                $items->update([
+                    'public_status'=>0,
+                ]);
+            }
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){

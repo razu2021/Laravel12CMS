@@ -87,6 +87,7 @@ class CustomeScriptController extends Controller
         $request->validate( [
                 'type' => ['required'],
                 'script_note' => ['required'],
+                'custom_script' => ['required','not_regex:/<[^>]*>/'],
             ],[
                 'type.required'=> 'Type field is Required !',
                 'script_note.required'=> 'Note field is Required !',
@@ -135,6 +136,7 @@ class CustomeScriptController extends Controller
         $request->validate( [
                 'type' => ['required'],
                 'script_note' => ['required'],
+                'custom_script' => ['required','not_regex:/<[^>]*>/'],
             ],[
                 'type.required'=> 'Type field is Required !',
                 'script_note.required'=> 'Note field is Required !',
@@ -146,7 +148,10 @@ class CustomeScriptController extends Controller
         $slug = $request->slug;
         $id = $request->id;
         // ----- insert record into database 
-        $update = Customescript::where('id',$id)->where('slug',$slug)->update([
+        $update = Customescript::where('id',$id)->where('slug',$slug)->firstOrFail(); 
+
+        if($update){
+            $update->update([
             'type'=>$request->type,
             'script_note'=>$request->script_note,
             'custom_script'=>$request->custom_script,
@@ -154,10 +159,7 @@ class CustomeScriptController extends Controller
             'public_status'=>$request->public_status ?? 0,
             'editor_id' => $editor_id,
             'updated_at' => Carbon::now()->toDateTimeString(),
-        ]);
-
-        if($update){
-            Customescript::normalizeOrder();
+            ]);
             flash()->success('Information Updated successfully!');
             return redirect()->route('custom_script.view',[$id,$slug]);
         }else{
@@ -173,11 +175,10 @@ class CustomeScriptController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = Customescript::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
-            'public_status' => 1,
-        ]);
+        $active = Customescript::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail(); 
 
         if($active){
+            $active->update(['public_status' => 1,]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -190,11 +191,10 @@ class CustomeScriptController extends Controller
      * ======== De Active Functionality Start here ==========
      */
     public function deactive($id,$slug){
-        $active = Customescript::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
-            'public_status' => 0,
-        ]);
+        $active = Customescript::where('id',$id)->where('slug',$slug)->where('public_status',1)->firstOrFail();
 
         if($active){
+            $active->update(['public_status' => 0,]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -289,16 +289,18 @@ class CustomeScriptController extends Controller
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = Customescript::whereIn('id',$ids)->where('public_status',0)->update([
-                'public_status'=>1,
-            ]);
+            $categorys = Customescript::whereIn('id',$ids)->where('public_status',0)->firstOrFail(); 
+            foreach($categorys as $items){
+                $items->update(['public_status'=>1,]);
+            }
  
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = Customescript::whereIn('id',$ids)->where('public_status',1)->update([
-                'public_status'=>0,
-            ]);
+            $categorys = Customescript::whereIn('id',$ids)->where('public_status',1)->firstOrFail();
+            foreach($categorys as $items){
+                $items->update(['public_status'=>0,]);
+            }
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){
@@ -312,7 +314,6 @@ class CustomeScriptController extends Controller
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Restore'){
             $categorys = Customescript::onlyTrashed()->whereIn('id',$ids)->get();
-
                 foreach ($categorys as $category) {
                     $category->restore();
                 }
