@@ -10,6 +10,7 @@
     {{-- ============= include header section ================== --}}
         @includeIf('frontend.manage.style.style')
     {{-- ============= include header section ================== --}}
+    @stack('custom_css')
 
 
 </head>

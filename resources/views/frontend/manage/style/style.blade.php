@@ -12,6 +12,6 @@
 
 
 
-    @if($customcss)
-        <h1>{{$customcss}}</h1>
-    @endif
+<style>
+ {!! $customcss !!}
+</style>

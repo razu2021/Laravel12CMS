@@ -48,7 +48,7 @@ class DataServiceProvider extends ServiceProvider
             });
             /**======== Custom Script cache  =========== */
             $customcss = cache()->rememberForever('customscss',function(){
-                return Customcss::where('public_status',1)->orderBy('order','ASC')->get();
+                return Customcss::where('public_status',1)->pluck('custom_css')->implode("\n");
             });
            
 

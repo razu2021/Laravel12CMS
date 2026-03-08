@@ -279,7 +279,10 @@ class CustomCssController extends Controller
 
         // ---------- soft delete code start here 
         if($action === 'delete'){
-            $data = Customcss::whereIn('id',$ids)->delete();
+            $data = Customcss::whereIn('id',$ids)->get();
+            foreach($data as $items){
+                $items->delete();
+            }
             return back();
         }
 
@@ -294,9 +297,9 @@ class CustomCssController extends Controller
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = Customcss::whereIn('id',$ids)->where('public_status',1)->firstOrFail();
+            $categorys = Customcss::whereIn('id',$ids)->where('public_status',1)->get();
              foreach($categorys as $items){
-                $items->update([
+                    $items->update([
                     'public_status'=>0,
                 ]);
             }
@@ -350,9 +353,6 @@ class CustomCssController extends Controller
         return back();
 
     }
-
-
-
 
 
     /**

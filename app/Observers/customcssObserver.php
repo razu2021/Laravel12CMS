@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Customcss;
-
+use Illuminate\Support\Facades\Cache;
 class customcssObserver
 {
     /**
@@ -11,7 +11,8 @@ class customcssObserver
      */
     public function created(Customcss $customcss): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('customscss');
     }
 
     /**
@@ -19,7 +20,8 @@ class customcssObserver
      */
     public function updated(Customcss $customcss): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('customscss');
     }
 
     /**
@@ -27,7 +29,8 @@ class customcssObserver
      */
     public function deleted(Customcss $customcss): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('customscss');
     }
 
     /**
@@ -35,7 +38,8 @@ class customcssObserver
      */
     public function restored(Customcss $customcss): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('customscss');
     }
 
     /**
@@ -43,6 +47,7 @@ class customcssObserver
      */
     public function forceDeleted(Customcss $customcss): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('customscss');
     }
 }
