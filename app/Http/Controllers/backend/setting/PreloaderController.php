@@ -152,7 +152,11 @@ class PreloaderController extends Controller
 
 
         // ----- insert record into database 
-        $update = Preloader::where('id',$id)->where('slug',$slug)->update([
+        $update = Preloader::where('id',$id)->where('slug',$slug)->firstOrFail();
+
+
+        if($update){
+            $update->update([
             'type'=>$request->type,
             'title'=>$request->title,
             'public_status'=>$request->public_status ?? 0,
@@ -175,7 +179,6 @@ class PreloaderController extends Controller
         }
         /**======== upload image via the service end ====== */
 
-        if($update){
             flash()->success('Information Updated successfully!');
             return redirect()->route('preloader.view',[$id,$slug]);
         }else{
@@ -191,12 +194,15 @@ class PreloaderController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = Preloader::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
-            'public_status' => 1,
-        ]);
+        $active = Preloader::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail();
+
 
         if($active){
+            $active->update([
+                'public_status' => 1,
+            ]);
             flash()->success('Status Updated Successfully !');
+
         }else{
             flash()->error('Status Updated Faild !');
         }
@@ -209,11 +215,13 @@ class PreloaderController extends Controller
      */
     public function deactive($id,$slug){
 
-        $active = Preloader::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
-            'public_status' => 0,
-        ]);
+        $active = Preloader::where('id',$id)->where('slug',$slug)->where('public_status',1)->firstOrFail();
+
 
         if($active){
+            $active->update([
+            'public_status' => 0,
+        ]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -311,22 +319,33 @@ class PreloaderController extends Controller
 
         // ---------- soft delete code start here 
         if($action === 'delete'){
-            $data = Preloader::whereIn('id',$ids)->delete();
+            $data = Preloader::whereIn('id',$ids)->get();
+            foreach($data as $items){
+                $items->delete();
+            }
             return back();
         }
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = Preloader::whereIn('id',$ids)->where('public_status',0)->update([
+            $categorys = Preloader::whereIn('id',$ids)->where('public_status',0)->get();
+            foreach($categorys as $items){
+                $items->update([
                 'public_status'=>1,
-            ]);
+                ]);
+            }
+
  
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = Preloader::whereIn('id',$ids)->where('public_status',1)->update([
+            $categorys = Preloader::whereIn('id',$ids)->where('public_status',1)->get();
+            foreach($categorys as $items){
+            $items->update([
                 'public_status'=>0,
             ]);
+            }
+           
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){

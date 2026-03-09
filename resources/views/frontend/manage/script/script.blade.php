@@ -7,3 +7,11 @@
     <script src="https://handsbd.org/contents/assets/website/assets/js/script.js"></script>
     <script src="https://handsbd.org/contents/assets/website/assets/js/fontall.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async></script>
+
+
+{{-- custom script add  --}}
+@if(!empty($customscript['footer_script']))
+<script>
+{!! $customscript['footer_script'] !!}
+</script>
+@endif

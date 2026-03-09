@@ -275,8 +275,9 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
               <input type="checkbox" :checked="isAnySelected" @change="toggleSelectAll(rows)" class="h-4 w-4 text-blue-600 rounded border-gray-300"/>
             </th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">ID</th>
-            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Css Note </th>
-            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Css</th>
+            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Type</th>
+            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Script Note </th>
+            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Script</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Order</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Status</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Manage</th>
@@ -288,6 +289,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
           <tr v-for="data in rows" :key="data.id" class="hover:bg-blue-50 transition-colors duration-200">
             <td class="px-4 py-3"><input type="checkbox" :value="data.id" v-model="selectedIds"  class="h-4 w-4 text-blue-600 rounded border-gray-300"/></td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.id ?? '' }}</td>
+            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.type ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.script_note ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm"> {{ truncateWords(data.custom_script, 10) }} </td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm"> {{ data.order ?? '' }}</td>

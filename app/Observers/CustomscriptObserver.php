@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Customescript;
-
+use Illuminate\Support\Facades\Cache;
 class CustomscriptObserver
 {
     /**
@@ -11,7 +11,8 @@ class CustomscriptObserver
      */
     public function created(Customescript $customescript): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('customscript');
     }
 
     /**
@@ -19,7 +20,8 @@ class CustomscriptObserver
      */
     public function updated(Customescript $customescript): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('customscript');
     }
 
     /**
@@ -27,7 +29,8 @@ class CustomscriptObserver
      */
     public function deleted(Customescript $customescript): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('customscript');
     }
 
     /**
@@ -35,7 +38,8 @@ class CustomscriptObserver
      */
     public function restored(Customescript $customescript): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('customscript');
     }
 
     /**
@@ -43,6 +47,7 @@ class CustomscriptObserver
      */
     public function forceDeleted(Customescript $customescript): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('customscript');
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Customcss;
 use App\Models\Customescript;
 use App\Models\Managefooter;
 use App\Models\Manageheader;
+use App\Models\Preloader;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -44,13 +45,23 @@ class DataServiceProvider extends ServiceProvider
 
             /**======== Custom Script cache  =========== */
             $customscript = cache()->rememberForever('customscript',function(){
-                return Customescript::where('public_status',1)->orderBy('order','ASC')->get();
+         
+               $csripts =  Customescript::where('public_status',1)->orderBy('order','ASC')->get(['custom_script','type']);
+               return [
+                    'header_script' => $csripts->where('type','header')->pluck('custom_script')->implode("\n"),
+                    'footer_script' => $csripts->where('type','footer')->pluck('custom_script')->implode("\n"),
+               ];
             });
             /**======== Custom Script cache  =========== */
             $customcss = cache()->rememberForever('customscss',function(){
-                return Customcss::where('public_status',1)->pluck('custom_css')->implode("\n");
+                return Customcss::where('public_status',1)->orderBy('order','ASC')->pluck('custom_css')->implode("\n");
             });
            
+            /**======== Footer cache  =========== */
+            $preloader = cache()->rememberForever('preloaders',function(){
+                return Preloader::where('public_status',1)->firstOrFail();
+            });
+
 
 
 
@@ -67,6 +78,7 @@ class DataServiceProvider extends ServiceProvider
                 'managefooter' => $managefooter,
                 'customscript' => $customscript,
                 'customcss' => $customcss,
+                'preloader' => $preloader,
             ]);
 
         });

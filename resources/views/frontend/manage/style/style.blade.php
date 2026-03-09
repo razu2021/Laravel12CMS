@@ -9,9 +9,13 @@
     <link href="{{asset('contents/website/assets/css/menu_responsive.css')}}" rel="stylesheet"/>
     <link href="{{asset('contents/website/assets/css/style.css')}}" rel="stylesheet"/>
     <link href="{{asset('contents/website/assets/sass/main.css')}}" rel="stylesheet" />
-
-
-
-<style>
- {!! $customcss !!}
-</style>
+    {{-- custom script add  --}}
+    @if(!empty($customscript['header_script']))
+    <script>
+    {!! $customscript['header_script'] !!}
+    </script>
+    @endif
+    {{-- === custom css load here === --}}
+    @if(!empty($customcss))
+    <style>{!! $customcss !!}</style>
+    @endif

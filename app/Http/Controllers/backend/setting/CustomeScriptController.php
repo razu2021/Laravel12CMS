@@ -289,7 +289,7 @@ class CustomeScriptController extends Controller
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = Customescript::whereIn('id',$ids)->where('public_status',0)->firstOrFail(); 
+            $categorys = Customescript::whereIn('id',$ids)->where('public_status',0)->get(); 
             foreach($categorys as $items){
                 $items->update(['public_status'=>1,]);
             }
@@ -297,7 +297,7 @@ class CustomeScriptController extends Controller
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = Customescript::whereIn('id',$ids)->where('public_status',1)->firstOrFail();
+            $categorys = Customescript::whereIn('id',$ids)->where('public_status',1)->get();
             foreach($categorys as $items){
                 $items->update(['public_status'=>0,]);
             }
