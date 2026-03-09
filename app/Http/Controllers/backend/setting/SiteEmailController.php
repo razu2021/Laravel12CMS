@@ -174,7 +174,10 @@ class SiteEmailController extends Controller
         }
 
         // ----- insert record into database 
-        $update = CategoryPage::where('id',$id)->where('slug',$slug)->update([
+        $update = CategoryPage::where('id',$id)->where('slug',$slug)->firstOrFail();
+
+        if($update){
+            $update->update([
             'name'=>$request->name,
             'title'=>$request->title,
             'description'=>$request->description,
@@ -185,7 +188,6 @@ class SiteEmailController extends Controller
             'updated_at' => Carbon::now()->toDateTimeString(),
         ]);
 
-        if($update){
             flash()->success('Information Updated successfully!');
             return redirect()->route('category_page.view',[$id,$slug]);
         }else{
@@ -201,11 +203,10 @@ class SiteEmailController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = CategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
-            'public_status' => 1,
-        ]);
+        $active = CategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail();
 
         if($active){
+            $active->update(['public_status' => 1,]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -219,11 +220,9 @@ class SiteEmailController extends Controller
      */
     public function deactive($id,$slug){
 
-        $active = CategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
-            'public_status' => 0,
-        ]);
-
+        $active = CategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',1)->firstOrFail();
         if($active){
+            $active->update(['public_status' => 0,]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -312,22 +311,28 @@ class SiteEmailController extends Controller
 
         // ---------- soft delete code start here 
         if($action === 'delete'){
-            $data = CategoryPage::whereIn('id',$ids)->delete();
+            $data = CategoryPage::whereIn('id',$ids)->get();
+            foreach($data as $items){
+                $items->delete();
+            }
             return back();
         }
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = CategoryPage::whereIn('id',$ids)->where('public_status',0)->update([
-                'public_status'=>1,
-            ]);
+            $categorys = CategoryPage::whereIn('id',$ids)->where('public_status',0)->get();
+
+            foreach($categorys as $items){
+                $items->update(['public_status'=>1,]);
+            }
  
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = CategoryPage::whereIn('id',$ids)->where('public_status',1)->update([
-                'public_status'=>0,
-            ]);
+            $categorys = CategoryPage::whereIn('id',$ids)->where('public_status',1)->get();
+                foreach($categorys as $items){
+                $items->update(['public_status'=>0,]);
+            }
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){
@@ -376,7 +381,6 @@ class SiteEmailController extends Controller
         return back();
 
     }
-
 
 
 

@@ -59,7 +59,7 @@ class DataServiceProvider extends ServiceProvider
            
             /**======== Footer cache  =========== */
             $preloader = cache()->rememberForever('preloaders',function(){
-                return Preloader::where('public_status',1)->firstOrFail();
+                return Preloader::where('public_status',1)->first();
             });
 
 

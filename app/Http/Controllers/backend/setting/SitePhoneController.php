@@ -151,7 +151,11 @@ class SitePhoneController extends Controller
         $slug = $request->slug;
         $id = $request->id;
         // ----- insert record into database 
-        $update = SitePhone::where('id',$id)->where('slug',$slug)->update([
+        $update = SitePhone::where('id',$id)->where('slug',$slug)->firstOrFail();
+        
+
+        if($update){
+            $update->update([
             'type'=>$request->type,
             'phone'=>$request->phone,
             'title'=>$request->title,
@@ -161,8 +165,6 @@ class SitePhoneController extends Controller
             'editor_id' => $editor_id,
             'updated_at' => Carbon::now()->toDateTimeString(),
         ]);
-
-        if($update){
             SitePhone::normalizeOrder();
             flash()->success('Information Updated successfully!');
             return redirect()->route('contact_phone.view',[$id,$slug]);
@@ -179,11 +181,10 @@ class SitePhoneController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = SitePhone::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
-            'public_status' => 1,
-        ]);
+        $active = SitePhone::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail(); 
 
         if($active){
+            $active->update(['public_status' => 1, ]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -196,11 +197,10 @@ class SitePhoneController extends Controller
      * ======== De Active Functionality Start here ==========
      */
     public function deactive($id,$slug){
-        $active = SitePhone::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
-            'public_status' => 0,
-        ]);
+        $active = SitePhone::where('id',$id)->where('slug',$slug)->where('public_status',1)->firstOrFail();
 
         if($active){
+            $active->update(['public_status' => 0, ]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -289,22 +289,29 @@ class SitePhoneController extends Controller
 
         // ---------- soft delete code start here 
         if($action === 'delete'){
-            $data = SitePhone::whereIn('id',$ids)->delete();
+            $data = SitePhone::whereIn('id',$ids)->get();
+            foreach($data as $items){
+                $items->delete();
+            }
             return back();
         }
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = SitePhone::whereIn('id',$ids)->where('public_status',0)->update([
-                'public_status'=>1,
-            ]);
+            $categorys = SitePhone::whereIn('id',$ids)->where('public_status',0)->get();
+
+            foreach($categorys as $items){
+                $items->update([ 'public_status'=>1,]);
+            }
+           
  
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = SitePhone::whereIn('id',$ids)->where('public_status',1)->update([
-                'public_status'=>0,
-            ]);
+            $categorys = SitePhone::whereIn('id',$ids)->where('public_status',1)->get();          
+            foreach($categorys as $items){
+                $items->update([ 'public_status'=>0,]);
+            }
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){

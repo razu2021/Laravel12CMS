@@ -195,8 +195,7 @@ class PreloaderController extends Controller
      */
     public function active($id,$slug){
         $active = Preloader::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail();
-
-
+        
         if($active){
             $active->update([
                 'public_status' => 1,

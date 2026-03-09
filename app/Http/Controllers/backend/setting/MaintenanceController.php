@@ -150,7 +150,10 @@ class MaintenanceController extends Controller
         $slug = $request->slug;
         $id = $request->id;
         // ----- insert record into database 
-        $update = Maintenancemode::where('id',$id)->where('slug',$slug)->update([
+        $update = Maintenancemode::where('id',$id)->where('slug',$slug)->firstOrFail();
+
+        if($update){
+            $update->update([
             'type'=>$request->type,
             'address'=>$request->address,
             'title'=>$request->title,
@@ -160,8 +163,6 @@ class MaintenanceController extends Controller
             'editor_id' => $editor_id,
             'updated_at' => Carbon::now()->toDateTimeString(),
         ]);
-
-        if($update){
             Maintenancemode::normalizeOrder();
             flash()->success('Information Updated successfully!');
             return redirect()->route('sytem_maintenance.view',[$id,$slug]);
@@ -178,11 +179,10 @@ class MaintenanceController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = Maintenancemode::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
-            'public_status' => 1,
-        ]);
+        $active = Maintenancemode::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail();
 
         if($active){
+            $active->update(['public_status' => 1,]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -195,11 +195,10 @@ class MaintenanceController extends Controller
      * ======== De Active Functionality Start here ==========
      */
     public function deactive($id,$slug){
-        $active = Maintenancemode::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
-            'public_status' => 0,
-        ]);
+        $active = Maintenancemode::where('id',$id)->where('slug',$slug)->where('public_status',1)->firstOrFail();
 
         if($active){
+            $active->update(['public_status' => 0, ]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -288,22 +287,27 @@ class MaintenanceController extends Controller
 
         // ---------- soft delete code start here 
         if($action === 'delete'){
-            $data = Maintenancemode::whereIn('id',$ids)->delete();
+            $data = Maintenancemode::whereIn('id',$ids)->get();
+            foreach($data as $items){
+                $items->delete();
+            }
             return back();
         }
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = Maintenancemode::whereIn('id',$ids)->where('public_status',0)->update([
-                'public_status'=>1,
-            ]);
+            $categorys = Maintenancemode::whereIn('id',$ids)->where('public_status',0)->get();
+            foreach($categorys as $items){
+                $items->update(['public_status'=>1,]);
+            }
  
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = Maintenancemode::whereIn('id',$ids)->where('public_status',1)->update([
-                'public_status'=>0,
-            ]);
+            $categorys = Maintenancemode::whereIn('id',$ids)->where('public_status',1)->get();
+             foreach($categorys as $items){
+                $items->update(['public_status'=>0,]);
+            }
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){

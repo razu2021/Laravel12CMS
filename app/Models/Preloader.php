@@ -1,8 +1,12 @@
 <?php
 namespace App\Models;
+
+use App\Observers\PreloaderObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+ 
+#[ObservedBy([PreloaderObserver::class])]
 class Preloader extends Model
 {
     use SoftDeletes;

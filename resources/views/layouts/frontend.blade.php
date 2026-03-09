@@ -10,68 +10,15 @@
     {{-- ============= include header section ================== --}}
         @includeIf('frontend.manage.style.style')
     {{-- ============= include header section ================== --}}
-<style>
-    #preloader{
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    background: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-}
 
-.preloader-content{
-    text-align: center;
-}
-
-.preloader-logo{
-    width: 80px;
-    margin-bottom: 15px;
-}
-
-.preloader-text{
-    font-size: 18px;
-    margin-bottom: 15px;
-    color: #333;
-}
-
-.loader{
-    width: 40px;
-    height: 40px;
-    border: 4px solid #e5e5e5;
-    border-top: 4px solid #0d6efd;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: auto;
-}
-
-@keyframes spin{
-    100%{
-        transform: rotate(360deg);
-    }
-}
-</style>
 </head>
 <body>
-{{$preloader}}
 
-<div id="preloader">
-    <div class="preloader-content">
-
-        <!-- Image (optional) -->
-        <img src="{{asset($preloader->thumbnail)}}" alt="Loading" class="preloader-logo">
-
-        <!-- Text (optional) -->
-        <h5 class="preloader-text">{{$preloader->title}}</h5>
-
-        <!-- Spinner -->
-        <div class="loader"></div>
-
-    </div>
-</div>
+    {{-- ============= include header section ================== --}}
+        @includeIf('frontend.manage.preloader.preloader')
+    {{-- ============= include header section ================== --}}
     
+
     {{-- ============= include header section ================== --}}
         @includeIf('frontend.manage.header.header')
     {{-- ============= include header section ================== --}}
