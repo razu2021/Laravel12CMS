@@ -156,7 +156,10 @@ class AnnouncmentController extends Controller
 
 
         // ----- insert record into database 
-        $update = Announcment::where('id',$id)->where('slug',$slug)->update([
+        $update = Announcment::where('id',$id)->where('slug',$slug)->firstOrFail();
+
+        if($update){
+            $update->update([
             'type'=>$request->type,
             'heading'=>$request->heading,
             'title'=>$request->title,
@@ -174,14 +177,12 @@ class AnnouncmentController extends Controller
             $upload = (new ImageUploadService($request->file('thumbnail')))
                         ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
             // ------  save image in database 
-            $insert = Announcment::where('id', $id)
-                        ->where('slug', $slug)->update([
+            $insert = Announcment::where('id', $id)->where('slug', $slug)->firstOrFail();
+                        $insert->update([
                             'thumbnail' => $upload,
                         ]);
         }
         /**======== upload image via the service end ====== */
-
-        if($update){
             flash()->success('Information Updated successfully!');
             return redirect()->route('announcement.view',[$id,$slug]);
         }else{
@@ -197,11 +198,10 @@ class AnnouncmentController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = Announcment::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
-            'public_status' => 1,
-        ]);
+        $active = Announcment::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail();
 
         if($active){
+            $active->update(['public_status' => 1,]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -215,11 +215,10 @@ class AnnouncmentController extends Controller
      */
     public function deactive($id,$slug){
 
-        $active = Announcment::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
-            'public_status' => 0,
-        ]);
+        $active = Announcment::where('id',$id)->where('slug',$slug)->where('public_status',1)->firstOrFail();
 
         if($active){
+            $active->update(['public_status' => 0,]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -317,22 +316,27 @@ class AnnouncmentController extends Controller
 
         // ---------- soft delete code start here 
         if($action === 'delete'){
-            $data = Announcment::whereIn('id',$ids)->delete();
+            $data = Announcment::whereIn('id',$ids)->get();
+            foreach($data as $items){
+                $items->delete();
+            }
             return back();
         }
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = Announcment::whereIn('id',$ids)->where('public_status',0)->update([
-                'public_status'=>1,
-            ]);
+            $categorys = Announcment::whereIn('id',$ids)->where('public_status',0)->get();
+            foreach($categorys as $items){
+                $items->update(['public_status'=>1,]);
+            }
  
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = Announcment::whereIn('id',$ids)->where('public_status',1)->update([
-                'public_status'=>0,
-            ]);
+            $categorys = Announcment::whereIn('id',$ids)->where('public_status',1)->get();
+             foreach($categorys as $items){
+                $items->update(['public_status'=>1,]);
+            }
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){

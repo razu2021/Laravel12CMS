@@ -26,7 +26,7 @@ class ManageheaderObserver
         Cache::forget('manageheader');
     }
 
-    /**
+    /** 
      * Handle the Manageheader "deleted" event.
      */
     public function deleted(Manageheader $manageheader): void

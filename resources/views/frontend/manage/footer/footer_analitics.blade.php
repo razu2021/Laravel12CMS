@@ -1,0 +1,25 @@
+@if ($analitics->isNotEmpty())
+
+{{-- ========== get specific data form cache ====== --}}
+@php
+    $gtm_id = $analitics->where('key','google_tag_manager')->value('value') ?? null ;
+@endphp
+
+{{-- ======== Start Google Tag Manager (noscript) ======== --}}
+@if ($gtm_id)
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{$gtm_id}}"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+@endif
+{{-- ======= end End Google Tag Manager (noscript) ====== --}}
+
+
+
+
+
+
+
+
+
+
+
+@endif

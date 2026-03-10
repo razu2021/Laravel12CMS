@@ -8,6 +8,9 @@
 
 
     {{-- ============= include header section ================== --}}
+        @includeIf('frontend.manage.header.analitics')
+    {{-- ============= include header section ================== --}}
+    {{-- ============= include header section ================== --}}
         @includeIf('frontend.manage.style.style')
     {{-- ============= include header section ================== --}}
 
@@ -34,17 +37,9 @@
     {{-- ================= include footer section ============== --}}
         @includeIf('frontend.manage.script.script')
     {{-- ================= include footer section ============== --}}
+    {{-- ================= include footer section ============== --}}
+        @includeIf('frontend.manage.footer.footer_analitics')
+    {{-- ================= include footer section ============== --}}
 
-<script>
-window.addEventListener("load", function(){
-    const preloader = document.getElementById("preloader");
-
-    preloader.style.opacity = "0";
-
-    setTimeout(function(){
-        preloader.style.display = "none";
-    },400);
-});
-</script>
 </body>
 </html>

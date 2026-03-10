@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+use App\Observers\AnaliticsTrackingObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+ 
+#[ObservedBy([AnaliticsTrackingObserver::class])]
 class AnaliticsTracking extends Model
 {
     use SoftDeletes;

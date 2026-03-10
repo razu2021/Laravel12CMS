@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\AnaliticsTracking;
 use App\Models\Customcss;
 use App\Models\Customescript;
 use App\Models\Managefooter;
@@ -62,6 +63,11 @@ class DataServiceProvider extends ServiceProvider
                 return Preloader::where('public_status',1)->first();
             });
 
+            /**======== Analitics & Tracking  cache  =========== */
+            $analitics = cache()->rememberForever('AnaliticsTracking',function(){
+                return AnaliticsTracking::where('public_status',1)->get(['key','value']);
+            });
+
 
 
 
@@ -79,6 +85,7 @@ class DataServiceProvider extends ServiceProvider
                 'customscript' => $customscript,
                 'customcss' => $customcss,
                 'preloader' => $preloader,
+                'analitics' => $analitics,
             ]);
 
         });

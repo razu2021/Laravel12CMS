@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
+use App\Observers\CopyrightObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+ 
+#[ObservedBy([CopyrightObserver::class])]
 class Copyright extends Model
 {
     use SoftDeletes;
