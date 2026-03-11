@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('meta_title', config('app.name'))</title>
     <meta name="description" content="@yield('meta_description', 'Default website description')">
-
-
-    {{-- ============= include header section ================== --}}
-        @includeIf('frontend.manage.header.analitics')
-    {{-- ============= include header section ================== --}}
     {{-- ============= include header section ================== --}}
         @includeIf('frontend.manage.style.style')
+    {{-- ============= include header section ================== --}}
+    {{-- ============= include header section ================== --}}
+        @includeIf('frontend.manage.header.analitics')
     {{-- ============= include header section ================== --}}
 
 </head>
