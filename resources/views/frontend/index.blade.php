@@ -10,5 +10,10 @@
     @endforeach
     @else
         <h1>Welcome to New website </h1>
+
+        <hr>
+
+        <button class="btn btn-success"> <a href="{{route('payment.test')}}">test api </a> </button>
+        <hr>
     @endif
 @endsection

@@ -71,6 +71,7 @@ Route::get('site/manage/users/dashboard/', function () {
 
 require __DIR__.'/backend.php';
 require __DIR__.'/sitesetting.php';
+require __DIR__.'/api.php';
 require __DIR__.'/settings.php';
 
 

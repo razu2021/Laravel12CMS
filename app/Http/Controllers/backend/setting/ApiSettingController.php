@@ -138,7 +138,7 @@ class ApiSettingController extends Controller
         /**--- validation code -- */
         $request->validate( [
                 'group' => ['required'],
-                'key' => ['required', 'string',Rule::unique('apisettings',column: 'key')],
+                'key' => ['required', 'string',Rule::unique('apisettings',column: 'key')->ignore($request->id)],
                 'value' => ['required', 'string',],
             ],[
                 'group.required'=> 'Group field is Required !',

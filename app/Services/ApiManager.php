@@ -1,6 +1,7 @@
 <?php 
 namespace App\Services;
 
+use App\Models\Apisetting;
 use App\Services\captcha\RecaptchaService;
 use App\Services\captcha\TurnstileService;
 use App\Services\payment\BkashService;
@@ -40,11 +41,47 @@ protected static $driverMap = [
 
 
 
-
 ];
 
 
+/**=========== get all data form data  =========== */
+public static function allConfig(){
+    if(!empty(self::$configs)) return self::$configs;
 
+
+    $data =Apisetting::get(); 
+    $configs = [];
+
+    foreach($data as $items){
+        $group = $items->group ?? 'defualt';
+        $key = $items->key ;
+        $value = $items->value;
+
+        $configs[$group][$key]=$value;
+    }
+
+    self::$configs = $configs;
+
+    return self::$configs;
+
+}
+
+public static function driver($group,$provider){
+
+    $configs = self::allConfig();
+
+    $config = $configs[$group] ?? [];
+
+    if(!$config) return null;
+
+    if(!isset(self::$driverMap[$group][$provider])){
+        return null;
+    }
+
+    $driverClass = self::$driverMap[$group][$provider];
+
+    return new $driverClass($config);
+}
 
 
 
