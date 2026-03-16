@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\backend\setting\apis\apiController;
+use App\Http\Controllers\gateway\paymentController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
 /**============  Category Page Route Start here =========== */
-Route::controller(apiController::class)->prefix('all/payment/handle/test/')->name('payment.')->group(function(){
-    Route::get('test','test')->name('test');
+Route::controller(paymentController::class)->prefix('payment/')->name('payment.')->group(function(){
+    Route::get('checkout','checkoutPage')->name('checkout');
+    Route::post('process','paymentProcess')->name('process');
 });

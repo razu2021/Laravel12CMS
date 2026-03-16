@@ -11,6 +11,21 @@ use Inertia\Inertia;
 
 Route::get('/',[frontendController::class , 'index'])->name('index');
 
+Route::get('site/manage/users/dashboard/', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified','role_check:user'])->name('dashboard');
+
+
+
+// --------- otehr route file 
+require __DIR__.'/backend.php';
+require __DIR__.'/sitesetting.php';
+require __DIR__.'/api.php';
+require __DIR__.'/settings.php';
+
+
+
+
 
 
 // home route start here =========
@@ -53,11 +68,6 @@ Route::get('/',[frontendController::class , 'index'])->name('index');
 
 
 
-Route::get('site/manage/users/dashboard/', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified','role_check:user'])->name('dashboard');
-
-
 //--- custome route 
 
 
@@ -69,9 +79,5 @@ Route::get('site/manage/users/dashboard/', function () {
 
 
 
-require __DIR__.'/backend.php';
-require __DIR__.'/sitesetting.php';
-require __DIR__.'/api.php';
-require __DIR__.'/settings.php';
 
 

@@ -8,10 +8,11 @@ use Illuminate\Http\Request;
 
 class apiController extends Controller
 {
-    public function test(){
+    public function checkoutPage(){
 
-        $configs = ApiManager::allConfig('captcha','recaptcha');
+        //$configs = ApiManager::allConfig();
 
+        $configs = ApiManager::driver('CAPTCHA','recaptcha');
         dd($configs);
         return "test payment";
     }

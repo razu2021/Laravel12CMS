@@ -20,22 +20,22 @@ protected static $configs = [];
 
 /**======= load all static driver menualy ========= */
 protected static $driverMap = [
-    'payment' =>[
+    'PAYMENT' =>[
         'sslcommerz' => SSLCommerzService::class,
         'strip'  => StripeService::class,
         'bkash'  => BkashService::class,
         'nagad'  => NagadService::class,
         'rocket' => RocketService::class,
     ],
-    'sms' =>[
+    'SMS' =>[
         'bulksms' => BulkSMSService::class,
         'twilo'   => TwilioService::class,
     ],
-    'captcha' =>[
+    'CAPTCHA' =>[
         'recaptcha' => RecaptchaService::class,
         'turnstile' => TurnstileService::class,
     ],
-    'webhook' =>[
+    'WEBHOOK' =>[
         'webhook' => WebhookService::class,
     ],
 
@@ -49,7 +49,7 @@ public static function allConfig(){
     if(!empty(self::$configs)) return self::$configs;
 
 
-    $data =Apisetting::get(); 
+    $data =Apisetting::where('public_status',1)->get(); 
     $configs = [];
 
     foreach($data as $items){

@@ -102,7 +102,6 @@ const handleUpdate = () => {
                     <select name="type" id="type" required  v-model="form.key" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:outline-none transition-colors duration-200">
                         <option value="">Select  Type</option>
                         <option :value="apis.key" v-for="apis in apikeys">{{ apis.name }}</option>
-                    
                     </select>
                     <div class="text-small text-red-500" v-if="form.errors.key">{{ form.errors.key }}</div>
                 </div>

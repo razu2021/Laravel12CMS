@@ -13,7 +13,7 @@
 
         <hr>
 
-        <button class="btn btn-success"> <a href="{{route('payment.test')}}">test api </a> </button>
+        <button class="btn btn-success"> <a href="{{route('payment.checkout')}}">test api </a> </button>
         <hr>
     @endif
 @endsection
