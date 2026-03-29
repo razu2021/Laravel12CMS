@@ -74,7 +74,7 @@ const form = useForm('manage_header', {
                 <label class="text-sm font-medium text-slate-600">Choose Theme for Header </label>
                   <select name="type" id="type" required  v-model="form.theme" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:outline-none transition-colors duration-200">
                     <option value="">Select Header Type </option>
-                    <option v-for="header in header_themes"  :value="header.key">{{ header.name }}</option>
+                    <option v-for="theme in header_themes"  :value="theme.key">{{ theme.name }}</option>
                   </select>
                   <div class="text-small text-red-500" v-if="form.errors.theme">{{ form.errors.theme }}</div>
               </div>

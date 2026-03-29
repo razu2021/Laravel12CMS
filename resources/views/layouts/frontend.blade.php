@@ -22,6 +22,7 @@
 
     {{-- ============= include header section ================== --}}
         @includeIf('frontend.manage.header.header')
+        @includeIf('frontend.manageheader.mobile_sidebar')
     {{-- ============= include header section ================== --}}
 
     {{-- =================  all content load here -============= --}}

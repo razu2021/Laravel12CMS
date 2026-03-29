@@ -62,4 +62,19 @@ class frontendController extends Controller
     }
 
     
+
+
+
+
+
+
+
+
+
+
+
+    public function section(){
+        return view('frontend.section');
+    }
+
 }

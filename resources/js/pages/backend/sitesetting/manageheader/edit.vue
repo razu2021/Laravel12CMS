@@ -3,13 +3,14 @@ import Button from '@/components/ui/button/Button.vue'
 import AdminLayout from '@/layouts/AdminLayout.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
-import { headeroption ,allheaders } from '@/headeroption'
+import { headeroption ,allheaders,header_themes } from '@/headeroption'
 
 
 const props= defineProps<{
     data: {
         order: number,
         type: string,
+        theme: string,
         title: string,
         description: string,
         //-------------
@@ -24,6 +25,7 @@ const form  = useForm(
   {
     id: props.data.id,
     type: props.data.type,
+    theme: props.data.theme,
     title: props.data.title,
     description: props.data.description,
     order: props.data.order,
@@ -88,14 +90,24 @@ const handleUpdate = () => {
                     <input type="hidden"  v-model="form.slug">
                 </div>
                 <!-- end -->
-                 <div>
-                <label class="text-sm font-medium text-slate-600">Select Type</label>
-                  <select name="type" id="type" required  v-model="form.type" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:outline-none transition-colors duration-200">
+                <div>
+                    <label class="text-sm font-medium text-slate-600">Select Type</label>
+                    <select name="type" id="type" required  v-model="form.type" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:outline-none transition-colors duration-200">
                     <option value="">Select Header Type</option>
                     <option v-for="header in allheaders" :value="header.key">{{ header.name ?? '' }}</option>
                    
-                  </select>
-                  <div class="text-small text-red-500" v-if="form.errors.type">{{ form.errors.type }}</div>
+                    </select>
+                    <div class="text-small text-red-500" v-if="form.errors.type">{{ form.errors.type }}</div>
+              </div>
+                <!-- end -->
+                <div>
+                    <label class="text-sm font-medium text-slate-600">Select Theme</label>
+                    <select name="type" id="type" required  v-model="form.theme" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:outline-none transition-colors duration-200">
+                    <option value="">Select Header Type</option>
+                    <option v-for="theme in header_themes" :value="theme.key">{{ theme.name ?? '' }}</option>
+                   
+                    </select>
+                    <div class="text-small text-red-500" v-if="form.errors.type">{{ form.errors.type }}</div>
               </div>
                 <!-- end -->
                 <div>

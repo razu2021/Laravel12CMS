@@ -1,12 +1,10 @@
-    <script src="https://handsbd.org/contents/assets/website/assets/js/jquery-3.7.1.min.js"></script>
+    <script src="https://handsbd.org/contents/assets/website/assets/js/jquery-4.0.0.min.js"></script>
     <script src="https://handsbd.org/contents/assets/website/assets/js/bootstrap.min.js"></script>
-    <script src="https://handsbd.org/contents/assets/website/assets/js/owl.carousel.min.js"></script>
-    <script src="https://handsbd.org/contents/assets/website/assets/js/owl.js"></script>
-    <script src="https://handsbd.org/contents/assets/website/assets/js/wow.min.js"></script>
     <script src="https://handsbd.org/contents/assets/website/assets/js/costom.js"></script>
+    <script src="{{ asset('contents/website/assets/js/mobile_sidebar.js') }}"></script>
     <script src="https://handsbd.org/contents/assets/website/assets/js/script.js"></script>
-    <script src="https://handsbd.org/contents/assets/website/assets/js/fontall.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js" async></script>
+
+
 
 
 {{-- custom script add  --}}

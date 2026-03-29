@@ -17,6 +17,9 @@ Route::get('site/manage/users/dashboard/', function () {
 
 
 
+// ========= section design route 
+Route::get('/section',[frontendController::class , 'section'])->name('section');
+
 // --------- otehr route file 
 require __DIR__.'/backend.php';
 require __DIR__.'/sitesetting.php';

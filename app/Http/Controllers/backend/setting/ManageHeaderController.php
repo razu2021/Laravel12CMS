@@ -163,6 +163,7 @@ class ManageHeaderController extends Controller
      */
 
     public function update(Request $request){
+     
          /**--- validation code -- */
         $request->validate( [
                 'type' => ['required','string',Rule::unique('manageheaders','type')->ignore($request->id)],
@@ -180,8 +181,8 @@ class ManageHeaderController extends Controller
         $slug = $request->slug;
         $id = $request->id;
         // ----- insert record into database 
-        $update =  Manageheader::where('id',$id)->where('slug',$slug)->first();
-
+        $update =  Manageheader::where('id',$id)->where('slug',$slug)->firstOrFail();
+   
         if($update){
             $update->update([
             'type'=>$request->type,
