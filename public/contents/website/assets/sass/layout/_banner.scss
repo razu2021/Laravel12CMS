@@ -1,0 +1,93 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ----------- beadercrumb css start here ---------\
+.breadcrumb-section {
+  position: relative;
+  padding: 3rem 0; 
+  //background-image: url('../../images/banner/breadcrumb.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  .breadcrumb-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+
+    .page-title {
+      font-size: clamp(2.5rem, 4vw, 4.5rem); // responsive title
+      font-weight: 700;
+      margin-bottom: 2rem;
+      animation: fadeInDown 1s ease forwards;
+    }
+
+    .modern-breadcrumb {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1rem 1.5rem;
+      border-radius: 1.5rem;
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      animation: fadeInUp 1s ease forwards;
+
+      .breadcrumb-item {
+        font-size: clamp(1.4rem, 2vw, 2rem);
+        font-weight: 500;
+        color: #ffffff;
+
+        a {
+          color: #ffffff;
+          text-decoration: none;
+          position: relative;
+
+          &:hover {
+            color: #3b82f6; // primary accent
+          }
+
+          &:after {
+            content: '>';
+            margin-left: 0.8rem;
+            color: #3b82f6;
+            transition: transform 0.3s;
+          }
+
+          &:hover:after {
+            transform: translateX(5px);
+          }
+        }
+
+        &.active {
+          color: #3b82f6;
+          a {
+            pointer-events: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
