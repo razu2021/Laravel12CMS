@@ -28,6 +28,7 @@
 @use 'layout/mobile_sidebar';  //---------- only required import
 @use 'layout/footer_area';
 @use 'layout/banner';
+@use 'layout/service';
 @use 'layout/post';
 @use 'layout/team';
 @use 'layout/partner';
@@ -42,6 +43,7 @@
 // 4. Components
 // -------------------------
 @use 'components/buttons';
+@use 'components/cards';
 
 
 // -------------------------

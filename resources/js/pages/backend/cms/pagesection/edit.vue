@@ -6,6 +6,7 @@ import { Section } from 'lucide-vue-next';
 import { ref, watch } from 'vue';
 import { route } from 'ziggy-js'
 import axios from 'axios'
+import { allsections } from '@/sections';
 
 const props= defineProps<{
     data: {
@@ -182,13 +183,12 @@ const handleUpdate = () => {
 
 
             <!--  -->
-            <select required v-model="form.section_key" key="form.id" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:outline-none transition-colors duration-200">
-          
-               <option value="">-- Select Section --</option>
+            <select required  v-model="form.section_key" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:outline-none transition-colors duration-200">
+              <option value="">-- Select Section  --</option>
 
-                <option value="hero">Hero</option>
-                <option value="about">About</option>
-                <option value="service">Service </option>
+              <option v-for="section in allsections" :key="section.key" :value="section.key">
+                {{ section.name }}
+              </option>
             </select>
 
 
