@@ -150,6 +150,7 @@ const swiper6 = new Swiper(".banner6-slider", {
   },
 });
 
+// ========== banner 7
 
 
 

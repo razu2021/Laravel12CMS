@@ -2,7 +2,7 @@
     <div class="main_nav">
         <div class="container main_navbar">
             <div class="logo">
-                <a href="" class="brand-link">
+                <a href="{{ route('index') }}" class="brand-link">
                     <img src="{{ asset('contents/website/assets/images/logo.png') }}" alt="Logo">
                     <span class="brand-text"><span>Global</span> Guide Guru</span>
 
@@ -13,54 +13,33 @@
        
             <div class="main_menu">
                 <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">About</a></li>
-                    <li><a href="">Service <span> <i class="bi bi-caret-down-fill"></i></span></a>
+                    <li><a href="{{ route('index') }}">Home</a></li>
+                @if (!empty($categorys) && $categorys->count() > 0)
+                 @foreach ($categorys as $cate)
+                    <li><a href="{{ route('categorypage',$cate->url ?? '#') }}">{{ $cate->name ?? '' }} @if($cate->subCategory->count() > 0) <span> <i class="bi bi-caret-down-fill"></i></span> @endif</a>
+                        @if (!empty($cate->subCategory) && $cate->subCategory->count() > 0)
                         <div class="has_subcategory">
                             <ul>
-                                <li><a href="">Web Development</a></li>
-                                <li><a href="">Web web design </a></li>
-                                <li><a href="">Web web design </a></li>
-                                <li><a href="">Web web design </a></li>
-                                <li><a href="">Web web design </a></li>
-                                <li><a href="">Web web design </a></li>
-                                <li><a href="">Web web design </a></li>
-                                <li><a href="">Web web design </a></li>
-                                <li><a href="">Web web design </a></li>
-                                <li><a href="">Web web design </a></li>
-                                <li><a href="">graphics Design  <span> <i class="bi bi-chevron-double-right"></i></span></a>
+                                @foreach ($cate->subCategory as $subcate)
+                                <li><a href="{{ route('sub_categorypage',[$cate->url ?? '#',$subcate->url ?? '#']) }}">{{ $subcate->name ?? '' }}  @if ($subcate->childCategory->count() > 0) <span> <i class="bi bi-chevron-double-right"></i></span> @endif</a>
+                                    @if (!empty($subcate->childCategory) && $subcate->childCategory->count() > 0)
                                     <div class="has_childcategory">
                                         <ul>
-                                            <li><a href="">UI Design </a></li>
-                                            <li><a href="">UX Design</a></li>
-                                            <li><a href="">Figma Design</a></li>
-                                            <li><a href="">Figma Design</a></li>
-                                            <li><a href="">Figma Design</a></li>
-                                            <li><a href="">Figma Design</a></li>
-                                            <li><a href="">Figma Design</a></li>
-                                            <li><a href="">Figma Design</a></li>
-                                            <li><a href="">Figma Design</a></li>
-                                            <li><a href="">Figma Design</a></li>
-                                            <li><a href="">Figma Design</a></li>
-                                            <li><a href="">Figma Design</a></li>
-                                            <li><a href="">Figma Design</a></li>
+                                            @foreach ($subcate->childCategory as $childcate)
+                                               <li><a href="{{ route('child_CategoryPage',[$cate->url ?? '#',$subcate->url ?? '#', $childcate->url ?? '#']) }}">{{ $childcate->name ?? '' }} </a></li>
+                                            @endforeach
                                         </ul>
                                     </div>
+                                    @endif
                                 </li>
+                                @endforeach
                             </ul>
                         </div>
+                        @endif
                     </li>
-                    <li><a href="">Story</a>
-                        <div class="has_subcategory">
-                            <ul>
-                                <li><a href="">our story</a></li>
-                                <li><a href="">Studnet Feedback </a></li>
-                                <li> <a href="">other  </a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><a href="">Blog</a></li>
-                    <li><a href="">Contact</a></li>
+                    @endforeach
+                @endif
+
                 </ul>
             </div>
             {{-- main menu end here  --}}

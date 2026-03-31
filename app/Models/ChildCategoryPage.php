@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
+use App\Observers\ChildCategoryPageObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+#[ObservedBy([ChildCategoryPageObserver::class])]
 class ChildCategoryPage extends Model
 {
     use SoftDeletes;
@@ -36,4 +39,15 @@ class ChildCategoryPage extends Model
     public function getCategorySection(){
         return $this->morphMany(PageSection::class, 'sectionable');
     }
+
+
+    // get active data 
+    public function scopeActive($query){
+        return $query->where('public_status',1);
+    }
+        // get data by assending order 
+    public function scopeOrdered($query){
+        return $query->orderBy('order','asc');
+    }
+
 }

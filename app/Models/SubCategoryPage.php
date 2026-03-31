@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Observers\SubCategoryPageObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Symfony\Component\CssSelector\Node\FunctionNode;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+#[ObservedBy([SubCategoryPageObserver::class])]
 
 class SubCategoryPage extends Model
 {
@@ -44,6 +46,16 @@ class SubCategoryPage extends Model
     public function getCategorySection(){
         return $this->morphMany(PageSection::class, 'sectionable');
     }
+
+    // get active data 
+    public function scopeActive($query){
+        return $query->where('public_status',1);
+    }
+    // get data by assending order 
+    public function scopeOrdered($query){
+        return $query->orderBy('order','asc');
+    }
+
 
 
 }

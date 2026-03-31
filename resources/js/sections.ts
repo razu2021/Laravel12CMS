@@ -18,7 +18,7 @@ export const allsections: sections[] = [
         name : 'About Section'
     },
     {
-        key: 'services',
+        key: 'service',
         name : 'Services Section'
     },
     {

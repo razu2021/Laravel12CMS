@@ -1,8 +1,11 @@
 <?php
 namespace App\Models;
 
+use App\Observers\CategoryPageObserver;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+#[ObservedBy([CategoryPageObserver::class])]
 class CategoryPage extends Model
 {
 
@@ -40,6 +43,14 @@ class CategoryPage extends Model
     }
 
 
+    // get active data 
+    public function scopeActive($query){
+        return $query->where('public_status',1);
+    }
+    // get data by assending order 
+    public function scopeOrdered($query){
+        return $query->orderBy('order','asc');
+    }
 
 
 

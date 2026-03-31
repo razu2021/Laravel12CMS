@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\AnaliticsTracking;
+use App\Models\CategoryPage;
 use App\Models\Customcss;
 use App\Models\Customescript;
 use App\Models\Managefooter;
@@ -67,6 +68,28 @@ class DataServiceProvider extends ServiceProvider
             $analitics = cache()->rememberForever('AnaliticsTracking',function(){
                 return AnaliticsTracking::where('public_status',1)->get(['key','value']);
             });
+            
+            /**
+             * =========================================================
+             * category subcategory and childcategory cache 
+             * =========================================================
+             */
+            $categorys = cache()->rememberForever('allCategorys', function () {
+                return CategoryPage::with([
+                    'subCategory' => function ($q) {
+                        $q->active()
+                        ->ordered()
+                        ->with([
+                            'childCategory' => function ($q2) {
+                                $q2->active()
+                                    ->ordered();
+                            }
+                        ]);
+                    }
+                ])->whereNotIn('url', ['index', 'home'])->active()->ordered()->get();
+            });
+
+
 
 
 
@@ -86,6 +109,7 @@ class DataServiceProvider extends ServiceProvider
                 'customcss' => $customcss,
                 'preloader' => $preloader,
                 'analitics' => $analitics,
+                'categorys' => $categorys,
             ]);
 
         });

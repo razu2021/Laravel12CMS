@@ -52,5 +52,6 @@
 
     <div class="swiper-pagination v6-pagination"></div>
   </div>
+
 </section>
 

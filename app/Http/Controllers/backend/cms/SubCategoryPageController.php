@@ -186,7 +186,10 @@ class SubCategoryPageController extends Controller
         }
 
         // ----- insert record into database 
-        $update = SubCategoryPage::where('id',$id)->where('slug',$slug)->update([
+        $update = SubCategoryPage::where('id',$id)->where('slug',$slug)->firstOrFail();
+
+        if($update){
+            $update->update([
             'category_id'=>$request->category_id,
             'name'=>$request->name,
             'title'=>$request->title,
@@ -197,8 +200,6 @@ class SubCategoryPageController extends Controller
             'editor_id' => $editor_id,
             'updated_at' => Carbon::now()->toDateTimeString(),
         ]);
-
-        if($update){
             flash()->success('Information Updated successfully!');
             return redirect()->route('sub_category_page.view',[$id,$slug]);
         }else{
@@ -214,11 +215,10 @@ class SubCategoryPageController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = SubCategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
-            'public_status' => 1,
-        ]);
+        $active = SubCategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail();
 
         if($active){
+            $active->update(['public_status' => 1,]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -232,11 +232,10 @@ class SubCategoryPageController extends Controller
      */
     public function deactive($id,$slug){
 
-        $active = SubCategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
-            'public_status' => 0,
-        ]);
+        $active = SubCategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',1)->firstOrFail();
 
         if($active){
+            $active->update(['public_status' => 0,]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -331,16 +330,18 @@ class SubCategoryPageController extends Controller
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = SubCategoryPage::whereIn('id',$ids)->where('public_status',0)->update([
-                'public_status'=>1,
-            ]);
+            $categorys = SubCategoryPage::whereIn('id',$ids)->where('public_status',0)->get();
+            foreach($categorys as $items){
+                $items->update(['public_status'=>1,]);
+            }
  
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = SubCategoryPage::whereIn('id',$ids)->where('public_status',1)->update([
-                'public_status'=>0,
-            ]);
+            $categorys = SubCategoryPage::whereIn('id',$ids)->where('public_status',1)->get();
+            foreach($categorys as $items){
+                $items->update(['public_status'=>0,]);
+            }
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){

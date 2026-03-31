@@ -173,7 +173,10 @@ class CategoryPageController extends Controller
         }
 
         // ----- insert record into database 
-        $update = CategoryPage::where('id',$id)->where('slug',$slug)->update([
+        $update = CategoryPage::where('id',$id)->where('slug',$slug)->firstOrFail();
+
+        if($update){
+            $update->update([
             'name'=>$request->name,
             'title'=>$request->title,
             'description'=>$request->description,
@@ -183,8 +186,6 @@ class CategoryPageController extends Controller
             'editor_id' => $editor_id,
             'updated_at' => Carbon::now()->toDateTimeString(),
         ]);
-
-        if($update){
             flash()->success('Information Updated successfully!');
             return redirect()->route('category_page.view',[$id,$slug]);
         }else{
@@ -200,11 +201,10 @@ class CategoryPageController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = CategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
-            'public_status' => 1,
-        ]);
+        $active = CategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail();
 
         if($active){
+            $active->update(['public_status' => 1, ]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -218,11 +218,10 @@ class CategoryPageController extends Controller
      */
     public function deactive($id,$slug){
 
-        $active = CategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
-            'public_status' => 0,
-        ]);
+        $active = CategoryPage::where('id',$id)->where('slug',$slug)->where('public_status',1)->firstOrFail();
 
         if($active){
+            $active->update(['public_status' => 0, ]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -235,9 +234,8 @@ class CategoryPageController extends Controller
      */
     public function softdelete($id){
         $data= CategoryPage::where('id',$id)->first();
-        $data->delete();
-
         if ($data) {
+        $data->delete();
         flash()->success('Record deleted successfully!');
         } else {
             flash()->error('Failed to delete record!');
@@ -317,16 +315,18 @@ class CategoryPageController extends Controller
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = CategoryPage::whereIn('id',$ids)->where('public_status',0)->update([
-                'public_status'=>1,
-            ]);
+            $categorys = CategoryPage::whereIn('id',$ids)->where('public_status',0)->get();
+            foreach($categorys as $items){
+                $items->update(['public_status'=>1,]);
+            }
  
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = CategoryPage::whereIn('id',$ids)->where('public_status',1)->update([
-                'public_status'=>0,
-            ]);
+            $categorys = CategoryPage::whereIn('id',$ids)->where('public_status',1)->get();
+            foreach($categorys as $items){
+                $items->update(['public_status'=>0,]);
+            }
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){
