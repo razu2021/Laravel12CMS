@@ -343,3 +343,58 @@ document.addEventListener('DOMContentLoaded', function () {
         speed: 1000,
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * ====================== 
+ * back  to top script 
+ * ====================
+ */
+document.addEventListener("DOMContentLoaded", function() {
+    const progressPath = document.querySelector('.progress-wrap path');
+    const pathLength = progressPath.getTotalLength();
+
+    // শুরুর সেটআপ
+    progressPath.style.transition = progressPath.style.WebkitTransition = 'none';
+    progressPath.style.strokeDasharray = pathLength + ' ' + pathLength;
+    progressPath.style.strokeDashoffset = pathLength;
+    progressPath.getBoundingClientRect();
+    progressPath.style.transition = progressPath.style.WebkitTransition = 'stroke-dashoffset 10ms linear';
+
+    // স্ক্রল অনুযায়ী প্রোগ্রেস আপডেট
+    const updateProgress = () => {
+        const scroll = window.scrollY;
+        const height = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = pathLength - (scroll * pathLength / height);
+        progressPath.style.strokeDashoffset = progress;
+
+        // বাটন দেখানো বা লুকানো
+        if (scroll > 300) {
+            document.querySelector('.progress-wrap').classList.add('active-progress');
+        } else {
+            document.querySelector('.progress-wrap').classList.remove('active-progress');
+        }
+    };
+
+    window.addEventListener('scroll', updateProgress);
+
+    // ক্লিক করলে স্মুথ স্ক্রল করে উপরে যাওয়া
+    document.querySelector('.progress-wrap').addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+});

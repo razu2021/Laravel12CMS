@@ -14,7 +14,16 @@
 
 </head>
 <body>
-
+<div class="snake-scroll-wrapper">
+    <div class="snake-icon-root">
+        <div class="ball-3d-box">
+            <div class="globe-content">
+                <i class="fas fa-globe"></i> 
+            </div>
+            <div class="ball-reflection"></div>
+        </div>
+    </div>
+</div>
     {{-- ============= include header section ================== --}}
         @includeIf('frontend.manage.preloader.preloader')
     {{-- ============= include header section ================== --}}
@@ -39,6 +48,13 @@
     {{-- ================= include footer section ============== --}}
         @includeIf('frontend.manage.footer.footer_analitics')
     {{-- ================= include footer section ============== --}}
-
+<div class="progress-wrap">
+    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+    </svg>
+    <div class="arrow-icon">
+        <i class="bi bi-chevron-up"></i> 
+    </div>
+</div>
 </body>
 </html>

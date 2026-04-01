@@ -1,6 +1,9 @@
  
     <script src="{{ asset('contents/website/assets/js/jquery-4.0.0.min.js') }}"></script>
     <script src="{{ asset('contents/website/assets/js/bootstrap.min.js') }}"></script>
+    <!-- Lenis -->
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.5/bundled/lenis.min.js"></script>
+
     <script src="{{ asset('contents/website/assets/js/gsap.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="{{ asset('contents/website/assets/js/script.js') }}"></script>

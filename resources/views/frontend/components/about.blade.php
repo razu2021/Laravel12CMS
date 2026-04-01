@@ -1,10 +1,10 @@
-<section class="about about9">
+<section class="about about9 parallax" data-speed="1.5">
     <div class="container">
         <div class="row align-items-center">
 
             <!-- Image -->
             <div class="col-md-6">
-                <div class="about9__image">
+                <div class="about9__image parallax" data-speed="1.5">
                     <img src="https://i.pinimg.com/736x/3d/bb/21/3dbb21d2806caf3f93b04aa6457af482.jpg" alt="About">
 
                     <!-- floating badge -->
@@ -21,7 +21,7 @@
 
             <!-- Content -->
             <div class="col-md-6">
-                <div class="about9__content">
+                <div class="about9__content parallax" data-speed="1.5">
 
                     <h4 class="about9__subtitle">About Company</h4>
 

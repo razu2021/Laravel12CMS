@@ -501,3 +501,262 @@
 }
 
 
+
+
+
+
+
+
+
+/* =========================================
+   🌍 SNAKE SCROLL GLOBE SYSTEM (PREMIUM)
+   (Structure preserved, values refined for depth)
+========================================= */
+
+/* 🔻 Globe root (behind content but visible) */
+.snake-icon-root {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  /* পরিচ্ছন্ন কোড: transform: translateX(-50%) যথেষ্ট, translate(x,y) এর দরকার নেই */
+  transform: translateX(-50%); 
+  backface-visibility: visible;
+  z-index: 1;
+  pointer-events: none;
+  will-change: transform; /* পারফরম্যান্স বুস্ট */
+
+  /* 🌌 Atmosphere glow - Refined for a softer, vast feel */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%; /* একদম সেন্টারে এলাইন করা হলো */
+    left: 50%;
+    width: 300px; /* সামান্য বড় করা হয়েছে গভীরতার জন্য */
+    height: 300px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    /* রঙের ঘনত্ব কমিয়ে ব্লার বাড়ানো হয়েছে */
+    background: radial-gradient(circle, 
+      rgba(59, 130, 246, 0.4) 0%, 
+      rgba(6, 182, 212, 0.2) 40%, 
+      rgba(37, 99, 235, 0.05) 70%, 
+      transparent 100%
+    );
+    filter: blur(45px); /* Softened blur */
+    z-index: -1;
+  }
+
+  /* 🌑 Ground shadow - Made softer and more realistic */
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -60px; /* পজিশন সামান্য অ্যাডজাস্ট করা হয়েছে */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px; /* একটু চওড়া */
+    height: 40px; /* একটু চ্যাপ্টা বাস্তবসম্মত ছায়ার জন্য */
+    /* গ্রাডিয়েন্ট ব্যবহার করে ছায়াকে সফট করা হয়েছে */
+    background: radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%, transparent 80%);
+    border-radius: 50%;
+    filter: blur(15px); /* মোর ন্যাচারাল ব্লার */
+  }
+}
+
+/* ================================
+   🔵 3D GLOBE BALL (CINEMATIC)
+================================ */
+
+.ball-3d-box {
+  position: relative;
+  width: 210px; /* সামান্য বড়, প্রিমিয়াম প্রেসেন্সের জন্য */
+  height: 210px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 🌍 Earth gradient - Deepened colors for dramatic effect */
+  background: radial-gradient(circle at 35% 30%, 
+    #dbeafe 0%,   /* Brightest highlight point */
+    #3b82f6 25%,  /* Mid blue */
+    #1d4ed8 55%,  /* Deep oceanic blue */
+    #0f172a 100%  /* Deep space shadow */
+  );
+
+  /* 🔥 Depth + Glow - Complex layering for a "heavy" 3D feel */
+  box-shadow:
+    /* ইনার শ্যাডো আরও গভীর ও বিস্তৃত */
+    inset -30px -40px 80px rgba(0,0,0,0.9), 
+    /* ইনার হাইলাইট আরও সূক্ষ্ম */
+    inset 20px 20px 50px rgba(255,255,255,0.12),
+    /* আউটার শ্যাডো এবং গ্লো লেয়ার করা হয়েছে */
+    0 20px 50px rgba(0,0,0,0.5),          /* ড্রপ শ্যাডো */
+    0 0 60px rgba(37,99,235,0.3),        /* ইমিডিয়েট গ্লো */
+    0 0 120px rgba(37,99,235,0.15);       /* দূরবর্তী অ্যাটমোসফিয়ারিক গ্লো */
+
+  overflow: hidden;
+  transform-style: preserve-3d; /* JS ইন্টারঅ্যাকশনের জন্য প্রস্তুত */
+  perspective: 1000px;
+  will-change: transform;
+
+  /* 🌐 Latitude + Longitude Grid - Subtle & Elegant */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+
+    /* গ্রিড লাইন চিকন এবং কালার আরও সফট করা হয়েছে */
+    background:
+      repeating-linear-gradient(
+        0deg,
+        rgba(255,255,255,0.05) 0px,
+        rgba(255,255,255,0.05) 1px,
+        transparent 1px,
+        transparent 22px /* লাইন স্পেসিং বাড়ানো হয়েছে */
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgba(255,255,255,0.05) 0px,
+        rgba(255,255,255,0.05) 1px,
+        transparent 1px,
+        transparent 22px
+      );
+
+    opacity: 0.5;
+    transform: rotate(20deg) scale(1.1); /* সামান্য স্কেল যাতে কিনারে গ্রিড সুন্দর দেখায় */
+    mask-image: radial-gradient(circle, black 40%, transparent 70%); /* গ্রিড কিনারের দিকে আবছা হবে */
+    pointer-events: none;
+  }
+
+  /* 🌎 Fake continents texture - Overlay blend mode for realism */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+
+    /* কালার অপাসিটি কমিয়ে ব্লেন্ড মোড অ্যাডজাস্ট করা হয়েছে */
+    background: 
+      radial-gradient(circle at 75% 35%, rgba(34,197,94,0.15), transparent 45%),
+      radial-gradient(circle at 25% 75%, rgba(34,197,94,0.12), transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(59,130,246,0.1), transparent 60%);
+
+    mix-blend-mode: overlay; /* ওভারলে প্রিমিয়াম টেক্সচার দেয় */
+    filter: blur(10px); /* সফট ব্লার */
+  }
+}
+
+/* ================================
+   🌍 ICON STYLE
+================================ */
+
+.globe-content {
+  z-index: 2; /* গ্রিডের উপরে রাখার জন্য */
+  
+  i {
+    font-size: 75px; /* সামান্য বড় */
+    color: #f0f9ff; /* কালার একটু ব্রাইট */
+
+    /* টেক্সট শ্যাডো আরও সূক্ষ্ম ও লেয়ার্ড */
+    text-shadow:
+      0 0 10px rgba(96,165,250,0.8),
+      0 0 25px rgba(59,130,246,0.6),
+      0 0 50px rgba(37,99,235,0.4);
+
+    animation: rotateGlobe 25s linear infinite; /* এনিমেশন সামান্য স্লো ও স্মুথ */
+    opacity: 0.9; /* সামান্য ট্রান্সপারেন্ট হ্যালোগ্রাফিক লুকের জন্য */
+  }
+}
+
+/* ================================
+   ✨ REFLECTION (GLASS EFFECT)
+================================ */
+
+.ball-reflection {
+  position: absolute;
+  top: 12%; /* পজিশন রিফাইনড */
+  left: 18%;
+  width: 80px; /* চওড়া করা হয়েছে */
+  height: 40px;
+  /* লিনিয়ার গ্রাডিয়েন্ট ব্যবহার করে গ্লাসি লুক দেওয়া হয়েছে */
+  background: linear-gradient(135deg, rgba(255,255,255,0.35) 0%, transparent 80%);
+  border-radius: 50%;
+  filter: blur(18px); /* ব্লার অ্যাডজাস্টেড */
+  transform: rotate(-10deg); /* সামান্য কাত করা */
+  z-index: 3;
+}
+
+/* ================================
+   🔄 ANIMATION
+================================ */
+
+@keyframes rotateGlobe {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+//================= backto top button css
+/* =========================================
+   💎 LUXURY BACK TO TOP SYSTEM
+========================================= */
+
+.progress-wrap {
+    position: fixed;
+    right: 40px;
+    bottom: 40px;
+    height: 55px;
+    width: 55px;
+    cursor: pointer;
+    display: block;
+    border-radius: 50px;
+    box-shadow: inset 0 0 0 2px rgba(59, 130, 246, 0.1); /* হালকা বর্ডার */
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1);
+    background: #f000dc; /* ডার্ক লাক্সারি ব্যাকগ্রাউন্ড */
+}
+
+/* যখন ইউজার স্ক্রল করবে তখন বাটনটি ভেসে উঠবে */
+.progress-wrap.active-progress {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* প্রোগ্রেস সার্কেল স্টাইল */
+.progress-wrap svg path { 
+    fill: none; 
+    stroke: #3b82f6; /* আপনার গ্লোবের সাথে মিলানো ব্লু */
+    stroke-width: 30; 
+    box-sizing: border-box; 
+    transition: all 400ms linear;
+}
+
+/* বাটন হোভার ইফেক্ট */
+.progress-wrap:hover {
+    transform: scale(1.1);
+    background: #1e40af; /* হোভারে একটু ব্রাইট ব্লু */
+}
+
+.progress-wrap .arrow-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 18px;
+    transition: all 300ms ease;
+}
+
+.progress-wrap:hover .arrow-icon {
+    transform: translate(-50%, -80%); /* হোভারে তীর উপরে হালকা লাফাবে */
+}
