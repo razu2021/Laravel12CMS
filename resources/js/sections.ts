@@ -70,11 +70,11 @@ export const allsections: sections[] = [
         name : 'Contact Form Section'
     },
     {
-        key: 'contact_form',
-        name : 'Contact Form Section'
+        key: 'cta',
+        name : 'Call to Action Section'
     },
     {
-        key: 'faq',
+        key: 'faq_2',
         name : 'FAQ Section'
     },
     {
@@ -84,5 +84,17 @@ export const allsections: sections[] = [
     {
         key: 'google_map',
         name : 'Google Map Section'
+    },
+    {
+        key: 'whychooseus_1',
+        name : 'Why Choose Us Section'
+    },
+    {
+        key: 'roadmap_2',
+        name : 'Roadmap Section'
+    },
+    {
+        key: 'country_des_slider_2',
+        name : 'Country Destination Slider Section'
     },
 ];

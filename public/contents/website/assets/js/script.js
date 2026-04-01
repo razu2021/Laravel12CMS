@@ -153,6 +153,122 @@ const swiper6 = new Swiper(".banner6-slider", {
 // ========== banner 7
 
 
+//---- country desctination slider script start here 
+const destinationSlider = new Swiper('.destinationSlider', {
+    effect: 'coverflow',
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: 'auto',
+    loop: true,
+    autoplay: {
+    delay: 7000,
+    disableOnInteraction: false,
+    },
+    coverflowEffect: {
+        rotate: 0, // Cards will stay straight
+        stretch: 80, // Space between cards
+        depth: 200, // 3D perspective
+        modifier: 1,
+        slideShadows: false,
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+});
+
+
+//============== partner slider js start here partner slider 2
+document.addEventListener('DOMContentLoaded', function () {
+    // --- 1. Swiper Infinity Loop (Marquee) Configuration ---
+    const partnerSwiper = new Swiper('.partnerSlider', {
+        slidesPerView: 2, // Default mobile
+        spaceBetween: 25,
+        loop: true,
+        grabCursor: true,
+        autoplay: {
+            delay: 0, // No delay for seamless loop
+            disableOnInteraction: false,
+        },
+        speed: 5000, // Movement speed for one slide
+        allowTouchMove: false, // Prevents manual swipe, keeps flow smooth
+        freeMode: true, // Required for linear autoplay
+
+        // Fluid Scaling based on screen size
+        breakpoints: {
+            576: { slidesPerView: 3, spaceBetween: 30 },
+            992: { slidesPerView: 4, spaceBetween: 35 },
+            1200: { slidesPerView: 5, spaceBetween: 40 },
+        },
+    });
+
+    // --- 2. Dynamic 3D Perspective Tilt on Hover ---
+    const cards = document.querySelectorAll('.t-card');
+
+    cards.forEach(card => {
+        card.addEventListener('mousemove', function (e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left; // x position within the element.
+            const y = e.clientY - rect.top; // y position within the element.
+
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            // Define tilt range (the lower the number, the subtler the tilt)
+            const rotateX = ((y - centerY) / centerY) * -15; // Rotate around X
+            const rotateY = ((x - centerX) / centerX) * 15; // Rotate around Y
+
+            this.style.transform = `translateY(-1rem) scale(1.03) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        // Reset transform on mouse leave
+        card.addEventListener('mouseleave', function () {
+            this.style.transform = 'translateY(0) scale(1) rotateX(0deg) rotateY(0deg)';
+        });
+    });
+});
+
+// ========== partner slider js end here partner slider 3
+document.addEventListener('DOMContentLoaded', function () {
+    const swiper = new Swiper('.partnerSwiper', {
+        effect: 'coverflow', // Graphical 3D effect
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        loop: true,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        coverflowEffect: {
+            rotate: 30,      // Card gulo 30 degree angle-e thakbe
+            stretch: 0,
+            depth: 100,      // Distance/Depth feeling
+            modifier: 1,
+            slideShadows: false, // Clean look-er jonno shadow false
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        breakpoints: {
+            320: { slidesPerView: 1.2 },
+            768: { slidesPerView: 2.5 },
+            1024: { slidesPerView: 3.5 },
+        }
+    });
+});
+
+
+
+
+
+
+
 
 
 /**
@@ -178,4 +294,52 @@ document.querySelectorAll('.faq__question').forEach(item => {
 
     parent.classList.toggle('active');
   });
+});
+
+//---------------- Faq section script end here ---------------
+document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            // Close other items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+
+            // Toggle current item
+            item.classList.toggle('active');
+        });
+    });
+});
+
+
+//==========================================
+// service card section script start here
+//==========================================
+document.addEventListener('DOMContentLoaded', function () {
+    const serviceSwiper = new Swiper('.serviceSwiper', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        centeredSlides: true,
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        breakpoints: {
+            768: { slidesPerView: 2 },
+            1200: { slidesPerView: 3 },
+        },
+        // Adds smooth transition feel
+        speed: 1000,
+    });
 });

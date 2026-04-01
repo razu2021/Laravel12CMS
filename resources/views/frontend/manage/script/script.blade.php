@@ -2,16 +2,17 @@
     <script src="{{ asset('contents/website/assets/js/jquery-4.0.0.min.js') }}"></script>
     <script src="{{ asset('contents/website/assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('contents/website/assets/js/gsap.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="{{ asset('contents/website/assets/js/script.js') }}"></script>
     <script src="{{ asset('contents/website/assets/js/costom.js') }}"></script>
+    <script src="{{ asset('contents/website/assets/js/gsap_custom.js') }}"></script>
     <script src="{{ asset('contents/website/assets/js/mobile_sidebar.js') }}"></script>
 
 
 
-
-{{-- custom script add  --}}
+<!-- Custom Footer Script -->
 @if(!empty($customscript['footer_script']))
 <script>
-{!! $customscript['footer_script'] !!}
+    {!! $customscript['footer_script'] !!}
 </script>
 @endif

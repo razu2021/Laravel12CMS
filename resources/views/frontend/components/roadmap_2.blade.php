@@ -1,0 +1,78 @@
+<section class="roadmap2">
+    <div class="roadmap2__canvas">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <svg class="wave-line" viewBox="0 0 1440 320"><path fill="none" stroke="rgba(0,123,255,0.1)" stroke-width="4" stroke-dasharray="10,10" d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,144C672,139,768,181,864,181.3C960,181,1056,139,1152,122.7C1248,107,1344,117,1392,122.7L1440,128"></path></svg>
+    </div>
+
+    <div class="container">
+            <!-- section heading start here  -->
+            @includeif('frontend/components/ui/sectionheading4', [
+                'title' => 'Our Philosophy',
+                'heading' => 'Driven Global Success',
+                'description' => 'Amra bisshas kori protiti manusher sopno unique, tai amader kache apnar success-er priority shobcheye beshi.'])
+            <!-- section heading end here  -->  
+
+        <div class="roadmap2__flow">
+            <div class="flow-item">
+                <div class="icon-sphere">
+                    <i class="bi bi-chat-quote-fill"></i>
+                    <div class="pulse-ring"></div>
+                </div>
+                <div class="content">
+                    <span class="no">01</span>
+                    <h4>Counseling</h4>
+                    <p>Expert guidance to choose the right path.</p>
+                </div>
+            </div>
+
+            <div class="flow-item">
+                <div class="icon-sphere">
+                    <i class="bi bi-folder-check"></i>
+                    <div class="pulse-ring"></div>
+                </div>
+                <div class="content">
+                    <span class="no">02</span>
+                    <h4>Documentation</h4>
+                    <p>Hassle-free paperwork preparation.</p>
+                </div>
+            </div>
+
+            <div class="flow-item">
+                <div class="icon-sphere">
+                    <i class="bi bi-mortarboard-fill"></i>
+                    <div class="pulse-ring"></div>
+                </div>
+                <div class="content">
+                    <span class="no">03</span>
+                    <h4>Admission</h4>
+                    <p>Getting you into top-tier universities.</p>
+                </div>
+            </div>
+
+            <div class="flow-item">
+                <div class="icon-sphere">
+                    <i class="bi bi-shield-lock-fill"></i>
+                    <div class="pulse-ring"></div>
+                </div>
+                <div class="content">
+                    <span class="no">04</span>
+                    <h4>Visa Support</h4>
+                    <p>Ensuring maximum visa success rate.</p>
+                </div>
+            </div>
+
+            <div class="flow-item special">
+                <div class="icon-sphere">
+                    <i class="bi bi-airplane-engines-fill"></i>
+                    <div class="pulse-ring"></div>
+                </div>
+                <div class="content">
+                    <span class="no">05</span>
+                    <h4>Departure</h4>
+                    <p>Time to fly towards your future!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

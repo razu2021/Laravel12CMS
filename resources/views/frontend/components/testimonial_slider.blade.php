@@ -1,9 +1,14 @@
 <section class="testimonial py-5">
     <div class="container">
         <!-- Header -->
-        <div class="testimonial__header text-center mb-5">
-            <h2 class="testimonial__title">What Our Clients Say</h2>
-            <p class="testimonial__subtitle">Trusted by hundreds of happy customers</p>
+        <div class="mb-5">
+            <!-- section heading start here  -->
+            @includeif('frontend/components/ui/sectionheading2', [
+                'title' => 'Our Philosophy',
+                'heading' => 'Driven Global Success',
+                'description' => 'Amra bisshas kori protiti manusher sopno unique, tai amader kache apnar success-er priority shobcheye beshi.'])
+            <!-- section heading end here  -->  
+
         </div>
 
         <!-- Swiper Slider -->

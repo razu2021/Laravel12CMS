@@ -1,73 +1,20 @@
-<style>
-.post-card {
-    transition: all 0.3s ease;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.post-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-}
-
-.post-card img {
-    height: 220px;
-    object-fit: cover;
-}
-</style>
-
-
-
-
-
-<!-- POST SECTION START -->
-
-
-@if (!empty($contents))
-
-<section class="py-5 bg-light">
-    <div class="container">
-
-        <!-- Section Title -->
-        <div class="text-center mb-5">
-            <h2 class="fw-bold">Latest Posts</h2>
-            <p class="text-muted">Read our latest news and articles</p>
-        </div>
-
-        <div class="row g-4">
-
-            <!-- SINGLE POST -->
-            @foreach ($contents as $post) 
-            <div class="col-lg-3 col-md-6">
-                <div class="card post-card h-100 border-0 shadow-sm">
-                    <img src="https://picsum.photos/400/250?1" class="card-img-top" alt="post">
-
-                    <div class="card-body d-flex flex-column">
-                        <small class="text-muted mb-2">July 20, 2026</small>
-
-                        <h5 class="card-title fw-semibold">
-                            {{$post->heading ?? ''}}
-                        </h5>
-
-                        <p class="card-text text-muted">
-                          {{$post->description ?? ''}}
-                        </p>
-
-                        <a href="#" class="btn btn-outline-primary mt-auto">
-                            Read More →
-                        </a>
-                    </div>
-                </div>
+<section class="py-5">
+    <div class="container ">
+       <div class="mb-5">
+ <!-- section heading start here  -->
+        @includeif('frontend/components/ui/sectionheading2', [
+            'title' => 'Our Latest Insights',
+            'heading' => 'Stay Updated with Our Blog',
+            'description' => 'Discover the latest trends, tips, and insights in education and global opportunities through our expert-curated blog. Stay informed and inspired on your journey to success.']) 
+        <!-section heading end here -->
+       </div>
+        <div class="row">
+            @for($i = 1; $i <= 4; $i++)
+            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 mb-3 gap-3">
+                @includeif('frontend/components/ui/card1')
             </div>
-            @endforeach
-
-         
-
-
-
+            @endfor
+    
         </div>
     </div>
 </section>
-
-@endif
-<!-- POST SECTION END -->

@@ -24,6 +24,10 @@
 // 3. Layout
 // -------------------------
 @use 'layout/home';
+@use 'layout/about';
+@use 'layout/whychooseus';
+@use 'layout/country';
+@use 'layout/roadmap';
 @use 'layout/main_menu';
 @use 'layout/mobile_sidebar';  //---------- only required import
 @use 'layout/footer_area';
@@ -44,6 +48,7 @@
 // -------------------------
 @use 'components/buttons';
 @use 'components/cards';
+@use 'components/sectionheading';
 
 
 // -------------------------
