@@ -508,6 +508,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
 /* =========================================
    🌍 SNAKE SCROLL GLOBE SYSTEM (PREMIUM)
    (Structure preserved, values refined for depth)
@@ -760,3 +769,28 @@
 .progress-wrap:hover .arrow-icon {
     transform: translate(-50%, -80%); /* হোভারে তীর উপরে হালকা লাফাবে */
 }
+
+
+
+
+
+
+
+//========== mouse cursor poninter animation css start here 
+#cursor-ripple-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; // Jeno click-e badha na dey
+    z-index: 9999;
+}
+
+.ripple {
+    position: absolute;
+    border: 2px solid rgba(255, 62, 108, 0.5); // Agency Red halka kore
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+

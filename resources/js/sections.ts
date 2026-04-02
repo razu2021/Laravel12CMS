@@ -97,4 +97,8 @@ export const allsections: sections[] = [
         key: 'country_des_slider_2',
         name : 'Country Destination Slider Section'
     },
+    {
+        key: 'promot_5',
+        name : 'Promotional Slider Section'
+    },
 ];

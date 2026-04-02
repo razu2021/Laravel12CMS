@@ -12,14 +12,28 @@
                     
                     <div class="feature-list">
                         <div class="feature-item">
-                            <div class="icon-wrap"><i class="fas fa-check-circle"></i></div>
+                            <div class="icon-wrap"><i class="bi bi-check-circle"></i></div>
                             <div class="text">
                                 <h4>Tailored Strategy</h4>
                                 <p>Custom solutions for every unique visa profile.</p>
                             </div>
                         </div>
                         <div class="feature-item">
-                            <div class="icon-wrap"><i class="fas fa-globe-americas"></i></div>
+                            <div class="icon-wrap"><i class="bi bi-globe-americas"></i></div>
+                            <div class="text">
+                                <h4>Global Network</h4>
+                                <p>Strong connections with international embassies.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="icon-wrap"><i class="bi bi-check-circle"></i></div>
+                            <div class="text">
+                                <h4>Tailored Strategy</h4>
+                                <p>Custom solutions for every unique visa profile.</p>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="icon-wrap"><i class="bi bi-globe-americas"></i></div>
                             <div class="text">
                                 <h4>Global Network</h4>
                                 <p>Strong connections with international embassies.</p>

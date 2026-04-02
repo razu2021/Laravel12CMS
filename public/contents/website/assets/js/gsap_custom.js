@@ -117,3 +117,43 @@ if (ballBox) {
 window.addEventListener("resize", () => {
     ScrollTrigger.refresh();
 });
+
+
+
+
+
+
+
+
+//******************************************** */
+//=======================  mouse cursor pointer animation 
+window.addEventListener("click", (e) => {
+    const ripple = document.createElement("div");
+    ripple.className = "ripple";
+    document.getElementById("cursor-ripple-container").appendChild(ripple);
+
+    // Ripple position set kora
+    gsap.set(ripple, {
+        left: e.clientX,
+        top: e.clientY,
+        width: 0,
+        height: 0,
+        opacity: 1
+    });
+
+    // Wave animation
+    gsap.to(ripple, {
+        width: 100,
+        height: 100,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        onComplete: () => ripple.remove() // Kaaj shesh hole delete
+    });
+});
+
+
+
+
+
+

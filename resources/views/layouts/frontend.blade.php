@@ -24,6 +24,8 @@
         </div>
     </div>
 </div>
+<div id="cursor-ripple-container"></div>
+
     {{-- ============= include header section ================== --}}
         @includeIf('frontend.manage.preloader.preloader')
     {{-- ============= include header section ================== --}}

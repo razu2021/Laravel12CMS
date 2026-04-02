@@ -6,9 +6,7 @@ $brand-color: #00f2ff;
 $bg-dark: #101649;
 $text-light: #ffffff;
 
-:root {
-  font-size: 62.5%; // 1rem = 10px
-}
+
 
 // Keyframes
 @keyframes orbit {
@@ -1516,4 +1514,176 @@ $bg-light: #f8fafc;
 @keyframes fadeInDown {
   0% { opacity: 0; transform: translateY(-20px); }
   100% { opacity: 1; transform: translateY(0); }
+}
+
+
+
+// ------------------- banner 7 css start here -------------------
+// Initial state for JS animation
+
+
+.banner7-section {
+    padding: clamp(3rem, 10vh, 5rem) 0;
+    background-color: #f7f9fc;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+
+    .banner7-box {
+        background: #ffffff;
+        border-radius: 4rem;
+        padding: clamp(2rem, 5vw, 3rem);
+        position: relative;
+        box-shadow: 0 4rem 80px rgba(0, 0, 0, 0.04);
+        border: 0.1rem solid rgba(0,0,0,0.03);
+    }
+
+    .banner7-content-wrap {
+        position: relative;
+        z-index: 10;
+
+        .banner7-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 1.2rem;
+            padding: 0.8rem 2.2rem;
+            background: linear-gradient(90deg, #ff6b6b, #ff4d4d);
+            color: #ffffff;
+            border-radius: 5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .banner7-title {
+            color: #1a1d2e;
+            font-size: clamp(2.8rem, 4.5vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            span { color: #ff6b6b; }
+        }
+
+        .banner7-desc {
+            color: #5b5f77;
+            font-size: 1.6rem;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            max-width: 48rem;
+        }
+
+        .banner7-actions {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .banner7-btn-main {
+            background: #1a1d2e;
+            color: #ffffff;
+            padding: 1.6rem 3.2rem;
+            font-size: 1.6rem;
+            font-weight: 600;
+            border-radius: 1rem;
+            text-decoration: none;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+            &:hover {
+                background: #ff6b6b;
+                transform: translateY(-0.4rem);
+                box-shadow: 0 1rem 2rem rgba(255, 107, 107, 0.25);
+            }
+        }
+
+        .banner7-play-btn {
+            width: 5.2rem; height: 5.2rem;
+            border: 0.1rem solid #eee;
+            background: #fff;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.04);
+
+            &::after {
+                content: '';
+                border-top: 0.6rem solid transparent;
+                border-bottom: 0.6rem solid transparent;
+                border-left: 0.9rem solid #1a1d2e;
+                margin-left: 0.3rem;
+            }
+
+            &:hover {
+                background: #ff6b6b;
+                border-color: #ff6b6b;
+                &::after { border-left-color: #fff; }
+            }
+        }
+    }
+
+    .banner7-visual-wrap {
+        position: relative;
+        z-index: 5;
+        transform: scale(1.08) translateX(3rem);
+
+        .banner7-mask-layer {
+            width: 100%;
+            height: clamp(35rem, 40vw, 50rem);
+            background: #f0f0f0;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            overflow: hidden;
+            box-shadow: 0 2rem 50px rgba(0,0,0,0.1);
+            animation: morphing7 10s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
+
+            img {
+                width: 100%; height: 100%;
+                object-fit: cover;
+                transform: scale(1.15);
+                transition: 1.5s ease-out;
+            }
+        }
+
+        .banner7-blob {
+            position: absolute;
+            filter: blur(4rem);
+            border-radius: 50%;
+            opacity: 0.35;
+            z-index: -1;
+        }
+
+        .banner7-blob-1 {
+            width: 20rem; height: 20rem;
+            background: #ff6b6b;
+            top: -3rem; right: -3rem;
+        }
+
+        .banner7-blob-2 {
+            width: 18rem; height: 18rem;
+            background: #4facfe;
+            bottom: -3rem; left: -2rem;
+        }
+    }
+}
+
+@keyframes morphing7 {
+    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    100% { border-radius: 60% 40% 30% 70% / 70% 70% 30% 30%; }
+}
+
+@media (max-width: 991px) {
+    .banner7-section {
+        .banner7-content-wrap {
+            text-align: center;
+            padding: 0 !important;
+            margin-bottom: 4rem;
+            .banner7-actions { justify-content: center; }
+        }
+        .banner7-visual-wrap {
+            transform: scale(1) translateX(0);
+            .banner7-mask-layer { height: 32rem; animation: none; border-radius: 2.5rem; }
+            .banner7-blob { display: none; }
+        }
+    }
 }

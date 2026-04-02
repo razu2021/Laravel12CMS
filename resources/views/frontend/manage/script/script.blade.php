@@ -1,5 +1,6 @@
  
     <script src="{{ asset('contents/website/assets/js/jquery-4.0.0.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js"></script>
     <script src="{{ asset('contents/website/assets/js/bootstrap.min.js') }}"></script>
     <!-- Lenis -->
 <script src="https://unpkg.com/@studio-freight/lenis@1.0.5/bundled/lenis.min.js"></script>

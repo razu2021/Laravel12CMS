@@ -87,6 +87,31 @@ const swiper2 = new Swiper(".banner_slider2", {
     clickable: true,
   },
 });
+// =================== banner7 slider js end here ===========
+document.addEventListener("DOMContentLoaded", function () {
+    const banner7Swiper = new Swiper('.main_hero_slider', {
+        // Core settings
+        loop: true,
+        speed: 1000,      // Slide transition speed
+        parallax: true,   // Enables the data-swiper-parallax attributes
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        
+        // Navigation & Pagination
+        pagination: {
+            el: '.banner7-pagination',
+            clickable: true,
+        },
+
+        // Fast & Responsive Transitions
+        grabCursor: true,
+        watchSlidesProgress: true, // Performance boost for parallax
+    });
+});
+
+
 
 // =================== banner4 slider js end here ===========
 const swiper4 = new Swiper(".banner4-slider", {
@@ -346,8 +371,74 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+//====================== promot5 slider script 
+const promot5Slider = new Swiper('.promot5-slider', {
+    // Basic Settings
+    loop: true,
+    speed: 1200, // Ektu slow and smooth transition
+    allowTouchMove: true, // Mobile-e swipe kora jabe
+    parallax: true, // Elements gulo ektu alada speed-e move korbe (Premium feel)
+    
+    // Autoplay logic with pause on hover
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true, // User hover korle slider thambe
+    },
 
+    // Premium Fade Effect
+    effect: 'fade',
+    fadeEffect: {
+        crossFade: true // Ekta slide jawar somoy arekta reveal hobe seamlessly
+    },
 
+    // Advanced Pagination (Bullet custom style)
+    pagination: {
+        el: '.promot5-pagination',
+        clickable: true,
+        dynamicBullets: false, // Bullet size fixed thakbe
+    },
+
+    // slide change hobar somoy text animation trigger hobe
+    on: {
+        init: function () {
+            // Initial slide-er content reveal hobe
+            animateSliderContent(this);
+        },
+        slideChangeTransitionStart: function () {
+            // Slide change shuru holei puron content hide hobe
+            resetSliderContent();
+        },
+        slideChangeTransitionEnd: function () {
+            // New slide-er content reveal hobe (Fade-in-up style)
+            animateSliderContent(this);
+        }
+    }
+});
+
+// Animation Helper Functions
+function animateSliderContent(swiper) {
+    const activeSlide = swiper.slides[swiper.activeIndex];
+    
+    // Content elements dhora (Badge, Title, Desc, Button)
+    const elements = activeSlide.querySelectorAll('.promot5-badge, .promot5-title, .promot5-desc, .promot5-actions, .promot5-visual-wrap');
+    
+    elements.forEach((el, index) => {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+        el.style.transition = `all 0.6s ease ${0.2 + (index * 0.1)}s`; // Staggered delay logic
+    });
+}
+
+function resetSliderContent() {
+    const allElements = document.querySelectorAll('.promot5-badge, .promot5-title, .promot5-desc, .promot5-actions, .promot5-visual-wrap');
+    
+    allElements.forEach((el) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)'; // Niche theke upore uthbar effect
+        el.style.transition = 'none'; // Reset-er somoy transition hobe na
+    });
+}
 
 
 
@@ -398,3 +489,7 @@ document.addEventListener("DOMContentLoaded", function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 });
+
+
+
+

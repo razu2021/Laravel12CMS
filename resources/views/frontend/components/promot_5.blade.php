@@ -1,7 +1,3 @@
-@extends('layouts/frontend')
-@section('web_content')
-<!-- @includeif('frontend/components/breadcrumb') -->
-
 
 <section class="promot5-section">
     <div class="container">
@@ -57,5 +53,3 @@
         </div>
     </div>
 </section>
-
-@endsection
