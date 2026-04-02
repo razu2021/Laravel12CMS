@@ -138,6 +138,8 @@ Route::controller(PageSectionController::class)->prefix('admin/dashboad/manage/p
 
     //change theme section 
     Route::get('change/section/theme/{id}/{slug}','changeTheme')->name('changeTheme');
+    Route::patch('theme/update','themeUpdate')->name('theme_update');
+
 
 
 });

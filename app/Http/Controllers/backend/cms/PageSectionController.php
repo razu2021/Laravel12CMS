@@ -527,6 +527,25 @@ class PageSectionController extends Controller
     }
 
 
+    //---------- theme update functionality here  
+    public function themeUpdate(Request $request){
+        $id = $request->id;
+        $slug = $request->slug;
+        $data = PageSection::where('id',$id)->where('slug',$slug)->firstOrFail();
+
+        if($data){
+            $data->update([
+                'section_key'=>$request->theme,
+            ]);
+            flash()->success('Theme Updated successfully!');
+        }else{
+            flash()->error('Theme Updated Faild !');
+        }
+
+        
+    }
+
+
 
 
 

@@ -6,9 +6,15 @@
     </div>
 
     <div class="container">
-        <div class="section-head text-center">
-            <span class="sub-title">Global Partners</span>
-            <h2 class="main-title">Trusted by World-Class Institutions</h2>
+        
+        <div>
+            {{-- section heading --}}
+            @includeIf('frontend.components.ui.sectionheading1',[
+                'title'=>'section title',
+                'heading'=>'section title',
+                'description'=>'section title',
+            ])
+            {{-- section heading --}}
         </div>
 
         <div class="swiper partnerSwiper">
