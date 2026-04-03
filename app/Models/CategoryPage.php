@@ -45,7 +45,7 @@ class CategoryPage extends Model
 
     // get active data 
     public function scopeActive($query){
-        return $query->where('public_status',1);
+        return $query->where('public_status',1)->where('is_nav',1);
     }
     // get data by assending order 
     public function scopeOrdered($query){
@@ -53,7 +53,10 @@ class CategoryPage extends Model
     }
 
 
-
+    public function seo()
+    {
+        return $this->morphOne(Seo::class, 'seoable');
+    }
 
 
 

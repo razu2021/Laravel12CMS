@@ -1,60 +1,61 @@
-<section class="whychooseus1">
+<section class="whychoosus2">
+    <div class="graphic-shape shape-1"></div>
+    <div class="graphic-shape shape-2"></div>
+    <div class="graphic-shape shape-3"></div>
+    
     <div class="container">
-
         <div class="row align-items-center">
+            
             <div class="col-12 col-lg-6">
-                <div class="whychooseus1__content">
-                    <span class="sub-title">Expertise You Can Trust</span>
-                    <h2 class="main-title">Navigating Your Global Future with Precision</h2>
-                    <p class="description">
-                        We don't just process applications; we craft success stories. Our methodology combines decades of legal experience with modern digital efficiency.
-                    </p>
-                    
-                    <div class="feature-list">
-                        <div class="feature-item">
-                            <div class="icon-wrap"><i class="bi bi-check-circle"></i></div>
+                <div class="whychoosus2__image-area">
+                    <div class="image-mask">
+                        <img src="https://i.pinimg.com/736x/e7/ba/9e/e7ba9e0f5f16f9be77e928eca4352183.jpg" alt="Expert Support">
+                    </div>
+                    <div class="graph-element dots"></div>
+                    <div class="graph-element circle-line"></div>
+                    <div class="data-card-floating">
+                        <i class="bi bi-chart-line"></i>
+                        <span>98% Success</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="whychoosus2__content">
+                    <div class="section-head">
+                        <span class="sub-title">Core Capabilities</span>
+                        <h2 class="main-title">Seamless Visa Solutions Powered by Expertise</h2>
+                        <p class="description">We merge advanced technology with deep legal insights to provide an unmatched immigration experience.</p>
+                    </div>
+
+                    <div class="bento-grid">
+                        <div class="bento-item">
+                            <div class="icon-box"><i class="bi bi-magic"></i></div>
                             <div class="text">
-                                <h4>Tailored Strategy</h4>
-                                <p>Custom solutions for every unique visa profile.</p>
+                                <h4>Smart Automation</h4>
+                                <p>Faster processing with AI documentation.</p>
                             </div>
                         </div>
-                        <div class="feature-item">
-                            <div class="icon-wrap"><i class="bi bi-globe-americas"></i></div>
+                        
+                        <div class="bento-item">
+                            <div class="icon-box"><i class="bi bi-shield-fill"></i></div>
                             <div class="text">
-                                <h4>Global Network</h4>
-                                <p>Strong connections with international embassies.</p>
+                                <h4>Expert Compliance</h4>
+                                <p>Zero-error policy guaranteed.</p>
                             </div>
                         </div>
-                        <div class="feature-item">
-                            <div class="icon-wrap"><i class="bi bi-check-circle"></i></div>
+
+                        <div class="bento-item wide">
+                            <div class="icon-box"><i class="bi bi-headset"></i></div>
                             <div class="text">
-                                <h4>Tailored Strategy</h4>
-                                <p>Custom solutions for every unique visa profile.</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="icon-wrap"><i class="bi bi-globe-americas"></i></div>
-                            <div class="text">
-                                <h4>Global Network</h4>
-                                <p>Strong connections with international embassies.</p>
+                                <h4>24/7 Premium Support</h4>
+                                <p>Dedicated consultants always available for your peace of mind.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-12 col-lg-6">
-                <div class="whychooseus1__image-wrapper">
-                    <div class="main-img-box">
-                        <img src="https://i.pinimg.com/736x/38/bd/10/38bd10063fd5a79dadde2d5d1d3a0590.jpg" alt="Why Choose Us">
-                        <div class="floating-card">
-                            <div class="pulse-icon"><i class="fas fa-award"></i></div>
-                            <h5>99% Success Rate</h5>
-                        </div>
-                    </div>
-                    <div class="bg-shape"></div>
-                </div>
-            </div>
         </div>
     </div>
 </section>

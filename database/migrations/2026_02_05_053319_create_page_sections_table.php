@@ -15,13 +15,12 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('section_key')->nullable();
             $table->morphs('sectionable');
-
-
             $table->string('section_heading')->nullable();
             $table->string('section_title')->nullable();
             $table->string('description')->nullable();
             $table->integer('order')->nullable();
             $table->string('dynamic_route')->nullable();
+            $table->string('payload_json')->nullable();
             $table->string('slug',255)->nullable();
             $table->integer('creator_id')->nullable();
             $table->integer('editor_id')->nullable();

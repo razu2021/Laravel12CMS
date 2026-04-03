@@ -10,6 +10,9 @@ class PageSection extends Model
 {
     use SoftDeletes;
 
+    protected $casts = [
+    'payload_json' => 'array',
+    ];
     protected $primaryKey = 'id';
     protected $guarded = [];
 

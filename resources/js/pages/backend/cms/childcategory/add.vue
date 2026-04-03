@@ -23,6 +23,7 @@ const form = useForm('child_category_page', {
   slug: '',
   order: '',
   public_status: false,
+  is_nav: true,
 })
 const subcategories = ref<any[]>([]) 
 
@@ -147,7 +148,8 @@ watch(
 
             <!-- STATUS CARD -->
             <div class="rounded-2xl bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
-              <h3 class="text-sm font-semibold text-slate-800 mb-4">
+              <div class="mb-2">
+                <h3 class="text-sm font-semibold text-slate-800 mb-4">
                 Publish Settings
               </h3>
 
@@ -156,6 +158,19 @@ watch(
                 <input type="checkbox" v-model="form.public_status"
                   class="h-5 w-5 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500">
               </label>
+
+              </div>
+              <div>
+                <h3 class="text-sm font-semibold text-slate-800 mb-4">
+                Menu Status
+              </h3>
+
+              <label class="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
+                <span class="text-sm text-slate-600"> Added to Main Menu </span>
+                <input type="checkbox" v-model="form.is_nav"
+                  class="h-5 w-5 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500">
+              </label>
+              </div>
             </div>
             <!-- STATUS CARD -->
             <div class="rounded-2xl bg-slet p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">

@@ -118,10 +118,20 @@ class CategoryPageController extends Controller
             'url'=>$url,
             'order'=>$request->order,
             'public_status'=>$request->public_status ?? 0,
+            'is_nav'=>$request->is_nav ?? 1,
             'slug'=>$slug,
             'creator_id' => $creator_id,
             'created_at' => Carbon::now()->toDateTimeString(),
         ]);
+
+
+        // ---------- seo data insert into seo table 
+        $insert->seo()->create([
+            'meta_title'=>$insert->title ?? 'title',
+            'meta_description'=>$insert->title ?? 'description',
+        ]);
+
+
 
         //---------------------- if insert ------
         if($insert){
@@ -183,6 +193,7 @@ class CategoryPageController extends Controller
             'url'=>$url,
             'order'=>$request->order,
             'public_status'=>$request->public_status ?? 0,
+            'is_nav'=>$request->is_nav ?? 1,
             'editor_id' => $editor_id,
             'updated_at' => Carbon::now()->toDateTimeString(),
         ]);

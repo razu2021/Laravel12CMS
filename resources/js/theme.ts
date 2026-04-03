@@ -1,3 +1,4 @@
+console.log('🔥 THEME UPDATED')
 // Define a Theme type
 export interface Theme {
   key: string;
@@ -13,7 +14,7 @@ export interface Theme {
   */
 export const abouteThemes: Theme[] = [
   {
-    key: 'about',
+    key: 'about_main',
     name: 'About Defualt',
     preview: 'https://picsum.photos/400/250?5'
   },
@@ -32,8 +33,31 @@ export const abouteThemes: Theme[] = [
     name: 'About Theme 4',
     preview: 'https://picsum.photos/400/250?5'
   },
+  {
+    key: 'about_5',
+    name: 'About Theme 5',
+    preview: 'https://picsum.photos/400/250?5'
+  },
 
 ];
+/**
+  * ======================================================
+  *  Load blog Section Theme 
+  * ======================================================
+  */
+export const blogThemes: Theme[] = [
+  {
+    key: 'blog_main',
+    name: 'Blog Defualt',
+    preview: 'https://picsum.photos/400/250?5'
+  },
+  {
+    key: 'blog_all',
+    name: 'All blog',
+    preview: 'https://picsum.photos/400/250?5'
+  },
+];
+
 /**
   * ======================================================
   *  Load BreadCrumb Section Theme 
@@ -41,8 +65,25 @@ export const abouteThemes: Theme[] = [
   */
 export const breadcrumbThemes: Theme[] = [
   {
-    key: 'breadcrumb',
+    key: 'breadcrumb_main',
     name: 'Breadcrumb Defualt',
+    preview: 'https://picsum.photos/400/250?5'
+  },
+];
+/**
+  * ======================================================
+  *  Load Caouse Study or other Section Theme 
+  * ======================================================
+  */
+export const casestudyThemes: Theme[] = [
+  {
+    key: 'casestudy_main',
+    name: 'Caous Study Theme Defualt',
+    preview: 'https://picsum.photos/400/250?5'
+  },
+  {
+    key: 'casestudy_all',
+    name: ' Caous Study all Theme',
     preview: 'https://picsum.photos/400/250?5'
   },
 ];
@@ -53,13 +94,13 @@ export const breadcrumbThemes: Theme[] = [
   */
 export const countryThemes: Theme[] = [
   {
-    key: 'country_des_1',
-    name: 'Country Destination Theme Defualt',
+    key: 'countrydestination_main',
+    name: 'Theme Defualt',
     preview: 'https://picsum.photos/400/250?5'
   },
   {
-    key: 'country_des_slider_2',
-    name: 'Country Destination Theme Slider 2',
+    key: 'countrydestination_1',
+    name: ' Theme 2',
     preview: 'https://picsum.photos/400/250?5'
   },
 ];
@@ -70,32 +111,49 @@ export const countryThemes: Theme[] = [
   */
 export const contactFormThemes: Theme[] = [
   {
-    key: 'contact_form',
-    name: 'Contact Form Theme Defualt',
+    key: 'contactform_main',
+    name: 'Theme Defualt',
     preview: 'https://picsum.photos/400/250?5'
   },
 ];
 /**
   * ======================================================
-  *  Load Call to Action Section Theme 
+  *  Load Call to Action Section Theme   e
   * ======================================================
   */
 export const ctaThemes: Theme[] = [
   {
-    key: 'cta',
+    key: 'cta_main',
     name: 'CTA Theme Defualt',
+    preview: 'https://picsum.photos/400/250?5'
+  },
+];
+/**
+  * ======================================================
+  *  Load Call to Action Section Theme   e
+  * ======================================================
+  */
+export const eventThemes: Theme[] = [
+  {
+    key: 'event_main',
+    name: ' Theme Defualt',
+    preview: 'https://picsum.photos/400/250?5'
+  },
+  {
+    key: 'event_all',
+    name: ' Theme 2',
     preview: 'https://picsum.photos/400/250?5'
   },
 ];
 
 /**
   * ======================================================
-  *  Load FAQ Section Theme 
+  *  Load FAQ Section Theme  f
   * ======================================================
   */
 export const faqThemes: Theme[] = [
   {
-    key: 'faq',
+    key: 'faq_main',
     name: 'Faq Theme Defualt',
     preview: 'https://picsum.photos/400/250?5'
   },
@@ -108,24 +166,24 @@ export const faqThemes: Theme[] = [
 
 /**
   * ======================================================
-  *  Load Follow us  Section Theme 
+  *  Load Follow us  Section Theme  f
   * ======================================================
   */
 export const folloqusThemes: Theme[] = [
   {
-    key: 'follow_us',
+    key: 'followus_main',
     name: 'Follow us Theme Defualt',
     preview: 'https://picsum.photos/400/250?5'
   },
 ];
 /**
   * ======================================================
-  *  Load Google map  Section Theme 
+  *  Load Google map  Section Theme  g
   * ======================================================
   */
 export const googlemapsThemes: Theme[] = [
   {
-    key: 'google_map',
+    key: 'googlemap_main',
     name: 'Follow us Theme Defualt',
     preview: 'https://picsum.photos/400/250?5'
   },
@@ -133,12 +191,12 @@ export const googlemapsThemes: Theme[] = [
 
 /**
   * ======================================================
-  *  Load Hero Section Theme 
+  *  Load Hero Section Theme  h
   * ======================================================
   */
 export const heroThemes: Theme[] = [
   {
-    key: 'hero',
+    key: 'hero_main',
     name: 'Hero Defualt',
     preview: 'https://picsum.photos/400/250?1'
   },
@@ -182,12 +240,12 @@ export const heroThemes: Theme[] = [
 
 /**
   * ======================================================
-  *  Load Image Galley Section Theme 
+  *  Load Image Galley Section Theme  i
   * ======================================================
   */
 export const imageGalleryThemes: Theme[] = [
   {
-    key: 'image_gallery',
+    key: 'imagegallery_main',
     name: 'Gallery Theme Defualt',
     preview: 'https://picsum.photos/400/250?5'
   },
@@ -195,52 +253,58 @@ export const imageGalleryThemes: Theme[] = [
 
 /**
   * ======================================================
-  *  Load Partner  Section Theme 
+  *  Load Partner  Section Theme p
   * ======================================================
   */
 export const partnerThemes: Theme[] = [
   {
-    key: 'partner_slider',
+    key: 'partner_main',
     name: 'Slider Theme Defualt',
     preview: 'https://picsum.photos/400/250?5'
   },
   {
-    key: 'partner_slider2',
+    key: 'partner_1',
     name: 'Slider Theme 2',
     preview: 'https://picsum.photos/400/250?5'
   },
   {
-    key: 'partner_slider3',
+    key: 'partner_2',
     name: 'Slider Theme 3',
     preview: 'https://picsum.photos/400/250?5'
   },
 ];
+
 /**
   * ======================================================
-  *  Load Post  Section Theme 
+  *  Load Post  Section Theme  p
   * ======================================================
   */
 export const postThemes: Theme[] = [
   {
-    key: 'post',
+    key: 'post_main',
     name: 'post Theme Defualt',
     preview: 'https://picsum.photos/400/250?5'
   },
   {
-    key: 'allpost',
+    key: 'post_all',
     name: 'All post Theme',
     preview: 'https://picsum.photos/400/250?5'
   },
 ];
 /**
   * ======================================================
-  *  Load Promot Section Theme 
+  *  Load Promot Section Theme  p
   * ======================================================
   */
 export const promotThemes: Theme[] = [
   {
-    key: 'promot_1',
+    key: 'promot_main',
     name: 'Promotional Theme Defualt',
+    preview: 'https://picsum.photos/400/250?5'
+  },
+  {
+    key: 'promot_1',
+    name: 'Promotional Theme 1',
     preview: 'https://picsum.photos/400/250?5'
   },
   {
@@ -258,22 +322,34 @@ export const promotThemes: Theme[] = [
     name: 'Promotional Theme 4',
     preview: 'https://picsum.photos/400/250?5'
   },
-  {
-    key: 'promot_5',
-    name: 'Promotional Theme 5',
-    preview: 'https://picsum.photos/400/250?5'
-  },
  
 ];
 /**
   * ======================================================
-  *  Load Roadmap Section Theme 
+  *  Load Protfolio Section Theme  p
+  * ======================================================
+  */
+export const protfolioThemes: Theme[] = [
+  {
+    key: 'protfolio_main',
+    name: 'Promotional Theme Defualt',
+    preview: 'https://picsum.photos/400/250?5'
+  },
+];
+/**
+  * ======================================================
+  *  Load Roadmap Section Theme r
   * ======================================================
   */
 export const roadmapThemes: Theme[] = [
   {
-    key: 'roadmap_1',
+    key: 'roadmap_main',
     name: 'Roadmap Theme Defualt',
+    preview: 'https://picsum.photos/400/250?5'
+  },
+  {
+    key: 'roadmap_1',
+    name: 'Roadmap Theme 1',
     preview: 'https://picsum.photos/400/250?5'
   },
   {
@@ -281,20 +357,15 @@ export const roadmapThemes: Theme[] = [
     name: 'Roadmap Theme 2',
     preview: 'https://picsum.photos/400/250?5'
   },
-  {
-    key: 'roadmap_3',
-    name: 'Roadmap Theme 3',
-    preview: 'https://picsum.photos/400/250?5'
-  },
 ];
 /**
   * ======================================================
-  *  Load Service Section Theme 
+  *  Load Service Section Theme s
   * ======================================================
   */
 export const serviceThemes: Theme[] = [
   {
-    key: 'service',
+    key: 'service_main',
     name: 'Service Theme Defualt',
     preview: 'https://picsum.photos/400/250?5'
   },
@@ -302,7 +373,7 @@ export const serviceThemes: Theme[] = [
     key: 'service_1',
     name: 'Theme 1',
     preview: 'https://picsum.photos/400/250?6'
-  }
+  },
   {
     key: 'service_3',
     name: 'Theme 3',
@@ -311,10 +382,32 @@ export const serviceThemes: Theme[] = [
 ];
 /**
   * ======================================================
-  *  Load Testimonials Section Theme 
+  *  Load Team Section Theme t
+  * ======================================================
+  */
+export const teamThemes: Theme[] = [
+  {
+    key: 'team_main',
+    name: 'Theme Defualt',
+    preview: 'https://picsum.photos/400/250?5'
+  },
+  {
+    key: 'team_all',
+    name: 'Theme 2',
+    preview: 'https://picsum.photos/400/250?5'
+  },
+];
+/**
+  * ======================================================
+  *  Load Testimonials Section Theme t
   * ======================================================
   */
 export const tesmonialThemes: Theme[] = [
+  {
+    key: 'testimonial_main',
+    name: 'Slider Defualt',
+    preview: 'https://picsum.photos/400/250?5'
+  },
   {
     key: 'testimonial_slider',
     name: 'Slider Defualt',
@@ -328,7 +421,7 @@ export const tesmonialThemes: Theme[] = [
   */
 export const videoGallerylThemes: Theme[] = [
   {
-    key: 'video_gallery',
+    key: 'videogallery_main',
     name: ' Defualt Theme',
     preview: 'https://picsum.photos/400/250?5'
   },
@@ -340,18 +433,18 @@ export const videoGallerylThemes: Theme[] = [
   */
 export const whychooselThemes: Theme[] = [
   {
-    key: 'whychooseus_1',
+    key: 'whychooseus_main',
     name: ' Defualt Theme',
     preview: 'https://picsum.photos/400/250?5'
   },
   {
-    key: 'whychooseus_2',
-    name: ' Theme 2',
+    key: 'whychooseus_1',
+    name: ' Theme 1',
     preview: 'https://picsum.photos/400/250?5'
   },
   {
-    key: 'whychooseus_3',
-    name: '  Theme 3',
+    key: 'whychooseus_2',
+    name: '  Theme 2',
     preview: 'https://picsum.photos/400/250?5'
   },
 ];

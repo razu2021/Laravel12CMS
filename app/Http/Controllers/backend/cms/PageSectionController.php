@@ -174,11 +174,9 @@ class PageSectionController extends Controller
 
         //--  create dynamic route ---
         $sectionkey = $request->section_key;
-        $baseSection = Str::before($sectionkey,'_');
+        $baseSection = Str::before($sectionkey,'_').'_manage';
 
-
-
-
+        // find page model 
         if($pagetype === 'category_page'){
            $category = CategoryPage::where('id',$request->categorypage_id)->first();
         }elseif($pagetype === 'subcategory_page'){
@@ -189,6 +187,12 @@ class PageSectionController extends Controller
 
    
 
+        $settings = [
+            'bg_color'   => '#ffffff',
+            'padding'    => '20px',
+            'show_title' => true,
+            'margin_top' => '10px',
+        ];
 
 
         // ----- insert record into database 
@@ -201,6 +205,7 @@ class PageSectionController extends Controller
             'description'=>$request->description,
             'order'=>$request->order,
             'dynamic_route'=>$baseSection,
+            'payload_json'=>$settings ?? [],
             'public_status'=>$request->public_status ?? 0,
             'slug'=>$slug,
             'creator_id' => $creator_id,

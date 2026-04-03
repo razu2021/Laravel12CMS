@@ -6,99 +6,105 @@ export interface sections{
 
 export const allsections: sections[] = [
     {
-        key: 'hero',
-        name : 'Hero Section'
+        key: 'about_main',
+        name : 'About Section defualt'
     },
     {
-        key: 'breadcrumb',
-        name : 'Breadcrumb Section'
+        key: 'blog_main',
+        name : 'Blog Section defualt'
     },
     {
-        key: 'about',
-        name : 'About Section'
+        key: 'breadcrumb_main',
+        name : 'Breadcrumb Section defualt'
     },
     {
-        key: 'service',
-        name : 'Services Section'
+        key: 'casestudy_main',
+        name : 'Cause Studay Section defualt'
     },
     {
-        key: 'post',
-        name : 'Post Section'
+        key: 'contactform_main',
+        name : 'Contact Form Section defualt'
+    },
+    
+    {
+        key: 'countrydestination_main',
+        name : 'Countrys Section defualt'
     },
     {
-        key: 'allpost',
-        name : 'All Post Section'
+        key: 'cta_main',
+        name : 'Countrys Section defualt'
+    },
+    
+    {
+        key: 'event_main',
+        name : 'Event Section defualt'
     },
     {
-        key: 'allblog',
-        name : 'All Blog Section'
+        key: 'faq_main',
+        name : 'Faq Section defualt'
+    },
+    
+    {
+        key: 'followus_main',
+        name : 'Follow us Section defualt'
     },
     {
-        key: 'allnews',
-        name : 'All News Section'
+        key: 'googlemap_main',
+        name : 'Embed Google map Section defualt'
     },
     {
-        key: 'allevent',
-        name : 'All Event Section'
+        key: 'hero_main',
+        name : 'Hero Section defualt'
     },
     {
-        key: 'portfolio',
-        name : 'Portfolio Section'
+        key: 'imagegallery_main',
+        name : 'Image Gallery Section defualt'
     },
     {
-        key: 'allteam',
-        name : 'All Team Section'
+        key: 'news_main',
+        name : 'News Section defualt'
     },
     {
-        key: 'image_gallery',
-        name : 'Image Gallery Section'
+        key: 'partner_main',
+        name : 'Partners Section defualt'
     },
     {
-        key: 'video_gallery',
-        name : 'Video Gallery Section'
+        key: 'post_main',
+        name : 'Post Section defualt'
+    },
+    
+    {
+        key: 'promot_main',
+        name : 'Promotional Section defualt'
     },
     {
-        key: 'testimonial_slider',
-        name : 'Testimonial Slider Section'
+        key: 'protfolio_main',
+        name : 'Protfolio Section defualt'
     },
     {
-        key: 'partner_slider',
-        name : 'Partner Slider Section'
+        key: 'roadmap_main',
+        name : 'How to work Section defualt'
     },
     {
-        key: 'contact_form',
-        name : 'Contact Form Section'
+        key: 'service_main',
+        name : 'Service Section defualt'
     },
     {
-        key: 'cta',
-        name : 'Call to Action Section'
+        key: 'team_main',
+        name : 'Team Section defualt'
     },
     {
-        key: 'faq_2',
-        name : 'FAQ Section'
+        key: 'testimonial_main',
+        name : 'Testimonials Section defualt'
     },
     {
-        key: 'follow_us',
-        name : 'Follow Us Section'
+        key: 'video_galley',
+        name : 'Video Gallery Section defualt'
     },
     {
-        key: 'google_map',
-        name : 'Google Map Section'
+        key: 'whychooseus_main',
+        name : 'Why Choose us Section defualt'
     },
-    {
-        key: 'whychooseus_1',
-        name : 'Why Choose Us Section'
-    },
-    {
-        key: 'roadmap_2',
-        name : 'Roadmap Section'
-    },
-    {
-        key: 'country_des_slider_2',
-        name : 'Country Destination Slider Section'
-    },
-    {
-        key: 'promot_5',
-        name : 'Promotional Slider Section'
-    },
+    
+
 ];
