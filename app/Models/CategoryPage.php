@@ -39,7 +39,7 @@ class CategoryPage extends Model
     /**===========  section get === */
 
     public function getCategorySection(){
-        return $this->morphMany(PageSection::class, 'sectionable');
+        return $this->morphMany(PageSection::class, 'sectionable')->where('public_status',1)->orderBy('order','asc');
     }
 
 

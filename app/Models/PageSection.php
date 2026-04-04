@@ -29,18 +29,24 @@ class PageSection extends Model
         return $this->belongsTo(User::class, 'editor_id', 'id');
     }
     
+
+
     //=== define Relationship with Section Content model ->>>>>>>> start here =========
     public function heroSection(){
-        return $this->hasMany(Hero::class,'page_section_id','id');
+        return $this->hasMany(Hero::class,'page_section_id','id')->where('public_status', 1)->orderBy('order','asc');
     }
     public function postSection(){
-        return $this->hasMany(Post::class,'page_section_id','id');
+        return $this->hasMany(Post::class,'page_section_id','id')->where('public_status', 1)->orderBy('order','asc');
+    }
+    public function sectionxSection(){
+        return $this->hasMany(sectionx::class,'page_section_id','id')->where('public_status', 1)->orderBy('order','asc');
     }
 
     
     protected array $sectionRelations = [
-        'hero' => 'heroSection',
-        'post' => 'postSection',
+        'hero_manage' => 'heroSection',
+        'post_manage' => 'postSection',
+        'globalsection_manage' => 'sectionxSection',
 
         // future 50+ models
     ];

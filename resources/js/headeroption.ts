@@ -1,3 +1,4 @@
+console.log('🔥 THEME UPDATED')
 export interface headeroption{
     key:string,
     name:string,

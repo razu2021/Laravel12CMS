@@ -3,7 +3,7 @@ import Button from '@/components/ui/button/Button.vue'
 import AdminLayout from '@/layouts/AdminLayout.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
-import { headeroption ,allheaders,header_themes } from '@/headeroption'
+import {type headeroption ,allheaders,header_themes } from '@/headeroption'
 
 
 const props= defineProps<{

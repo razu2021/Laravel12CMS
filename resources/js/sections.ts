@@ -106,5 +106,11 @@ export const allsections: sections[] = [
         name : 'Why Choose us Section defualt'
     },
     
+    {
+        key: 'globalsection_main',
+        name : 'Global Section defualt'
+    },
+
+    
 
 ];
