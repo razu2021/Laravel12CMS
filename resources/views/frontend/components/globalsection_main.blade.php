@@ -15,7 +15,7 @@
                                         <i class="bi bi-rocket-takeoff"></i>
                                         {{$item->title ?? 'Growth Strategy'}}
                                     </div>
-                                    <h1 class="promot5-title">{{$item->heading ?? 'Good Business Planning <span>Ensures Success.'}}</span></h1>
+                                    <h1 class="promot5-title">{{$item->heading ?? 'Good Business Planning'}} <span> {{ $item->sub_heading ?? '' }} </span></h1>
                                     <p class="promot5-desc">
                                         {{$item->short_des ?? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'}}
                                     </p>
