@@ -182,7 +182,8 @@ class sectionxController extends Controller
 
 
         // ----- insert record into database 
-        $update = sectionx::where('id',$id)->where('slug',$slug)->update([
+        $update = sectionx::where('id',$id)->where('slug',$slug)->firstOrFail();
+        $update->update([
             'heading'=>$request->heading,
             'sub_heading'=>$request->sub_heading,
             'title'=>$request->title,
@@ -247,11 +248,10 @@ class sectionxController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = sectionx::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
-            'public_status' => 1,
-        ]);
+        $active = sectionx::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail();
 
         if($active){
+            $active->update(['public_status' => 1,]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -265,11 +265,10 @@ class sectionxController extends Controller
      */
     public function deactive($id,$slug){
 
-        $active = sectionx::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
-            'public_status' => 0,
-        ]);
+        $active = sectionx::where('id',$id)->where('slug',$slug)->where('public_status',1)->firstOrFail();
 
         if($active){
+            $active->update(['public_status' => 0,]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -299,7 +298,6 @@ class sectionxController extends Controller
         $data= sectionx::onlyTrashed()->where('id',$id)->first();
         
         if ($data) {
-
         /**=========== delete image form folder ===== */
             $file_paths = public_path($data->cover_image);
                 if (file_exists($file_paths)) {
@@ -378,16 +376,18 @@ class sectionxController extends Controller
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = sectionx::whereIn('id',$ids)->where('public_status',0)->update([
-                'public_status'=>1,
-            ]);
+            $categorys = sectionx::whereIn('id',$ids)->where('public_status',0)->get();
+            foreach($categorys as $items){
+                $items->update(['public_status'=>1,]);
+            }
  
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = sectionx::whereIn('id',$ids)->where('public_status',1)->update([
-                'public_status'=>0,
-            ]);
+            $categorys = sectionx::whereIn('id',$ids)->where('public_status',1)->get();
+            foreach($categorys as $items){
+                $items->update(['public_status'=>0,]);
+            }
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){

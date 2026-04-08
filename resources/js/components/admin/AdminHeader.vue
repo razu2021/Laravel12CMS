@@ -1,7 +1,7 @@
 <script setup>
-import { usePage,Link, router} from '@inertiajs/vue3';
-import { logout } from '@/routes';
-import { ref } from 'vue';
+import { usePage,Link, router} from '@inertiajs/vue3'
+import { logout } from '@/routes'
+import { ref } from 'vue'
 
 defineEmits(['toggle-mobile', 'toggle-desktop'])
 // get app name form config 

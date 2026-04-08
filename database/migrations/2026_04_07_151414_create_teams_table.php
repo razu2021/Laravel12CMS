@@ -12,8 +12,27 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('teams', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->foreignId('page_section_id')->constrained('page_sections')->onDelete('cascade');
+            $table->string('name')->nullable();
+            $table->string('designation')->nullable();
+            $table->string('skill')->nullable();
+            $table->string('tag')->nullable();
+            $table->string('short_des')->nullable();
+            $table->longText('description')->nullable();
+            $table->string('button')->nullable();
+            $table->string('button_url')->nullable();
+            $table->string('video_url')->nullable();
+            $table->string('thumbnail')->nullable();
+            $table->string('cover_image')->nullable();
+            $table->integer('order')->nullable();
+            $table->string('slug',255)->nullable();
+            $table->integer('creator_id')->nullable();
+            $table->integer('editor_id')->nullable();
+            $table->integer('status')->default(1);
+            $table->integer('public_status')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
