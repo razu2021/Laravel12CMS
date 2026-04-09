@@ -6,8 +6,12 @@ use Inertia\Inertia;
 use App\Http\Controllers\backend\cms\CategoryPageController;
 use App\Http\Controllers\backend\cms\ChildCategoryPageController;
 use App\Http\Controllers\backend\cms\manage\BlogController;
+use App\Http\Controllers\backend\cms\manage\CasestudyController;
+use App\Http\Controllers\backend\cms\manage\EventController;
 use App\Http\Controllers\backend\cms\manage\heroController;
+use App\Http\Controllers\backend\cms\manage\NewsController;
 use App\Http\Controllers\backend\cms\manage\postController;
+use App\Http\Controllers\backend\cms\manage\ProtfolioController;
 use App\Http\Controllers\backend\cms\manage\sectionxController;
 use App\Http\Controllers\backend\cms\pageManagementController;
 use App\Http\Controllers\backend\cms\PageSectionController;
@@ -203,6 +207,82 @@ Route::controller(postController::class)->prefix('admin/dashboad/manage/section/
 
 /**============ Blog Route Start here =========== */
 Route::controller(BlogController::class)->prefix('admin/dashboad/manage/section/blog/')->name('blog_manage.')->group(function(){
+    Route::get('all','index')->name('all');
+    Route::get('add/{id}/{slug}','add')->name('add');
+    Route::get('view/{id}/{slug}','view')->name('view');
+    Route::get('edit/{id}/{slug}','edit')->name('edit');
+    Route::post('submit','insert')->name('submit');
+    Route::patch('update','update')->name('update');
+    Route::get('active/{id}/{slug}','active')->name('active');
+    Route::get('deactive/{id}/{slug}','deactive')->name('deactive');
+    Route::delete('softdelete/{id}','softdelete')->name('softdelete');
+    Route::delete('delete/{id}','delete')->name('delete');
+    Route::get('recycle','recycle')->name('recycle');
+    Route::post('bulk/action' ,'bulkAction')->name('bulkAction');
+    Route::get('export/single/pdf/{id}/{slug}','exportPdf')->name('single_pdf_export');
+    Route::get('export/excel','export_excel')->name('export_excel');
+    Route::get('export/csv','export_csv')->name('export_csv');
+    Route::get('export/pdf','export_pdf')->name('export_pdf');
+});
+/**============ Events Route Start here =========== */
+Route::controller(EventController::class)->prefix('admin/dashboad/manage/section/events/')->name('event_manage.')->group(function(){
+    Route::get('all','index')->name('all');
+    Route::get('add/{id}/{slug}','add')->name('add');
+    Route::get('view/{id}/{slug}','view')->name('view');
+    Route::get('edit/{id}/{slug}','edit')->name('edit');
+    Route::post('submit','insert')->name('submit');
+    Route::patch('update','update')->name('update');
+    Route::get('active/{id}/{slug}','active')->name('active');
+    Route::get('deactive/{id}/{slug}','deactive')->name('deactive');
+    Route::delete('softdelete/{id}','softdelete')->name('softdelete');
+    Route::delete('delete/{id}','delete')->name('delete');
+    Route::get('recycle','recycle')->name('recycle');
+    Route::post('bulk/action' ,'bulkAction')->name('bulkAction');
+    Route::get('export/single/pdf/{id}/{slug}','exportPdf')->name('single_pdf_export');
+    Route::get('export/excel','export_excel')->name('export_excel');
+    Route::get('export/csv','export_csv')->name('export_csv');
+    Route::get('export/pdf','export_pdf')->name('export_pdf');
+});
+/**============ News Route Start here =========== */
+Route::controller(NewsController::class)->prefix('admin/dashboad/manage/section/news/')->name('news_manage.')->group(function(){
+    Route::get('all','index')->name('all');
+    Route::get('add/{id}/{slug}','add')->name('add');
+    Route::get('view/{id}/{slug}','view')->name('view');
+    Route::get('edit/{id}/{slug}','edit')->name('edit');
+    Route::post('submit','insert')->name('submit');
+    Route::patch('update','update')->name('update');
+    Route::get('active/{id}/{slug}','active')->name('active');
+    Route::get('deactive/{id}/{slug}','deactive')->name('deactive');
+    Route::delete('softdelete/{id}','softdelete')->name('softdelete');
+    Route::delete('delete/{id}','delete')->name('delete');
+    Route::get('recycle','recycle')->name('recycle');
+    Route::post('bulk/action' ,'bulkAction')->name('bulkAction');
+    Route::get('export/single/pdf/{id}/{slug}','exportPdf')->name('single_pdf_export');
+    Route::get('export/excel','export_excel')->name('export_excel');
+    Route::get('export/csv','export_csv')->name('export_csv');
+    Route::get('export/pdf','export_pdf')->name('export_pdf');
+});
+/**============ Case study Route Start here =========== */
+Route::controller(CasestudyController::class)->prefix('admin/dashboad/manage/section/casestudy/')->name('casestudy_manage.')->group(function(){
+    Route::get('all','index')->name('all');
+    Route::get('add/{id}/{slug}','add')->name('add');
+    Route::get('view/{id}/{slug}','view')->name('view');
+    Route::get('edit/{id}/{slug}','edit')->name('edit');
+    Route::post('submit','insert')->name('submit');
+    Route::patch('update','update')->name('update');
+    Route::get('active/{id}/{slug}','active')->name('active');
+    Route::get('deactive/{id}/{slug}','deactive')->name('deactive');
+    Route::delete('softdelete/{id}','softdelete')->name('softdelete');
+    Route::delete('delete/{id}','delete')->name('delete');
+    Route::get('recycle','recycle')->name('recycle');
+    Route::post('bulk/action' ,'bulkAction')->name('bulkAction');
+    Route::get('export/single/pdf/{id}/{slug}','exportPdf')->name('single_pdf_export');
+    Route::get('export/excel','export_excel')->name('export_excel');
+    Route::get('export/csv','export_csv')->name('export_csv');
+    Route::get('export/pdf','export_pdf')->name('export_pdf');
+});
+/**============ protfolio Route Start here =========== */
+Route::controller(ProtfolioController::class)->prefix('admin/dashboad/manage/section/protfolio/')->name('protfolio_manage.')->group(function(){
     Route::get('all','index')->name('all');
     Route::get('add/{id}/{slug}','add')->name('add');
     Route::get('view/{id}/{slug}','view')->name('view');
