@@ -13,13 +13,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # ১. PHP সেটআপ এবং Composer Install (GitHub-এর ভেতর)
+      # ১. PHP এবং Composer Dependencies ইনস্টল (Vite Build এর আগে এটি মাস্ট)
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
+          extensions: mbstring, bcmath, curl, openssl, xml, zip
 
-      # ২. Node.js সেটআপ এবং Vite Build (সবচেয়ে জরুরি)
+      - name: Install Composer Dependencies (Local Build)
+        run: composer install --no-progress --no-interaction --prefer-dist
+
+      # ২. Node.js সেটআপ এবং Vite Build (Wayfinder এখন কাজ করবে)
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -30,9 +34,8 @@ jobs:
           npm install
           npm run build
 
-      # ৩. ফাইলগুলো সার্ভারে পাঠানো (SCP ব্যবহার করে)
-      # এটি আপনার বিল্ড করা public/build ফোল্ডারসহ সব ফাইল পাঠিয়ে দিবে
-      - name: Deploy to Server
+      # ৩. ফাইলগুলো হোস্টিং সার্ভারে পাঠানো
+      - name: Deploy to Server via SCP
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -42,7 +45,7 @@ jobs:
           source: "."
           target: "domains/globalguideguru.com/public_html/reversit"
 
-      # ৪. সার্ভারে গিয়ে লারাভেল কমান্ড রান করা
+      # ৪. হোস্টিং সার্ভারে গিয়ে ফাইনাল কমান্ড রান করা
       - name: Post-deployment Commands
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -52,7 +55,10 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd domains/globalguideguru.com/public_html/reversit
+            # সার্ভারে ভেন্ডর আপডেট নিশ্চিত করা
             composer install --no-dev --optimize-autoloader
+            # ডাটাবেস এবং ক্যাশ আপডেট
             php artisan migrate --force
             php artisan optimize
+            # স্টোরেজ লিঙ্ক (যদি না থাকে)
             php artisan storage:link
