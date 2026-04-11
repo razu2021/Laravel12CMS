@@ -23,13 +23,7 @@ jobs:
       - name: Install Composer Dependencies
         run: composer install --no-progress --no-interaction --prefer-dist
 
-      # ২. ডামি .env তৈরি এবং কী জেনারেট
-      - name: Create Temporary .env
-        run: |
-          cp .env.example .env
-          php artisan key:generate
-
-      # ৩. Node.js এবং Vite Build (এখানেই পরিবর্তন)
+      # ২. Node.js সেটআপ এবং Vite Build
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -38,12 +32,9 @@ jobs:
       - name: Install NPM & Build
         run: |
           npm install
-          # Vite বিল্ডের সময় ডাটাবেস এরর এড়াতে ডামি DB ড্রাইভ সেট করা
-          export DB_CONNECTION=sqlite
-          export DB_DATABASE=:memory:
-          npm run build
+          npm run build # Vite config এ Wayfinder অফ থাকায় এখন এটি কোনো এরর ছাড়াই চলবে
 
-      # ৪. ফাইলগুলো সার্ভারে পাঠানো
+      # ৩. ফাইলগুলো হোস্টিং সার্ভারে পাঠানো (SCP)
       - name: Deploy to Server via SCP
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -53,10 +44,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           source: "."
           target: "domains/globalguideguru.com/public_html/reversit"
-          # এই লাইনটি আপনার হোস্টিংয়ের ফাইলগুলোর সুরক্ষা নিশ্চিত করবে
           rm: false
 
-      # ৫. হোস্টিং সার্ভারে কমান্ড রান করা
+      # ৪. হোস্টিং সার্ভারে গিয়ে লারাভেল কমান্ড রান করা
       - name: Post-deployment Commands
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -66,5 +56,11 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd domains/globalguideguru.com/public_html/reversit
+            # সার্ভারে প্যাকেজগুলো প্রোডাকশন মোডে রেডি করা
             composer install --no-dev --optimize-autoloader
+            # ডাটাবেস মাইগ্রেশন
+            php artisan migrate --force
+            # ক্যাশ অপ্টিমাইজেশন (টাইপো ফিক্স করা হয়েছে)
             php artisan optimize
+            # স্টোরেজ লিংক
+            php artisan storage:link
