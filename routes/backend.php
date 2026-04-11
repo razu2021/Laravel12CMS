@@ -11,9 +11,14 @@ use App\Http\Controllers\backend\cms\manage\CasestudyController;
 use App\Http\Controllers\backend\cms\manage\EventController;
 use App\Http\Controllers\backend\cms\manage\heroController;
 use App\Http\Controllers\backend\cms\manage\NewsController;
+use App\Http\Controllers\backend\cms\manage\PartnerController;
 use App\Http\Controllers\backend\cms\manage\postController;
+use App\Http\Controllers\backend\cms\manage\PromotController;
 use App\Http\Controllers\backend\cms\manage\ProtfolioController;
+use App\Http\Controllers\backend\cms\manage\RoadmapController;
 use App\Http\Controllers\backend\cms\manage\sectionxController;
+use App\Http\Controllers\backend\cms\manage\TestimonialController;
+use App\Http\Controllers\backend\cms\manage\WhychooseusController;
 use App\Http\Controllers\backend\cms\pageManagementController;
 use App\Http\Controllers\backend\cms\PageSectionController;
 use App\Http\Controllers\backend\cms\SubCategoryPageController;
@@ -320,6 +325,111 @@ Route::controller(ServiceController::class)->prefix('admin/dashboad/manage/secti
     Route::get('export/csv','export_csv')->name('export_csv');
     Route::get('export/pdf','export_pdf')->name('export_pdf');
 });
+/**============ Roadmap Route Start here =========== */
+Route::controller(RoadmapController::class)->prefix('admin/dashboad/manage/section/roadmap/')->name('roadmap_manage.')->group(function(){
+    Route::get('all','index')->name('all');
+    Route::get('add/{id}/{slug}','add')->name('add');
+    Route::get('view/{id}/{slug}','view')->name('view');
+    Route::get('edit/{id}/{slug}','edit')->name('edit');
+    Route::post('submit','insert')->name('submit');
+    Route::patch('update','update')->name('update');
+    Route::get('active/{id}/{slug}','active')->name('active');
+    Route::get('deactive/{id}/{slug}','deactive')->name('deactive');
+    Route::delete('softdelete/{id}','softdelete')->name('softdelete');
+    Route::delete('delete/{id}','delete')->name('delete');
+    Route::get('recycle','recycle')->name('recycle');
+    Route::post('bulk/action' ,'bulkAction')->name('bulkAction');
+    Route::get('export/single/pdf/{id}/{slug}','exportPdf')->name('single_pdf_export');
+    Route::get('export/excel','export_excel')->name('export_excel');
+    Route::get('export/csv','export_csv')->name('export_csv');
+    Route::get('export/pdf','export_pdf')->name('export_pdf');
+});
+/**============ testimonials Route Start here =========== */
+Route::controller(TestimonialController::class)->prefix('admin/dashboad/manage/section/testimonial/')->name('testimonial_manage.')->group(function(){
+    Route::get('all','index')->name('all');
+    Route::get('add/{id}/{slug}','add')->name('add');
+    Route::get('view/{id}/{slug}','view')->name('view');
+    Route::get('edit/{id}/{slug}','edit')->name('edit');
+    Route::post('submit','insert')->name('submit');
+    Route::patch('update','update')->name('update');
+    Route::get('active/{id}/{slug}','active')->name('active');
+    Route::get('deactive/{id}/{slug}','deactive')->name('deactive');
+    Route::delete('softdelete/{id}','softdelete')->name('softdelete');
+    Route::delete('delete/{id}','delete')->name('delete');
+    Route::get('recycle','recycle')->name('recycle');
+    Route::post('bulk/action' ,'bulkAction')->name('bulkAction');
+    Route::get('export/single/pdf/{id}/{slug}','exportPdf')->name('single_pdf_export');
+    Route::get('export/excel','export_excel')->name('export_excel');
+    Route::get('export/csv','export_csv')->name('export_csv');
+    Route::get('export/pdf','export_pdf')->name('export_pdf');
+});
+
+/**============ whychoose us  Route Start here =========== */
+Route::controller(WhychooseusController::class)->prefix('admin/dashboad/manage/section/whychoose/')->name('whychooseus_manage.')->group(function(){
+    Route::get('all','index')->name('all');
+    Route::get('add/{id}/{slug}','add')->name('add');
+    Route::get('view/{id}/{slug}','view')->name('view');
+    Route::get('edit/{id}/{slug}','edit')->name('edit');
+    Route::post('submit','insert')->name('submit');
+    Route::patch('update','update')->name('update');
+    Route::get('active/{id}/{slug}','active')->name('active');
+    Route::get('deactive/{id}/{slug}','deactive')->name('deactive');
+    Route::delete('softdelete/{id}','softdelete')->name('softdelete');
+    Route::delete('delete/{id}','delete')->name('delete');
+    Route::get('recycle','recycle')->name('recycle');
+    Route::post('bulk/action' ,'bulkAction')->name('bulkAction');
+    Route::get('export/single/pdf/{id}/{slug}','exportPdf')->name('single_pdf_export');
+    Route::get('export/excel','export_excel')->name('export_excel');
+    Route::get('export/csv','export_csv')->name('export_csv');
+    Route::get('export/pdf','export_pdf')->name('export_pdf');
+});
+/**============ whychoose us  Route Start here =========== */
+Route::controller(PromotController::class)->prefix('admin/dashboad/manage/section/promot/')->name('promot_manage.')->group(function(){
+    Route::get('all','index')->name('all');
+    Route::get('add/{id}/{slug}','add')->name('add');
+    Route::get('view/{id}/{slug}','view')->name('view');
+    Route::get('edit/{id}/{slug}','edit')->name('edit');
+    Route::post('submit','insert')->name('submit');
+    Route::patch('update','update')->name('update');
+    Route::get('active/{id}/{slug}','active')->name('active');
+    Route::get('deactive/{id}/{slug}','deactive')->name('deactive');
+    Route::delete('softdelete/{id}','softdelete')->name('softdelete');
+    Route::delete('delete/{id}','delete')->name('delete');
+    Route::get('recycle','recycle')->name('recycle');
+    Route::post('bulk/action' ,'bulkAction')->name('bulkAction');
+    Route::get('export/single/pdf/{id}/{slug}','exportPdf')->name('single_pdf_export');
+    Route::get('export/excel','export_excel')->name('export_excel');
+    Route::get('export/csv','export_csv')->name('export_csv');
+    Route::get('export/pdf','export_pdf')->name('export_pdf');
+});
+/**============ Partner  Route Start here =========== */
+Route::controller(PartnerController::class)->prefix('admin/dashboad/manage/section/partner/')->name('partner_manage.')->group(function(){
+    Route::get('all','index')->name('all');
+    Route::get('add/{id}/{slug}','add')->name('add');
+    Route::get('view/{id}/{slug}','view')->name('view');
+    Route::get('edit/{id}/{slug}','edit')->name('edit');
+    Route::post('submit','insert')->name('submit');
+    Route::patch('update','update')->name('update');
+    Route::get('active/{id}/{slug}','active')->name('active');
+    Route::get('deactive/{id}/{slug}','deactive')->name('deactive');
+    Route::delete('softdelete/{id}','softdelete')->name('softdelete');
+    Route::delete('delete/{id}','delete')->name('delete');
+    Route::get('recycle','recycle')->name('recycle');
+    Route::post('bulk/action' ,'bulkAction')->name('bulkAction');
+    Route::get('export/single/pdf/{id}/{slug}','exportPdf')->name('single_pdf_export');
+    Route::get('export/excel','export_excel')->name('export_excel');
+    Route::get('export/csv','export_csv')->name('export_csv');
+    Route::get('export/pdf','export_pdf')->name('export_pdf');
+});
+
+
+
+
+
+
+
+
+
 
 
 
