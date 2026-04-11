@@ -28,7 +28,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
+# ১. গিটহাব এনভায়রনমেন্টে ডামি .env তৈরি (সার্ভারের ফাইল এটার দ্বারা পরিবর্তন হবে না)
+      - name: Create Temporary .env for Build
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+          
       - name: Install NPM & Build
         run: |
           npm install
