@@ -32,7 +32,7 @@ jobs:
       - name: Install NPM & Build
         run: |
           npm install
-          npm run build # Vite config এ Wayfinder অফ থাকায় এখন এটি কোনো এরর ছাড়াই চলবে
+          npm run build 
 
       # ৩. ফাইলগুলো হোস্টিং সার্ভারে পাঠানো (SCP)
       - name: Deploy to Server via SCP
@@ -56,11 +56,10 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd domains/globalguideguru.com/public_html/reversit
-            # সার্ভারে প্যাকেজগুলো প্রোডাকশন মোডে রেডি করা
+            # প্রোডাকশন মোডে ভেন্ডর ফাইল আপডেট
             composer install --no-dev --optimize-autoloader
-            # ডাটাবেস মাইগ্রেশন
+            # ডাটাবেস মাইগ্রেশন (ফোর্স মোড প্রোডাকশনের জন্য নিরাপদ)
             php artisan migrate --force
-            # ক্যাশ অপ্টিমাইজেশন (টাইপো ফিক্স করা হয়েছে)
+            # অপ্টিমাইজেশন (ক্লিন ভিউ এবং কনফিগ ক্যাশ)
             php artisan optimize
-            # স্টোরেজ লিংক
-            php artisan storage:link
+            # স্টোরেজ লিংক তৈরি
