@@ -1,0 +1,58 @@
+name: Auto Deploy on SSH
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # ১. PHP সেটআপ এবং Composer Install (GitHub-এর ভেতর)
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      # ২. Node.js সেটআপ এবং Vite Build (সবচেয়ে জরুরি)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install NPM & Build
+        run: |
+          npm install
+          npm run build
+
+      # ৩. ফাইলগুলো সার্ভারে পাঠানো (SCP ব্যবহার করে)
+      # এটি আপনার বিল্ড করা public/build ফোল্ডারসহ সব ফাইল পাঠিয়ে দিবে
+      - name: Deploy to Server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          source: "."
+          target: "domains/globalguideguru.com/public_html/reversit"
+
+      # ৪. সার্ভারে গিয়ে লারাভেল কমান্ড রান করা
+      - name: Post-deployment Commands
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: ${{ secrets.SSH_PORT }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd domains/globalguideguru.com/public_html/reversit
+            composer install --no-dev --optimize-autoloader
+            php artisan migrate --force
+            php artisan optimize
+            php artisan storage:link
