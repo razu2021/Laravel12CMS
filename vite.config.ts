@@ -13,7 +13,8 @@ export default defineConfig({
             refresh: true,
         }),
         tailwindcss(),
-        wayfinder({
+// GitHub Actions-এ থাকলে wayfinder রান করবে না, অন্য সব সময় করবে।
+        !process.env.GITHUB_ACTIONS && wayfinder({
             formVariants: true,
         }),
         vue({
