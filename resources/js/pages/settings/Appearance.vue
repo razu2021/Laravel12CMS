@@ -9,6 +9,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
 import { edit } from '@/routes/appearance/index';
 
+
 const breadcrumbItems: BreadcrumbItem[] = [
     {
         title: 'Appearance settings',
