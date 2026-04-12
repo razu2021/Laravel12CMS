@@ -32,7 +32,7 @@ export const allsections: sections[] = [
     },
     {
         key: 'cta_main',
-        name : 'Countrys Section defualt'
+        name : 'Call to Action Section '
     },
     
     {

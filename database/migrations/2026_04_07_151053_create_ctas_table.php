@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('short_des')->nullable();
             $table->string('button')->nullable();
-            $table->string('button_1')->nullable();
+            $table->string('button1')->nullable();
             $table->string('button_url')->nullable();
             $table->string('button_url1')->nullable();
             $table->string('cover_image')->nullable();

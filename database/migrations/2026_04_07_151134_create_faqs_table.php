@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('faqs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('page_section_id')->constrained('page_sections')->onDelete('cascade');
+            $table->string('icon')->nullable();
             $table->string('heading')->nullable();
-            $table->string('sub_heading')->nullable();
             $table->string('title')->nullable();
             $table->string('sub_title')->nullable();
             $table->string('short_des')->nullable();
-            $table->string('thumbnail')->nullable();
-            $table->string('cover_image')->nullable();
+            $table->string('description')->nullable();
             $table->integer('order')->nullable();
             $table->string('slug',255)->nullable();
             $table->integer('creator_id')->nullable();
