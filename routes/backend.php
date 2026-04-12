@@ -21,6 +21,7 @@ use App\Http\Controllers\backend\cms\manage\RoadmapController;
 use App\Http\Controllers\backend\cms\manage\sectionxController;
 use App\Http\Controllers\backend\cms\manage\TeamController;
 use App\Http\Controllers\backend\cms\manage\TestimonialController;
+use App\Http\Controllers\backend\cms\manage\VideoGalleryController;
 use App\Http\Controllers\backend\cms\manage\WhychooseusController;
 use App\Http\Controllers\backend\cms\pageManagementController;
 use App\Http\Controllers\backend\cms\PageSectionController;
@@ -462,8 +463,27 @@ Route::controller(CtaController::class)->prefix('admin/dashboad/manage/section/c
     Route::get('export/csv','export_csv')->name('export_csv');
     Route::get('export/pdf','export_pdf')->name('export_pdf');
 });
-/**============ CTA  Route Start here =========== */
+/**============ team  Route Start here =========== */
 Route::controller(TeamController::class)->prefix('admin/dashboad/manage/section/team/')->name('team_manage.')->group(function(){
+    Route::get('all','index')->name('all');
+    Route::get('add/{id}/{slug}','add')->name('add');
+    Route::get('view/{id}/{slug}','view')->name('view');
+    Route::get('edit/{id}/{slug}','edit')->name('edit');
+    Route::post('submit','insert')->name('submit');
+    Route::patch('update','update')->name('update');
+    Route::get('active/{id}/{slug}','active')->name('active');
+    Route::get('deactive/{id}/{slug}','deactive')->name('deactive');
+    Route::delete('softdelete/{id}','softdelete')->name('softdelete');
+    Route::delete('delete/{id}','delete')->name('delete');
+    Route::get('recycle','recycle')->name('recycle');
+    Route::post('bulk/action' ,'bulkAction')->name('bulkAction');
+    Route::get('export/single/pdf/{id}/{slug}','exportPdf')->name('single_pdf_export');
+    Route::get('export/excel','export_excel')->name('export_excel');
+    Route::get('export/csv','export_csv')->name('export_csv');
+    Route::get('export/pdf','export_pdf')->name('export_pdf');
+});
+/**============ team  Route Start here =========== */
+Route::controller(VideoGalleryController::class)->prefix('admin/dashboad/manage/section/video-gallery/')->name('videogallery_manage.')->group(function(){
     Route::get('all','index')->name('all');
     Route::get('add/{id}/{slug}','add')->name('add');
     Route::get('view/{id}/{slug}','view')->name('view');

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('page_section_id')->constrained('page_sections')->onDelete('cascade');
+            $table->string('icon')->nullable();
             $table->string('name')->nullable();
             $table->string('designation')->nullable();
             $table->string('short_des')->nullable();

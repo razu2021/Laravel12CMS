@@ -6,9 +6,6 @@ import { route } from 'ziggy-js'
 import { useImageUploads } from '@/composables/useImageUpload'
 import tiptap from '@/components/TipTap.vue'
 import Iconpicker from '@/components/Iconpicker.vue'
-import { ref, watch } from 'vue'
-import { useSkills } from '@/composables/useSkills';
-const { skillInput, skills, addSkill, removeSkill } = useSkills();
 
 
 
@@ -23,15 +20,19 @@ const props = defineProps<{
   iconlist: any[]  // get icons from inertia controller 
 }>()
 // UseForm with remembering state=====================
-const form = useForm('team_manage', {
+const form = useForm('videogallery_manage/', {
   section_id:  props.section_id,
+  type: '',
   icon: '',
-  name: '',
-  designation: '',
+  heading: '',
   sub_heading: '',
+  title: '',
+  sub_title: '',
   short_des: '',
+  video_url: '',
   description: '',
-  skills : skills.value, // 
+  button: '',
+  button_url: '',
   cover_image: null as File | null,
   thumbnail: null as File | null,
   order: '',
@@ -41,19 +42,8 @@ const form = useForm('team_manage', {
 const {preview:image_preview ,handleUpload:handleImageUpload ,clearPreview:clearImagePreview} = useImageUploads(form, 'cover_image');
 const {preview:thumbnail_preview ,handleUpload:handleThumbnailUpload ,clearPreview:clearThumbnailPreview} = useImageUploads(form, 'thumbnail');
 //===================== ✅ submit MUST use form========================
-
-
-watch(skills, (newSkills) => {
-    form.skills = [...newSkills];
-}, { deep: true });
-
-
-
-
-
-
 const handleSubmit = () => {
-  form.post(route('team_manage.submit'), {
+  form.post(route('videogallery_manage/.submit'), {
       // -- its work as like multipart-form/Data --- 
       forceFormData: true,
       onSuccess: () => {
@@ -84,7 +74,7 @@ const handleSubmit = () => {
            <div>
              <button
               class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-white/20 transition">
-              <Link :href="route('team_manage.all')">All Information</Link>
+              <Link :href="route('videogallery_manage/.all')">All Information</Link>
             </button>
              <Button @click="goBack" class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-white/20 transition mx-2">
               Go Back
@@ -103,32 +93,61 @@ const handleSubmit = () => {
             </div>
               <input type="hidden" name="section_id" id="section_id" v-model="form.section_id"/>
                 <div class="grid grid-cols-12 gap-4">
-                  <div class="col-span-12 md:col-span-12">
+                  <div class="col-span-12 md:col-span-6">
                     <div>
-                      <label class="text-sm font-medium text-slate-600">Icon</label>
+                      <label class="text-sm font-medium text-slate-600">Type</label>
+                      <input type="text" placeholder="Type" v-model="form.type"
+                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                        <div class="text-small text-red-500" v-if="form.errors.type">{{ form.errors.type }}</div>
+                    </div>
+                  </div>
+                  <!-- col end -->
+                  <div class="col-span-12 md:col-span-6">
+                    <div>
+                      <label class="text-sm font-medium text-slate-600">Type</label>
                         <Iconpicker v-model="form.icon" :iconlist="props.iconlist" /> 
                     </div>
                   </div>
                   <!-- col end -->
                   
                 </div>
-                <!----------------------- grid end------------------------- -->
                 <div class="grid grid-cols-12 gap-4">
                   <div class="col-span-12 md:col-span-6">
                     <div>
-                      <label class="text-sm font-medium text-slate-600" >Name</label>
-                      <input type="text" placeholder="Name" v-model="form.name"
+                      <label class="text-sm font-medium text-slate-600">Heading</label>
+                      <input type="text" placeholder="Heading" v-model="form.heading"
                         class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.name">{{ form.errors.name }}</div>
+                        <div class="text-small text-red-500" v-if="form.errors.heading">{{ form.errors.heading }}</div>
                     </div>
                   </div>
                   <!-- col end -->
                   <div class="col-span-12 md:col-span-6">
                     <div>
-                      <label class="text-sm font-medium text-slate-600">Designation</label>
-                      <input type="text" placeholder="Sub Title" v-model="form.designation"
+                      <label class="text-sm font-medium text-slate-600">Sub Heading</label>
+                      <input type="text" placeholder="Sub Heading" v-model="form.sub_heading"
                         class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.designation">{{ form.errors.designation }}</div>
+                        <div class="text-small text-red-500" v-if="form.errors.sub_heading">{{ form.errors.sub_heading }}</div>
+                    </div>
+                  </div>
+                  <!-- col end -->
+                </div>
+                <!----------------------- grid end------------------------- -->
+                <div class="grid grid-cols-12 gap-4">
+                  <div class="col-span-12 md:col-span-6">
+                    <div>
+                      <label class="text-sm font-medium text-slate-600">Title</label>
+                      <input type="text" placeholder="Title" v-model="form.title"
+                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                        <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.title }}</div>
+                    </div>
+                  </div>
+                  <!-- col end -->
+                  <div class="col-span-12 md:col-span-6">
+                    <div>
+                      <label class="text-sm font-medium text-slate-600">Sub Title</label>
+                      <input type="text" placeholder="Sub Title" v-model="form.sub_title"
+                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                        <div class="text-small text-red-500" v-if="form.errors.sub_title">{{ form.errors.sub_title }}</div>
                     </div>
                   </div>
                   <!-- col end -->
@@ -149,24 +168,39 @@ const handleSubmit = () => {
                   <div class="text-small text-red-500" v-if="form.errors.short_des">{{ form.errors.short_des }}</div>
                 </div>
                 <!----------------------- grid end ------------------------- -->
-                <div>
-                    <label class="block text-sm font-medium mb-2">Skills (Type & Press Enter)</label>
-                    
-                    <div class="flex flex-wrap gap-2 p-2 border rounded-md focus-within:ring-2 ring-blue-500">
-                        <span v-for="(skill, index) in form.skills" :key="index" 
-                            class="inline-flex items-center gap-1 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded-full">
-                            {{ skill }}
-                            <button type="button" @click="removeSkill(index)" class="hover:text-red-200 ml-1">×</button>
-                        </span>
-                        <input  v-model="skillInput"  @keydown.enter.prevent="addSkill" placeholder="e.g. Web Designer" class="flex-1 outline-none min-w-[150px] text-sm"/>
+                <div class="grid grid-cols-12 gap-4">
+                  <div class="col-span-12 md:col-span-6">
+                    <div>
+                      <label class="text-sm font-medium text-slate-600">Button Name</label>
+                      <input type="text" placeholder="About us" v-model="form.button"
+                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                        <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.button }}</div>
                     </div>
+                  </div>
+                  <!-- col end -->
+                  <div class="col-span-12 md:col-span-6">
+                    <div>
+                      <label class="text-sm font-medium text-slate-600">Button URL</label>
+                      <input type="text" placeholder="Button url" v-model="form.button_url"
+                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                        <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.button_url }}</div>
+                    </div>
+                  </div>
+                  <!-- col end -->
                 </div>
-                <!-- skill end here  -->
-
-
-
-
-
+                <!----------------------- grid end ------------------------- -->
+                <div class="grid grid-cols-12 gap-4">
+                  <div class="col-span-12 md:col-span-12">
+                    <div>
+                      <label class="text-sm font-medium text-slate-600">Video URL</label>
+                      <input type="text" placeholder="Video url optional" v-model="form.video_url"
+                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                        <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.video_url }}</div>
+                    </div>
+                  </div>
+                  <!-- col end -->
+                </div>
+                <!----------------------- grid end ------------------------- -->
               <div>
               </div>
           </div>

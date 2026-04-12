@@ -14,6 +14,7 @@ import PartnerController from './PartnerController'
 import FaqController from './FaqController'
 import CtaController from './CtaController'
 import TeamController from './TeamController'
+import VideoGalleryController from './VideoGalleryController'
 import sectionxController from './sectionxController'
 const manage = {
     heroController: Object.assign(heroController, heroController),
@@ -32,6 +33,7 @@ PartnerController: Object.assign(PartnerController, PartnerController),
 FaqController: Object.assign(FaqController, FaqController),
 CtaController: Object.assign(CtaController, CtaController),
 TeamController: Object.assign(TeamController, TeamController),
+VideoGalleryController: Object.assign(VideoGalleryController, VideoGalleryController),
 sectionxController: Object.assign(sectionxController, sectionxController),
 }
 

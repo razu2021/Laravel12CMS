@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon; //----------  defualt -------
 use Barryvdh\DomPDF\Facade\Pdf;//-------------- export pdf
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\TeamExport;
+use App\Exports\VideogalleryExport;
 use App\Models\PageSection;
 use Illuminate\Support\Str;
-use App\Models\Team;
+use App\Models\Videogallery;
 use App\Models\Faveicon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -19,17 +19,17 @@ use Inertia\Inertia;
 use App\Services\ImageUploadService;
 
 
-class TeamController extends Controller
+class VideoGalleryController extends Controller
 {
     /**
      * ======== index page function 
      */
     public function index(Request $request)
     {
-        $query = Team::query(); 
+        $query = Videogallery::query(); 
 
         if($request->filled('search')){
-            $query->where('name','LIKE', '%' .$request->search .'%');
+            $query->where('title','LIKE', '%' .$request->search .'%');
         }
 
             // 📅 Status Filter
@@ -37,9 +37,9 @@ class TeamController extends Controller
             $query->where('public_status', $request->status);
         }
 
-        $alldata = $query->orderBy('id','DESC')->paginate(10)->withQueryString();
+        $alldata = $query->paginate(10)->withQueryString();
 
-        return Inertia::render('backend/cms/team/index',[
+        return Inertia::render('backend/cms/videogallery/index',[
             'alldata' => $alldata ,
             'filters' => $request->only(['search','status'])
         ]);
@@ -53,7 +53,7 @@ class TeamController extends Controller
     {
         $section = PageSection::where('id',$id)->where('slug',$slug)->value('id');
         $icons = Faveicon::pluck('icons');
-        return Inertia::render('backend/cms/team/add',[
+        return Inertia::render('backend/cms/videogallery/add',[
             'section_id'=>$section,
             'iconlist' => $icons
         ]);
@@ -65,8 +65,9 @@ class TeamController extends Controller
      */
     public function view($id,$slug)
     {
-        $data = Team::with(['creator','editor','tags'])->where('id',$id)->where('slug',$slug)->firstOrFail();
-        return Inertia::render('backend/cms/team/show',[
+        $data = Videogallery::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+          
+        return Inertia::render('backend/cms/videogallery/show',[
             'data' => $data,
         ]);
        
@@ -77,12 +78,11 @@ class TeamController extends Controller
      */
     public function edit($id,$slug)
     {
-        $data = Team::with(['creator','editor','tags'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+        $data = Videogallery::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
           $icons = Faveicon::pluck('icons');
-        return Inertia::render('backend/cms/team/edit',[
+        return Inertia::render('backend/cms/videogallery/edit',[
             'data' => $data,
-            'iconlist' => $icons,
-            'existingSkills' => $data->tagsWithType('skills')->pluck('name')->toArray(),
+            'iconlist' => $icons
         ]);
        
     }
@@ -96,13 +96,14 @@ class TeamController extends Controller
      * =======================================================================
      */
     public function insert(Request $request){
-
          /**--- validation code -- */
         $request->validate( [
-                'name' => ['required', 'string'],
+                'type' => ['required', 'string'],
+                'title' => ['required', 'string'],
                 'short_des' => ['required', 'string'],
             ],[
-                'name.required'=> 'Name field is Required !',
+                'type.required'=> 'Type field is Required !',
+                'title.required'=> 'Title field is Required !',
                 'short_des.required'=> 'Short Description field is Required !',
             ]
         );
@@ -113,24 +114,25 @@ class TeamController extends Controller
 
        
         // ----- insert record into database 
-        $insert = Team::create([
+        $insert = Videogallery::create([
             'page_section_id'=>$request->section_id,
             'icon'=>$request->icon,
-            'name'=>$request->name,
-            'designation'=>$request->designation,
+            'type'=>$request->type,
+            'heading'=>$request->heading,
+            'sub_heading'=>$request->sub_heading,
+            'title'=>$request->title,
+            'sub_title'=>$request->sub_title,
             'short_des'=>$request->short_des,
             'description'=>$request->description,
+            'button'=>$request->button,
+            'button_url'=>$request->button_url,
+            'video_url'=>$request->video_url,
             'order'=>$request->order,
             'public_status'=>$request->public_status ?? 0,
             'slug'=>$slug,
             'creator_id' => $creator_id,
             'created_at' => Carbon::now()->toDateTimeString(),
         ]);
-
-        // -------  add skills  for each team member -----
-        if($request->has('skills')){
-            $insert->attachTags($request->skills, 'skills');
-        }
 
 
         /**======== upload Cover image image via the service class start ====== */
@@ -140,7 +142,7 @@ class TeamController extends Controller
             $upload = (new ImageUploadService($request->file('cover_image')))
                         ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
             // ------  save image in database 
-            $insert = Team::where('id', $id)
+            $insert = Videogallery::where('id', $id)
                         ->where('id', $id)->update([
                             'cover_image' => $upload,
                         ]);
@@ -151,7 +153,7 @@ class TeamController extends Controller
             $upload = (new ImageUploadService($request->file('thumbnail')))
                         ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
             // ------  save image in database 
-            $insert = Team::where('id', $id)
+            $insert = Videogallery::where('id', $id)
                         ->where('id', $id)->update([
                             'thumbnail' => $upload,
                         ]);
@@ -179,9 +181,9 @@ class TeamController extends Controller
 
         /**--- validation code -- */
         $request->validate( [
-                'name' => ['required', 'string'],
+                'type' => ['required', 'string'],
             ],[
-                'name.required'=> 'Name field is Required !',
+                'type.required'=> 'Type field is Required !',
             ]
         );
        
@@ -192,33 +194,35 @@ class TeamController extends Controller
 
 
         // ----- insert record into database 
-        $update = Team::where('id',$id)->where('slug',$slug)->firstOrFail();
+        $update = Videogallery::where('id',$id)->where('slug',$slug)->firstOrFail();
         $update->update([
             'icon'=>$request->icon,
-            'name'=>$request->name,
-            'designation'=>$request->designation,
+            'type'=>$request->type,
+            'heading'=>$request->heading,
+            'sub_heading'=>$request->sub_heading,
+            'title'=>$request->title,
+            'sub_title'=>$request->sub_title,
             'short_des'=>$request->short_des,
             'description'=>$request->description,
+            'button'=>$request->button,
+            'button_url'=>$request->button_url,
+            'video_url'=>$request->video_url,
             'order'=>$request->order,
             'public_status'=>$request->public_status ?? 0,
             'editor_id' => $editor_id,
             'updated_at' => Carbon::now()->toDateTimeString(),
         ]);
 
-        // স্কিলগুলো সিঙ্ক (Sync) করা - এটি পুরনো গুলো মুছে নতুন গুলো বসাবে
-        if ($request->has('skills')) {
-            $update->syncTagsWithType($request->skills, 'skills');
-        }
         /**======== upload image via the service class start ====== */
         if ($request->hasFile('cover_image')) {
             //---- find old image for delete -----
-            $exixtimage = Team::where('id', $id)->first();
+            $exixtimage = Videogallery::where('id', $id)->first();
             $oldimage = $exixtimage->cover_image;
             // upload image in local folder path via tha service class
             $upload = (new ImageUploadService($request->file('cover_image')))
                         ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
             // ------  save image in database 
-            $insert = Team::where('id', $id)
+            $insert = Videogallery::where('id', $id)
                         ->where('slug', $slug)->update([
                             'cover_image' => $upload,
                         ]);
@@ -226,13 +230,13 @@ class TeamController extends Controller
         /**======== upload image via the service end ====== */
         if ($request->hasFile('thumbnail')) {
             //---- find old image for delete -----
-            $exixtimage = Team::where('id', $id)->first();
+            $exixtimage = Videogallery::where('id', $id)->first();
             $oldimage = $exixtimage->thumbnail;
             // upload image in local folder path via tha service class
             $upload = (new ImageUploadService($request->file('thumbnail')))
                         ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
             // ------  save image in database 
-            $insert = Team::where('id', $id)
+            $insert = Videogallery::where('id', $id)
                         ->where('slug', $slug)->update([
                             'thumbnail' => $upload,
                         ]);
@@ -241,7 +245,7 @@ class TeamController extends Controller
 
         if($update){
             flash()->success('Information Updated successfully!');
-            return redirect()->route('team_manage.view',[$id,$slug]);
+            return redirect()->route('videogallery_manage/.view',[$id,$slug]);
         }else{
             flash()->error('Information Updated Faild !');
             return redirect()->back();
@@ -255,7 +259,7 @@ class TeamController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = Team::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail();
+        $active = Videogallery::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail();
 
         if($active){
             $active->update(['public_status' => 1,]);
@@ -272,7 +276,7 @@ class TeamController extends Controller
      */
     public function deactive($id,$slug){
 
-        $active = Team::where('id',$id)->where('slug',$slug)->where('public_status',1)->firstOrFail();
+        $active = Videogallery::where('id',$id)->where('slug',$slug)->where('public_status',1)->firstOrFail();
 
         if($active){
             $active->update(['public_status' => 0,]);
@@ -287,7 +291,7 @@ class TeamController extends Controller
      * ======== Soft Delete Functionality Start here ==========
      */
     public function softdelete($id){
-        $data= Team::where('id',$id)->first();
+        $data= Videogallery::where('id',$id)->first();
         $data->delete();
 
         if ($data) {
@@ -302,7 +306,7 @@ class TeamController extends Controller
      * ========  Delete Functionality Start here ==========
      */
     public function delete($id){
-        $data= Team::onlyTrashed()->where('id',$id)->first();
+        $data= Videogallery::onlyTrashed()->where('id',$id)->first();
         
         if ($data) {
         /**=========== delete image form folder ===== */
@@ -331,7 +335,7 @@ class TeamController extends Controller
      * ========  Recycle Functionality Start here ==========
      */
     public function recycle(Request $request){
-        $query = Team::query(); 
+        $query = Videogallery::query(); 
 
         $query->onlyTrashed();
 
@@ -347,7 +351,7 @@ class TeamController extends Controller
 
         $alldata = $query->paginate(10)->withQueryString();
 
-        return Inertia::render('backend/cms/team/recycle',[
+        return Inertia::render('backend/cms/videogallery/recycle',[
             'alldata' => $alldata ,
             'filters' => $request->only(['search','status'])
         ]);
@@ -377,13 +381,13 @@ class TeamController extends Controller
 
         // ---------- soft delete code start here 
         if($action === 'delete'){
-            $data = Team::whereIn('id',$ids)->delete();
+            $data = Videogallery::whereIn('id',$ids)->delete();
             return back();
         }
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = Team::whereIn('id',$ids)->where('public_status',0)->get();
+            $categorys = Videogallery::whereIn('id',$ids)->where('public_status',0)->get();
             foreach($categorys as $items){
                 $items->update(['public_status'=>1,]);
             }
@@ -391,14 +395,14 @@ class TeamController extends Controller
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = Team::whereIn('id',$ids)->where('public_status',1)->get();
+            $categorys = Videogallery::whereIn('id',$ids)->where('public_status',1)->get();
             foreach($categorys as $items){
                 $items->update(['public_status'=>0,]);
             }
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){
-            $categorys = Team::onlyTrashed()->whereIn('id',$ids)->get();
+            $categorys = Videogallery::onlyTrashed()->whereIn('id',$ids)->get();
 
                 foreach ($categorys as $category) {
                     /**=========== delete image form folder ===== */
@@ -421,7 +425,7 @@ class TeamController extends Controller
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Restore'){
-            $categorys = Team::onlyTrashed()->whereIn('id',$ids)->get();
+            $categorys = Videogallery::onlyTrashed()->whereIn('id',$ids)->get();
 
                 foreach ($categorys as $category) {
                     $category->restore();
@@ -435,7 +439,7 @@ class TeamController extends Controller
         // ------------ Multiple Item Export as an PDF -------------------------------
         if($action === 'export_pdf'){
           
-            $category = Team::whereIn('id',$ids)->get();
+            $category = Videogallery::whereIn('id',$ids)->get();
 
             $fileName = now()->format('Y-m-d_H-i-s') . '.pdf';
 
@@ -450,11 +454,11 @@ class TeamController extends Controller
 
         if($action === 'export_excel'){
 
-            return Excel::download(new TeamExport($ids), now().'.xlsx');
+            return Excel::download(new VideogalleryExport($ids), now().'.xlsx');
         }
         if($action === 'export_csv'){
 
-            return Excel::download(new TeamExport($ids), now().'.csv');
+            return Excel::download(new VideogalleryExport($ids), now().'.csv');
         }
         return back();
 
@@ -471,9 +475,9 @@ class TeamController extends Controller
 
     public function exportPdf($id,$slug){
 
-        $data = Team::where('id',$id)->where('slug',$slug)->firstOrFail();
+        $data = Videogallery::where('id',$id)->where('slug',$slug)->firstOrFail();
         $fileName = $data->name.'-'.now().'.pdf';
-        $pdf = pdf::loadView('backend/export/team/export_singlepdf',compact('data'))->setPaper('a4', 'portrait');
+        $pdf = pdf::loadView('backend/export/videogallery/export_singlepdf',compact('data'))->setPaper('a4', 'portrait');
         return $pdf->download($fileName);
 
     }
@@ -484,9 +488,9 @@ class TeamController extends Controller
      * ================= export all pdf  function start here ===========================
      */
     public function export_pdf(){
-        $data = Team::get();
+        $data = Videogallery::get();
         $fileName =now().'.pdf';
-        $pdf = pdf::loadView('backend/export/team/export_pdf',[
+        $pdf = pdf::loadView('backend/export/videogallery/export_pdf',[
             'dataJson' => $data->toArray()
         ])->setPaper('a4', 'portrait');
         return $pdf->download($fileName);
@@ -499,14 +503,14 @@ class TeamController extends Controller
      * ================= export Excel function start here ===========================
      */
     public function export_excel(){
-        return Excel::download(new TeamExport, now().'.xlsx');
+        return Excel::download(new VideogalleryExport, now().'.xlsx');
     }
     /**
      * 
      * ================= export csv function start here ===========================
      */
     public function export_csv(){
-        return Excel::download(new TeamExport, now().'.csv');
+        return Excel::download(new VideogalleryExport, now().'.csv');
     }
 
 
