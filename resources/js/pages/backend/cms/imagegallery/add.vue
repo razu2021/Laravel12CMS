@@ -20,37 +20,26 @@ const props = defineProps<{
   iconlist: any[]  // get icons from inertia controller 
 }>()
 // UseForm with remembering state=====================
-const form = useForm('hero_manage', {
+const form = useForm('imagegallery_manage', {
   section_id:  props.section_id,
-  type: '',
-  icon: '',
-  heading: '',
-  sub_heading: '',
   title: '',
   sub_title: '',
-  short_des: '',
-  video_url: '',
   description: '',
-  button: '',
-  button_url: '',
   cover_image: null as File | null,
-  thumbnail: null as File | null,
   order: '',
   public_status: false,
 })
 //--- - image upload composeable uses -----
 const {preview:image_preview ,handleUpload:handleImageUpload ,clearPreview:clearImagePreview} = useImageUploads(form, 'cover_image');
-const {preview:thumbnail_preview ,handleUpload:handleThumbnailUpload ,clearPreview:clearThumbnailPreview} = useImageUploads(form, 'thumbnail');
 //===================== ✅ submit MUST use form========================
 const handleSubmit = () => {
-  form.post(route('hero_manage.submit'), {
+  form.post(route('imagegallery_manage.submit'), {
       // -- its work as like multipart-form/Data --- 
       forceFormData: true,
       onSuccess: () => {
         // -- clear input feild after upload
         form.reset();
         clearImagePreview();
-        clearThumbnailPreview();
       },
     })
   }
@@ -74,7 +63,7 @@ const handleSubmit = () => {
            <div>
              <button
               class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-white/20 transition">
-              <Link :href="route('hero_manage.all')">All Information</Link>
+              <Link :href="route('imagegallery_manage.all')">All Information</Link>
             </button>
              <Button @click="goBack" class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-white/20 transition mx-2">
               Go Back
@@ -92,48 +81,10 @@ const handleSubmit = () => {
               <p class="text-sm text-slate-500">Main content related data</p>
             </div>
               <input type="hidden" name="section_id" id="section_id" v-model="form.section_id"/>
-                <div class="grid grid-cols-12 gap-4">
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Type</label>
-                      <input type="text" placeholder="Type" v-model="form.type"
-                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.type">{{ form.errors.type }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Type</label>
-                        <Iconpicker v-model="form.icon" :iconlist="props.iconlist" /> 
-                    </div>
-                  </div>
-                  <!-- col end -->
-                  
-                </div>
-                <div class="grid grid-cols-12 gap-4">
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Heading</label>
-                      <input type="text" placeholder="Heading" v-model="form.heading"
-                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.heading">{{ form.errors.heading }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Sub Heading</label>
-                      <input type="text" placeholder="Sub Heading" v-model="form.sub_heading"
-                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.sub_heading">{{ form.errors.sub_heading }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
-                </div>
+              
                 <!----------------------- grid end------------------------- -->
                 <div class="grid grid-cols-12 gap-4">
-                  <div class="col-span-12 md:col-span-6">
+                  <div class="col-span-12 md:col-span-12">
                     <div>
                       <label class="text-sm font-medium text-slate-600">Title</label>
                       <input type="text" placeholder="Title" v-model="form.title"
@@ -142,7 +93,7 @@ const handleSubmit = () => {
                     </div>
                   </div>
                   <!-- col end -->
-                  <div class="col-span-12 md:col-span-6">
+                  <div class="col-span-12 md:col-span-12">
                     <div>
                       <label class="text-sm font-medium text-slate-600">Sub Title</label>
                       <input type="text" placeholder="Sub Title" v-model="form.sub_title"
@@ -153,52 +104,10 @@ const handleSubmit = () => {
                   <!-- col end -->
                 </div>
                 <!----------------------- grid end ------------------------- -->
-              <div>
-                  <label class="text-sm font-medium text-slate-600">Short Description</label>
-                  <textarea
-                  rows="5"
-                  placeholder="Write something meaningful..." v-model="form.short_des"
-                  class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500"></textarea>
-                  <div class="text-small text-red-500" v-if="form.errors.short_des">{{ form.errors.short_des }}</div>
-                </div>
-                <!----------------------- grid end ------------------------- -->
                 <div>
                   <label class="text-sm font-medium text-slate-600">Description</label>
                   <tiptap v-model="form.description" />
-                  <div class="text-small text-red-500" v-if="form.errors.short_des">{{ form.errors.short_des }}</div>
-                </div>
-                <!----------------------- grid end ------------------------- -->
-                <div class="grid grid-cols-12 gap-4">
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Button Name</label>
-                      <input type="text" placeholder="About us" v-model="form.button"
-                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.button }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Button URL</label>
-                      <input type="text" placeholder="Button url" v-model="form.button_url"
-                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.button_url }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
-                </div>
-                <!----------------------- grid end ------------------------- -->
-                <div class="grid grid-cols-12 gap-4">
-                  <div class="col-span-12 md:col-span-12">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Video URL</label>
-                      <input type="text" placeholder="Video url optional" v-model="form.video_url"
-                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.video_url }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
+                  <div class="text-small text-red-500" v-if="form.errors.description">{{ form.errors.description }}</div>
                 </div>
                 <!----------------------- grid end ------------------------- -->
               <div>
@@ -226,22 +135,7 @@ const handleSubmit = () => {
                 </div>
               </div>
             <!-- Thumbnail upload-->
-            <div class="rounded-2xl bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
-                <h3 class="text-sm font-semibold text-slate-800 mb-4">Upload Thumbnail</h3>
-                <label class="flex flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 px-4 py-6 cursor-pointer hover:bg-slate-100 transition">
-                  <div v-if="thumbnail_preview">
-                    <img :src="thumbnail_preview" class="w-auto h-50 object-cover rounded-xl shadow"/>
-                  </div>
-                  <div v-else class="text-sm text-slate-500">
-                    Click to upload image
-                  </div>
-                  <input type="file"  class="hidden" accept="image/*" @change="handleThumbnailUpload"/>
-                </label>
-                <div class="text-sm text-red-500 mt-2" v-if="form.errors.thumbnail">
-                  {{ form.errors.thumbnail }}
-                </div>
-              </div>
-       
+          
             <!-- STATUS CARD -->
             <div class="rounded-2xl bg-white p-5 shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
               <h3 class="text-sm font-semibold text-slate-800 mb-4">

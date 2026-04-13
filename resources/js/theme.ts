@@ -188,6 +188,18 @@ export const googlemapsThemes: Theme[] = [
     preview: 'https://picsum.photos/400/250?5'
   },
 ];
+/**
+  * ======================================================
+  *  Load Google map  Section Theme  g
+  * ======================================================
+  */
+export const globalsectionThemes: Theme[] = [
+  {
+    key: 'googlemap_main',
+    name: 'Follow us Theme Defualt',
+    preview: 'https://picsum.photos/400/250?5'
+  },
+];
 
 /**
   * ======================================================
@@ -244,6 +256,18 @@ export const heroThemes: Theme[] = [
   * ======================================================
   */
 export const imageGalleryThemes: Theme[] = [
+  {
+    key: 'imagegallery_main',
+    name: 'Gallery Theme Defualt',
+    preview: 'https://picsum.photos/400/250?5'
+  },
+];
+/**
+  * ======================================================
+  *  Load News Galley Section Theme  i
+  * ======================================================
+  */
+export const newsThemes: Theme[] = [
   {
     key: 'imagegallery_main',
     name: 'Gallery Theme Defualt',

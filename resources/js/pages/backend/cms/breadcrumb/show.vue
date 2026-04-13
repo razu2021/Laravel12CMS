@@ -34,7 +34,7 @@ const {data} = defineProps<{
           </div>
           <button
             class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-white/20 transition">
-            <Link :href="route('post_manage.all')"><Button>All Information</Button></Link>
+            <Link :href="route('breadcrumb_manage.all')"><Button>All Information</Button></Link>
           </button>
         </div>
       </div>
@@ -59,6 +59,18 @@ const {data} = defineProps<{
                     <table class="min-w-full bg-white rounded-xl shadow-lg border border-gray-200">
                       <!-- Table Body -->
                       <tbody class="divide-y divide-gray-200">
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">Type</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.type ?? 'N/A' }}</td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">Icon</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800"><i :class="data.icon ?? ''"></i></td>
+                        </tr>
+                        <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
                           <td class="py-3 px-5 text-gray-800">Heading</td>
                           <td class="py-3 px-5 text-gray-800">:</td>

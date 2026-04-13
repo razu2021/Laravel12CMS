@@ -8,9 +8,10 @@ use Carbon\Carbon; //----------  defualt -------
 use Barryvdh\DomPDF\Facade\Pdf;//-------------- export pdf
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\heroExport;
+use App\Models\PageSection;
 use Illuminate\Support\Str;
 use App\Models\Hero;
-use App\Models\PageSection;
+use App\Models\Faveicon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\File; 
@@ -28,7 +29,7 @@ class heroController extends Controller
         $query = Hero::query(); 
 
         if($request->filled('search')){
-            $query->where('name','LIKE', '%' .$request->search .'%');
+            $query->where('title','LIKE', '%' .$request->search .'%');
         }
 
             // 📅 Status Filter
@@ -51,8 +52,11 @@ class heroController extends Controller
     public function add($id,$slug)
     {
         $section = PageSection::where('id',$id)->where('slug',$slug)->value('id');
-      
-        return Inertia::render('backend/cms/hero/add',['section_id'=>$section]);
+        $icons = Faveicon::pluck('icons');
+        return Inertia::render('backend/cms/hero/add',[
+            'section_id'=>$section,
+            'iconlist' => $icons
+        ]);
        
     }
 
@@ -62,8 +66,9 @@ class heroController extends Controller
     public function view($id,$slug)
     {
         $data = Hero::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+          
         return Inertia::render('backend/cms/hero/show',[
-            'data' => $data
+            'data' => $data,
         ]);
        
     }
@@ -74,8 +79,10 @@ class heroController extends Controller
     public function edit($id,$slug)
     {
         $data = Hero::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+          $icons = Faveicon::pluck('icons');
         return Inertia::render('backend/cms/hero/edit',[
-            'data' => $data
+            'data' => $data,
+            'iconlist' => $icons
         ]);
        
     }
@@ -90,17 +97,16 @@ class heroController extends Controller
      */
     public function insert(Request $request){
          /**--- validation code -- */
-        // $request->validate( [
-        //         'name' => ['required', 'string', 'max:255',Rule::unique('category_pages','name')],
-        //         'slug' => ['required', 'string', 'max:255', Rule::unique('category_pages','url')],
-               
-        //     ],[
-        //         'name.required'=> 'Name field is Required !',
-        //         'slug.required'=> 'Slug field is Required !',
-        //         'name.unique'=> 'This name already exists. !',
-        //         'slug.unique'=> 'This URL already exists. !',
-        //     ]
-        // );
+        $request->validate( [
+                'type' => ['required', 'string'],
+                'title' => ['required', 'string'],
+                'short_des' => ['required', 'string'],
+            ],[
+                'type.required'=> 'Type field is Required !',
+                'title.required'=> 'Title field is Required !',
+                'short_des.required'=> 'Short Description field is Required !',
+            ]
+        );
 
         //---------- get authenticate use id and create a slug
         $creator_id = Auth::user()->id;
@@ -110,11 +116,17 @@ class heroController extends Controller
         // ----- insert record into database 
         $insert = Hero::create([
             'page_section_id'=>$request->section_id,
+            'icon'=>$request->icon,
+            'type'=>$request->type,
             'heading'=>$request->heading,
+            'sub_heading'=>$request->sub_heading,
             'title'=>$request->title,
+            'sub_title'=>$request->sub_title,
+            'short_des'=>$request->short_des,
             'description'=>$request->description,
             'button'=>$request->button,
             'button_url'=>$request->button_url,
+            'video_url'=>$request->video_url,
             'order'=>$request->order,
             'public_status'=>$request->public_status ?? 0,
             'slug'=>$slug,
@@ -166,7 +178,14 @@ class heroController extends Controller
      */
 
     public function update(Request $request){
-     
+
+        /**--- validation code -- */
+        $request->validate( [
+                'type' => ['required', 'string'],
+            ],[
+                'type.required'=> 'Type field is Required !',
+            ]
+        );
        
         //---------- get authenticate use id and create a slug
         $editor_id = Auth::user()->id;
@@ -175,10 +194,19 @@ class heroController extends Controller
 
 
         // ----- insert record into database 
-        $update = Hero::where('id',$id)->where('slug',$slug)->update([
+        $update = Hero::where('id',$id)->where('slug',$slug)->firstOrFail();
+        $update->update([
+            'icon'=>$request->icon,
+            'type'=>$request->type,
             'heading'=>$request->heading,
+            'sub_heading'=>$request->sub_heading,
             'title'=>$request->title,
+            'sub_title'=>$request->sub_title,
+            'short_des'=>$request->short_des,
             'description'=>$request->description,
+            'button'=>$request->button,
+            'button_url'=>$request->button_url,
+            'video_url'=>$request->video_url,
             'order'=>$request->order,
             'public_status'=>$request->public_status ?? 0,
             'editor_id' => $editor_id,
@@ -215,12 +243,9 @@ class heroController extends Controller
         }
         /**======== upload image via the service end ====== */
 
-
-
-
         if($update){
             flash()->success('Information Updated successfully!');
-            return redirect()->route('hero.view',[$id,$slug]);
+            return redirect()->route('hero_manage.view',[$id,$slug]);
         }else{
             flash()->error('Information Updated Faild !');
             return redirect()->back();
@@ -234,11 +259,10 @@ class heroController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = Hero::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
-            'public_status' => 1,
-        ]);
+        $active = Hero::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail();
 
         if($active){
+            $active->update(['public_status' => 1,]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -252,11 +276,10 @@ class heroController extends Controller
      */
     public function deactive($id,$slug){
 
-        $active = Hero::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
-            'public_status' => 0,
-        ]);
+        $active = Hero::where('id',$id)->where('slug',$slug)->where('public_status',1)->firstOrFail();
 
         if($active){
+            $active->update(['public_status' => 0,]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -286,7 +309,6 @@ class heroController extends Controller
         $data= Hero::onlyTrashed()->where('id',$id)->first();
         
         if ($data) {
-
         /**=========== delete image form folder ===== */
             $file_paths = public_path($data->cover_image);
                 if (file_exists($file_paths)) {
@@ -318,7 +340,7 @@ class heroController extends Controller
         $query->onlyTrashed();
 
         if($request->filled('search')){
-            $query->where('name','LIKE', '%' .$request->search .'%');
+            $query->where('title','LIKE', '%' .$request->search .'%');
         }
 
             // 📅 Status Filter
@@ -365,16 +387,18 @@ class heroController extends Controller
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = Hero::whereIn('id',$ids)->where('public_status',0)->update([
-                'public_status'=>1,
-            ]);
+            $categorys = Hero::whereIn('id',$ids)->where('public_status',0)->get();
+            foreach($categorys as $items){
+                $items->update(['public_status'=>1,]);
+            }
  
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = Hero::whereIn('id',$ids)->where('public_status',1)->update([
-                'public_status'=>0,
-            ]);
+            $categorys = Hero::whereIn('id',$ids)->where('public_status',1)->get();
+            foreach($categorys as $items){
+                $items->update(['public_status'=>0,]);
+            }
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){

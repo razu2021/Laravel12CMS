@@ -34,7 +34,7 @@ const {data} = defineProps<{
           </div>
           <button
             class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-white/20 transition">
-            <Link :href="route('hero.all')"><Button>All Information</Button></Link>
+            <Link :href="route('hero_manage.all')"><Button>All Information</Button></Link>
           </button>
         </div>
       </div>
@@ -60,9 +60,27 @@ const {data} = defineProps<{
                       <!-- Table Body -->
                       <tbody class="divide-y divide-gray-200">
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">Type</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.type ?? 'N/A' }}</td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">Icon</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800"><i :class="data.icon ?? ''"></i></td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
                           <td class="py-3 px-5 text-gray-800">Heading</td>
                           <td class="py-3 px-5 text-gray-800">:</td>
                           <td class="py-3 px-5 text-gray-800">{{ data.heading ?? 'N/A' }}</td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">Sub Heading</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.sub_heading ?? 'N/A' }}</td>
                         </tr>
                         <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
@@ -72,9 +90,21 @@ const {data} = defineProps<{
                         </tr>
                         <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800"> Description</td>
+                          <td class="py-3 px-5 text-gray-800">Sub Title</td>
                           <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800">{{ data.description ?? 'M/A' }}</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.sub_title ?? 'N/A' }}</td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800"> Short Description </td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.short_des ?? 'N/A' }}</td>
+                        </tr>
+                        <!--  -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">  Description </td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800" v-html="data.description ?? 'N/A' "></td>
                         </tr>
                         <!--  -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
@@ -87,6 +117,13 @@ const {data} = defineProps<{
                           <td class="py-3 px-5 text-gray-800"> Thumbnail image</td> 
                           <td class="py-3 px-5 text-gray-800">:</td>
                           <td class="py-3 px-5 text-gray-800"><img class=" h-30 w-auto rounded-lg shadow-lg" v-if="data.cover_image" :src="`/${data.thumbnail}`" alt="image"></td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">Video </td> 
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">
+                            <iframe class="rounded-lg shadow-lg" width="auto" height="160" :src=" data.video_url ?? '' " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></td>
                         </tr>
                         <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">

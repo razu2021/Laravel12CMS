@@ -4,9 +4,19 @@ import { route } from 'ziggy-js';
 import AdminLayout from '@/layouts/AdminLayout.vue';
 import { computed, ref } from 'vue';
 import {abouteThemes,breadcrumbThemes,countryThemes,contactFormThemes,ctaThemes,heroThemes,faqThemes,folloqusThemes,googlemapsThemes,
-  imageGalleryThemes,
+  imageGalleryThemes, globalsectionThemes,newsThemes,
   partnerThemes,
-  serviceThemes, Theme } from '@/theme';
+  serviceThemes,eventThemes ,Theme, 
+  casestudyThemes,
+  blogThemes,
+  postThemes,
+  protfolioThemes,
+  promotThemes,
+  roadmapThemes,
+  tesmonialThemes,
+  teamThemes,
+  videoGallerylThemes,
+  whychooselThemes} from '@/theme';
 
 const props= defineProps<{
     data: {
@@ -21,38 +31,80 @@ const props= defineProps<{
 
 const activeTheme = computed(()=>{
   switch(props.data.dynamic_route){
-      case 'about':
+      case 'about_manage':
         return abouteThemes
       
-      case 'breadcrumb':
+      case 'breadcrumb_manage':
         return breadcrumbThemes
 
-      case 'country':
+      case 'blog_manage':
+        return blogThemes
+
+      case 'casestudy_manage':
+        return casestudyThemes
+      
+      case 'countrydestination_manage':
         return countryThemes
       
-      case 'contact_form':
+      case 'contactform_manage':
         return contactFormThemes
       
-      case 'cta':
+      case 'cta_manage':
         return ctaThemes
       
-      case 'faq':
+      case 'event_manage':
+        return eventThemes
+      
+      case 'faq_manage':
         return faqThemes
       
-      case 'followus':
+      case 'followus_manage':
         return folloqusThemes
 
       case 'google_map':
         return googlemapsThemes
 
-      case 'hero':
+      case 'globalsection_manage':
+        return globalsectionThemes
+
+      case 'hero_manage':
         return heroThemes
 
-      case 'imagegallery':
+      case 'imagegallery_manage':
         return imageGalleryThemes
 
-      case 'paratner':
+      case 'news_manage':
+        return newsThemes
+
+      case 'post_manage':
+        return postThemes
+
+      case 'protfolio_manage':
+        return protfolioThemes
+
+      case 'partner_manage':
         return partnerThemes
+
+      case 'promot_manage':
+        return promotThemes
+
+      case 'roadmap_manage':
+        return roadmapThemes
+
+      case 'service_manage':
+        return serviceThemes
+
+      case 'testimonial_manage':
+        return tesmonialThemes
+
+      case 'team_manage':
+        return teamThemes
+
+      case 'videogallery_manage':
+        return videoGallerylThemes
+
+      case 'whychooseus_manage':
+        return whychooselThemes
 
 
       default:

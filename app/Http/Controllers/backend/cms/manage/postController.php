@@ -8,9 +8,9 @@ use Carbon\Carbon; //----------  defualt -------
 use Barryvdh\DomPDF\Facade\Pdf;//-------------- export pdf
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PostExport;
+use App\Models\PageSection;
 use Illuminate\Support\Str;
 use App\Models\Post;
-use App\Models\PageSection;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\File; 
@@ -28,7 +28,7 @@ class postController extends Controller
         $query = Post::query(); 
 
         if($request->filled('search')){
-            $query->where('name','LIKE', '%' .$request->search .'%');
+            $query->where('title','LIKE', '%' .$request->search .'%');
         }
 
             // 📅 Status Filter
@@ -112,9 +112,16 @@ class postController extends Controller
         // ----- insert record into database 
         $insert = Post::create([
             'page_section_id'=>$request->section_id,
+            'type'=>$request->type,
             'heading'=>$request->heading,
+            'sub_heading'=>$request->sub_heading,
             'title'=>$request->title,
+            'sub_title'=>$request->sub_title,
+            'short_des'=>$request->short_des,
             'description'=>$request->description,
+            'button'=>$request->button,
+            'button_url'=>$request->button_url,
+            'video_url'=>$request->video_url,
             'order'=>$request->order,
             'public_status'=>$request->public_status ?? 0,
             'slug'=>$slug,
@@ -175,10 +182,18 @@ class postController extends Controller
 
 
         // ----- insert record into database 
-        $update = Post::where('id',$id)->where('slug',$slug)->update([
+        $update = Post::where('id',$id)->where('slug',$slug)->firstOrFail();
+        $update->update([
+            'type'=>$request->type,
             'heading'=>$request->heading,
+            'sub_heading'=>$request->sub_heading,
             'title'=>$request->title,
+            'sub_title'=>$request->sub_title,
+            'short_des'=>$request->short_des,
             'description'=>$request->description,
+            'button'=>$request->button,
+            'button_url'=>$request->button_url,
+            'video_url'=>$request->video_url,
             'order'=>$request->order,
             'public_status'=>$request->public_status ?? 0,
             'editor_id' => $editor_id,
@@ -220,7 +235,7 @@ class postController extends Controller
 
         if($update){
             flash()->success('Information Updated successfully!');
-            return redirect()->route('post.view',[$id,$slug]);
+            return redirect()->route('post_manage.view',[$id,$slug]);
         }else{
             flash()->error('Information Updated Faild !');
             return redirect()->back();
@@ -234,11 +249,10 @@ class postController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = Post::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
-            'public_status' => 1,
-        ]);
+        $active = Post::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail();
 
         if($active){
+            $active->update(['public_status' => 1,]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -252,11 +266,10 @@ class postController extends Controller
      */
     public function deactive($id,$slug){
 
-        $active = Post::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
-            'public_status' => 0,
-        ]);
+        $active = Post::where('id',$id)->where('slug',$slug)->where('public_status',1)->firstOrFail();
 
         if($active){
+            $active->update(['public_status' => 0,]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -286,7 +299,6 @@ class postController extends Controller
         $data= Post::onlyTrashed()->where('id',$id)->first();
         
         if ($data) {
-
         /**=========== delete image form folder ===== */
             $file_paths = public_path($data->cover_image);
                 if (file_exists($file_paths)) {
@@ -318,7 +330,7 @@ class postController extends Controller
         $query->onlyTrashed();
 
         if($request->filled('search')){
-            $query->where('name','LIKE', '%' .$request->search .'%');
+            $query->where('title','LIKE', '%' .$request->search .'%');
         }
 
             // 📅 Status Filter
@@ -365,16 +377,18 @@ class postController extends Controller
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = Post::whereIn('id',$ids)->where('public_status',0)->update([
-                'public_status'=>1,
-            ]);
+            $categorys = Post::whereIn('id',$ids)->where('public_status',0)->get();
+            foreach($categorys as $items){
+                $items->update(['public_status'=>1,]);
+            }
  
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = Post::whereIn('id',$ids)->where('public_status',1)->update([
-                'public_status'=>0,
-            ]);
+            $categorys = Post::whereIn('id',$ids)->where('public_status',1)->get();
+            foreach($categorys as $items){
+                $items->update(['public_status'=>0,]);
+            }
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){

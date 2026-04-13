@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::all
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:26
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:27
  * @route '/admin/dashboad/manage/section/hero/all'
  */
 export const all = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ all.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::all
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:26
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:27
  * @route '/admin/dashboad/manage/section/hero/all'
  */
 all.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ all.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::all
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:26
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:27
  * @route '/admin/dashboad/manage/section/hero/all'
  */
 all.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -34,7 +34,7 @@ all.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::all
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:26
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:27
  * @route '/admin/dashboad/manage/section/hero/all'
  */
 all.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -44,7 +44,7 @@ all.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::all
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:26
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:27
  * @route '/admin/dashboad/manage/section/hero/all'
  */
     const allForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -54,7 +54,7 @@ all.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::all
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:26
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:27
  * @route '/admin/dashboad/manage/section/hero/all'
  */
         allForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -63,7 +63,7 @@ all.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::all
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:26
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:27
  * @route '/admin/dashboad/manage/section/hero/all'
  */
         allForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -79,7 +79,7 @@ all.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     all.form = allForm
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::add
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:51
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:52
  * @route '/admin/dashboad/manage/section/hero/add/{id}/{slug}'
  */
 export const add = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -94,7 +94,7 @@ add.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::add
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:51
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:52
  * @route '/admin/dashboad/manage/section/hero/add/{id}/{slug}'
  */
 add.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
@@ -120,7 +120,7 @@ add.url = (args: { id: string | number, slug: string | number } | [id: string | 
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::add
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:51
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:52
  * @route '/admin/dashboad/manage/section/hero/add/{id}/{slug}'
  */
 add.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -129,7 +129,7 @@ add.get = (args: { id: string | number, slug: string | number } | [id: string | 
 })
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::add
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:51
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:52
  * @route '/admin/dashboad/manage/section/hero/add/{id}/{slug}'
  */
 add.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -139,7 +139,7 @@ add.head = (args: { id: string | number, slug: string | number } | [id: string |
 
     /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::add
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:51
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:52
  * @route '/admin/dashboad/manage/section/hero/add/{id}/{slug}'
  */
     const addForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -149,7 +149,7 @@ add.head = (args: { id: string | number, slug: string | number } | [id: string |
 
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::add
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:51
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:52
  * @route '/admin/dashboad/manage/section/hero/add/{id}/{slug}'
  */
         addForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -158,7 +158,7 @@ add.head = (args: { id: string | number, slug: string | number } | [id: string |
         })
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::add
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:51
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:52
  * @route '/admin/dashboad/manage/section/hero/add/{id}/{slug}'
  */
         addForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -174,7 +174,7 @@ add.head = (args: { id: string | number, slug: string | number } | [id: string |
     add.form = addForm
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::view
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:62
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:66
  * @route '/admin/dashboad/manage/section/hero/view/{id}/{slug}'
  */
 export const view = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -189,7 +189,7 @@ view.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::view
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:62
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:66
  * @route '/admin/dashboad/manage/section/hero/view/{id}/{slug}'
  */
 view.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
@@ -215,7 +215,7 @@ view.url = (args: { id: string | number, slug: string | number } | [id: string |
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::view
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:62
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:66
  * @route '/admin/dashboad/manage/section/hero/view/{id}/{slug}'
  */
 view.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -224,7 +224,7 @@ view.get = (args: { id: string | number, slug: string | number } | [id: string |
 })
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::view
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:62
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:66
  * @route '/admin/dashboad/manage/section/hero/view/{id}/{slug}'
  */
 view.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -234,7 +234,7 @@ view.head = (args: { id: string | number, slug: string | number } | [id: string 
 
     /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::view
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:62
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:66
  * @route '/admin/dashboad/manage/section/hero/view/{id}/{slug}'
  */
     const viewForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -244,7 +244,7 @@ view.head = (args: { id: string | number, slug: string | number } | [id: string 
 
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::view
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:62
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:66
  * @route '/admin/dashboad/manage/section/hero/view/{id}/{slug}'
  */
         viewForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -253,7 +253,7 @@ view.head = (args: { id: string | number, slug: string | number } | [id: string 
         })
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::view
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:62
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:66
  * @route '/admin/dashboad/manage/section/hero/view/{id}/{slug}'
  */
         viewForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -269,7 +269,7 @@ view.head = (args: { id: string | number, slug: string | number } | [id: string 
     view.form = viewForm
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::edit
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:74
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:79
  * @route '/admin/dashboad/manage/section/hero/edit/{id}/{slug}'
  */
 export const edit = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -284,7 +284,7 @@ edit.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::edit
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:74
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:79
  * @route '/admin/dashboad/manage/section/hero/edit/{id}/{slug}'
  */
 edit.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
@@ -310,7 +310,7 @@ edit.url = (args: { id: string | number, slug: string | number } | [id: string |
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::edit
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:74
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:79
  * @route '/admin/dashboad/manage/section/hero/edit/{id}/{slug}'
  */
 edit.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -319,7 +319,7 @@ edit.get = (args: { id: string | number, slug: string | number } | [id: string |
 })
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::edit
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:74
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:79
  * @route '/admin/dashboad/manage/section/hero/edit/{id}/{slug}'
  */
 edit.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -329,7 +329,7 @@ edit.head = (args: { id: string | number, slug: string | number } | [id: string 
 
     /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::edit
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:74
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:79
  * @route '/admin/dashboad/manage/section/hero/edit/{id}/{slug}'
  */
     const editForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -339,7 +339,7 @@ edit.head = (args: { id: string | number, slug: string | number } | [id: string 
 
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::edit
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:74
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:79
  * @route '/admin/dashboad/manage/section/hero/edit/{id}/{slug}'
  */
         editForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -348,7 +348,7 @@ edit.head = (args: { id: string | number, slug: string | number } | [id: string 
         })
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::edit
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:74
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:79
  * @route '/admin/dashboad/manage/section/hero/edit/{id}/{slug}'
  */
         editForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -364,7 +364,7 @@ edit.head = (args: { id: string | number, slug: string | number } | [id: string 
     edit.form = editForm
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::submit
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:91
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:98
  * @route '/admin/dashboad/manage/section/hero/submit'
  */
 export const submit = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -379,7 +379,7 @@ submit.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::submit
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:91
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:98
  * @route '/admin/dashboad/manage/section/hero/submit'
  */
 submit.url = (options?: RouteQueryOptions) => {
@@ -388,7 +388,7 @@ submit.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::submit
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:91
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:98
  * @route '/admin/dashboad/manage/section/hero/submit'
  */
 submit.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -398,7 +398,7 @@ submit.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::submit
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:91
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:98
  * @route '/admin/dashboad/manage/section/hero/submit'
  */
     const submitForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -408,7 +408,7 @@ submit.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::submit
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:91
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:98
  * @route '/admin/dashboad/manage/section/hero/submit'
  */
         submitForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -419,7 +419,7 @@ submit.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     submit.form = submitForm
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::update
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:168
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:180
  * @route '/admin/dashboad/manage/section/hero/update'
  */
 export const update = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -434,7 +434,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::update
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:168
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:180
  * @route '/admin/dashboad/manage/section/hero/update'
  */
 update.url = (options?: RouteQueryOptions) => {
@@ -443,7 +443,7 @@ update.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::update
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:168
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:180
  * @route '/admin/dashboad/manage/section/hero/update'
  */
 update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -453,7 +453,7 @@ update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::update
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:168
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:180
  * @route '/admin/dashboad/manage/section/hero/update'
  */
     const updateForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -468,7 +468,7 @@ update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::update
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:168
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:180
  * @route '/admin/dashboad/manage/section/hero/update'
  */
         updateForm.patch = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -484,7 +484,7 @@ update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     update.form = updateForm
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::active
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:236
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:261
  * @route '/admin/dashboad/manage/section/hero/active/{id}/{slug}'
  */
 export const active = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -499,7 +499,7 @@ active.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::active
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:236
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:261
  * @route '/admin/dashboad/manage/section/hero/active/{id}/{slug}'
  */
 active.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
@@ -525,7 +525,7 @@ active.url = (args: { id: string | number, slug: string | number } | [id: string
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::active
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:236
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:261
  * @route '/admin/dashboad/manage/section/hero/active/{id}/{slug}'
  */
 active.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -534,7 +534,7 @@ active.get = (args: { id: string | number, slug: string | number } | [id: string
 })
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::active
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:236
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:261
  * @route '/admin/dashboad/manage/section/hero/active/{id}/{slug}'
  */
 active.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -544,7 +544,7 @@ active.head = (args: { id: string | number, slug: string | number } | [id: strin
 
     /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::active
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:236
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:261
  * @route '/admin/dashboad/manage/section/hero/active/{id}/{slug}'
  */
     const activeForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -554,7 +554,7 @@ active.head = (args: { id: string | number, slug: string | number } | [id: strin
 
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::active
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:236
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:261
  * @route '/admin/dashboad/manage/section/hero/active/{id}/{slug}'
  */
         activeForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -563,7 +563,7 @@ active.head = (args: { id: string | number, slug: string | number } | [id: strin
         })
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::active
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:236
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:261
  * @route '/admin/dashboad/manage/section/hero/active/{id}/{slug}'
  */
         activeForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -579,7 +579,7 @@ active.head = (args: { id: string | number, slug: string | number } | [id: strin
     active.form = activeForm
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::deactive
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:253
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:277
  * @route '/admin/dashboad/manage/section/hero/deactive/{id}/{slug}'
  */
 export const deactive = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -594,7 +594,7 @@ deactive.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::deactive
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:253
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:277
  * @route '/admin/dashboad/manage/section/hero/deactive/{id}/{slug}'
  */
 deactive.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
@@ -620,7 +620,7 @@ deactive.url = (args: { id: string | number, slug: string | number } | [id: stri
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::deactive
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:253
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:277
  * @route '/admin/dashboad/manage/section/hero/deactive/{id}/{slug}'
  */
 deactive.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -629,7 +629,7 @@ deactive.get = (args: { id: string | number, slug: string | number } | [id: stri
 })
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::deactive
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:253
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:277
  * @route '/admin/dashboad/manage/section/hero/deactive/{id}/{slug}'
  */
 deactive.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -639,7 +639,7 @@ deactive.head = (args: { id: string | number, slug: string | number } | [id: str
 
     /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::deactive
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:253
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:277
  * @route '/admin/dashboad/manage/section/hero/deactive/{id}/{slug}'
  */
     const deactiveForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -649,7 +649,7 @@ deactive.head = (args: { id: string | number, slug: string | number } | [id: str
 
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::deactive
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:253
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:277
  * @route '/admin/dashboad/manage/section/hero/deactive/{id}/{slug}'
  */
         deactiveForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -658,7 +658,7 @@ deactive.head = (args: { id: string | number, slug: string | number } | [id: str
         })
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::deactive
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:253
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:277
  * @route '/admin/dashboad/manage/section/hero/deactive/{id}/{slug}'
  */
         deactiveForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -674,7 +674,7 @@ deactive.head = (args: { id: string | number, slug: string | number } | [id: str
     deactive.form = deactiveForm
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::softdelete
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:270
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:293
  * @route '/admin/dashboad/manage/section/hero/softdelete/{id}'
  */
 export const softdelete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -689,7 +689,7 @@ softdelete.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::softdelete
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:270
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:293
  * @route '/admin/dashboad/manage/section/hero/softdelete/{id}'
  */
 softdelete.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -717,7 +717,7 @@ softdelete.url = (args: { id: string | number } | [id: string | number ] | strin
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::softdelete
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:270
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:293
  * @route '/admin/dashboad/manage/section/hero/softdelete/{id}'
  */
 softdelete.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -727,7 +727,7 @@ softdelete.delete = (args: { id: string | number } | [id: string | number ] | st
 
     /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::softdelete
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:270
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:293
  * @route '/admin/dashboad/manage/section/hero/softdelete/{id}'
  */
     const softdeleteForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -742,7 +742,7 @@ softdelete.delete = (args: { id: string | number } | [id: string | number ] | st
 
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::softdelete
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:270
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:293
  * @route '/admin/dashboad/manage/section/hero/softdelete/{id}'
  */
         softdeleteForm.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -758,7 +758,7 @@ softdelete.delete = (args: { id: string | number } | [id: string | number ] | st
     softdelete.form = softdeleteForm
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::deleteMethod
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:285
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:308
  * @route '/admin/dashboad/manage/section/hero/delete/{id}'
  */
 export const deleteMethod = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -773,7 +773,7 @@ deleteMethod.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::deleteMethod
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:285
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:308
  * @route '/admin/dashboad/manage/section/hero/delete/{id}'
  */
 deleteMethod.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -801,7 +801,7 @@ deleteMethod.url = (args: { id: string | number } | [id: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::deleteMethod
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:285
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:308
  * @route '/admin/dashboad/manage/section/hero/delete/{id}'
  */
 deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -811,7 +811,7 @@ deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | 
 
     /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::deleteMethod
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:285
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:308
  * @route '/admin/dashboad/manage/section/hero/delete/{id}'
  */
     const deleteMethodForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -826,7 +826,7 @@ deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | 
 
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::deleteMethod
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:285
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:308
  * @route '/admin/dashboad/manage/section/hero/delete/{id}'
  */
         deleteMethodForm.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -842,7 +842,7 @@ deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | 
     deleteMethod.form = deleteMethodForm
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::recycle
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:315
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:337
  * @route '/admin/dashboad/manage/section/hero/recycle'
  */
 export const recycle = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -857,7 +857,7 @@ recycle.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::recycle
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:315
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:337
  * @route '/admin/dashboad/manage/section/hero/recycle'
  */
 recycle.url = (options?: RouteQueryOptions) => {
@@ -866,7 +866,7 @@ recycle.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::recycle
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:315
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:337
  * @route '/admin/dashboad/manage/section/hero/recycle'
  */
 recycle.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -875,7 +875,7 @@ recycle.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::recycle
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:315
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:337
  * @route '/admin/dashboad/manage/section/hero/recycle'
  */
 recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -885,7 +885,7 @@ recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::recycle
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:315
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:337
  * @route '/admin/dashboad/manage/section/hero/recycle'
  */
     const recycleForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -895,7 +895,7 @@ recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::recycle
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:315
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:337
  * @route '/admin/dashboad/manage/section/hero/recycle'
  */
         recycleForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -904,7 +904,7 @@ recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::recycle
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:315
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:337
  * @route '/admin/dashboad/manage/section/hero/recycle'
  */
         recycleForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -920,7 +920,7 @@ recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     recycle.form = recycleForm
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::bulkAction
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:349
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:371
  * @route '/admin/dashboad/manage/section/hero/bulk/action'
  */
 export const bulkAction = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -935,7 +935,7 @@ bulkAction.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::bulkAction
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:349
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:371
  * @route '/admin/dashboad/manage/section/hero/bulk/action'
  */
 bulkAction.url = (options?: RouteQueryOptions) => {
@@ -944,7 +944,7 @@ bulkAction.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::bulkAction
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:349
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:371
  * @route '/admin/dashboad/manage/section/hero/bulk/action'
  */
 bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -954,7 +954,7 @@ bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::bulkAction
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:349
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:371
  * @route '/admin/dashboad/manage/section/hero/bulk/action'
  */
     const bulkActionForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -964,7 +964,7 @@ bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::bulkAction
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:349
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:371
  * @route '/admin/dashboad/manage/section/hero/bulk/action'
  */
         bulkActionForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -975,7 +975,7 @@ bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     bulkAction.form = bulkActionForm
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:452
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:476
  * @route '/admin/dashboad/manage/section/hero/export/single/pdf/{id}/{slug}'
  */
 export const single_pdf_export = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -990,7 +990,7 @@ single_pdf_export.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:452
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:476
  * @route '/admin/dashboad/manage/section/hero/export/single/pdf/{id}/{slug}'
  */
 single_pdf_export.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
@@ -1016,7 +1016,7 @@ single_pdf_export.url = (args: { id: string | number, slug: string | number } | 
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:452
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:476
  * @route '/admin/dashboad/manage/section/hero/export/single/pdf/{id}/{slug}'
  */
 single_pdf_export.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1025,7 +1025,7 @@ single_pdf_export.get = (args: { id: string | number, slug: string | number } | 
 })
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:452
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:476
  * @route '/admin/dashboad/manage/section/hero/export/single/pdf/{id}/{slug}'
  */
 single_pdf_export.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1035,7 +1035,7 @@ single_pdf_export.head = (args: { id: string | number, slug: string | number } |
 
     /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:452
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:476
  * @route '/admin/dashboad/manage/section/hero/export/single/pdf/{id}/{slug}'
  */
     const single_pdf_exportForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1045,7 +1045,7 @@ single_pdf_export.head = (args: { id: string | number, slug: string | number } |
 
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:452
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:476
  * @route '/admin/dashboad/manage/section/hero/export/single/pdf/{id}/{slug}'
  */
         single_pdf_exportForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1054,7 +1054,7 @@ single_pdf_export.head = (args: { id: string | number, slug: string | number } |
         })
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:452
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:476
  * @route '/admin/dashboad/manage/section/hero/export/single/pdf/{id}/{slug}'
  */
         single_pdf_exportForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1070,7 +1070,7 @@ single_pdf_export.head = (args: { id: string | number, slug: string | number } |
     single_pdf_export.form = single_pdf_exportForm
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_excel
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:481
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:505
  * @route '/admin/dashboad/manage/section/hero/export/excel'
  */
 export const export_excel = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1085,7 +1085,7 @@ export_excel.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_excel
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:481
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:505
  * @route '/admin/dashboad/manage/section/hero/export/excel'
  */
 export_excel.url = (options?: RouteQueryOptions) => {
@@ -1094,7 +1094,7 @@ export_excel.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_excel
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:481
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:505
  * @route '/admin/dashboad/manage/section/hero/export/excel'
  */
 export_excel.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1103,7 +1103,7 @@ export_excel.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_excel
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:481
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:505
  * @route '/admin/dashboad/manage/section/hero/export/excel'
  */
 export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1113,7 +1113,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_excel
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:481
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:505
  * @route '/admin/dashboad/manage/section/hero/export/excel'
  */
     const export_excelForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1123,7 +1123,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_excel
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:481
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:505
  * @route '/admin/dashboad/manage/section/hero/export/excel'
  */
         export_excelForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1132,7 +1132,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_excel
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:481
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:505
  * @route '/admin/dashboad/manage/section/hero/export/excel'
  */
         export_excelForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1148,7 +1148,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     export_excel.form = export_excelForm
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_csv
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:488
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:512
  * @route '/admin/dashboad/manage/section/hero/export/csv'
  */
 export const export_csv = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1163,7 +1163,7 @@ export_csv.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_csv
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:488
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:512
  * @route '/admin/dashboad/manage/section/hero/export/csv'
  */
 export_csv.url = (options?: RouteQueryOptions) => {
@@ -1172,7 +1172,7 @@ export_csv.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_csv
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:488
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:512
  * @route '/admin/dashboad/manage/section/hero/export/csv'
  */
 export_csv.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1181,7 +1181,7 @@ export_csv.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_csv
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:488
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:512
  * @route '/admin/dashboad/manage/section/hero/export/csv'
  */
 export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1191,7 +1191,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_csv
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:488
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:512
  * @route '/admin/dashboad/manage/section/hero/export/csv'
  */
     const export_csvForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1201,7 +1201,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_csv
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:488
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:512
  * @route '/admin/dashboad/manage/section/hero/export/csv'
  */
         export_csvForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1210,7 +1210,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_csv
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:488
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:512
  * @route '/admin/dashboad/manage/section/hero/export/csv'
  */
         export_csvForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1226,7 +1226,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     export_csv.form = export_csvForm
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_pdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:466
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:490
  * @route '/admin/dashboad/manage/section/hero/export/pdf'
  */
 export const export_pdf = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1241,7 +1241,7 @@ export_pdf.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_pdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:466
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:490
  * @route '/admin/dashboad/manage/section/hero/export/pdf'
  */
 export_pdf.url = (options?: RouteQueryOptions) => {
@@ -1250,7 +1250,7 @@ export_pdf.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_pdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:466
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:490
  * @route '/admin/dashboad/manage/section/hero/export/pdf'
  */
 export_pdf.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1259,7 +1259,7 @@ export_pdf.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_pdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:466
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:490
  * @route '/admin/dashboad/manage/section/hero/export/pdf'
  */
 export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1269,7 +1269,7 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_pdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:466
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:490
  * @route '/admin/dashboad/manage/section/hero/export/pdf'
  */
     const export_pdfForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1279,7 +1279,7 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_pdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:466
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:490
  * @route '/admin/dashboad/manage/section/hero/export/pdf'
  */
         export_pdfForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1288,7 +1288,7 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\cms\manage\heroController::export_pdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:466
+ * @see app/Http/Controllers/backend/cms/manage/heroController.php:490
  * @route '/admin/dashboad/manage/section/hero/export/pdf'
  */
         export_pdfForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1302,241 +1302,7 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
     
     export_pdf.form = export_pdfForm
-/**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getCategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/category/page'
- */
-export const getCategory = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: getCategory.url(options),
-    method: 'get',
-})
-
-getCategory.definition = {
-    methods: ["get","head"],
-    url: '/admin/dashboad/manage/section/hero/get/category/page',
-} satisfies RouteDefinition<["get","head"]>
-
-/**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getCategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/category/page'
- */
-getCategory.url = (options?: RouteQueryOptions) => {
-    return getCategory.definition.url + queryParams(options)
-}
-
-/**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getCategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/category/page'
- */
-getCategory.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: getCategory.url(options),
-    method: 'get',
-})
-/**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getCategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/category/page'
- */
-getCategory.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: getCategory.url(options),
-    method: 'head',
-})
-
-    /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getCategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/category/page'
- */
-    const getCategoryForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-        action: getCategory.url(options),
-        method: 'get',
-    })
-
-            /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getCategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/category/page'
- */
-        getCategoryForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-            action: getCategory.url(options),
-            method: 'get',
-        })
-            /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getCategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/category/page'
- */
-        getCategoryForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-            action: getCategory.url({
-                        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-                            _method: 'HEAD',
-                            ...(options?.query ?? options?.mergeQuery ?? {}),
-                        }
-                    }),
-            method: 'get',
-        })
-    
-    getCategory.form = getCategoryForm
-/**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getsubcategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/subcategory/page'
- */
-export const getsubcategory = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: getsubcategory.url(options),
-    method: 'get',
-})
-
-getsubcategory.definition = {
-    methods: ["get","head"],
-    url: '/admin/dashboad/manage/section/hero/get/subcategory/page',
-} satisfies RouteDefinition<["get","head"]>
-
-/**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getsubcategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/subcategory/page'
- */
-getsubcategory.url = (options?: RouteQueryOptions) => {
-    return getsubcategory.definition.url + queryParams(options)
-}
-
-/**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getsubcategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/subcategory/page'
- */
-getsubcategory.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: getsubcategory.url(options),
-    method: 'get',
-})
-/**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getsubcategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/subcategory/page'
- */
-getsubcategory.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: getsubcategory.url(options),
-    method: 'head',
-})
-
-    /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getsubcategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/subcategory/page'
- */
-    const getsubcategoryForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-        action: getsubcategory.url(options),
-        method: 'get',
-    })
-
-            /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getsubcategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/subcategory/page'
- */
-        getsubcategoryForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-            action: getsubcategory.url(options),
-            method: 'get',
-        })
-            /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getsubcategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/subcategory/page'
- */
-        getsubcategoryForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-            action: getsubcategory.url({
-                        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-                            _method: 'HEAD',
-                            ...(options?.query ?? options?.mergeQuery ?? {}),
-                        }
-                    }),
-            method: 'get',
-        })
-    
-    getsubcategory.form = getsubcategoryForm
-/**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getchildcategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/childcategory/page'
- */
-export const getchildcategory = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: getchildcategory.url(options),
-    method: 'get',
-})
-
-getchildcategory.definition = {
-    methods: ["get","head"],
-    url: '/admin/dashboad/manage/section/hero/get/childcategory/page',
-} satisfies RouteDefinition<["get","head"]>
-
-/**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getchildcategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/childcategory/page'
- */
-getchildcategory.url = (options?: RouteQueryOptions) => {
-    return getchildcategory.definition.url + queryParams(options)
-}
-
-/**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getchildcategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/childcategory/page'
- */
-getchildcategory.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: getchildcategory.url(options),
-    method: 'get',
-})
-/**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getchildcategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/childcategory/page'
- */
-getchildcategory.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: getchildcategory.url(options),
-    method: 'head',
-})
-
-    /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getchildcategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/childcategory/page'
- */
-    const getchildcategoryForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-        action: getchildcategory.url(options),
-        method: 'get',
-    })
-
-            /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getchildcategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/childcategory/page'
- */
-        getchildcategoryForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-            action: getchildcategory.url(options),
-            method: 'get',
-        })
-            /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::getchildcategory
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:0
- * @route '/admin/dashboad/manage/section/hero/get/childcategory/page'
- */
-        getchildcategoryForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
-            action: getchildcategory.url({
-                        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
-                            _method: 'HEAD',
-                            ...(options?.query ?? options?.mergeQuery ?? {}),
-                        }
-                    }),
-            method: 'get',
-        })
-    
-    getchildcategory.form = getchildcategoryForm
-const hero = {
+const hero_manage = {
     all: Object.assign(all, all),
 add: Object.assign(add, add),
 view: Object.assign(view, view),
@@ -1553,9 +1319,6 @@ single_pdf_export: Object.assign(single_pdf_export, single_pdf_export),
 export_excel: Object.assign(export_excel, export_excel),
 export_csv: Object.assign(export_csv, export_csv),
 export_pdf: Object.assign(export_pdf, export_pdf),
-getCategory: Object.assign(getCategory, getCategory),
-getsubcategory: Object.assign(getsubcategory, getsubcategory),
-getchildcategory: Object.assign(getchildcategory, getchildcategory),
 }
 
-export default hero
+export default hero_manage

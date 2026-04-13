@@ -4,15 +4,22 @@ import AdminLayout from '@/layouts/AdminLayout.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
 import { useImageUploads } from '@/composables/useImageUpload'
+import tiptap from '@/components/TipTap.vue'
 
 /**==========  define props get data from inertia controller ========== */
 const props= defineProps<{
     data: {
         order: number,
+        type: string,
         heading: string,
+        sub_heading: string,
         title: string,
-        url: string,
+        sub_title: string,
+        short_des: string,
         description: string,
+        button: string,
+        button_url: string,
+        video_url: string,
         cover_image: File | string | null,
         thumbnail: File | string | null,
         public_status: boolean,
@@ -25,12 +32,18 @@ const props= defineProps<{
 const form  = useForm(
   {
     id: props.data.id,
+    type: props.data.type,
     heading: props.data.heading,
+    sub_heading: props.data.sub_heading,
     title: props.data.title,
+    sub_title: props.data.sub_title,
+    short_des: props.data.short_des,
     description: props.data.description,
+    button: props.data.button,
+    button_url: props.data.button_url,
+    video_url: props.data.video_url,
     cover_image : props.data.cover_image  || null,
     thumbnail : props.data.thumbnail  || null,
-    url: props.data.url,
     order: props.data.order,
     public_status : Boolean(props.data.public_status),
     slug :props.data.slug
@@ -66,11 +79,11 @@ const handleUpdate = () => {
 
 
 
-  <!-- PAGE WRAPPER -->
-<div class="container  mx-auto my-10 px-4">
+        <!-- PAGE WRAPPER -->
+        <div class="container  mx-auto my-10 px-4">
 
-  <!-- PAGE WRAPPER -->
-  <div class="grid grid-cols-12 gap-8">
+        <!-- PAGE WRAPPER -->
+        <div class="grid grid-cols-12 gap-8">
 
             <!-- ================= TOP HEADER ================= -->
             <div class="col-span-12">
@@ -103,29 +116,118 @@ const handleUpdate = () => {
                     <input type="hidden"  v-model="form.slug">
                 </div>
                 <!-- end -->
-                <div>
-                    <label class="text-sm font-medium text-slate-600">Heading</label>
-                    <input type="text" placeholder="Enter title" v-model="form.heading"
-                    class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                    <div class="text-small text-red-500" v-if="form.errors.heading">{{ form.errors.heading }}</div>
-                </div>
-                    <!-- end -->
-                <div>
-                    <label class="text-sm font-medium text-slate-600"> Title</label>
-                    <input type="text" placeholder="Enter title" v-model="form.title"
-                    class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                    <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.title }}</div>
-                </div>
-                    <!-- end -->
-
-                <div>
-                    <label class="text-sm font-medium text-slate-600">Description</label>
-                    <textarea
-                    rows="5"
-                    placeholder="Write something meaningful..." v-model="form.description"
-                    class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500"></textarea>
-                    <div class="text-small text-red-500" v-if="form.errors.description">{{ form.errors.description }}</div>
+                <div class="grid grid-cols-12 gap-4">
+                  <div class="col-span-12 md:col-span-12">
+                    <div>
+                      <label class="text-sm font-medium text-slate-600">Type</label>
+                      <input type="text" placeholder="Type" v-model="form.type"
+                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                        <div class="text-small text-red-500" v-if="form.errors.type">{{ form.errors.type }}</div>
                     </div>
+                  </div>
+                  
+                </div>
+                <!----------------------- grid end------------------------- -->
+                <div class="grid grid-cols-12 gap-4">
+                  <div class="col-span-12 md:col-span-6">
+                    <div>
+                      <label class="text-sm font-medium text-slate-600">Heading</label>
+                      <input type="text" placeholder="Heading" v-model="form.heading"
+                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                        <div class="text-small text-red-500" v-if="form.errors.heading">{{ form.errors.heading }}</div>
+                    </div>
+                  </div>
+                  <!-- col end -->
+                  <div class="col-span-12 md:col-span-6">
+                    <div>
+                      <label class="text-sm font-medium text-slate-600">Sub Heading</label>
+                      <input type="text" placeholder="Sub Heading" v-model="form.sub_heading"
+                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                        <div class="text-small text-red-500" v-if="form.errors.sub_heading">{{ form.errors.sub_heading }}</div>
+                    </div>
+                  </div>
+                  <!-- col end -->
+                </div>
+                <!----------------------- grid end------------------------- -->
+                <div class="grid grid-cols-12 gap-4">
+                  <div class="col-span-12 md:col-span-6">
+                    <div>
+                      <label class="text-sm font-medium text-slate-600">Title</label>
+                      <input type="text" placeholder="Title" v-model="form.title"
+                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                        <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.title }}</div>
+                    </div>
+                  </div>
+                  <!-- col end -->
+                  <div class="col-span-12 md:col-span-6">
+                    <div>
+                      <label class="text-sm font-medium text-slate-600">Sub Title</label>
+                      <input type="text" placeholder="Sub Title" v-model="form.sub_title"
+                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                        <div class="text-small text-red-500" v-if="form.errors.sub_title">{{ form.errors.sub_title }}</div>
+                    </div>
+                  </div>
+                  <!-- col end -->
+                </div>
+                <!----------------------- grid end ------------------------- -->
+                <div>
+                  <label class="text-sm font-medium text-slate-600">Short Description</label>
+                  <textarea
+                  rows="5"
+                  placeholder="Write something meaningful..." v-model="form.short_des"
+                  class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500"></textarea>
+                  <div class="text-small text-red-500" v-if="form.errors.short_des">{{ form.errors.short_des }}</div>
+                </div>
+                <!----------------------- grid end ------------------------- -->
+                <div>
+                  <label class="text-sm font-medium text-slate-600">Description</label>
+                  <tiptap v-model="form.description" />
+                  <div class="text-small text-red-500" v-if="form.errors.description">{{ form.errors.short_des }}</div>
+                </div>
+                <!----------------------- grid end ------------------------- -->
+                                <div class="grid grid-cols-12 gap-4">
+                  <div class="col-span-12 md:col-span-6">
+                    <div>
+                      <label class="text-sm font-medium text-slate-600">Button Name</label>
+                      <input type="text" placeholder="About us" v-model="form.button"
+                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                        <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.button }}</div>
+                    </div>
+                  </div>
+                  <!-- col end -->
+                  <div class="col-span-12 md:col-span-6">
+                    <div>
+                      <label class="text-sm font-medium text-slate-600">Button URL</label>
+                      <input type="text" placeholder="Button url" v-model="form.button_url"
+                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                        <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.button_url }}</div>
+                    </div>
+                  </div>
+                  <!-- col end -->
+                </div>
+                <!----------------------- grid end ------------------------- -->
+                <div class="grid grid-cols-12 gap-4">
+                  <div class="col-span-12 md:col-span-6">
+                    <div>
+                      <label class="text-sm font-medium text-slate-600">Video URL</label>
+                      <input type="text" placeholder="Video url optional" v-model="form.video_url"
+                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
+                        <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.video_url }}</div>
+                    </div>
+                  </div>
+                  <!-- col end -->
+                  <div class="col-span-12 md:col-span-6">
+                    <div>
+                      <label class="text-sm font-medium text-slate-600">Use Embed Link only </label>
+
+                        <div class="text-small text-red-500 shadow-lg rounded-lg p-2">
+                          <iframe width="100%" height="200" :src="data.video_url ?? 'https://www.youtube.com/embed/KZguwSgJ7ZQ?si=IHd_0Z3G2n_7ApZ7'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                  </div>
+                  <!-- col end -->
+                </div>
+                <!----------------------- grid end ------------------------- -->
                 
 
             </div>
@@ -186,12 +288,6 @@ const handleUpdate = () => {
                 <h3 class="text-sm font-semibold mb-3">
                     Actions
                 </h3>
-                <div>
-                    <label class="text-sm font-medium text-slate-600">Slug </label>
-                    <input type="text" placeholder="Enter title" v-model="form.url"
-                    class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                    <div class="text-small text-red-500" v-if="form.errors.url">{{ form.errors.url }}</div>
-                </div>
                 <!-- end -->
                 <div>
                     <label class="text-sm font-medium text-slate-600">Order  </label>
@@ -210,6 +306,6 @@ const handleUpdate = () => {
         </div>
         </div>
 
-</form>
+        </form>
    </AdminLayout>
 </template>

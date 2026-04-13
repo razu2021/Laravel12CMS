@@ -1,8 +1,8 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../../../../../../wayfinder'
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::index
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:27
- * @route '/admin/dashboad/manage/section/hero/all'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::index
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:27
+ * @route '/admin/dashboad/manage/section/breadcrumb/all'
  */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(options),
@@ -11,31 +11,31 @@ export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 index.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/manage/section/hero/all',
+    url: '/admin/dashboad/manage/section/breadcrumb/all',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::index
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:27
- * @route '/admin/dashboad/manage/section/hero/all'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::index
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:27
+ * @route '/admin/dashboad/manage/section/breadcrumb/all'
  */
 index.url = (options?: RouteQueryOptions) => {
     return index.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::index
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:27
- * @route '/admin/dashboad/manage/section/hero/all'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::index
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:27
+ * @route '/admin/dashboad/manage/section/breadcrumb/all'
  */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::index
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:27
- * @route '/admin/dashboad/manage/section/hero/all'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::index
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:27
+ * @route '/admin/dashboad/manage/section/breadcrumb/all'
  */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: index.url(options),
@@ -43,9 +43,9 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::index
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:27
- * @route '/admin/dashboad/manage/section/hero/all'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::index
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:27
+ * @route '/admin/dashboad/manage/section/breadcrumb/all'
  */
     const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: index.url(options),
@@ -53,18 +53,18 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::index
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:27
- * @route '/admin/dashboad/manage/section/hero/all'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::index
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:27
+ * @route '/admin/dashboad/manage/section/breadcrumb/all'
  */
         indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: index.url(options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::index
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:27
- * @route '/admin/dashboad/manage/section/hero/all'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::index
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:27
+ * @route '/admin/dashboad/manage/section/breadcrumb/all'
  */
         indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: index.url({
@@ -78,9 +78,9 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     
     index.form = indexForm
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::add
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:52
- * @route '/admin/dashboad/manage/section/hero/add/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::add
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:52
+ * @route '/admin/dashboad/manage/section/breadcrumb/add/{id}/{slug}'
  */
 export const add = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: add.url(args, options),
@@ -89,13 +89,13 @@ export const add = (args: { id: string | number, slug: string | number } | [id: 
 
 add.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/manage/section/hero/add/{id}/{slug}',
+    url: '/admin/dashboad/manage/section/breadcrumb/add/{id}/{slug}',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::add
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:52
- * @route '/admin/dashboad/manage/section/hero/add/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::add
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:52
+ * @route '/admin/dashboad/manage/section/breadcrumb/add/{id}/{slug}'
  */
 add.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
     if (Array.isArray(args)) {
@@ -119,18 +119,18 @@ add.url = (args: { id: string | number, slug: string | number } | [id: string | 
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::add
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:52
- * @route '/admin/dashboad/manage/section/hero/add/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::add
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:52
+ * @route '/admin/dashboad/manage/section/breadcrumb/add/{id}/{slug}'
  */
 add.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: add.url(args, options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::add
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:52
- * @route '/admin/dashboad/manage/section/hero/add/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::add
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:52
+ * @route '/admin/dashboad/manage/section/breadcrumb/add/{id}/{slug}'
  */
 add.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: add.url(args, options),
@@ -138,9 +138,9 @@ add.head = (args: { id: string | number, slug: string | number } | [id: string |
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::add
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:52
- * @route '/admin/dashboad/manage/section/hero/add/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::add
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:52
+ * @route '/admin/dashboad/manage/section/breadcrumb/add/{id}/{slug}'
  */
     const addForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: add.url(args, options),
@@ -148,18 +148,18 @@ add.head = (args: { id: string | number, slug: string | number } | [id: string |
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::add
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:52
- * @route '/admin/dashboad/manage/section/hero/add/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::add
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:52
+ * @route '/admin/dashboad/manage/section/breadcrumb/add/{id}/{slug}'
  */
         addForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: add.url(args, options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::add
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:52
- * @route '/admin/dashboad/manage/section/hero/add/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::add
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:52
+ * @route '/admin/dashboad/manage/section/breadcrumb/add/{id}/{slug}'
  */
         addForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: add.url(args, {
@@ -173,9 +173,9 @@ add.head = (args: { id: string | number, slug: string | number } | [id: string |
     
     add.form = addForm
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::view
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:66
- * @route '/admin/dashboad/manage/section/hero/view/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::view
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:66
+ * @route '/admin/dashboad/manage/section/breadcrumb/view/{id}/{slug}'
  */
 export const view = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: view.url(args, options),
@@ -184,13 +184,13 @@ export const view = (args: { id: string | number, slug: string | number } | [id:
 
 view.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/manage/section/hero/view/{id}/{slug}',
+    url: '/admin/dashboad/manage/section/breadcrumb/view/{id}/{slug}',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::view
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:66
- * @route '/admin/dashboad/manage/section/hero/view/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::view
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:66
+ * @route '/admin/dashboad/manage/section/breadcrumb/view/{id}/{slug}'
  */
 view.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
     if (Array.isArray(args)) {
@@ -214,18 +214,18 @@ view.url = (args: { id: string | number, slug: string | number } | [id: string |
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::view
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:66
- * @route '/admin/dashboad/manage/section/hero/view/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::view
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:66
+ * @route '/admin/dashboad/manage/section/breadcrumb/view/{id}/{slug}'
  */
 view.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: view.url(args, options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::view
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:66
- * @route '/admin/dashboad/manage/section/hero/view/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::view
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:66
+ * @route '/admin/dashboad/manage/section/breadcrumb/view/{id}/{slug}'
  */
 view.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: view.url(args, options),
@@ -233,9 +233,9 @@ view.head = (args: { id: string | number, slug: string | number } | [id: string 
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::view
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:66
- * @route '/admin/dashboad/manage/section/hero/view/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::view
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:66
+ * @route '/admin/dashboad/manage/section/breadcrumb/view/{id}/{slug}'
  */
     const viewForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: view.url(args, options),
@@ -243,18 +243,18 @@ view.head = (args: { id: string | number, slug: string | number } | [id: string 
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::view
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:66
- * @route '/admin/dashboad/manage/section/hero/view/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::view
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:66
+ * @route '/admin/dashboad/manage/section/breadcrumb/view/{id}/{slug}'
  */
         viewForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: view.url(args, options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::view
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:66
- * @route '/admin/dashboad/manage/section/hero/view/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::view
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:66
+ * @route '/admin/dashboad/manage/section/breadcrumb/view/{id}/{slug}'
  */
         viewForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: view.url(args, {
@@ -268,9 +268,9 @@ view.head = (args: { id: string | number, slug: string | number } | [id: string 
     
     view.form = viewForm
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::edit
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:79
- * @route '/admin/dashboad/manage/section/hero/edit/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::edit
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:79
+ * @route '/admin/dashboad/manage/section/breadcrumb/edit/{id}/{slug}'
  */
 export const edit = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
@@ -279,13 +279,13 @@ export const edit = (args: { id: string | number, slug: string | number } | [id:
 
 edit.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/manage/section/hero/edit/{id}/{slug}',
+    url: '/admin/dashboad/manage/section/breadcrumb/edit/{id}/{slug}',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::edit
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:79
- * @route '/admin/dashboad/manage/section/hero/edit/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::edit
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:79
+ * @route '/admin/dashboad/manage/section/breadcrumb/edit/{id}/{slug}'
  */
 edit.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
     if (Array.isArray(args)) {
@@ -309,18 +309,18 @@ edit.url = (args: { id: string | number, slug: string | number } | [id: string |
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::edit
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:79
- * @route '/admin/dashboad/manage/section/hero/edit/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::edit
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:79
+ * @route '/admin/dashboad/manage/section/breadcrumb/edit/{id}/{slug}'
  */
 edit.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::edit
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:79
- * @route '/admin/dashboad/manage/section/hero/edit/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::edit
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:79
+ * @route '/admin/dashboad/manage/section/breadcrumb/edit/{id}/{slug}'
  */
 edit.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: edit.url(args, options),
@@ -328,9 +328,9 @@ edit.head = (args: { id: string | number, slug: string | number } | [id: string 
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::edit
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:79
- * @route '/admin/dashboad/manage/section/hero/edit/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::edit
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:79
+ * @route '/admin/dashboad/manage/section/breadcrumb/edit/{id}/{slug}'
  */
     const editForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: edit.url(args, options),
@@ -338,18 +338,18 @@ edit.head = (args: { id: string | number, slug: string | number } | [id: string 
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::edit
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:79
- * @route '/admin/dashboad/manage/section/hero/edit/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::edit
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:79
+ * @route '/admin/dashboad/manage/section/breadcrumb/edit/{id}/{slug}'
  */
         editForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: edit.url(args, options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::edit
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:79
- * @route '/admin/dashboad/manage/section/hero/edit/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::edit
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:79
+ * @route '/admin/dashboad/manage/section/breadcrumb/edit/{id}/{slug}'
  */
         editForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: edit.url(args, {
@@ -363,9 +363,9 @@ edit.head = (args: { id: string | number, slug: string | number } | [id: string 
     
     edit.form = editForm
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::insert
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:98
- * @route '/admin/dashboad/manage/section/hero/submit'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::insert
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:98
+ * @route '/admin/dashboad/manage/section/breadcrumb/submit'
  */
 export const insert = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: insert.url(options),
@@ -374,22 +374,22 @@ export const insert = (options?: RouteQueryOptions): RouteDefinition<'post'> => 
 
 insert.definition = {
     methods: ["post"],
-    url: '/admin/dashboad/manage/section/hero/submit',
+    url: '/admin/dashboad/manage/section/breadcrumb/submit',
 } satisfies RouteDefinition<["post"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::insert
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:98
- * @route '/admin/dashboad/manage/section/hero/submit'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::insert
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:98
+ * @route '/admin/dashboad/manage/section/breadcrumb/submit'
  */
 insert.url = (options?: RouteQueryOptions) => {
     return insert.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::insert
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:98
- * @route '/admin/dashboad/manage/section/hero/submit'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::insert
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:98
+ * @route '/admin/dashboad/manage/section/breadcrumb/submit'
  */
 insert.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: insert.url(options),
@@ -397,9 +397,9 @@ insert.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::insert
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:98
- * @route '/admin/dashboad/manage/section/hero/submit'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::insert
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:98
+ * @route '/admin/dashboad/manage/section/breadcrumb/submit'
  */
     const insertForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: insert.url(options),
@@ -407,9 +407,9 @@ insert.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::insert
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:98
- * @route '/admin/dashboad/manage/section/hero/submit'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::insert
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:98
+ * @route '/admin/dashboad/manage/section/breadcrumb/submit'
  */
         insertForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: insert.url(options),
@@ -418,9 +418,9 @@ insert.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     
     insert.form = insertForm
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::update
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:180
- * @route '/admin/dashboad/manage/section/hero/update'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::update
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:180
+ * @route '/admin/dashboad/manage/section/breadcrumb/update'
  */
 export const update = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update.url(options),
@@ -429,22 +429,22 @@ export const update = (options?: RouteQueryOptions): RouteDefinition<'patch'> =>
 
 update.definition = {
     methods: ["patch"],
-    url: '/admin/dashboad/manage/section/hero/update',
+    url: '/admin/dashboad/manage/section/breadcrumb/update',
 } satisfies RouteDefinition<["patch"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::update
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:180
- * @route '/admin/dashboad/manage/section/hero/update'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::update
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:180
+ * @route '/admin/dashboad/manage/section/breadcrumb/update'
  */
 update.url = (options?: RouteQueryOptions) => {
     return update.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::update
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:180
- * @route '/admin/dashboad/manage/section/hero/update'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::update
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:180
+ * @route '/admin/dashboad/manage/section/breadcrumb/update'
  */
 update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update.url(options),
@@ -452,9 +452,9 @@ update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::update
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:180
- * @route '/admin/dashboad/manage/section/hero/update'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::update
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:180
+ * @route '/admin/dashboad/manage/section/breadcrumb/update'
  */
     const updateForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: update.url({
@@ -467,9 +467,9 @@ update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::update
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:180
- * @route '/admin/dashboad/manage/section/hero/update'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::update
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:180
+ * @route '/admin/dashboad/manage/section/breadcrumb/update'
  */
         updateForm.patch = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: update.url({
@@ -483,9 +483,9 @@ update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     
     update.form = updateForm
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::active
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:261
- * @route '/admin/dashboad/manage/section/hero/active/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::active
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:261
+ * @route '/admin/dashboad/manage/section/breadcrumb/active/{id}/{slug}'
  */
 export const active = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: active.url(args, options),
@@ -494,13 +494,13 @@ export const active = (args: { id: string | number, slug: string | number } | [i
 
 active.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/manage/section/hero/active/{id}/{slug}',
+    url: '/admin/dashboad/manage/section/breadcrumb/active/{id}/{slug}',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::active
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:261
- * @route '/admin/dashboad/manage/section/hero/active/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::active
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:261
+ * @route '/admin/dashboad/manage/section/breadcrumb/active/{id}/{slug}'
  */
 active.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
     if (Array.isArray(args)) {
@@ -524,18 +524,18 @@ active.url = (args: { id: string | number, slug: string | number } | [id: string
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::active
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:261
- * @route '/admin/dashboad/manage/section/hero/active/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::active
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:261
+ * @route '/admin/dashboad/manage/section/breadcrumb/active/{id}/{slug}'
  */
 active.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: active.url(args, options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::active
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:261
- * @route '/admin/dashboad/manage/section/hero/active/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::active
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:261
+ * @route '/admin/dashboad/manage/section/breadcrumb/active/{id}/{slug}'
  */
 active.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: active.url(args, options),
@@ -543,9 +543,9 @@ active.head = (args: { id: string | number, slug: string | number } | [id: strin
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::active
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:261
- * @route '/admin/dashboad/manage/section/hero/active/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::active
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:261
+ * @route '/admin/dashboad/manage/section/breadcrumb/active/{id}/{slug}'
  */
     const activeForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: active.url(args, options),
@@ -553,18 +553,18 @@ active.head = (args: { id: string | number, slug: string | number } | [id: strin
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::active
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:261
- * @route '/admin/dashboad/manage/section/hero/active/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::active
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:261
+ * @route '/admin/dashboad/manage/section/breadcrumb/active/{id}/{slug}'
  */
         activeForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: active.url(args, options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::active
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:261
- * @route '/admin/dashboad/manage/section/hero/active/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::active
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:261
+ * @route '/admin/dashboad/manage/section/breadcrumb/active/{id}/{slug}'
  */
         activeForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: active.url(args, {
@@ -578,9 +578,9 @@ active.head = (args: { id: string | number, slug: string | number } | [id: strin
     
     active.form = activeForm
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::deactive
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:277
- * @route '/admin/dashboad/manage/section/hero/deactive/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::deactive
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:277
+ * @route '/admin/dashboad/manage/section/breadcrumb/deactive/{id}/{slug}'
  */
 export const deactive = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: deactive.url(args, options),
@@ -589,13 +589,13 @@ export const deactive = (args: { id: string | number, slug: string | number } | 
 
 deactive.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/manage/section/hero/deactive/{id}/{slug}',
+    url: '/admin/dashboad/manage/section/breadcrumb/deactive/{id}/{slug}',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::deactive
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:277
- * @route '/admin/dashboad/manage/section/hero/deactive/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::deactive
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:277
+ * @route '/admin/dashboad/manage/section/breadcrumb/deactive/{id}/{slug}'
  */
 deactive.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
     if (Array.isArray(args)) {
@@ -619,18 +619,18 @@ deactive.url = (args: { id: string | number, slug: string | number } | [id: stri
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::deactive
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:277
- * @route '/admin/dashboad/manage/section/hero/deactive/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::deactive
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:277
+ * @route '/admin/dashboad/manage/section/breadcrumb/deactive/{id}/{slug}'
  */
 deactive.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: deactive.url(args, options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::deactive
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:277
- * @route '/admin/dashboad/manage/section/hero/deactive/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::deactive
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:277
+ * @route '/admin/dashboad/manage/section/breadcrumb/deactive/{id}/{slug}'
  */
 deactive.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: deactive.url(args, options),
@@ -638,9 +638,9 @@ deactive.head = (args: { id: string | number, slug: string | number } | [id: str
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::deactive
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:277
- * @route '/admin/dashboad/manage/section/hero/deactive/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::deactive
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:277
+ * @route '/admin/dashboad/manage/section/breadcrumb/deactive/{id}/{slug}'
  */
     const deactiveForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: deactive.url(args, options),
@@ -648,18 +648,18 @@ deactive.head = (args: { id: string | number, slug: string | number } | [id: str
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::deactive
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:277
- * @route '/admin/dashboad/manage/section/hero/deactive/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::deactive
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:277
+ * @route '/admin/dashboad/manage/section/breadcrumb/deactive/{id}/{slug}'
  */
         deactiveForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: deactive.url(args, options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::deactive
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:277
- * @route '/admin/dashboad/manage/section/hero/deactive/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::deactive
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:277
+ * @route '/admin/dashboad/manage/section/breadcrumb/deactive/{id}/{slug}'
  */
         deactiveForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: deactive.url(args, {
@@ -673,9 +673,9 @@ deactive.head = (args: { id: string | number, slug: string | number } | [id: str
     
     deactive.form = deactiveForm
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::softdelete
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:293
- * @route '/admin/dashboad/manage/section/hero/softdelete/{id}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::softdelete
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:293
+ * @route '/admin/dashboad/manage/section/breadcrumb/softdelete/{id}'
  */
 export const softdelete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: softdelete.url(args, options),
@@ -684,13 +684,13 @@ export const softdelete = (args: { id: string | number } | [id: string | number 
 
 softdelete.definition = {
     methods: ["delete"],
-    url: '/admin/dashboad/manage/section/hero/softdelete/{id}',
+    url: '/admin/dashboad/manage/section/breadcrumb/softdelete/{id}',
 } satisfies RouteDefinition<["delete"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::softdelete
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:293
- * @route '/admin/dashboad/manage/section/hero/softdelete/{id}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::softdelete
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:293
+ * @route '/admin/dashboad/manage/section/breadcrumb/softdelete/{id}'
  */
 softdelete.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
@@ -716,9 +716,9 @@ softdelete.url = (args: { id: string | number } | [id: string | number ] | strin
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::softdelete
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:293
- * @route '/admin/dashboad/manage/section/hero/softdelete/{id}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::softdelete
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:293
+ * @route '/admin/dashboad/manage/section/breadcrumb/softdelete/{id}'
  */
 softdelete.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: softdelete.url(args, options),
@@ -726,9 +726,9 @@ softdelete.delete = (args: { id: string | number } | [id: string | number ] | st
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::softdelete
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:293
- * @route '/admin/dashboad/manage/section/hero/softdelete/{id}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::softdelete
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:293
+ * @route '/admin/dashboad/manage/section/breadcrumb/softdelete/{id}'
  */
     const softdeleteForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: softdelete.url(args, {
@@ -741,9 +741,9 @@ softdelete.delete = (args: { id: string | number } | [id: string | number ] | st
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::softdelete
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:293
- * @route '/admin/dashboad/manage/section/hero/softdelete/{id}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::softdelete
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:293
+ * @route '/admin/dashboad/manage/section/breadcrumb/softdelete/{id}'
  */
         softdeleteForm.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: softdelete.url(args, {
@@ -757,9 +757,9 @@ softdelete.delete = (args: { id: string | number } | [id: string | number ] | st
     
     softdelete.form = softdeleteForm
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::deleteMethod
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:308
- * @route '/admin/dashboad/manage/section/hero/delete/{id}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::deleteMethod
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:308
+ * @route '/admin/dashboad/manage/section/breadcrumb/delete/{id}'
  */
 export const deleteMethod = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: deleteMethod.url(args, options),
@@ -768,13 +768,13 @@ export const deleteMethod = (args: { id: string | number } | [id: string | numbe
 
 deleteMethod.definition = {
     methods: ["delete"],
-    url: '/admin/dashboad/manage/section/hero/delete/{id}',
+    url: '/admin/dashboad/manage/section/breadcrumb/delete/{id}',
 } satisfies RouteDefinition<["delete"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::deleteMethod
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:308
- * @route '/admin/dashboad/manage/section/hero/delete/{id}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::deleteMethod
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:308
+ * @route '/admin/dashboad/manage/section/breadcrumb/delete/{id}'
  */
 deleteMethod.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
@@ -800,9 +800,9 @@ deleteMethod.url = (args: { id: string | number } | [id: string | number ] | str
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::deleteMethod
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:308
- * @route '/admin/dashboad/manage/section/hero/delete/{id}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::deleteMethod
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:308
+ * @route '/admin/dashboad/manage/section/breadcrumb/delete/{id}'
  */
 deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: deleteMethod.url(args, options),
@@ -810,9 +810,9 @@ deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | 
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::deleteMethod
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:308
- * @route '/admin/dashboad/manage/section/hero/delete/{id}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::deleteMethod
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:308
+ * @route '/admin/dashboad/manage/section/breadcrumb/delete/{id}'
  */
     const deleteMethodForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: deleteMethod.url(args, {
@@ -825,9 +825,9 @@ deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | 
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::deleteMethod
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:308
- * @route '/admin/dashboad/manage/section/hero/delete/{id}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::deleteMethod
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:308
+ * @route '/admin/dashboad/manage/section/breadcrumb/delete/{id}'
  */
         deleteMethodForm.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: deleteMethod.url(args, {
@@ -841,9 +841,9 @@ deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | 
     
     deleteMethod.form = deleteMethodForm
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::recycle
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:337
- * @route '/admin/dashboad/manage/section/hero/recycle'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::recycle
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:337
+ * @route '/admin/dashboad/manage/section/breadcrumb/recycle'
  */
 export const recycle = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: recycle.url(options),
@@ -852,31 +852,31 @@ export const recycle = (options?: RouteQueryOptions): RouteDefinition<'get'> => 
 
 recycle.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/manage/section/hero/recycle',
+    url: '/admin/dashboad/manage/section/breadcrumb/recycle',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::recycle
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:337
- * @route '/admin/dashboad/manage/section/hero/recycle'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::recycle
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:337
+ * @route '/admin/dashboad/manage/section/breadcrumb/recycle'
  */
 recycle.url = (options?: RouteQueryOptions) => {
     return recycle.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::recycle
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:337
- * @route '/admin/dashboad/manage/section/hero/recycle'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::recycle
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:337
+ * @route '/admin/dashboad/manage/section/breadcrumb/recycle'
  */
 recycle.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: recycle.url(options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::recycle
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:337
- * @route '/admin/dashboad/manage/section/hero/recycle'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::recycle
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:337
+ * @route '/admin/dashboad/manage/section/breadcrumb/recycle'
  */
 recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: recycle.url(options),
@@ -884,9 +884,9 @@ recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::recycle
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:337
- * @route '/admin/dashboad/manage/section/hero/recycle'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::recycle
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:337
+ * @route '/admin/dashboad/manage/section/breadcrumb/recycle'
  */
     const recycleForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: recycle.url(options),
@@ -894,18 +894,18 @@ recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::recycle
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:337
- * @route '/admin/dashboad/manage/section/hero/recycle'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::recycle
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:337
+ * @route '/admin/dashboad/manage/section/breadcrumb/recycle'
  */
         recycleForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: recycle.url(options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::recycle
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:337
- * @route '/admin/dashboad/manage/section/hero/recycle'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::recycle
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:337
+ * @route '/admin/dashboad/manage/section/breadcrumb/recycle'
  */
         recycleForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: recycle.url({
@@ -919,9 +919,9 @@ recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     
     recycle.form = recycleForm
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::bulkAction
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:371
- * @route '/admin/dashboad/manage/section/hero/bulk/action'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::bulkAction
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:371
+ * @route '/admin/dashboad/manage/section/breadcrumb/bulk/action'
  */
 export const bulkAction = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: bulkAction.url(options),
@@ -930,22 +930,22 @@ export const bulkAction = (options?: RouteQueryOptions): RouteDefinition<'post'>
 
 bulkAction.definition = {
     methods: ["post"],
-    url: '/admin/dashboad/manage/section/hero/bulk/action',
+    url: '/admin/dashboad/manage/section/breadcrumb/bulk/action',
 } satisfies RouteDefinition<["post"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::bulkAction
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:371
- * @route '/admin/dashboad/manage/section/hero/bulk/action'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::bulkAction
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:371
+ * @route '/admin/dashboad/manage/section/breadcrumb/bulk/action'
  */
 bulkAction.url = (options?: RouteQueryOptions) => {
     return bulkAction.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::bulkAction
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:371
- * @route '/admin/dashboad/manage/section/hero/bulk/action'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::bulkAction
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:371
+ * @route '/admin/dashboad/manage/section/breadcrumb/bulk/action'
  */
 bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: bulkAction.url(options),
@@ -953,9 +953,9 @@ bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::bulkAction
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:371
- * @route '/admin/dashboad/manage/section/hero/bulk/action'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::bulkAction
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:371
+ * @route '/admin/dashboad/manage/section/breadcrumb/bulk/action'
  */
     const bulkActionForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: bulkAction.url(options),
@@ -963,9 +963,9 @@ bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::bulkAction
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:371
- * @route '/admin/dashboad/manage/section/hero/bulk/action'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::bulkAction
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:371
+ * @route '/admin/dashboad/manage/section/breadcrumb/bulk/action'
  */
         bulkActionForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: bulkAction.url(options),
@@ -974,9 +974,9 @@ bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     
     bulkAction.form = bulkActionForm
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::exportPdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:476
- * @route '/admin/dashboad/manage/section/hero/export/single/pdf/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::exportPdf
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:476
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/single/pdf/{id}/{slug}'
  */
 export const exportPdf = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: exportPdf.url(args, options),
@@ -985,13 +985,13 @@ export const exportPdf = (args: { id: string | number, slug: string | number } |
 
 exportPdf.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/manage/section/hero/export/single/pdf/{id}/{slug}',
+    url: '/admin/dashboad/manage/section/breadcrumb/export/single/pdf/{id}/{slug}',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::exportPdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:476
- * @route '/admin/dashboad/manage/section/hero/export/single/pdf/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::exportPdf
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:476
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/single/pdf/{id}/{slug}'
  */
 exportPdf.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
     if (Array.isArray(args)) {
@@ -1015,18 +1015,18 @@ exportPdf.url = (args: { id: string | number, slug: string | number } | [id: str
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::exportPdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:476
- * @route '/admin/dashboad/manage/section/hero/export/single/pdf/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::exportPdf
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:476
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/single/pdf/{id}/{slug}'
  */
 exportPdf.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: exportPdf.url(args, options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::exportPdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:476
- * @route '/admin/dashboad/manage/section/hero/export/single/pdf/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::exportPdf
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:476
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/single/pdf/{id}/{slug}'
  */
 exportPdf.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: exportPdf.url(args, options),
@@ -1034,9 +1034,9 @@ exportPdf.head = (args: { id: string | number, slug: string | number } | [id: st
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::exportPdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:476
- * @route '/admin/dashboad/manage/section/hero/export/single/pdf/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::exportPdf
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:476
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/single/pdf/{id}/{slug}'
  */
     const exportPdfForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: exportPdf.url(args, options),
@@ -1044,18 +1044,18 @@ exportPdf.head = (args: { id: string | number, slug: string | number } | [id: st
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::exportPdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:476
- * @route '/admin/dashboad/manage/section/hero/export/single/pdf/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::exportPdf
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:476
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/single/pdf/{id}/{slug}'
  */
         exportPdfForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: exportPdf.url(args, options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::exportPdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:476
- * @route '/admin/dashboad/manage/section/hero/export/single/pdf/{id}/{slug}'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::exportPdf
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:476
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/single/pdf/{id}/{slug}'
  */
         exportPdfForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: exportPdf.url(args, {
@@ -1069,9 +1069,9 @@ exportPdf.head = (args: { id: string | number, slug: string | number } | [id: st
     
     exportPdf.form = exportPdfForm
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_excel
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:505
- * @route '/admin/dashboad/manage/section/hero/export/excel'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_excel
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:505
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/excel'
  */
 export const export_excel = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: export_excel.url(options),
@@ -1080,31 +1080,31 @@ export const export_excel = (options?: RouteQueryOptions): RouteDefinition<'get'
 
 export_excel.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/manage/section/hero/export/excel',
+    url: '/admin/dashboad/manage/section/breadcrumb/export/excel',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_excel
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:505
- * @route '/admin/dashboad/manage/section/hero/export/excel'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_excel
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:505
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/excel'
  */
 export_excel.url = (options?: RouteQueryOptions) => {
     return export_excel.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_excel
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:505
- * @route '/admin/dashboad/manage/section/hero/export/excel'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_excel
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:505
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/excel'
  */
 export_excel.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: export_excel.url(options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_excel
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:505
- * @route '/admin/dashboad/manage/section/hero/export/excel'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_excel
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:505
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/excel'
  */
 export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: export_excel.url(options),
@@ -1112,9 +1112,9 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_excel
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:505
- * @route '/admin/dashboad/manage/section/hero/export/excel'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_excel
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:505
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/excel'
  */
     const export_excelForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: export_excel.url(options),
@@ -1122,18 +1122,18 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_excel
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:505
- * @route '/admin/dashboad/manage/section/hero/export/excel'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_excel
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:505
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/excel'
  */
         export_excelForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: export_excel.url(options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_excel
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:505
- * @route '/admin/dashboad/manage/section/hero/export/excel'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_excel
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:505
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/excel'
  */
         export_excelForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: export_excel.url({
@@ -1147,9 +1147,9 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     
     export_excel.form = export_excelForm
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_csv
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:512
- * @route '/admin/dashboad/manage/section/hero/export/csv'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_csv
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:512
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/csv'
  */
 export const export_csv = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: export_csv.url(options),
@@ -1158,31 +1158,31 @@ export const export_csv = (options?: RouteQueryOptions): RouteDefinition<'get'> 
 
 export_csv.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/manage/section/hero/export/csv',
+    url: '/admin/dashboad/manage/section/breadcrumb/export/csv',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_csv
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:512
- * @route '/admin/dashboad/manage/section/hero/export/csv'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_csv
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:512
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/csv'
  */
 export_csv.url = (options?: RouteQueryOptions) => {
     return export_csv.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_csv
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:512
- * @route '/admin/dashboad/manage/section/hero/export/csv'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_csv
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:512
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/csv'
  */
 export_csv.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: export_csv.url(options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_csv
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:512
- * @route '/admin/dashboad/manage/section/hero/export/csv'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_csv
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:512
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/csv'
  */
 export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: export_csv.url(options),
@@ -1190,9 +1190,9 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_csv
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:512
- * @route '/admin/dashboad/manage/section/hero/export/csv'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_csv
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:512
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/csv'
  */
     const export_csvForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: export_csv.url(options),
@@ -1200,18 +1200,18 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_csv
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:512
- * @route '/admin/dashboad/manage/section/hero/export/csv'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_csv
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:512
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/csv'
  */
         export_csvForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: export_csv.url(options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_csv
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:512
- * @route '/admin/dashboad/manage/section/hero/export/csv'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_csv
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:512
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/csv'
  */
         export_csvForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: export_csv.url({
@@ -1225,9 +1225,9 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     
     export_csv.form = export_csvForm
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_pdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:490
- * @route '/admin/dashboad/manage/section/hero/export/pdf'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_pdf
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:490
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/pdf'
  */
 export const export_pdf = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: export_pdf.url(options),
@@ -1236,31 +1236,31 @@ export const export_pdf = (options?: RouteQueryOptions): RouteDefinition<'get'> 
 
 export_pdf.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/manage/section/hero/export/pdf',
+    url: '/admin/dashboad/manage/section/breadcrumb/export/pdf',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_pdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:490
- * @route '/admin/dashboad/manage/section/hero/export/pdf'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_pdf
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:490
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/pdf'
  */
 export_pdf.url = (options?: RouteQueryOptions) => {
     return export_pdf.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_pdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:490
- * @route '/admin/dashboad/manage/section/hero/export/pdf'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_pdf
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:490
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/pdf'
  */
 export_pdf.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: export_pdf.url(options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_pdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:490
- * @route '/admin/dashboad/manage/section/hero/export/pdf'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_pdf
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:490
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/pdf'
  */
 export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: export_pdf.url(options),
@@ -1268,9 +1268,9 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_pdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:490
- * @route '/admin/dashboad/manage/section/hero/export/pdf'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_pdf
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:490
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/pdf'
  */
     const export_pdfForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: export_pdf.url(options),
@@ -1278,18 +1278,18 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_pdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:490
- * @route '/admin/dashboad/manage/section/hero/export/pdf'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_pdf
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:490
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/pdf'
  */
         export_pdfForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: export_pdf.url(options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\manage\heroController::export_pdf
- * @see app/Http/Controllers/backend/cms/manage/heroController.php:490
- * @route '/admin/dashboad/manage/section/hero/export/pdf'
+* @see \App\Http\Controllers\backend\cms\manage\BreadcrumbController::export_pdf
+ * @see app/Http/Controllers/backend/cms/manage/BreadcrumbController.php:490
+ * @route '/admin/dashboad/manage/section/breadcrumb/export/pdf'
  */
         export_pdfForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: export_pdf.url({
@@ -1302,6 +1302,6 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
     
     export_pdf.form = export_pdfForm
-const heroController = { index, add, view, edit, insert, update, active, deactive, softdelete, deleteMethod, recycle, bulkAction, exportPdf, export_excel, export_csv, export_pdf, delete: deleteMethod }
+const BreadcrumbController = { index, add, view, edit, insert, update, active, deactive, softdelete, deleteMethod, recycle, bulkAction, exportPdf, export_excel, export_csv, export_pdf, delete: deleteMethod }
 
-export default heroController
+export default BreadcrumbController
