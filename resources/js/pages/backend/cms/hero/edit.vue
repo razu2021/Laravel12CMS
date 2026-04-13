@@ -14,13 +14,11 @@ const props= defineProps<{
     data: {
         order: number,
         icon: string,
-        type: string,
         heading: string,
         sub_heading: string,
         title: string,
         sub_title: string,
         short_des: string,
-        description: string,
         button: string,
         button_url: string,
         video_url: string,
@@ -38,13 +36,11 @@ const form  = useForm(
   {
     id: props.data.id,
     icon: props.data.icon,
-    type: props.data.type,
     heading: props.data.heading,
     sub_heading: props.data.sub_heading,
     title: props.data.title,
     sub_title: props.data.sub_title,
     short_des: props.data.short_des,
-    description: props.data.description,
     button: props.data.button,
     button_url: props.data.button_url,
     video_url: props.data.video_url,
@@ -123,16 +119,7 @@ const handleUpdate = () => {
                 </div>
                 <!-- end -->
                 <div class="grid grid-cols-12 gap-4">
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Type</label>
-                      <input type="text" placeholder="Type" v-model="form.type"
-                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.type">{{ form.errors.type }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
-                  <div class="col-span-12 md:col-span-6">
+                  <div class="col-span-12 md:col-span-12">
                     <div>
                       <label class="text-sm font-medium text-slate-600">Type</label>
                       <Iconpicker v-model="form.icon" :iconlist="props.iconlist" />
@@ -194,13 +181,7 @@ const handleUpdate = () => {
                   <div class="text-small text-red-500" v-if="form.errors.short_des">{{ form.errors.short_des }}</div>
                 </div>
                 <!----------------------- grid end ------------------------- -->
-                <div>
-                  <label class="text-sm font-medium text-slate-600">Description</label>
-                  <tiptap v-model="form.description" />
-                  <div class="text-small text-red-500" v-if="form.errors.description">{{ form.errors.short_des }}</div>
-                </div>
-                <!----------------------- grid end ------------------------- -->
-                                <div class="grid grid-cols-12 gap-4">
+                  <div class="grid grid-cols-12 gap-4">
                   <div class="col-span-12 md:col-span-6">
                     <div>
                       <label class="text-sm font-medium text-slate-600">Button Name</label>

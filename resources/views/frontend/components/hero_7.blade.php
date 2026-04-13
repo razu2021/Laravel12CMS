@@ -2,9 +2,9 @@
   <div class="swiper banner6-slider">
     <div class="swiper-wrapper">
       
-      @for ($i = 0 ; $i < 5 ; $i++)
+      @foreach ($contents as $data)
       <div class="swiper-slide">
-        <div class="bg-layer" style="background-image: url('https://html.rrdevs.net/consulter/assets/img/banner/banner-home.png');"></div>
+        <div class="bg-layer" style="background-image: url('{{ asset($data->thumbnail ?? 'https://html.rrdevs.net/consulter/assets/img/banner/banner-home.png') }}');"></div>
         
         <div class="gradient-mask"></div>
 
@@ -23,21 +23,21 @@
                 
                 <div class="upper-tag anim-item" data-swiper-parallax="-200">
                     <span class="line"></span>
-                    <span class="text">Creative Partner 2026</span>
+                    <span class="text">{{ $data->title ?? 'title!' }}</span>
                 </div>
 
                 <h1 class="v6-title anim-item" data-swiper-parallax="-400">
-                  Elevate <span class="highlight">Brands</span> <br> 
-                  With <span class="outline">Future</span> Vision
+                  {{ $data->heading ?? 'heading!' }}  <br> 
+                   <span class="outline">{{ $data->sub_heading ?? 'sub Heading' }}</span> 
                 </h1>
                 
                 <p class="v6-desc anim-item" data-swiper-parallax="-600">
-                  We are not just consultants; we are creators of digital excellence. Our strategies combined with stunning design deliver unmatched results and unforgettable experiences.
+                {{ $data->short_des ?? "Description " }}
                 </p>
                 
                 <div class="v6-btns anim-item" data-swiper-parallax="-800">
-                  <a href="#" class="btn-main-v6">Launch Project <i class="bi bi-chevron-right ms-2"></i></a>
-                  <a href="#" class="btn-outline-v6">Our Services</a>
+                  <a href="{{ $data->button_url ?? '#' }}" class="btn-main-v6">{{ $data->button ?? 'Explore more' }} <i class="bi bi-chevron-right ms-2"></i></a>
+                 
                 </div>
 
               </div>
@@ -46,7 +46,7 @@
           </div>
         </div>
       </div>
-      @endfor
+      @endforeach
 
     </div>
 

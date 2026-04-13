@@ -4,27 +4,28 @@
             <div class="swiper main_hero_slider">
                 <div class="swiper-wrapper">
                     
-                @for ($i = 0; $i < 5; $i++)
+                @foreach ($contents as $data)
+                    
+              
                     <div class="swiper-slide">
                         <div class="row align-items-center">
                             
                             <div class="col-lg-7 col-md-12 p-lg-0">
                                 <div class="banner7-content-wrap px-5">
                                     <div class="banner7-badge" data-swiper-parallax="-200" data-swiper-parallax-opacity="0">
-                                        <i class="bi bi-rocket-takeoff"></i>
-                                        Growth Strategy
+                                        <i class="{{ $data->icon ?? 'bi bi-rocket-takeoff' }}"></i>
+                                        {{ $data->title ?? 'Banner Title !' }}
                                     </div>
                                     <h1 class="banner7-title" data-swiper-parallax="-400" data-swiper-parallax-opacity="0">
-                                        Good Business Planning <span>Ensures Success.</span>
+                                       {{ $data->heading ?? 'Banner Heading !' }} <span>{{ $data->sub_heading ?? 'Banner Sub Heading !' }}</span>
                                     </h1>
                                     <p class="banner7-desc" data-swiper-parallax="-600" data-swiper-parallax-opacity="0">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                        {{ $data->short_des ?? 'Please!, Writte some Description !! ' }}
                                     </p>
                                     <div class="banner7-actions" data-swiper-parallax="-800" data-swiper-parallax-opacity="0">
-                                        <a href="#" class="banner7-btn-main">Explore Services</a>
+                                        <a href="{{ $data->button_url ?? '#' }}" class="banner7-btn-main">{{ $data->button  ?? 'Explore More ' }}</a>
                                         <div class="banner7-video-play">
                                             <button class="banner7-play-btn"></button>
-                                            <span>Watch How</span>
                                         </div>
                                     </div>
                                 </div>
@@ -33,7 +34,7 @@
                             <div class="col-lg-5 col-md-12 p-lg-0">
                                 <div class="banner7-visual-wrap" data-swiper-parallax="-300">
                                     <div class="banner7-mask-layer">
-                                        <img src="https://i.pinimg.com/736x/64/73/25/647325b786074e67b1f203a329588e87.jpg" alt="Strategic Business Slide">
+                                        <img src="{{ asset($data->cover_image ?? 'https://i.pinimg.com/736x/64/73/25/647325b786074e67b1f203a329588e87.jpg') }}" alt="Strategic Business Slide">
                                     </div>
                                     <div class="banner7-blob banner7-blob-1"></div>
                                     <div class="banner7-blob banner7-blob-2"></div>
@@ -42,7 +43,7 @@
 
                         </div>
                     </div>
-                @endfor 
+                  @endforeach 
 
                 </div>
 

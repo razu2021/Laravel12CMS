@@ -1,20 +1,19 @@
-
-<section class="banner3" style="background-image: url('{{ asset('contents/website/assets/images/banner/breadcrumb.jpg') }}');">
+@foreach ($contents->take(1) as $data)
+<section class="banner3" style="background-image: url('{{ asset($data->thumbnail) }}');">
   <div class="overlay"></div>
   <div class="container h-100">
     <div class="row align-items-center h-100">
       <!-- Left Text -->
       <div class="col-lg-7 col-12 text-content">
-        <div class="top-tag">Innovate Your Future</div>
+        <div class="top-tag">{{ $data->title ?? 'Banner Title !' }}</div>
         <h1 class="hero-title">
-          Transform Your <span class="highlight">Digital</span> World
+         {{ $data->heading ?? 'Banner Heading' }} <span class="highlight">{{ $data->sub_heading ?? 'Sub Heading !' }}</span> 
         </h1>
         <p class="hero-desc">
-          Explore cutting-edge solutions and creative ideas that make your project stand out globally.
+          {{ $data->short_des ?? 'Write some Description here !' }}
         </p>
         <div class="btn-holder">
-          <a href="#" class="primary-btn">Get Started</a>
-          <a href="#" class="secondary-btn">Learn More</a>
+          <a href="{{ $data->button_url ?? '#' }}" class="primary-btn">{{ $data->button ?? 'Explore more' }}</a>
         </div>
       </div>
 
@@ -22,7 +21,7 @@
       <div class="col-lg-5 col-12 image-content">
         <div class="frame-wrapper">
           <div class="glass-frame">
-            <img src="https://html.rrdevs.net/consulter/assets/img/home/our-portfolio-home__item-3.png" alt="Hero Image">
+            <img src="{{ asset($data->cover_image ?? 'https://html.rrdevs.net/consulter/assets/img/home/our-portfolio-home__item-3.png') }}" alt="Hero Image">
           </div>
           <div class="floating-badge">99% Faster</div>
         </div>
@@ -35,3 +34,4 @@
   <div class="shape shape2"></div>
   <div class="shape shape3"></div>
 </section>
+@endforeach

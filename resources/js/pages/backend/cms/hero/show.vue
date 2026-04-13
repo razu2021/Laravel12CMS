@@ -59,11 +59,6 @@ const {data} = defineProps<{
                     <table class="min-w-full bg-white rounded-xl shadow-lg border border-gray-200">
                       <!-- Table Body -->
                       <tbody class="divide-y divide-gray-200">
-                        <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800">Type</td>
-                          <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800">{{ data.type ?? 'N/A' }}</td>
-                        </tr>
                         <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
                           <td class="py-3 px-5 text-gray-800">Icon</td>
@@ -99,12 +94,6 @@ const {data} = defineProps<{
                           <td class="py-3 px-5 text-gray-800"> Short Description </td>
                           <td class="py-3 px-5 text-gray-800">:</td>
                           <td class="py-3 px-5 text-gray-800">{{ data.short_des ?? 'N/A' }}</td>
-                        </tr>
-                        <!--  -->
-                        <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800">  Description </td>
-                          <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800" v-html="data.description ?? 'N/A' "></td>
                         </tr>
                         <!--  -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">

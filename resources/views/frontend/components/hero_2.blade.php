@@ -7,35 +7,34 @@
 
   <div class="swiper mySwiper">
     <div class="swiper-wrapper">
-      @for ($i = 0 ; $i < 6 ; $i++)
+      @foreach ($contents as $data)
       <div class="swiper-slide">
-        <div class="image-layer" style="background-image: url('https://html.rrdevs.net/consulter/assets/img/banner/banner-home.png');"></div>
+        <div class="image-layer" style="background-image: url('{{ asset($data->thumbnail ?? '') }}');"></div>
         <div class="overlay-layer"></div>
 
         <div class="container h-100">
           <div class="glass-content-box ">
             <div class="content-inner ">
-              <h6 class="category" data-swiper-parallax="-100">Digital Evolution</h6>
-              <h2 class="title" data-swiper-parallax="-300">Unleash <br>The <span class="accent">Future</span></h2>
+              <h6 class="category" data-swiper-parallax="-100">{{ $data->title ?? 'Hero Title' }}</h6>
+              <h2 class="title" data-swiper-parallax="-300">{{ $data->heading ?? 'Hero Heading !' }} <br> <span class="accent">{{ $data->sub_heading ??  'Sub Heading !' }}</span></h2>
               <p class="description" data-swiper-parallax="-500">
-                Crafting digital experiences that transcend boundaries. Modern, responsive, and blazingly fast.
+               {{ $data->short_des ?? 'Please! , Writte some Description !!' }}
               </p>
               <div class="action-area" data-swiper-parallax="-700">
-                <a href="#" class="main-btn">Start Project</a>
+                <a href="{{ $data->button_url ?? '#' }}" class="main-btn">{{ $data->button ?? 'Explore more' }}</a>
                 <div class="scroll-indicator">
                   <span class="line"></span>
-                  <span class="text">SCROLL</span>
                 </div>
               </div>
             </div>
             
             <div class="side-graphic" data-swiper-parallax="-800">
-                <img src="https://html.rrdevs.net/consulter/assets/img/home/our-portfolio-home__item-3.png" alt="Tech" class="tilt-img">
+                <img src="{{ asset($data->cover_image ?? 'https://i.pinimg.com/736x/64/73/25/647325b786074e67b1f203a329588e87.jpg') }}" alt="Tech" class="tilt-img">
             </div>
           </div>
         </div>
       </div>
-      @endfor
+      @endforeach
 
   
 

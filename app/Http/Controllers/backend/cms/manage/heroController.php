@@ -98,11 +98,13 @@ class heroController extends Controller
     public function insert(Request $request){
          /**--- validation code -- */
         $request->validate( [
-                'type' => ['required', 'string'],
+                'heading' => ['required', 'string'],
+                'sub_heading' => ['required', 'string'],
                 'title' => ['required', 'string'],
                 'short_des' => ['required', 'string'],
             ],[
-                'type.required'=> 'Type field is Required !',
+                'heading.required'=> 'Heading field is Required !',
+                'sub_heading.required'=> 'Sub Heading field is Required !',
                 'title.required'=> 'Title field is Required !',
                 'short_des.required'=> 'Short Description field is Required !',
             ]
@@ -117,13 +119,11 @@ class heroController extends Controller
         $insert = Hero::create([
             'page_section_id'=>$request->section_id,
             'icon'=>$request->icon,
-            'type'=>$request->type,
             'heading'=>$request->heading,
             'sub_heading'=>$request->sub_heading,
             'title'=>$request->title,
             'sub_title'=>$request->sub_title,
             'short_des'=>$request->short_des,
-            'description'=>$request->description,
             'button'=>$request->button,
             'button_url'=>$request->button_url,
             'video_url'=>$request->video_url,
@@ -178,12 +178,17 @@ class heroController extends Controller
      */
 
     public function update(Request $request){
-
-        /**--- validation code -- */
+         /**--- validation code -- */
         $request->validate( [
-                'type' => ['required', 'string'],
+                'heading' => ['required', 'string'],
+                'sub_heading' => ['required', 'string'],
+                'title' => ['required', 'string'],
+                'short_des' => ['required', 'string'],
             ],[
-                'type.required'=> 'Type field is Required !',
+                'heading.required'=> 'Heading field is Required !',
+                'sub_heading.required'=> 'Sub Heading field is Required !',
+                'title.required'=> 'Title field is Required !',
+                'short_des.required'=> 'Short Description field is Required !',
             ]
         );
        
@@ -197,13 +202,11 @@ class heroController extends Controller
         $update = Hero::where('id',$id)->where('slug',$slug)->firstOrFail();
         $update->update([
             'icon'=>$request->icon,
-            'type'=>$request->type,
             'heading'=>$request->heading,
             'sub_heading'=>$request->sub_heading,
             'title'=>$request->title,
             'sub_title'=>$request->sub_title,
             'short_des'=>$request->short_des,
-            'description'=>$request->description,
             'button'=>$request->button,
             'button_url'=>$request->button_url,
             'video_url'=>$request->video_url,

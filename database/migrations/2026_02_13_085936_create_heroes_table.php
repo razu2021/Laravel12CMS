@@ -14,13 +14,17 @@ return new class extends Migration
         Schema::create('heroes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('page_section_id')->constrained('page_sections')->onDelete('cascade');
+            $table->string('icon')->nullable();
             $table->string('heading')->nullable();
+            $table->string('sub_heading')->nullable();
             $table->string('title')->nullable();
-            $table->string('description')->nullable();
+            $table->string('sub_title')->nullable();
+            $table->text('short_des')->nullable();
             $table->string('button')->nullable();
             $table->string('button_url')->nullable();
-            $table->string('cover_image')->nullable();
+            $table->string('video_url')->nullable();
             $table->string('thumbnail')->nullable();
+            $table->string('cover_image')->nullable();
             $table->string('desk_image')->nullable();
             $table->string('teb_image')->nullable();
             $table->string('mobi_image')->nullable();
