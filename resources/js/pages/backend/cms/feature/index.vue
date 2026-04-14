@@ -3,7 +3,7 @@ import AdminLayout from '@/layouts/AdminLayout.vue';
 import Button from '@/components/ui/button/Button.vue';
 import { Form, Head, Link } from '@inertiajs/vue3';
 import { route } from 'ziggy-js';
-import { SquarePlus, Trash,SquarePen, Eye, ShieldCheck, ShieldMinus, DownloadCloud, DeleteIcon, RotateCcwIcon, Download, DatabaseBackup,File, PlusCircle } from 'lucide-vue-next';
+import { SquarePlus, Trash,SquarePen, Eye, ShieldCheck, ShieldMinus, DownloadCloud, DeleteIcon, RotateCcwIcon, Download, DatabaseBackup,File } from 'lucide-vue-next';
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem,DropdownMenuSeparator,DropdownMenuTrigger,DropdownMenuGroup} from '@/components/ui/dropdown-menu'
 import { useBulkSelection } from '@/composables/useBulkSelection'; // use for bulk action 
 import { useConfirmDelete } from '@/composables/useConfirmDelete'; // use for sweet alert 
@@ -36,10 +36,10 @@ const props = defineProps({
 const {rows,links,meta} = useDataTable(props)
 
 // --- cuse composebles for filter data
-const {form} = useFilter(props,'about_manage.all')
+const {form} = useFilter(props,'sectionfeature_manage.all')
 
 // --- use for bulk action
-const bulkRoute = ref('about_manage.bulkAction')
+const bulkRoute = ref('sectionfeature_manage.bulkAction')
 
 const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelection(rows.value, bulkRoute)
 
@@ -72,21 +72,21 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
           <DropdownMenuContent>
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <a :href=" route('about_manage.export_pdf') " target="_blank" class="w-full inline-flex items-center gap-2  text-sm font-medium text-yellow-600 rounded-lg">
+                <a :href=" route('sectionfeature_manage.export_pdf') " target="_blank" class="w-full inline-flex items-center gap-2  text-sm font-medium text-yellow-600 rounded-lg">
                   <span class="flex items-center"><Download /></span>
                   <span>  Export Pdf</span>
                 </a>
               </DropdownMenuItem>
               <!-- end -->
               <DropdownMenuItem>
-                <a :href=" route('about_manage.export_pdf') " target="_blank" class="w-full inline-flex items-center gap-2  text-sm font-medium text-green-600 rounded-lg">
+                <a :href=" route('sectionfeature_manage.export_pdf') " target="_blank" class="w-full inline-flex items-center gap-2  text-sm font-medium text-green-600 rounded-lg">
                   <span class="flex items-center"><Download /></span>
                   <span>  Export Excel</span>
                 </a>
               </DropdownMenuItem>
               <!-- end -->
               <DropdownMenuItem>
-                <a :href="route('about_manage.export_pdf')" target="_blank" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
+                <a :href="route('sectionfeature_manage.export_pdf')" target="_blank" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
                   <span class="flex items-center"><Download /></span>
                   <span>  Export CSV</span>
                 </a>
@@ -127,7 +127,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
           <option value="1">Active</option>
           <option value="0">Inactive</option>
         </select>
-            <Link v-show="form.search || form.status" class="text-sm bg-green-200 p-2 rounded-full text-white hover:bg-green-600 transition-all" :href="route('about_manage.all')"><RotateCcwIcon/></Link>
+            <Link v-show="form.search || form.status" class="text-sm bg-green-200 p-2 rounded-full text-white hover:bg-green-600 transition-all" :href="route('sectionfeature_manage.all')"><RotateCcwIcon/></Link>
       </div>
 
   <!-- RIGHT: Action Buttons -->
@@ -245,7 +245,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
 
                   
 
-        <Link :href="route('about_manage.recycle')"
+        <Link :href="route('sectionfeature_manage.recycle')"
           class="px-3 py-2.5 text-red-500 rounded-xl bg-white shadow-xl border border-red-200 hover:bg-red-100 transition-colors duration-200 flex items-center gap-2 w-full sm:w-auto" >
           <Trash class="w-4 h-4" />
           <span>Recycle</span>
@@ -274,11 +274,9 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
               <input type="checkbox" :checked="isAnySelected" @change="toggleSelectAll(rows)" class="h-4 w-4 text-blue-600 rounded border-gray-300"/>
             </th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">ID</th>
-            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Heading</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Title</th>
-            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Description</th>
+            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Short Description</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Order</th>
-            <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Image</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Status</th>
             <th class="px-4 py-3 text-left text-gray-700 font-semibold text-sm">Manage</th>
           </tr>
@@ -289,11 +287,9 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
           <tr v-for="data in rows" :key="data.id" class="hover:bg-blue-50 transition-colors duration-200">
             <td class="px-4 py-3"><input type="checkbox" :value="data.id" v-model="selectedIds"  class="h-4 w-4 text-blue-600 rounded border-gray-300"/></td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.id ?? '' }}</td>
-            <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.heading ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm">{{ data.title ?? '' }}</td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm"> {{ truncateWords(data.short_des, 10) }} </td>
             <td class="px-4 py-3 font-medium text-gray-800 text-sm"> {{ data.order ?? '' }}</td>
-            <td class="px-4 py-3 font-medium text-gray-800 text-sm"> <img class=" h-20 w-auto rounded-lg shadow-lg" v-if="data.cover_image" :src="`/${data.cover_image}`" alt="image"></td>
             <td class="px-4 py-3 font-medium text-green-600 text-sm" v-if="data.public_status == 1">Active </td>
             <td class="px-4 py-3 font-medium text-red-600 text-sm" v-else="data.public_status == 0">Inactive </td>
             <td class="px-4 py-3 font-medium text-gray-800">
@@ -304,28 +300,21 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
                   <DropdownMenuContent>
                     <DropdownMenuGroup>
                       <DropdownMenuItem>
-                        <Link :href="route('sectionfeature_manage.add',{id:data.id , slug:data.slug, model:'About'})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
-                          <span class="flex items-center"><PlusCircle/></span>
-                          <span> Add Features </span>
-                        </Link>
-                      </DropdownMenuItem>
-                      <!-- featire emd  use actual model name -->
-                      <DropdownMenuItem>
-                        <Link :href="route('about_manage.edit',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
+                        <Link :href="route('sectionfeature_manage.edit',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
                           <span class="flex items-center"><SquarePen /></span>
                           <span>  Edit</span>
                       </Link>
                       </DropdownMenuItem>
                       <!-- end -->
                       <DropdownMenuItem>
-                        <Link :href="route('about_manage.view',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-gray-600 rounded-lg">
+                        <Link :href="route('sectionfeature_manage.view',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-gray-600 rounded-lg">
                           <span class="flex items-center"><Eye /></span>
                           <span> View</span>
                       </Link>
                       </DropdownMenuItem>
                       <!-- end -->
                       <DropdownMenuItem>
-                        <button @click="confirmDelete('about_manage.softdelete',data.id)" class="w-full inline-flex items-center gap-2  text-sm font-medium text-red-300 rounded-lg">
+                        <button @click="confirmDelete('sectionfeature_manage.softdelete',data.id)" class="w-full inline-flex items-center gap-2  text-sm font-medium text-red-300 rounded-lg">
                           <span class="flex items-center"><Trash /></span>
                           <span> Delete </span>
                         </button>
@@ -336,14 +325,14 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
                     <DropdownMenuGroup>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem>
-                        <Link :href="route('about_manage.active',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-green-600 rounded-lg">
+                        <Link :href="route('sectionfeature_manage.active',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-green-600 rounded-lg">
                           <span class="flex items-center"><ShieldCheck /></span>
                           <span> Active </span>
                       </Link>
                       </DropdownMenuItem>
                       <!-- end -->
                       <DropdownMenuItem>
-                        <Link :href="route('about_manage.deactive',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-yellow-600 rounded-lg">
+                        <Link :href="route('sectionfeature_manage.deactive',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-yellow-600 rounded-lg">
                           <span class="flex items-center"><ShieldMinus /></span>
                           <span> InActive </span>
                       </Link>
@@ -352,7 +341,7 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
                        <DropdownMenuSeparator />
                         <!-- end -->
                       <DropdownMenuItem>
-                        <a target="_blank" :href="route('about_manage.single_pdf_export',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-cyan-600 rounded-lg">
+                        <a target="_blank" :href="route('sectionfeature_manage.single_pdf_export',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-cyan-600 rounded-lg">
                           <span class="flex items-center"><DownloadCloud /></span>
                           <span> Export .PDF </span>
                         </a>

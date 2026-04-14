@@ -7,10 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon; //----------  defualt -------
 use Barryvdh\DomPDF\Facade\Pdf;//-------------- export pdf
 use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\AboutExport;
+use App\Exports\FeatureExport;
 use App\Models\PageSection;
 use Illuminate\Support\Str;
-use App\Models\About;
+use App\Models\Feature;
 use App\Models\Faveicon;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -19,14 +19,14 @@ use Inertia\Inertia;
 use App\Services\ImageUploadService;
 
 
-class AboutController extends Controller
+class FeatureController extends Controller
 {
     /**
      * ======== index page function 
      */
     public function index(Request $request)
     {
-        $query = About::query(); 
+        $query = Feature::query(); 
 
         if($request->filled('search')){
             $query->where('title','LIKE', '%' .$request->search .'%');
@@ -39,7 +39,7 @@ class AboutController extends Controller
 
         $alldata = $query->paginate(10)->withQueryString();
 
-        return Inertia::render('backend/cms/about/index',[
+        return Inertia::render('backend/cms/feature/index',[
             'alldata' => $alldata ,
             'filters' => $request->only(['search','status'])
         ]);
@@ -49,12 +49,15 @@ class AboutController extends Controller
      * ======== create page or add page function 
      */
 
-    public function add($id,$slug)
+    public function add($id,$slug,$model)
     {
-        $section = PageSection::where('id',$id)->where('slug',$slug)->value('id');
+        $target_id = $id ;
+        $target_model = $model ;
         $icons = Faveicon::pluck('icons');
-        return Inertia::render('backend/cms/about/add',[
-            'section_id'=>$section,
+
+        return Inertia::render('backend/cms/feature/add',[
+            'target_id'=>$target_id,
+            'target_model'=>$target_model,
             'iconlist' => $icons
         ]);
        
@@ -65,9 +68,9 @@ class AboutController extends Controller
      */
     public function view($id,$slug)
     {
-        $data = About::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+        $data = Feature::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
           
-        return Inertia::render('backend/cms/about/show',[
+        return Inertia::render('backend/cms/feature/show',[
             'data' => $data,
         ]);
        
@@ -78,9 +81,9 @@ class AboutController extends Controller
      */
     public function edit($id,$slug)
     {
-        $data = About::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
+        $data = Feature::with(['creator','editor'])->where('id',$id)->where('slug',$slug)->firstOrFail();
           $icons = Faveicon::pluck('icons');
-        return Inertia::render('backend/cms/about/edit',[
+        return Inertia::render('backend/cms/feature/edit',[
             'data' => $data,
             'iconlist' => $icons
         ]);
@@ -96,17 +99,16 @@ class AboutController extends Controller
      * =======================================================================
      */
     public function insert(Request $request){
+        //dd($request->all());
          /**--- validation code -- */
         $request->validate( [
-                'heading' => ['required', 'string'],
-                'sub_heading' => ['required', 'string'],
+                'featureable_type' => 'required|in:About,Whychooseus', // শুধু এই মডেলগুলো এলাউড
+                'featureable_id'   => 'required|integer',
+                'icon' => ['required', 'string'],
                 'title' => ['required', 'string'],
-                'short_des' => ['required', 'string'],
             ],[
-                'heading.required'=> 'Heading field is Required !',
-                'sub_heading.required'=> 'Sub Heading field is Required !',
+                'icon.required'=> 'Icon field is Required !',
                 'title.required'=> 'Title field is Required !',
-                'short_des.required'=> 'Short Description field is Required !',
             ]
         );
 
@@ -114,52 +116,20 @@ class AboutController extends Controller
         $creator_id = Auth::user()->id;
         $slug = uniqid('20').Str::random(20) . '_'.mt_rand(10000, 100000).'-'.time();
 
-       
+
         // ----- insert record into database 
-        $insert = About::create([
-            'page_section_id'=>$request->section_id,
+        $insert = Feature::create([
+            'featureable_id'=>$request->featureable_id,
+            'featureable_type' => "App\Models\\" . ucfirst($request->featureable_type),
             'icon'=>$request->icon,
-            'experience'=>$request->type,
-            'heading'=>$request->heading,
-            'sub_heading'=>$request->sub_heading,
             'title'=>$request->title,
-            'sub_title'=>$request->sub_title,
             'short_des'=>$request->short_des,
-            'description'=>$request->description,
-            'button'=>$request->button,
-            'button_url'=>$request->button_url,
-            'video_url'=>$request->video_url,
             'order'=>$request->order,
             'public_status'=>$request->public_status ?? 0,
             'slug'=>$slug,
             'creator_id' => $creator_id,
             'created_at' => Carbon::now()->toDateTimeString(),
         ]);
-
-
-        /**======== upload Cover image image via the service class start ====== */
-            $id = $insert->id;
-        if ($request->hasFile('cover_image')) {
-            // upload image in local folder path via tha service class
-            $upload = (new ImageUploadService($request->file('cover_image')))
-                        ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
-            // ------  save image in database 
-            $insert = About::where('id', $id)
-                        ->where('id', $id)->update([
-                            'cover_image' => $upload,
-                        ]);
-        }
-        /**======== upload Thumbnail image via the service class start ====== */
-        if ($request->hasFile('thumbnail')) {
-            // upload image in local folder path via tha service class
-            $upload = (new ImageUploadService($request->file('thumbnail')))
-                        ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
-            // ------  save image in database 
-            $insert = About::where('id', $id)
-                        ->where('id', $id)->update([
-                            'thumbnail' => $upload,
-                        ]);
-        }
 
         //---------------------- if insert ------
         if($insert){
@@ -180,19 +150,18 @@ class AboutController extends Controller
      */
 
     public function update(Request $request){
+        //dd($request->all());
+
         /**--- validation code -- */
         $request->validate( [
-                'heading' => ['required', 'string'],
-                'sub_heading' => ['required', 'string'],
+                'icon' => ['required', 'string'],
                 'title' => ['required', 'string'],
-                'short_des' => ['required', 'string'],
             ],[
-                'heading.required'=> 'Heading field is Required !',
-                'sub_heading.required'=> 'Sub Heading field is Required !',
+                'icon.required'=> 'Icon field is Required !',
                 'title.required'=> 'Title field is Required !',
-                'short_des.required'=> 'Short Description field is Required !',
             ]
         );
+      
         //---------- get authenticate use id and create a slug
         $editor_id = Auth::user()->id;
         $slug = $request->slug;
@@ -200,58 +169,24 @@ class AboutController extends Controller
 
 
         // ----- insert record into database 
-        $update = About::where('id',$id)->where('slug',$slug)->firstOrFail();
+        $update = Feature::where('id',$id)->where('slug',$slug)->firstOrFail();
         $update->update([
+            'featureable_id'=>$request->featureable_id,
+            'featureable_type' => $request->featureable_type,
             'icon'=>$request->icon,
-            'experience'=>$request->type,
-            'heading'=>$request->heading,
-            'sub_heading'=>$request->sub_heading,
             'title'=>$request->title,
-            'sub_title'=>$request->sub_title,
             'short_des'=>$request->short_des,
-            'description'=>$request->description,
-            'button'=>$request->button,
-            'button_url'=>$request->button_url,
-            'video_url'=>$request->video_url,
             'order'=>$request->order,
             'public_status'=>$request->public_status ?? 0,
             'editor_id' => $editor_id,
             'updated_at' => Carbon::now()->toDateTimeString(),
         ]);
 
-        /**======== upload image via the service class start ====== */
-        if ($request->hasFile('cover_image')) {
-            //---- find old image for delete -----
-            $exixtimage = About::where('id', $id)->first();
-            $oldimage = $exixtimage->cover_image;
-            // upload image in local folder path via tha service class
-            $upload = (new ImageUploadService($request->file('cover_image')))
-                        ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
-            // ------  save image in database 
-            $insert = About::where('id', $id)
-                        ->where('slug', $slug)->update([
-                            'cover_image' => $upload,
-                        ]);
-        }
-        /**======== upload image via the service end ====== */
-        if ($request->hasFile('thumbnail')) {
-            //---- find old image for delete -----
-            $exixtimage = About::where('id', $id)->first();
-            $oldimage = $exixtimage->thumbnail;
-            // upload image in local folder path via tha service class
-            $upload = (new ImageUploadService($request->file('thumbnail')))
-                        ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
-            // ------  save image in database 
-            $insert = About::where('id', $id)
-                        ->where('slug', $slug)->update([
-                            'thumbnail' => $upload,
-                        ]);
-        }
-        /**======== upload image via the service end ====== */
-
+       
+        // ---------- if insert -----------
         if($update){
             flash()->success('Information Updated successfully!');
-            return redirect()->route('about_manage.view',[$id,$slug]);
+            return redirect()->route('sectionfeature_manage.view',[$id,$slug]);
         }else{
             flash()->error('Information Updated Faild !');
             return redirect()->back();
@@ -265,7 +200,7 @@ class AboutController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = About::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail();
+        $active = Feature::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail();
 
         if($active){
             $active->update(['public_status' => 1,]);
@@ -282,7 +217,7 @@ class AboutController extends Controller
      */
     public function deactive($id,$slug){
 
-        $active = About::where('id',$id)->where('slug',$slug)->where('public_status',1)->firstOrFail();
+        $active = Feature::where('id',$id)->where('slug',$slug)->where('public_status',1)->firstOrFail();
 
         if($active){
             $active->update(['public_status' => 0,]);
@@ -297,7 +232,7 @@ class AboutController extends Controller
      * ======== Soft Delete Functionality Start here ==========
      */
     public function softdelete($id){
-        $data= About::where('id',$id)->first();
+        $data= Feature::where('id',$id)->first();
         $data->delete();
 
         if ($data) {
@@ -312,7 +247,7 @@ class AboutController extends Controller
      * ========  Delete Functionality Start here ==========
      */
     public function delete($id){
-        $data= About::onlyTrashed()->where('id',$id)->first();
+        $data= Feature::onlyTrashed()->where('id',$id)->first();
         
         if ($data) {
         /**=========== delete image form folder ===== */
@@ -341,7 +276,7 @@ class AboutController extends Controller
      * ========  Recycle Functionality Start here ==========
      */
     public function recycle(Request $request){
-        $query = About::query(); 
+        $query = Feature::query(); 
 
         $query->onlyTrashed();
 
@@ -357,7 +292,7 @@ class AboutController extends Controller
 
         $alldata = $query->paginate(10)->withQueryString();
 
-        return Inertia::render('backend/cms/about/recycle',[
+        return Inertia::render('backend/cms/feature/recycle',[
             'alldata' => $alldata ,
             'filters' => $request->only(['search','status'])
         ]);
@@ -387,13 +322,13 @@ class AboutController extends Controller
 
         // ---------- soft delete code start here 
         if($action === 'delete'){
-            $data = About::whereIn('id',$ids)->delete();
+            $data = Feature::whereIn('id',$ids)->delete();
             return back();
         }
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = About::whereIn('id',$ids)->where('public_status',0)->get();
+            $categorys = Feature::whereIn('id',$ids)->where('public_status',0)->get();
             foreach($categorys as $items){
                 $items->update(['public_status'=>1,]);
             }
@@ -401,14 +336,14 @@ class AboutController extends Controller
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = About::whereIn('id',$ids)->where('public_status',1)->get();
+            $categorys = Feature::whereIn('id',$ids)->where('public_status',1)->get();
             foreach($categorys as $items){
                 $items->update(['public_status'=>0,]);
             }
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){
-            $categorys = About::onlyTrashed()->whereIn('id',$ids)->get();
+            $categorys = Feature::onlyTrashed()->whereIn('id',$ids)->get();
 
                 foreach ($categorys as $category) {
                     /**=========== delete image form folder ===== */
@@ -431,7 +366,7 @@ class AboutController extends Controller
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Restore'){
-            $categorys = About::onlyTrashed()->whereIn('id',$ids)->get();
+            $categorys = Feature::onlyTrashed()->whereIn('id',$ids)->get();
 
                 foreach ($categorys as $category) {
                     $category->restore();
@@ -445,7 +380,7 @@ class AboutController extends Controller
         // ------------ Multiple Item Export as an PDF -------------------------------
         if($action === 'export_pdf'){
           
-            $category = About::whereIn('id',$ids)->get();
+            $category = Feature::whereIn('id',$ids)->get();
 
             $fileName = now()->format('Y-m-d_H-i-s') . '.pdf';
 
@@ -460,11 +395,11 @@ class AboutController extends Controller
 
         if($action === 'export_excel'){
 
-            return Excel::download(new AboutExport($ids), now().'.xlsx');
+            return Excel::download(new FeatureExport($ids), now().'.xlsx');
         }
         if($action === 'export_csv'){
 
-            return Excel::download(new AboutExport($ids), now().'.csv');
+            return Excel::download(new FeatureExport($ids), now().'.csv');
         }
         return back();
 
@@ -481,9 +416,9 @@ class AboutController extends Controller
 
     public function exportPdf($id,$slug){
 
-        $data = About::where('id',$id)->where('slug',$slug)->firstOrFail();
+        $data = Feature::where('id',$id)->where('slug',$slug)->firstOrFail();
         $fileName = $data->name.'-'.now().'.pdf';
-        $pdf = pdf::loadView('backend/export/about/export_singlepdf',compact('data'))->setPaper('a4', 'portrait');
+        $pdf = pdf::loadView('backend/export/feature/export_singlepdf',compact('data'))->setPaper('a4', 'portrait');
         return $pdf->download($fileName);
 
     }
@@ -494,9 +429,9 @@ class AboutController extends Controller
      * ================= export all pdf  function start here ===========================
      */
     public function export_pdf(){
-        $data = About::get();
+        $data = Feature::get();
         $fileName =now().'.pdf';
-        $pdf = pdf::loadView('backend/export/about/export_pdf',[
+        $pdf = pdf::loadView('backend/export/feature/export_pdf',[
             'dataJson' => $data->toArray()
         ])->setPaper('a4', 'portrait');
         return $pdf->download($fileName);
@@ -509,14 +444,14 @@ class AboutController extends Controller
      * ================= export Excel function start here ===========================
      */
     public function export_excel(){
-        return Excel::download(new AboutExport, now().'.xlsx');
+        return Excel::download(new FeatureExport, now().'.xlsx');
     }
     /**
      * 
      * ================= export csv function start here ===========================
      */
     public function export_csv(){
-        return Excel::download(new AboutExport, now().'.csv');
+        return Excel::download(new FeatureExport, now().'.csv');
     }
 
 

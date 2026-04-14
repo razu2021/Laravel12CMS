@@ -1,39 +1,33 @@
+@if(!empty($contents) && $contents->count() > 0)
+@foreach ($contents->take(1) as $about)
+
+
 <section class="about2 container">
     <div class="about_wrapper">
         <div class="about_img_box">
-            <img src="https://i.pinimg.com/736x/ec/e6/d6/ece6d6032bf3a27176804e5bb8424eb8.jpg" alt="About Us" class="main_img">
+            <img src="{{ asset($about->cover_image ?? 'https://i.pinimg.com/736x/ec/e6/d6/ece6d6032bf3a27176804e5bb8424eb8.jpg') }}" alt="About Us" class="main_img">
             
             <div class="experience_badge">
-                <h2>12+</h2>
+                <h2>{{$about->experience ?? '5'}}+</h2>
                 <p>Years Experience</p>
             </div>
         </div>
 
         <div class="about_content">
-            <div class="sub_title">About Our Company</div>
-            <h2>We Design <span>Digital Products</span> That Help Your Business Grow.</h2>
+            <div class="sub_title">{{$about->title ?? 'title'}}</div>
+            <h2>{{$about->heading ?? "heading"}}<span>{{$about->sub_heading ?? "sub heading "}}</span> </h2>
             <p>
-                Amra sudhu code kori na, amra protiti project-e premium experience ensure kori. 
-                Modern technology ebong creative design-er somonnoye apnar vision-ke bastobe rupantor korai amader lokkhyo.
+                {!! $about->description !!}
             </p>
 
             <div class="feature_list">
+                @foreach ($about->features as $feature)
                 <div class="feature_item">
-                    <i class="bi bi-patch-check-fill"></i>
-                    <span>Premium Design</span>
+                    <i class="{{ $feature->icon ?? 'bi bi-patch-check-fill' }}"></i>
+                    <span>{{$feature->title ?? 'feature title'}}</span>
                 </div>
-                <div class="feature_item">
-                    <i class="bi bi-lightning-charge-fill"></i>
-                    <span>Fast Performance</span>
-                </div>
-                <div class="feature_item">
-                    <i class="bi bi-shield-lock-fill"></i>
-                    <span>Secure Solution</span>
-                </div>
-                <div class="feature_item">
-                    <i class="bi bi-headset"></i>
-                    <span>24/7 Support</span>
-                </div>
+                @endforeach
+                
             </div>
 
             <a href="#" class="btn_modern">
@@ -42,3 +36,9 @@
         </div>
     </div>
 </section>
+
+
+  
+
+@endforeach
+@endif

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-class Whychooseus extends Model
+class Feature extends Model
 {
     use SoftDeletes;
 
@@ -25,9 +25,20 @@ class Whychooseus extends Model
     }
 
 
-    /// get the features data 
-    public function features()
+    // ========== Relationship design with morph to 
+    public function featureable()
     {
-        return $this->morphMany(Feature::class, 'featureable');
+        return $this->morphTo();
     }
+
+    // get active data 
+    public function scopeActive($query){
+        return $query->where('public_status',1);
+    }
+    // get data by assending order 
+    public function scopeOrdered($query){
+        return $query->orderBy('order','asc');
+    }
+
+
 }

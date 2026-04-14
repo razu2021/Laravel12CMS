@@ -125,8 +125,8 @@ const handleUpdate = () => {
                 <div class="grid grid-cols-12 gap-4">
                   <div class="col-span-12 md:col-span-6">
                     <div>
-                      <label class="text-sm font-medium text-slate-600">Type</label>
-                      <input type="text" placeholder="Type" v-model="form.type"
+                      <label class="text-sm font-medium text-slate-600">Experience</label>
+                      <input type="number" placeholder="experience year " v-model="form.type"
                         class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
                         <div class="text-small text-red-500" v-if="form.errors.type">{{ form.errors.type }}</div>
                     </div>
@@ -134,7 +134,7 @@ const handleUpdate = () => {
                   <!-- col end -->
                   <div class="col-span-12 md:col-span-6">
                     <div>
-                      <label class="text-sm font-medium text-slate-600">Type</label>
+                      <label class="text-sm font-medium text-slate-600">icon</label>
                       <Iconpicker v-model="form.icon" :iconlist="props.iconlist" />
                       <div class="text-small text-red-500" v-if="form.errors.icon">{{ form.errors.icon }}</div>
                     </div>

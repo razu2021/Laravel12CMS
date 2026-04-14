@@ -32,6 +32,9 @@ class PageSection extends Model
 
 
     //=== define Relationship with Section Content model ->>>>>>>> start here =========
+    public function aboutSection(){
+        return $this->hasMany(About::class,'page_section_id','id')->with(['features' =>function($q){$q->active()->ordered();}])->where('public_status', 1)->orderBy('order','desc');
+    }
     public function heroSection(){
         return $this->hasMany(Hero::class,'page_section_id','id')->where('public_status', 1)->orderBy('order','asc');
     }
@@ -44,6 +47,7 @@ class PageSection extends Model
 
     
     protected array $sectionRelations = [
+        'about_manage' => 'aboutSection',
         'hero_manage' => 'heroSection',
         'post_manage' => 'postSection',
         'globalsection_manage' => 'sectionxSection',

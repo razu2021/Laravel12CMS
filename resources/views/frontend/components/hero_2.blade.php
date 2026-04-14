@@ -11,7 +11,6 @@
       <div class="swiper-slide">
         <div class="image-layer" style="background-image: url('{{ asset($data->thumbnail ?? '') }}');"></div>
         <div class="overlay-layer"></div>
-
         <div class="container h-100">
           <div class="glass-content-box ">
             <div class="content-inner ">
