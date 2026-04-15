@@ -1,3 +1,4 @@
+@if(!empty($contents) && $contents->count() > 0)
 <section class="services-pro py-5">
     <div class="container">
 
@@ -9,27 +10,27 @@
 
         <div class="row g-4">
 
-        @for($i = 0; $i < 6; $i++)
-            <!-- Card -->
+            @foreach ($contents as $service)
             <div class="col-md-6 col-lg-4">
                 <div class="service-card-pro">
                     <div class="card-bg"></div>
 
                     <div class="icon">
-                        <i class="bi bi-code-slash"></i>
+                        <i class="{{ $service->icon ?? 'bi bi-code-slash' }}"></i>
                     </div>
 
-                    <h4>Web Development</h4>
-                    <p>High-quality modern websites with clean architecture.</p>
+                    <h4>{{$service->title ?? ''}}</h4>
+                    <p>{{Str::words($service->short_des,15 ?? '')}}</p>
 
-                    <a href="#" class="read-more">
-                        Explore <span>→</span>
+                    <a href="{{ $service->button_url ?? '#' }}" class="read-more">
+                        {{ $service->button ?? 'Explore more' }} <span>→</span>
                     </a>
                 </div>
             </div>
-        @endfor
+            @endforeach
 
         </div>
 
     </div>
 </section>
+@endif

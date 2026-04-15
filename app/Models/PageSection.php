@@ -50,6 +50,12 @@ class PageSection extends Model
     public function RoadmapSection(){
         return $this->hasMany(Roadmap::class,'page_section_id','id')->active()->ordered();
     }
+    public function serviceSection(){
+        return $this->hasMany(Service::class,'page_section_id','id')->active()->ordered();
+    }
+    public function teamSection(){
+        return $this->hasMany(Team::class,'page_section_id','id')->active()->ordered();
+    }
     public function whychooseusSection(){
         return $this->hasMany(Whychooseus::class,'page_section_id','id')->with(['features' =>function($q){$q->active()->ordered();}])->where('public_status', 1)->orderBy('order','desc');
     }
@@ -62,6 +68,8 @@ class PageSection extends Model
         'globalsection_manage' => 'sectionxSection',
         'promot_manage' => 'promotSection',
         'roadmap_manage' => 'RoadmapSection',
+        'service_manage' => 'serviceSection',
+        'team_manage' => 'teamSection',
         'whychooseus_manage' => 'whychooseusSection',
 
         // future 50+ models

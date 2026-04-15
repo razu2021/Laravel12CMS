@@ -50,8 +50,8 @@ class ImageUploadService{
         }
 
         $image = $manager->read($this->file)
-            ->scaleDown(1000)
-            ->scaleDown(width: $this->resize[0], height: $this->resize[1])
+            //->scaleDown(1000)  // 
+            ->scale(width: $this->resize[0], height: $this->resize[1])
             ->toWebp($this->quality)
             ->save($publicPath . $this->imageName);
 

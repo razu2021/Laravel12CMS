@@ -148,7 +148,7 @@ class PromotController extends Controller
         if ($request->hasFile('thumbnail')) {
             // upload image in local folder path via tha service class
             $upload = (new ImageUploadService($request->file('thumbnail')))
-                        ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
+                        ->setPath('uploads/website/')->setResize(1920, 1080)->setOldImage($oldimage ?? '')->upload();
             // ------  save image in database 
             $insert = Promot::where('id', $id)
                         ->where('id', $id)->update([
@@ -232,7 +232,7 @@ class PromotController extends Controller
             $oldimage = $exixtimage->thumbnail;
             // upload image in local folder path via tha service class
             $upload = (new ImageUploadService($request->file('thumbnail')))
-                        ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
+                        ->setPath('uploads/website/')->setResize(1920, 1080)->setOldImage($oldimage ?? '')->upload();
             // ------  save image in database 
             $insert = Promot::where('id', $id)
                         ->where('slug', $slug)->update([

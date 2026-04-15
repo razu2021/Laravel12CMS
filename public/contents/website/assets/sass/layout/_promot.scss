@@ -7,7 +7,7 @@
     // Overlay shoho background
     background: linear-gradient(rgba(13, 84, 215, 0.85), rgba(13, 24, 45, 0.85));
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     color: #ffffff;
 
@@ -126,15 +126,11 @@
 //=============== promot2 design =============== 
 .promot2-hero-section {
     height: auto;
-
     display: flex;
     align-items: center;
     justify-content: flex-start; // Content-ke bame rakhar jonno
     padding: 5% 8%;
-    background: linear-gradient(90deg, rgba(2, 10, 24, 0.9) 30%, rgba(2, 10, 24, 0.4) 100%), 
-                url('https://i.pinimg.com/736x/06/a4/22/06a4220eb5c4f337221ccf390c82417e.jpg') no-repeat center center / cover;
     font-family: 'Poppins', sans-serif;
-
     .promot2-container {
         width: 100%;
         max-width: 120rem;
