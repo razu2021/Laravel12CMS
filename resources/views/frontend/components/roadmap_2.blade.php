@@ -24,50 +24,17 @@
             </svg>
 
             <div class="roadmap3__track">
+
+                @foreach($contents as $roadmap)
                 <div class="roadmap-item">
                     <div class="glass-card">
-                        <div class="step-no">01</div>
-                        <div class="icon-box"><i class="bi bi-chat-heart-fill"></i></div>
-                        <h4>Counseling</h4>
-                        <p>Strategic career mapping with experts.</p>
+                        <div class="step-no">{{$loop->iteration}}</div>
+                        <div class="icon-box"><i class="{{$roadmap->icon ?? 'bi bi-chat-heart-fill'}}"></i></div>
+                        <h4>{{$roadmap->title ?? ''}}</h4>
+                        <p>{{$roadmap->short_des ?? ''}}</p>
                     </div>
                 </div>
-
-                <div class="roadmap-item">
-                    <div class="glass-card">
-                        <div class="step-no">02</div>
-                        <div class="icon-box"><i class="bi bi-file-earmark-zip-fill"></i></div>
-                        <h4>Documentation</h4>
-                        <p>Flawless paperwork & profile building.</p>
-                    </div>
-                </div>
-
-                <div class="roadmap-item active">
-                    <div class="glass-card">
-                        <div class="step-no">03</div>
-                        <div class="icon-box"><i class="bi bi-mortarboard-fill"></i></div>
-                        <h4>Admission</h4>
-                        <p>Securing offer letters from top unis.</p>
-                    </div>
-                </div>
-
-                <div class="roadmap-item">
-                    <div class="glass-card">
-                        <div class="step-no">04</div>
-                        <div class="icon-box"><i class="bi bi-shield-check"></i></div>
-                        <h4>Visa Success</h4>
-                        <p>Precision-based visa file processing.</p>
-                    </div>
-                </div>
-
-                <div class="roadmap-item">
-                    <div class="glass-card final">
-                        <div class="step-no">05</div>
-                        <div class="icon-box"><i class="bi bi-airplane-engines-fill"></i></div>
-                        <h4>Departure</h4>
-                        <p>Fly to your dream destination!</p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

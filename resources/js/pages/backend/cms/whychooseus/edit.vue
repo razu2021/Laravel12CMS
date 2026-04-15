@@ -5,7 +5,6 @@ import { Head, Link, useForm } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
 import { useImageUploads } from '@/composables/useImageUpload'
 import tiptap from '@/components/TipTap.vue'
-import Iconpicker from '@/components/Iconpicker.vue'
 
 
 
@@ -13,16 +12,12 @@ import Iconpicker from '@/components/Iconpicker.vue'
 const props= defineProps<{
     data: {
         order: number,
-        icon: string,
-        type: string,
         heading: string,
         sub_heading: string,
         title: string,
         sub_title: string,
         short_des: string,
         description: string,
-        button: string,
-        button_url: string,
         video_url: string,
         cover_image: File | string | null,
         thumbnail: File | string | null,
@@ -37,16 +32,12 @@ const props= defineProps<{
 const form  = useForm(
   {
     id: props.data.id,
-    icon: props.data.icon,
-    type: props.data.type,
     heading: props.data.heading,
     sub_heading: props.data.sub_heading,
     title: props.data.title,
     sub_title: props.data.sub_title,
     short_des: props.data.short_des,
     description: props.data.description,
-    button: props.data.button,
-    button_url: props.data.button_url,
     video_url: props.data.video_url,
     cover_image : props.data.cover_image  || null,
     thumbnail : props.data.thumbnail  || null,
@@ -122,26 +113,6 @@ const handleUpdate = () => {
                     <input type="hidden"  v-model="form.slug">
                 </div>
                 <!-- end -->
-                <div class="grid grid-cols-12 gap-4">
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Type</label>
-                      <input type="text" placeholder="Type" v-model="form.type"
-                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.type">{{ form.errors.type }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Type</label>
-                      <Iconpicker v-model="form.icon" :iconlist="props.iconlist" />
-                      <div class="text-small text-red-500" v-if="form.errors.icon">{{ form.errors.icon }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
-                  
-                </div>
                 <!----------------------- grid end------------------------- -->
                 <div class="grid grid-cols-12 gap-4">
                   <div class="col-span-12 md:col-span-6">
@@ -198,27 +169,6 @@ const handleUpdate = () => {
                   <label class="text-sm font-medium text-slate-600">Description</label>
                   <tiptap v-model="form.description" />
                   <div class="text-small text-red-500" v-if="form.errors.description">{{ form.errors.short_des }}</div>
-                </div>
-                <!----------------------- grid end ------------------------- -->
-                                <div class="grid grid-cols-12 gap-4">
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Button Name</label>
-                      <input type="text" placeholder="About us" v-model="form.button"
-                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.button }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Button URL</label>
-                      <input type="text" placeholder="Button url" v-model="form.button_url"
-                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.button_url }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
                 </div>
                 <!----------------------- grid end ------------------------- -->
                 <div class="grid grid-cols-12 gap-4">

@@ -44,6 +44,15 @@ class PageSection extends Model
     public function sectionxSection(){
         return $this->hasMany(sectionx::class,'page_section_id','id')->where('public_status', 1)->orderBy('order','asc');
     }
+    public function promotSection(){
+        return $this->hasMany(Promot::class,'page_section_id','id')->active()->ordered();
+    }
+    public function RoadmapSection(){
+        return $this->hasMany(Roadmap::class,'page_section_id','id')->active()->ordered();
+    }
+    public function whychooseusSection(){
+        return $this->hasMany(Whychooseus::class,'page_section_id','id')->with(['features' =>function($q){$q->active()->ordered();}])->where('public_status', 1)->orderBy('order','desc');
+    }
 
     
     protected array $sectionRelations = [
@@ -51,6 +60,9 @@ class PageSection extends Model
         'hero_manage' => 'heroSection',
         'post_manage' => 'postSection',
         'globalsection_manage' => 'sectionxSection',
+        'promot_manage' => 'promotSection',
+        'roadmap_manage' => 'RoadmapSection',
+        'whychooseus_manage' => 'whychooseusSection',
 
         // future 50+ models
     ];

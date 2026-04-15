@@ -1,13 +1,14 @@
+@if(!empty($contents) && $contents->count() > 0)
+ @foreach($contents->take(1) as $promot)
 <section class="promot1-hero">
     <div class="promot1-container">
         <div class="promot1-content">
-            <h1 class="promot1-title">Good Business Planning Ensures Success.</h1>
+            <h1 class="promot1-title">{{$promot->heading ?? ''}} <span>dfdf {{$promot->sub_heading ?? ''}}</span></h1>
             <p class="promot1-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-                ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+               {{$promot->short_des ?? ''}}
             </p>
-            <a href="#" class="promot1-btn">
-                View All Services <span class="promot1-icon">»</span>
+            <a href="{{$promot->button_url ?? '#'}}" class="promot1-btn">
+                {{$promot->button ?? 'View More'}} <span class="promot1-icon">»</span>
             </a>
         </div>
         
@@ -16,3 +17,5 @@
         </div>
     </div>
 </section>
+@endforeach
+@endif

@@ -304,6 +304,16 @@ const {selectedIds, isAnySelected, toggleSelectAll, bulkAction} = useBulkSelecti
                   <DropdownMenuContent>
                     <DropdownMenuGroup>
                       <DropdownMenuItem>
+                        <Link :href="route('sectionfeature_manage.add',{id:data.id , slug:data.slug, model:'Whychooseus'})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
+                          <span class="flex items-center"><PlusCircle/></span>
+                          <span> Add Features </span>
+                        </Link>
+                      </DropdownMenuItem>
+                      <!-- featire emd  use actual model name -->
+
+
+
+                      <DropdownMenuItem>
                         <Link :href="route('whychooseus_manage.edit',{id:data.id , slug:data.slug})" class="w-full inline-flex items-center gap-2  text-sm font-medium text-blue-600 rounded-lg">
                           <span class="flex items-center"><SquarePen /></span>
                           <span>  Edit</span>

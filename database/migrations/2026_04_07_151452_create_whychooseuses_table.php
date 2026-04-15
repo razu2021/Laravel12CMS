@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('whychooseuses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('page_section_id')->constrained('page_sections')->onDelete('cascade');
-            $table->string('type')->nullable();
             $table->string('heading')->nullable();
             $table->string('sub_heading')->nullable();
             $table->string('title')->nullable();
             $table->string('sub_title')->nullable();
-            $table->string('short_des')->nullable();
+            $table->text('short_des')->nullable();
+            $table->longText('description')->nullable();
             $table->string('video_url')->nullable();
             $table->string('thumbnail')->nullable();
             $table->string('cover_image')->nullable();

@@ -98,11 +98,9 @@ class PromotController extends Controller
     public function insert(Request $request){
          /**--- validation code -- */
         $request->validate( [
-                'type' => ['required', 'string'],
                 'title' => ['required', 'string'],
                 'short_des' => ['required', 'string'],
             ],[
-                'type.required'=> 'Type field is Required !',
                 'title.required'=> 'Title field is Required !',
                 'short_des.required'=> 'Short Description field is Required !',
             ]
@@ -117,7 +115,6 @@ class PromotController extends Controller
         $insert = Promot::create([
             'page_section_id'=>$request->section_id,
             'icon'=>$request->icon,
-            'type'=>$request->type,
             'heading'=>$request->heading,
             'sub_heading'=>$request->sub_heading,
             'title'=>$request->title,
@@ -181,9 +178,11 @@ class PromotController extends Controller
 
         /**--- validation code -- */
         $request->validate( [
-                'type' => ['required', 'string'],
+                'title' => ['required', 'string'],
+                'short_des' => ['required', 'string'],
             ],[
-                'type.required'=> 'Type field is Required !',
+                'title.required'=> 'Title field is Required !',
+                'short_des.required'=> 'Short Description field is Required !',
             ]
         );
        
@@ -197,7 +196,6 @@ class PromotController extends Controller
         $update = Promot::where('id',$id)->where('slug',$slug)->firstOrFail();
         $update->update([
             'icon'=>$request->icon,
-            'type'=>$request->type,
             'heading'=>$request->heading,
             'sub_heading'=>$request->sub_heading,
             'title'=>$request->title,

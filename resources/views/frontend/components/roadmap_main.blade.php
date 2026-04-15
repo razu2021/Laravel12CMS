@@ -1,3 +1,4 @@
+@if(!empty($contents) && $contents->count() > 0)
 <section class="roadmap2">
     <div class="roadmap2__canvas">
         <div class="orb orb-1"></div>
@@ -14,65 +15,20 @@
             <!-- section heading end here  -->  
 
         <div class="roadmap2__flow">
+            @foreach($contents as $roadmap)
             <div class="flow-item">
                 <div class="icon-sphere">
-                    <i class="bi bi-chat-quote-fill"></i>
+                    <i class="{{$roadmap->icon ?? 'bi bi-chat-quote-fill'}}"></i>
                     <div class="pulse-ring"></div>
                 </div>
                 <div class="content">
-                    <span class="no">01</span>
-                    <h4>Counseling</h4>
-                    <p>Expert guidance to choose the right path.</p>
+                    <span class="no">{{$loop->iteration}}</span>
+                    <h4>{{$roadmap->title ?? ''}}</h4>
+                    <p>{{$roadmap->short_des ?? ''}}</p>
                 </div>
             </div>
-
-            <div class="flow-item">
-                <div class="icon-sphere">
-                    <i class="bi bi-folder-check"></i>
-                    <div class="pulse-ring"></div>
-                </div>
-                <div class="content">
-                    <span class="no">02</span>
-                    <h4>Documentation</h4>
-                    <p>Hassle-free paperwork preparation.</p>
-                </div>
-            </div>
-
-            <div class="flow-item">
-                <div class="icon-sphere">
-                    <i class="bi bi-mortarboard-fill"></i>
-                    <div class="pulse-ring"></div>
-                </div>
-                <div class="content">
-                    <span class="no">03</span>
-                    <h4>Admission</h4>
-                    <p>Getting you into top-tier universities.</p>
-                </div>
-            </div>
-
-            <div class="flow-item">
-                <div class="icon-sphere">
-                    <i class="bi bi-shield-lock-fill"></i>
-                    <div class="pulse-ring"></div>
-                </div>
-                <div class="content">
-                    <span class="no">04</span>
-                    <h4>Visa Support</h4>
-                    <p>Ensuring maximum visa success rate.</p>
-                </div>
-            </div>
-
-            <div class="flow-item special">
-                <div class="icon-sphere">
-                    <i class="bi bi-airplane-engines-fill"></i>
-                    <div class="pulse-ring"></div>
-                </div>
-                <div class="content">
-                    <span class="no">05</span>
-                    <h4>Departure</h4>
-                    <p>Time to fly towards your future!</p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
+@endif

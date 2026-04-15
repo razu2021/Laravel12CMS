@@ -98,11 +98,11 @@ class RoadmapController extends Controller
     public function insert(Request $request){
          /**--- validation code -- */
         $request->validate( [
-                'type' => ['required', 'string'],
+                'icon' => ['required', 'string'],
                 'title' => ['required', 'string'],
                 'short_des' => ['required', 'string'],
             ],[
-                'type.required'=> 'Type field is Required !',
+                'icon.required'=> 'Icon field is Required !',
                 'title.required'=> 'Title field is Required !',
                 'short_des.required'=> 'Short Description field is Required !',
             ]
@@ -117,7 +117,6 @@ class RoadmapController extends Controller
         $insert = Roadmap::create([
             'page_section_id'=>$request->section_id,
             'icon'=>$request->icon,
-            'type'=>$request->type,
             'heading'=>$request->heading,
             'sub_heading'=>$request->sub_heading,
             'title'=>$request->title,
@@ -178,12 +177,15 @@ class RoadmapController extends Controller
      */
 
     public function update(Request $request){
-
-        /**--- validation code -- */
+         /**--- validation code -- */
         $request->validate( [
-                'type' => ['required', 'string'],
+                'icon' => ['required', 'string'],
+                'title' => ['required', 'string'],
+                'short_des' => ['required', 'string'],
             ],[
-                'type.required'=> 'Type field is Required !',
+                'icon.required'=> 'Icon field is Required !',
+                'title.required'=> 'Title field is Required !',
+                'short_des.required'=> 'Short Description field is Required !',
             ]
         );
        
@@ -197,7 +199,6 @@ class RoadmapController extends Controller
         $update = Roadmap::where('id',$id)->where('slug',$slug)->firstOrFail();
         $update->update([
             'icon'=>$request->icon,
-            'type'=>$request->type,
             'heading'=>$request->heading,
             'sub_heading'=>$request->sub_heading,
             'title'=>$request->title,

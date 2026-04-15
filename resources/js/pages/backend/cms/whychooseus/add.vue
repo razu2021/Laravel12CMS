@@ -17,13 +17,10 @@ import Iconpicker from '@/components/Iconpicker.vue'
 //=== defineprops =================
 const props = defineProps<{
   section_id:any,
-  iconlist: any[]  // get icons from inertia controller 
 }>()
 // UseForm with remembering state=====================
 const form = useForm('whychooseus_manage', {
   section_id:  props.section_id,
-  type: '',
-  icon: '',
   heading: '',
   sub_heading: '',
   title: '',
@@ -31,8 +28,6 @@ const form = useForm('whychooseus_manage', {
   short_des: '',
   video_url: '',
   description: '',
-  button: '',
-  button_url: '',
   cover_image: null as File | null,
   thumbnail: null as File | null,
   order: '',
@@ -92,25 +87,7 @@ const handleSubmit = () => {
               <p class="text-sm text-slate-500">Main content related data</p>
             </div>
               <input type="hidden" name="section_id" id="section_id" v-model="form.section_id"/>
-                <div class="grid grid-cols-12 gap-4">
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Type</label>
-                      <input type="text" placeholder="Type" v-model="form.type"
-                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.type">{{ form.errors.type }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Type</label>
-                        <Iconpicker v-model="form.icon" :iconlist="props.iconlist" /> 
-                    </div>
-                  </div>
-                  <!-- col end -->
-                  
-                </div>
+               
                 <div class="grid grid-cols-12 gap-4">
                   <div class="col-span-12 md:col-span-6">
                     <div>
@@ -165,28 +142,7 @@ const handleSubmit = () => {
                 <div>
                   <label class="text-sm font-medium text-slate-600">Description</label>
                   <tiptap v-model="form.description" />
-                  <div class="text-small text-red-500" v-if="form.errors.short_des">{{ form.errors.short_des }}</div>
-                </div>
-                <!----------------------- grid end ------------------------- -->
-                <div class="grid grid-cols-12 gap-4">
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Button Name</label>
-                      <input type="text" placeholder="About us" v-model="form.button"
-                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.button }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Button URL</label>
-                      <input type="text" placeholder="Button url" v-model="form.button_url"
-                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.button_url }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
+                  <div class="text-small text-red-500" v-if="form.errors.description">{{ form.errors.description }}</div>
                 </div>
                 <!----------------------- grid end ------------------------- -->
                 <div class="grid grid-cols-12 gap-4">

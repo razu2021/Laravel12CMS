@@ -5,8 +5,10 @@
     min-height: clamp(50rem, 70vh, 90rem);
     padding: 5rem 5%;
     // Overlay shoho background
-    background: linear-gradient(rgba(13, 24, 45, 0.85), rgba(13, 24, 45, 0.85)), 
-                url('https://i.pinimg.com/736x/06/a4/22/06a4220eb5c4f337221ccf390c82417e.jpg') no-repeat center center / cover;
+    background: linear-gradient(rgba(13, 84, 215, 0.85), rgba(13, 24, 45, 0.85));
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
     color: #ffffff;
 
     .promot1-container {
