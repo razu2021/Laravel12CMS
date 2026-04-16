@@ -68,6 +68,9 @@ class PageSection extends Model
     public function postSection(){
         return $this->hasMany(Post::class,'page_section_id','id')->active()->ordered();
     }
+    public function partnerSection(){
+        return $this->hasMany(Partner::class,'page_section_id','id')->active()->ordered();
+    }
     public function protfoliioSection(){
         return $this->hasMany(Protfolio::class,'page_section_id','id')->active()->ordered();
     }

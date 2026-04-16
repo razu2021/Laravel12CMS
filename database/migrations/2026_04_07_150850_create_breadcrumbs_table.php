@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('sub_heading')->nullable();
             $table->string('title')->nullable();
             $table->string('sub_title')->nullable();
-            $table->string('short_des')->nullable();
+            $table->text('short_des')->nullable();
             $table->string('button')->nullable();
             $table->string('button_url')->nullable();
             $table->string('video_url')->nullable();

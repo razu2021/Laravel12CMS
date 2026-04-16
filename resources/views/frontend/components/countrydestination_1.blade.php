@@ -1,3 +1,4 @@
+@if(!empty($contents) && $contents->count() > 0)
 <section class="destination1">
     <div class="container">
         <div class="section-head">
@@ -6,21 +7,21 @@
         </div>
 
         <div class="row g-4">
-            @for($i=0 ; $i < 6 ; $i++)
+            @foreach ($contents as $country)
             <div class="col-12 col-sm-6 col-lg-3">
                 <div class="dest-card">
                     <div class="dest-card__image">
-                        <img src="https://i.pinimg.com/736x/3d/bb/21/3dbb21d2806caf3f93b04aa6457af482.jpg" alt="Study in UK">
-                        <div class="flag-icon">🇬🇧</div>
+                        <img src="{{ asset($country->cover_image ?? 'https://i.pinimg.com/736x/3d/bb/21/3dbb21d2806caf3f93b04aa6457af482.jpg') }}" alt="{{ $country->title ??  'Country' }}">
                     </div>
                     <div class="dest-card__info">
-                        <h3>United Kingdom</h3>
-                        <p>World-class education with 1-year Masters.</p>
-                        <a href="#" class="explore-btn">Explore Univ <i class="fas fa-arrow-right"></i></a>
+                        <h3>{{$country->title ?? ''}}</h3>
+                        <p>{{Str::words($country->short_des,20 ?? '')}}</p>
+                        <a href="{{ $country->button_url ?? '#' }}" class="explore-btn">{{ $country->button ?? 'About More' }} <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
-            @endfor
+            @endforeach
         </div>
     </div>
 </section>
+@endif

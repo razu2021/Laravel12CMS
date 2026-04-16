@@ -1,3 +1,4 @@
+@if(!empty($contents) && $contents->count() > 0)
 <section class="partner2">
     <div class="partner2__canvas">
         <div class="graphic shape-a animate-float"></div>
@@ -16,14 +17,14 @@
 
         <div class="swiper partnerSlider">
             <div class="swiper-wrapper">
-                @for($i = 1; $i <= 15; $i++)
+                @foreach ($contents as $partner)
                 <div class="swiper-slide">
                     <div class="partner-card t-card">
                         <div class="card-glass"></div>
-                        <img src="https://i.pinimg.com/736x/57/82/c1/5782c188d4cdcf14f3f71dc08b9053cc.jpg" alt="University 1">
+                        <img src="{{ asset($partner->cover_image ?? 'https://i.pinimg.com/736x/57/82/c1/5782c188d4cdcf14f3f71dc08b9053cc.jpg') }}" alt="{{ $partner->title ?? 'Partner image' }}">
                     </div>
                 </div>
-                @endfor
+                @endforeach
 
                 
                 </div>
@@ -32,3 +33,4 @@
         </div>
     </div>
 </section>
+@endif

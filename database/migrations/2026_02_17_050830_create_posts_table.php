@@ -14,9 +14,17 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('page_section_id')->constrained('page_sections')->onDelete('cascade');
+             $table->string('type')->nullable();
             $table->string('heading')->nullable();
+            $table->string('sub_heading')->nullable();
             $table->string('title')->nullable();
-            $table->text('description')->nullable();
+            $table->string('sub_title')->nullable();
+            $table->string('short_des')->nullable();
+            $table->longText('description')->nullable();
+            $table->string('button')->nullable();
+            $table->string('button_url')->nullable();
+            $table->string('video_url')->nullable();
+            $table->string('thumbnail')->nullable();
             $table->string('cover_image')->nullable();
             $table->integer('order')->nullable();
             $table->string('slug',255)->nullable();

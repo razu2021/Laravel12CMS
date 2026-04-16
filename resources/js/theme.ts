@@ -264,13 +264,18 @@ export const imageGalleryThemes: Theme[] = [
 ];
 /**
   * ======================================================
-  *  Load News Galley Section Theme  i
+  *  Load News  Section Theme  i
   * ======================================================
   */
 export const newsThemes: Theme[] = [
   {
-    key: 'imagegallery_main',
-    name: 'Gallery Theme Defualt',
+    key: 'news_main',
+    name: 'News Theme Defualt',
+    preview: 'https://picsum.photos/400/250?5'
+  },
+  {
+    key: 'news_all',
+    name: 'News Theme 1',
     preview: 'https://picsum.photos/400/250?5'
   },
 ];

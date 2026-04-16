@@ -1,3 +1,4 @@
+@if(!empty($contents) && $contents->count() > 0)
 <section class="destination2">
     <div class="bg-graphics">
         <div class="circle-shape animate-float"></div>
@@ -16,21 +17,22 @@
 
     <div class="swiper destinationSlider">
         <div class="swiper-wrapper">
-            @for($i=0 ; $i < 6 ; $i++)
+
+            @foreach ($contents as $country)
             <div class="swiper-slide">
                 <div class="dest-card-v2">
                     <div class="image-box">
-                        <img src="https://i.pinimg.com/736x/61/c8/ec/61c8eca72fd85b7ff986ca402cb28f7d.jpg" alt="UK">
-                        <div class="flag-tag">🇬🇧 UK</div>
+                        <img src="{{ asset($country->cover_image ?? 'https://i.pinimg.com/736x/61/c8/ec/61c8eca72fd85b7ff986ca402cb28f7d.jpg') }}" alt="{{ $country->title ?? 'Country image for Feature Destination ' }}">
+                        
                     </div>
                     <div class="content-box">
-                        <h3>United Kingdom</h3>
-                        <p>Experience world-class heritage and top-tier academic excellence.</p>
-                        <a href="#" class="link">View Universities <i class="fas fa-chevron-right"></i></a>
+                        <h3>{{$country->title ?? ''}}</h3>
+                        <p>{{Str::words($country->short_des , 20 ?? '')}}</p>
+                        <a href="{{ $country->button_url ?? '' }}" class="link">{{ $country->button ?? 'About More' }} <i class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
             </div>
-            @endfor 
+            @endforeach
 
 
             </div>
@@ -40,3 +42,4 @@
         <div class="swiper-button-prev"></div>
     </div>
 </section>
+@endif

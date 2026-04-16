@@ -98,11 +98,9 @@ class CountrydestinationController extends Controller
     public function insert(Request $request){
          /**--- validation code -- */
         $request->validate( [
-                'type' => ['required', 'string'],
                 'title' => ['required', 'string'],
                 'short_des' => ['required', 'string'],
             ],[
-                'type.required'=> 'Type field is Required !',
                 'title.required'=> 'Title field is Required !',
                 'short_des.required'=> 'Short Description field is Required !',
             ]
@@ -117,7 +115,6 @@ class CountrydestinationController extends Controller
         $insert = Countrydestination::create([
             'page_section_id'=>$request->section_id,
             'icon'=>$request->icon,
-            'type'=>$request->type,
             'heading'=>$request->heading,
             'sub_heading'=>$request->sub_heading,
             'title'=>$request->title,
@@ -151,7 +148,7 @@ class CountrydestinationController extends Controller
         if ($request->hasFile('thumbnail')) {
             // upload image in local folder path via tha service class
             $upload = (new ImageUploadService($request->file('thumbnail')))
-                        ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
+                        ->setPath('uploads/website/')->setResize(1920, 1080)->setOldImage($oldimage ?? '')->upload();
             // ------  save image in database 
             $insert = Countrydestination::where('id', $id)
                         ->where('id', $id)->update([
@@ -178,12 +175,13 @@ class CountrydestinationController extends Controller
      */
 
     public function update(Request $request){
-
-        /**--- validation code -- */
+         /**--- validation code -- */
         $request->validate( [
-                'type' => ['required', 'string'],
+                'title' => ['required', 'string'],
+                'short_des' => ['required', 'string'],
             ],[
-                'type.required'=> 'Type field is Required !',
+                'title.required'=> 'Title field is Required !',
+                'short_des.required'=> 'Short Description field is Required !',
             ]
         );
        
@@ -197,7 +195,6 @@ class CountrydestinationController extends Controller
         $update = Countrydestination::where('id',$id)->where('slug',$slug)->firstOrFail();
         $update->update([
             'icon'=>$request->icon,
-            'type'=>$request->type,
             'heading'=>$request->heading,
             'sub_heading'=>$request->sub_heading,
             'title'=>$request->title,
@@ -234,7 +231,7 @@ class CountrydestinationController extends Controller
             $oldimage = $exixtimage->thumbnail;
             // upload image in local folder path via tha service class
             $upload = (new ImageUploadService($request->file('thumbnail')))
-                        ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
+                        ->setPath('uploads/website/')->setResize(1920, 1080)->setOldImage($oldimage ?? '')->upload();
             // ------  save image in database 
             $insert = Countrydestination::where('id', $id)
                         ->where('slug', $slug)->update([

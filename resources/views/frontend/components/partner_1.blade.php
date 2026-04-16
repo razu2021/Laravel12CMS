@@ -1,3 +1,4 @@
+@if(!empty($contents) && $contents->count() > 0)
 <section class="team__partner">
     <div class="container">
 
@@ -11,39 +12,20 @@
         <!-- Swiper -->
         <div class="swiper team__partner-slider">
             <div class="swiper-wrapper">
-
+                @foreach ($contents as $partner)
                 <div class="swiper-slide">
                     <div class="team__partner-item">
-                        <img src="https://cdn.simpleicons.org/google" alt="">
+                        <img src="{{ asset($partner->cover_image ?? '') }}" alt="{{ $partner->title ?? 'Partner image' }}">
                     </div>
                 </div>
+                @endforeach
 
-                <div class="swiper-slide">
-                    <div class="team__partner-item">
-                        <img src="https://cdn.simpleicons.org/facebook" alt="">
-                    </div>
-                </div>
 
-                <div class="swiper-slide">
-                    <div class="team__partner-item">
-                        <img src="https://cdn.simpleicons.org/amazon" alt="">
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="team__partner-item">
-                        <img src="https://cdn.simpleicons.org/netflix" alt="">
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="team__partner-item">
-                        <img src="https://cdn.simpleicons.org/microsoft" alt="">
-                    </div>
-                </div>
+                
 
             </div>
         </div>
 
     </div>
 </section>
+@endif

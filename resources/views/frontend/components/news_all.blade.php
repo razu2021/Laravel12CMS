@@ -32,6 +32,7 @@
     </div>
 </div>
 <!-- filter section end here  -->
+@if(!empty($contents) && $contents->count() > 0)
 <section class="all-posts-section py-5">
     <div class="container">
         <div class="row">
@@ -40,34 +41,34 @@
             <div class="col-12 col-lg-9 mb-4">
                 <div class="row g-4">
 
-                    @for($i = 0; $i < 8; $i++)
+                     @foreach ($contents as $news)
                     <div class="col-12 col-sm-6 col-lg-4">
                         <div class="post_card1">
 
                             <div class="card_image">
-                                <img src="{{asset('contents/website/assets/images/banner/breadcrumb.jpg')}}" alt="post image">
+                                <img src="{{asset($news->cover_image ?? 'https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=800&auto=format&fit=crop')}}" alt="{{ $news->title ?? 'post image' }}">
 
                                 <div class="overlay"></div>
 
-                                <span class="category">Web</span>
+                                <span class="category">{{$news->type ?? ''}}</span>
                             </div>
 
                             <div class="card_content">
-                                <h4 class="card_title">Modern Card Title {{ $i+1 }}</h4>
+                                <h4 class="card_title"> {{ $news->title ?? '' }}</h4>
 
                                 <p class="card_excerpt">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                    {{ Str::words($news->short_des , 20 ?? '') }}
                                 </p>
 
                                 <div class="card_footer">
-                                    <span class="date">Mar 30, 2026</span>
-                                    <a href="#" class="read_more">Read →</a>
+                                    <span class="date">{{ $news->created_at->format('M,d,Y') }}</span>
+                                    <a href="{{ $news->button_url ?? '#' }}" class="read_more">{{ $news->button ?? 'Read more ' }} →</a>
                                 </div>
                             </div>
 
                         </div>
                     </div>
-                    @endfor
+                    @endforeach
 
                 </div>
 
@@ -118,3 +119,4 @@
         </div>
     </div>
 </section>
+@endif
