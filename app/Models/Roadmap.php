@@ -24,7 +24,7 @@ class Roadmap extends Model
         return $this->belongsTo(User::class, 'editor_id', 'id');
     }
 
-        // get active data 
+    // get active data 
     public function scopeActive($query){
         return $query->where('public_status',1);
     }

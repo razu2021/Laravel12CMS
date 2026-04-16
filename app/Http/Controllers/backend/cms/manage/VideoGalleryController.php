@@ -98,13 +98,13 @@ class VideoGalleryController extends Controller
     public function insert(Request $request){
          /**--- validation code -- */
         $request->validate( [
-                'type' => ['required', 'string'],
                 'title' => ['required', 'string'],
                 'short_des' => ['required', 'string'],
+                'video_url' => ['required', 'string'],
             ],[
-                'type.required'=> 'Type field is Required !',
                 'title.required'=> 'Title field is Required !',
                 'short_des.required'=> 'Short Description field is Required !',
+                'video_url.required'=> 'Short Description field is Required !',
             ]
         );
 
@@ -116,12 +116,8 @@ class VideoGalleryController extends Controller
         // ----- insert record into database 
         $insert = Videogallery::create([
             'page_section_id'=>$request->section_id,
-            'icon'=>$request->icon,
-            'type'=>$request->type,
             'heading'=>$request->heading,
-            'sub_heading'=>$request->sub_heading,
             'title'=>$request->title,
-            'sub_title'=>$request->sub_title,
             'short_des'=>$request->short_des,
             'description'=>$request->description,
             'button'=>$request->button,
@@ -151,7 +147,7 @@ class VideoGalleryController extends Controller
         if ($request->hasFile('thumbnail')) {
             // upload image in local folder path via tha service class
             $upload = (new ImageUploadService($request->file('thumbnail')))
-                        ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
+                        ->setPath('uploads/website/')->setResize(1920, 1080)->setOldImage($oldimage ?? '')->upload();
             // ------  save image in database 
             $insert = Videogallery::where('id', $id)
                         ->where('id', $id)->update([
@@ -181,27 +177,25 @@ class VideoGalleryController extends Controller
 
         /**--- validation code -- */
         $request->validate( [
-                'type' => ['required', 'string'],
+                'title' => ['required', 'string'],
+                'short_des' => ['required', 'string'],
+                'video_url' => ['required', 'string'],
             ],[
-                'type.required'=> 'Type field is Required !',
+                'title.required'=> 'Title field is Required !',
+                'short_des.required'=> 'Short Description field is Required !',
+                'video_url.required'=> 'Short Description field is Required !',
             ]
         );
-       
         //---------- get authenticate use id and create a slug
         $editor_id = Auth::user()->id;
         $slug = $request->slug;
         $id = $request->id;
 
-
         // ----- insert record into database 
         $update = Videogallery::where('id',$id)->where('slug',$slug)->firstOrFail();
         $update->update([
-            'icon'=>$request->icon,
-            'type'=>$request->type,
             'heading'=>$request->heading,
-            'sub_heading'=>$request->sub_heading,
             'title'=>$request->title,
-            'sub_title'=>$request->sub_title,
             'short_des'=>$request->short_des,
             'description'=>$request->description,
             'button'=>$request->button,
@@ -234,7 +228,7 @@ class VideoGalleryController extends Controller
             $oldimage = $exixtimage->thumbnail;
             // upload image in local folder path via tha service class
             $upload = (new ImageUploadService($request->file('thumbnail')))
-                        ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
+                        ->setPath('uploads/website/')->setResize(1920, 1080)->setOldImage($oldimage ?? '')->upload();
             // ------  save image in database 
             $insert = Videogallery::where('id', $id)
                         ->where('slug', $slug)->update([
@@ -245,7 +239,7 @@ class VideoGalleryController extends Controller
 
         if($update){
             flash()->success('Information Updated successfully!');
-            return redirect()->route('videogallery_manage/.view',[$id,$slug]);
+            return redirect()->route('videogallery_manage.view',[$id,$slug]);
         }else{
             flash()->error('Information Updated Faild !');
             return redirect()->back();

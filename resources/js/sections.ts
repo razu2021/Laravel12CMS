@@ -98,7 +98,7 @@ export const allsections: sections[] = [
         name : 'Testimonials Section defualt'
     },
     {
-        key: 'video_galley',
+        key: 'videogallery_main',
         name : 'Video Gallery Section defualt'
     },
     {

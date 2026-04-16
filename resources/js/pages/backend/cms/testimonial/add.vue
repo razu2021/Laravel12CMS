@@ -22,8 +22,6 @@ const props = defineProps<{
 // UseForm with remembering state=====================
 const form = useForm('testimonial_manage', {
   section_id:  props.section_id,
-  type: '',
-  icon: '',
   heading: '',
   sub_heading: '',
   title: '',
@@ -92,29 +90,11 @@ const handleSubmit = () => {
               <p class="text-sm text-slate-500">Main content related data</p>
             </div>
               <input type="hidden" name="section_id" id="section_id" v-model="form.section_id"/>
+        
                 <div class="grid grid-cols-12 gap-4">
                   <div class="col-span-12 md:col-span-6">
                     <div>
-                      <label class="text-sm font-medium text-slate-600">Type</label>
-                      <input type="text" placeholder="Type" v-model="form.type"
-                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.type">{{ form.errors.type }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Type</label>
-                        <Iconpicker v-model="form.icon" :iconlist="props.iconlist" /> 
-                    </div>
-                  </div>
-                  <!-- col end -->
-                  
-                </div>
-                <div class="grid grid-cols-12 gap-4">
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Heading</label>
+                      <label class="text-sm font-medium text-slate-600">Name/Company</label>
                       <input type="text" placeholder="Heading" v-model="form.heading"
                         class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
                         <div class="text-small text-red-500" v-if="form.errors.heading">{{ form.errors.heading }}</div>
@@ -123,7 +103,7 @@ const handleSubmit = () => {
                   <!-- col end -->
                   <div class="col-span-12 md:col-span-6">
                     <div>
-                      <label class="text-sm font-medium text-slate-600">Sub Heading</label>
+                      <label class="text-sm font-medium text-slate-600">Designation / Company Title</label>
                       <input type="text" placeholder="Sub Heading" v-model="form.sub_heading"
                         class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
                         <div class="text-small text-red-500" v-if="form.errors.sub_heading">{{ form.errors.sub_heading }}</div>
@@ -135,7 +115,7 @@ const handleSubmit = () => {
                 <div class="grid grid-cols-12 gap-4">
                   <div class="col-span-12 md:col-span-6">
                     <div>
-                      <label class="text-sm font-medium text-slate-600">Title</label>
+                      <label class="text-sm font-medium text-slate-600">Title (optional)</label>
                       <input type="text" placeholder="Title" v-model="form.title"
                         class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
                         <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.title }}</div>
@@ -144,7 +124,7 @@ const handleSubmit = () => {
                   <!-- col end -->
                   <div class="col-span-12 md:col-span-6">
                     <div>
-                      <label class="text-sm font-medium text-slate-600">Sub Title</label>
+                      <label class="text-sm font-medium text-slate-600">Sub Title (optional)</label>
                       <input type="text" placeholder="Sub Title" v-model="form.sub_title"
                         class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
                         <div class="text-small text-red-500" v-if="form.errors.sub_title">{{ form.errors.sub_title }}</div>

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('page_section_id')->constrained('page_sections')->onDelete('cascade');
             $table->string('heading')->nullable();
             $table->string('title')->nullable();
-            $table->string('short_des')->nullable();
+            $table->text('short_des')->nullable();
             $table->longText('description')->nullable();
             $table->string('button')->nullable();
             $table->string('button_url')->nullable();

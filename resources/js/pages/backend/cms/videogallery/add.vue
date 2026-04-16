@@ -20,14 +20,10 @@ const props = defineProps<{
   iconlist: any[]  // get icons from inertia controller 
 }>()
 // UseForm with remembering state=====================
-const form = useForm('videogallery_manage/', {
+const form = useForm('videogallery_manage', {
   section_id:  props.section_id,
-  type: '',
-  icon: '',
   heading: '',
-  sub_heading: '',
   title: '',
-  sub_title: '',
   short_des: '',
   video_url: '',
   description: '',
@@ -43,7 +39,7 @@ const {preview:image_preview ,handleUpload:handleImageUpload ,clearPreview:clear
 const {preview:thumbnail_preview ,handleUpload:handleThumbnailUpload ,clearPreview:clearThumbnailPreview} = useImageUploads(form, 'thumbnail');
 //===================== ✅ submit MUST use form========================
 const handleSubmit = () => {
-  form.post(route('videogallery_manage/.submit'), {
+  form.post(route('videogallery_manage.submit'), {
       // -- its work as like multipart-form/Data --- 
       forceFormData: true,
       onSuccess: () => {
@@ -74,7 +70,7 @@ const handleSubmit = () => {
            <div>
              <button
               class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-white/20 transition">
-              <Link :href="route('videogallery_manage/.all')">All Information</Link>
+              <Link :href="route('videogallery_manage.all')">All Information</Link>
             </button>
              <Button @click="goBack" class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur hover:bg-white/20 transition mx-2">
               Go Back
@@ -92,27 +88,9 @@ const handleSubmit = () => {
               <p class="text-sm text-slate-500">Main content related data</p>
             </div>
               <input type="hidden" name="section_id" id="section_id" v-model="form.section_id"/>
+          
                 <div class="grid grid-cols-12 gap-4">
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Type</label>
-                      <input type="text" placeholder="Type" v-model="form.type"
-                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.type">{{ form.errors.type }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Type</label>
-                        <Iconpicker v-model="form.icon" :iconlist="props.iconlist" /> 
-                    </div>
-                  </div>
-                  <!-- col end -->
-                  
-                </div>
-                <div class="grid grid-cols-12 gap-4">
-                  <div class="col-span-12 md:col-span-6">
+                  <div class="col-span-12 md:col-span-12">
                     <div>
                       <label class="text-sm font-medium text-slate-600">Heading</label>
                       <input type="text" placeholder="Heading" v-model="form.heading"
@@ -121,33 +99,16 @@ const handleSubmit = () => {
                     </div>
                   </div>
                   <!-- col end -->
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Sub Heading</label>
-                      <input type="text" placeholder="Sub Heading" v-model="form.sub_heading"
-                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.sub_heading">{{ form.errors.sub_heading }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
+                  
                 </div>
                 <!----------------------- grid end------------------------- -->
                 <div class="grid grid-cols-12 gap-4">
-                  <div class="col-span-12 md:col-span-6">
+                  <div class="col-span-12 md:col-span-12">
                     <div>
                       <label class="text-sm font-medium text-slate-600">Title</label>
                       <input type="text" placeholder="Title" v-model="form.title"
                         class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
                         <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.title }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Sub Title</label>
-                      <input type="text" placeholder="Sub Title" v-model="form.sub_title"
-                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.sub_title">{{ form.errors.sub_title }}</div>
                     </div>
                   </div>
                   <!-- col end -->
@@ -165,7 +126,7 @@ const handleSubmit = () => {
                 <div>
                   <label class="text-sm font-medium text-slate-600">Description</label>
                   <tiptap v-model="form.description" />
-                  <div class="text-small text-red-500" v-if="form.errors.short_des">{{ form.errors.short_des }}</div>
+                  <div class="text-small text-red-500" v-if="form.errors.description">{{ form.errors.description }}</div>
                 </div>
                 <!----------------------- grid end ------------------------- -->
                 <div class="grid grid-cols-12 gap-4">

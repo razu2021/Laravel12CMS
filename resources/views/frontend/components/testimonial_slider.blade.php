@@ -1,3 +1,4 @@
+@if(!empty($contents) && $contents->count() > 0)
 <section class="testimonial py-5">
     <div class="container">
         <!-- Header -->
@@ -15,27 +16,27 @@
         <div class="swiper testimonial__slider">
             <div class="swiper-wrapper">
                 <!-- Loop 10 testimonials -->
-                @for ($i = 0; $i < 10; $i++)
+                @foreach($contents as $testi)
                 <div class="swiper-slide">
                     <div class="testimonial__card">
                         <div class="testimonial__quote">“</div>
                         <div class="testimonial__content">
                             <p class="testimonial__text">
-                                This company transformed our business! Highly recommended.
+                                {{Str::words($testi->short_des,20 ?? '')}}
                             </p>
                             <div class="testimonial__user">
                                 <div class="testimonial__img">
-                                    <img src="https://i.pravatar.cc/100?img={{ 10 + $i }}" alt="client">
+                                    <img src="{{asset($testi->cover_image ?? '')}}" alt="{{$testi->heading ?? 'Client Reviews' }}">
                                 </div>
                                 <div>
-                                    <h4 class="testimonial__name">Alice Johnson</h4>
-                                    <span class="testimonial__role">CEO, TechCorp</span>
+                                    <h4 class="testimonial__name">{{$testi->heading ?? ''}}</h4>
+                                    <span class="testimonial__role">{{$testi->sub_heading ?? ''}}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                @endfor
+                @endforeach
             </div>
 
             <!-- Pagination -->
@@ -43,3 +44,4 @@
         </div>
     </div>
 </section>
+@endif

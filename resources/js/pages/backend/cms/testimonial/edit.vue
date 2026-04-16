@@ -13,8 +13,6 @@ import Iconpicker from '@/components/Iconpicker.vue'
 const props= defineProps<{
     data: {
         order: number,
-        icon: string,
-        type: string,
         heading: string,
         sub_heading: string,
         title: string,
@@ -37,8 +35,6 @@ const props= defineProps<{
 const form  = useForm(
   {
     id: props.data.id,
-    icon: props.data.icon,
-    type: props.data.type,
     heading: props.data.heading,
     sub_heading: props.data.sub_heading,
     title: props.data.title,
@@ -122,31 +118,12 @@ const handleUpdate = () => {
                     <input type="hidden"  v-model="form.slug">
                 </div>
                 <!-- end -->
-                <div class="grid grid-cols-12 gap-4">
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Type</label>
-                      <input type="text" placeholder="Type" v-model="form.type"
-                        class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                        <div class="text-small text-red-500" v-if="form.errors.type">{{ form.errors.type }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
-                  <div class="col-span-12 md:col-span-6">
-                    <div>
-                      <label class="text-sm font-medium text-slate-600">Type</label>
-                      <Iconpicker v-model="form.icon" :iconlist="props.iconlist" />
-                      <div class="text-small text-red-500" v-if="form.errors.icon">{{ form.errors.icon }}</div>
-                    </div>
-                  </div>
-                  <!-- col end -->
-                  
-                </div>
+            
                 <!----------------------- grid end------------------------- -->
                 <div class="grid grid-cols-12 gap-4">
                   <div class="col-span-12 md:col-span-6">
                     <div>
-                      <label class="text-sm font-medium text-slate-600">Heading</label>
+                      <label class="text-sm font-medium text-slate-600">NAme / Company Name</label>
                       <input type="text" placeholder="Heading" v-model="form.heading"
                         class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
                         <div class="text-small text-red-500" v-if="form.errors.heading">{{ form.errors.heading }}</div>
@@ -155,7 +132,7 @@ const handleUpdate = () => {
                   <!-- col end -->
                   <div class="col-span-12 md:col-span-6">
                     <div>
-                      <label class="text-sm font-medium text-slate-600">Sub Heading</label>
+                      <label class="text-sm font-medium text-slate-600">Designation / Company Heading</label>
                       <input type="text" placeholder="Sub Heading" v-model="form.sub_heading"
                         class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
                         <div class="text-small text-red-500" v-if="form.errors.sub_heading">{{ form.errors.sub_heading }}</div>
@@ -167,7 +144,7 @@ const handleUpdate = () => {
                 <div class="grid grid-cols-12 gap-4">
                   <div class="col-span-12 md:col-span-6">
                     <div>
-                      <label class="text-sm font-medium text-slate-600">Title</label>
+                      <label class="text-sm font-medium text-slate-600">Title (optional)</label>
                       <input type="text" placeholder="Title" v-model="form.title"
                         class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
                         <div class="text-small text-red-500" v-if="form.errors.title">{{ form.errors.title }}</div>
@@ -176,7 +153,7 @@ const handleUpdate = () => {
                   <!-- col end -->
                   <div class="col-span-12 md:col-span-6">
                     <div>
-                      <label class="text-sm font-medium text-slate-600">Sub Title</label>
+                      <label class="text-sm font-medium text-slate-600">Sub Title (optional)</label>
                       <input type="text" placeholder="Sub Title" v-model="form.sub_title"
                         class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
                         <div class="text-small text-red-500" v-if="form.errors.sub_title">{{ form.errors.sub_title }}</div>
@@ -195,7 +172,7 @@ const handleUpdate = () => {
                 </div>
                 <!----------------------- grid end ------------------------- -->
                 <div>
-                  <label class="text-sm font-medium text-slate-600">Description</label>
+                  <label class="text-sm font-medium text-slate-600">Description (optional)</label>
                   <tiptap v-model="form.description" />
                   <div class="text-small text-red-500" v-if="form.errors.description">{{ form.errors.short_des }}</div>
                 </div>

@@ -359,6 +359,11 @@ export const protfolioThemes: Theme[] = [
     name: 'Promotional Theme Defualt',
     preview: 'https://picsum.photos/400/250?5'
   },
+  {
+    key: 'protfolio_all',
+    name: 'Promotional Theme 1',
+    preview: 'https://picsum.photos/400/250?5'
+  },
 ];
 /**
   * ======================================================

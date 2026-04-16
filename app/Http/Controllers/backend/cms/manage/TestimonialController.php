@@ -98,12 +98,12 @@ class TestimonialController extends Controller
     public function insert(Request $request){
          /**--- validation code -- */
         $request->validate( [
-                'type' => ['required', 'string'],
-                'title' => ['required', 'string'],
+                'heading' => ['required', 'string'],
+                'sub_heading' => ['required', 'string'],
                 'short_des' => ['required', 'string'],
             ],[
-                'type.required'=> 'Type field is Required !',
-                'title.required'=> 'Title field is Required !',
+                'heading.required'=> 'Name or Company Name  is Required !',
+                'sub_heading.required'=> 'Designation or Company Heading  is Required !',
                 'short_des.required'=> 'Short Description field is Required !',
             ]
         );
@@ -116,8 +116,6 @@ class TestimonialController extends Controller
         // ----- insert record into database 
         $insert = Testimonial::create([
             'page_section_id'=>$request->section_id,
-            'icon'=>$request->icon,
-            'type'=>$request->type,
             'heading'=>$request->heading,
             'sub_heading'=>$request->sub_heading,
             'title'=>$request->title,
@@ -151,7 +149,7 @@ class TestimonialController extends Controller
         if ($request->hasFile('thumbnail')) {
             // upload image in local folder path via tha service class
             $upload = (new ImageUploadService($request->file('thumbnail')))
-                        ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
+                        ->setPath('uploads/website/')->setResize(1920, 1080)->setOldImage($oldimage ?? '')->upload();
             // ------  save image in database 
             $insert = Testimonial::where('id', $id)
                         ->where('id', $id)->update([
@@ -178,12 +176,15 @@ class TestimonialController extends Controller
      */
 
     public function update(Request $request){
-
-        /**--- validation code -- */
+         /**--- validation code -- */
         $request->validate( [
-                'type' => ['required', 'string'],
+                'heading' => ['required', 'string'],
+                'sub_heading' => ['required', 'string'],
+                'short_des' => ['required', 'string'],
             ],[
-                'type.required'=> 'Type field is Required !',
+                'heading.required'=> 'Name or Company Name  is Required !',
+                'sub_heading.required'=> 'Designation or Company Heading  is Required !',
+                'short_des.required'=> 'Short Description field is Required !',
             ]
         );
        
@@ -196,8 +197,6 @@ class TestimonialController extends Controller
         // ----- insert record into database 
         $update = Testimonial::where('id',$id)->where('slug',$slug)->firstOrFail();
         $update->update([
-            'icon'=>$request->icon,
-            'type'=>$request->type,
             'heading'=>$request->heading,
             'sub_heading'=>$request->sub_heading,
             'title'=>$request->title,

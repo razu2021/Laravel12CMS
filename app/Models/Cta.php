@@ -23,4 +23,13 @@ class Cta extends Model
     {
         return $this->belongsTo(User::class, 'editor_id', 'id');
     }
+    // get active data 
+    public function scopeActive($query){
+        return $query->where('public_status',1);
+    }
+
+    // get data by assending order 
+    public function scopeOrdered($query){
+        return $query->orderBy('order','asc');
+    }
 }

@@ -35,14 +35,41 @@ class PageSection extends Model
     public function aboutSection(){
         return $this->hasMany(About::class,'page_section_id','id')->with(['features' =>function($q){$q->active()->ordered();}])->where('public_status', 1)->orderBy('order','desc');
     }
+    public function blogSection(){
+        return $this->hasMany(Blog::class,'page_section_id','id')->active()->ordered();
+    }
+    public function breadcrumbSection(){
+        return $this->hasMany(Breadcrumb::class,'page_section_id','id')->active()->ordered();
+    }
+    public function casestudySection(){
+        return $this->hasMany(Casestudy::class,'page_section_id','id')->active()->ordered();
+    }
+    public function countrydestinationSection(){
+        return $this->hasMany(Countrydestination::class,'page_section_id','id')->active()->ordered();
+    }
+    public function ctaSection(){
+        return $this->hasMany(Cta::class,'page_section_id','id')->active()->ordered();
+    }
+    public function eventSection(){
+        return $this->hasMany(Event::class,'page_section_id','id')->active()->ordered();
+    }
+    public function faqSection(){
+        return $this->hasMany(Faq::class,'page_section_id','id')->active()->ordered();
+    }
     public function heroSection(){
-        return $this->hasMany(Hero::class,'page_section_id','id')->where('public_status', 1)->orderBy('order','asc');
+        return $this->hasMany(Hero::class,'page_section_id','id')->active()->ordered();
+    }
+    public function imagegallerySection(){
+        return $this->hasMany(Imagegallery::class,'page_section_id','id')->active()->ordered();
+    }
+    public function newsSection(){
+        return $this->hasMany(News::class,'page_section_id','id')->active()->ordered();
     }
     public function postSection(){
-        return $this->hasMany(Post::class,'page_section_id','id')->where('public_status', 1)->orderBy('order','asc');
+        return $this->hasMany(Post::class,'page_section_id','id')->active()->ordered();
     }
-    public function sectionxSection(){
-        return $this->hasMany(sectionx::class,'page_section_id','id')->where('public_status', 1)->orderBy('order','asc');
+    public function protfoliioSection(){
+        return $this->hasMany(Protfolio::class,'page_section_id','id')->active()->ordered();
     }
     public function promotSection(){
         return $this->hasMany(Promot::class,'page_section_id','id')->active()->ordered();
@@ -50,26 +77,47 @@ class PageSection extends Model
     public function RoadmapSection(){
         return $this->hasMany(Roadmap::class,'page_section_id','id')->active()->ordered();
     }
+    public function sectionxSection(){
+        return $this->hasMany(sectionx::class,'page_section_id','id')->active()->ordered();
+    }
     public function serviceSection(){
         return $this->hasMany(Service::class,'page_section_id','id')->active()->ordered();
     }
     public function teamSection(){
         return $this->hasMany(Team::class,'page_section_id','id')->active()->ordered();
     }
+    public function testimonialSection(){
+        return $this->hasMany(Testimonial::class,'page_section_id','id')->active()->ordered();
+    }
+    public function videogallerySection(){
+        return $this->hasMany(Videogallery::class,'page_section_id','id')->active()->ordered();
+    }
     public function whychooseusSection(){
-        return $this->hasMany(Whychooseus::class,'page_section_id','id')->with(['features' =>function($q){$q->active()->ordered();}])->where('public_status', 1)->orderBy('order','desc');
+        return $this->hasMany(Whychooseus::class,'page_section_id','id')->with(['features' =>function($q){$q->active()->ordered();}])->active()->ordered();
     }
 
-    
     protected array $sectionRelations = [
         'about_manage' => 'aboutSection',
+        'blog_manage' => 'blogSection',
+        'breadcrumb_manage' => 'breadcrumbSection',
+        'casestudy_manage' => 'casestudySection',
+        'cta_manage' => 'ctaSection',
+        'countrydestination_manage' => 'countrydestinationSection',
+        'event_manage' => 'eventSection',
+        'faq_manage' => 'faqSection',
         'hero_manage' => 'heroSection',
-        'post_manage' => 'postSection',
+        'imagegallery_manage' => 'imagegallerySection',
+        'news_manage' => 'newsSection',
         'globalsection_manage' => 'sectionxSection',
+        'post_manage' => 'postSection',
+        'partner_manage' => 'partnerSection',
+        'protfolio_manage' => 'protfoliioSection',
         'promot_manage' => 'promotSection',
         'roadmap_manage' => 'RoadmapSection',
         'service_manage' => 'serviceSection',
         'team_manage' => 'teamSection',
+        'testimonial_manage' => 'testimonialSection',
+        'videogallery_manage' => 'videogallerySection',
         'whychooseus_manage' => 'whychooseusSection',
 
         // future 50+ models
