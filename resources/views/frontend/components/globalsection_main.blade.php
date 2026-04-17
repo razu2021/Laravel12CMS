@@ -1,3 +1,4 @@
+@if(!empty($contents) && $contents->count() > 0)
 <section class="promot5-section">
     <div class="container">
         <div class="promot5-box">
@@ -38,9 +39,6 @@
                         </div>
                     </div>
                     @endforeach
-
-               
-
                 </div>
 
                 <div class="swiper-pagination promot5-pagination"></div>
@@ -48,3 +46,4 @@
         </div>
     </div>
 </section>
+@endif

@@ -1,5 +1,5 @@
 {{-- faq section  --}}
-
+@if(!empty($contents) && $contents->count() > 0)
 <section class="faq py-5">
   <div class="container">
     <!-- Header -->
@@ -9,40 +9,20 @@
     </div>
 
     <div class="faq__wrapper">
-      
       <!-- Item -->
+      @foreach ($contents as $faq)
       <div class="faq__item active">
         <div class="faq__question">
-          <h4>How long does it take to get a response?</h4>
+          <h4>{{$faq->title ?? ''}}</h4>
           <span class="faq__icon">+</span>
         </div>
         <div class="faq__answer">
-          <p>We usually respond within 24 hours. Our team ensures quick and helpful support.</p>
+          <p>{{$faq->short_des ?? ''}}</p>
         </div>
       </div>
-
-      <div class="faq__item">
-        <div class="faq__question">
-          <h4>Do you provide customer support?</h4>
-          <span class="faq__icon">+</span>
-        </div>
-        <div class="faq__answer">
-          <p>Yes, we offer 24/7 customer support for all our clients.</p>
-        </div>
-      </div>
-
-      <div class="faq__item">
-        <div class="faq__question">
-          <h4>Where is your office located?</h4>
-          <span class="faq__icon">+</span>
-        </div>
-        <div class="faq__answer">
-          <p>Our main office is located in Dhaka, Bangladesh.</p>
-        </div>
-      </div>
-
+       @endforeach
       <!-- Add more -->
-      
     </div>
   </div>
 </section>
+@endif

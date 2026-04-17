@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('heading')->nullable();
             $table->string('title')->nullable();
             $table->string('sub_title')->nullable();
-            $table->string('short_des')->nullable();
-            $table->string('description')->nullable();
+            $table->text('short_des')->nullable();
+            $table->longText('description')->nullable();
             $table->integer('order')->nullable();
             $table->string('slug',255)->nullable();
             $table->integer('creator_id')->nullable();

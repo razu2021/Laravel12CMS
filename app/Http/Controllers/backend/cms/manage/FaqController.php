@@ -96,14 +96,16 @@ class FaqController extends Controller
      * =======================================================================
      */
     public function insert(Request $request){
-         /**--- validation code -- */
-        $request->validate( [
-              
-                'title' => ['required', 'string'],
-                'short_des' => ['required', 'string'],
-            ],[
-                'title.required'=> 'Question field is Required !',
-                'short_des.required'=> 'Short Answer field is Required !',
+        $request->validate([
+                'heading'   => ['nullable', 'string', 'max:255'],
+                'title'     => ['required', 'string', 'max:255'],
+                'sub_title' => ['nullable', 'string', 'max:255'],
+                'short_des' => ['required', 'string', 'max:255'], 
+                'description' => ['nullable', 'string'], 
+            ], [
+                'title.required'     => 'Question field is Required!',
+                'short_des.required' => 'Short Answer field is Required!',
+                'short_des.max'      => 'Short Answer must not exceed 255 characters.',
             ]
         );
 
@@ -147,17 +149,19 @@ class FaqController extends Controller
      */
 
     public function update(Request $request){
-
-    // --- validation 
-        $request->validate( [
-                'title' => ['required', 'string'],
-                'short_des' => ['required', 'string'],
-            ],[
-                'title.required'=> 'Question field is Required !',
-                'short_des.required'=> 'Short Answer field is Required !',
+        $request->validate([
+                'heading'   => ['nullable', 'string', 'max:255'],
+                'title'     => ['required', 'string', 'max:255'],
+                'sub_title' => ['nullable', 'string', 'max:255'],
+                'short_des' => ['required', 'string', 'max:255'], 
+                'description' => ['nullable', 'string'], 
+            ], [
+                'title.required'     => 'Question field is Required!',
+                'short_des.required' => 'Short Answer field is Required!',
+                'short_des.max'      => 'Short Answer must not exceed 255 characters.',
             ]
         );
-       
+
         //---------- get authenticate use id and create a slug
         $editor_id = Auth::user()->id;
         $slug = $request->slug;

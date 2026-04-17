@@ -1,3 +1,5 @@
+{{-- faq section  --}}
+@if(!empty($contents) && $contents->count() > 0)
 <section class="faq2">
     <div class="container">
         <div class="row align-items-center">
@@ -20,45 +22,24 @@
 
             <div class="col-lg-7">
                 <div class="faq2__accordion">
-                    
+                    @foreach ($contents as $faq)
                     <div class="faq-item active">
                         <button class="faq-question">
-                            <span>How do I start my admission process?</span>
+                            <span>{{$faq->title ?? ''}}</span>
                             <i class="bi bi-plus-lg"></i>
                         </button>
                         <div class="faq-answer">
                             <div class="answer-inner">
-                                Apni amader website-e registration kore ba sorasori office-e eshe counseling-er madhyome process shuru korte paren. Amra apnar profile analyze kore best university suggest korbo.
+                               {{$faq->short_des  ?? ''}}
                             </div>
                         </div>
                     </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>What documents are required for a visa?</span>
-                            <i class="bi bi-plus-lg"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <div class="answer-inner">
-                                Passport, academic transcripts, financial documents, ebong university admission letter proyojon hoy. Amader team apnake checklist diye sahajyo korbe.
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>Do you provide IELTS preparation?</span>
-                            <i class="bi bi-plus-lg"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <div class="answer-inner">
-                                Ji, amader dedicated mentors royeche jara apnake IELTS ba onno language proficiency test-er jonno guide korbe.
-                            </div>
-                        </div>
-                    </div>
-
+                    @endforeach
+                 
+                   
                 </div>
             </div>
         </div>
     </div>
 </section>
+@endif
