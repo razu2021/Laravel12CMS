@@ -13,6 +13,7 @@ const props= defineProps<{
         site_title: string,
         site_slogan: string,
         site_description: string,
+        opening: string,
         cover_image: File | string | null,
         thumbnail: File | string | null,
         public_status: boolean,
@@ -29,6 +30,7 @@ const form  = useForm(
     site_title: props.data.site_title,
     site_slogan: props.data.site_slogan,
     site_description: props.data.site_description,
+    opening: props.data.opening,
     cover_image : props.data.cover_image  || null,
     thumbnail : props.data.thumbnail  || null,
     order: props.data.order,
@@ -127,12 +129,21 @@ const handleUpdate = () => {
               <!-- end -->
 
               <div>
-                <label class="text-sm font-medium text-slate-600">Description</label>
-                <textarea
-                  rows="5"
-                  placeholder="Write something meaningful..." v-model="form.site_description"
-                  class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500"></textarea>
-                <div class="text-small text-red-500" v-if="form.errors.site_description">{{ form.errors.site_description }}</div>
+                    <label class="text-sm font-medium text-slate-600">Description</label>
+                    <textarea
+                    rows="5"
+                    placeholder="Write something meaningful..." v-model="form.site_description"
+                    class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500"></textarea>
+                    <div class="text-small text-red-500" v-if="form.errors.site_description">{{ form.errors.site_description }}</div>
+                </div>
+                <!-- end  --> 
+              <div>
+                    <label class="text-sm font-medium text-slate-600">Opening Houre</label>
+                    <textarea
+                    rows="5"
+                    placeholder="Write something meaningful..." v-model="form.opening"
+                    class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500"></textarea>
+                    <div class="text-small text-red-500" v-if="form.errors.opening">{{ form.errors.opening }}</div>
                 </div>
                 <!-- end  --> 
                 

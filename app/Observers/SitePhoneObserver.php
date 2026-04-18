@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\SitePhone;
+use Illuminate\Support\Facades\Cache;
 
 class SitePhoneObserver
 {
@@ -11,7 +12,8 @@ class SitePhoneObserver
      */
     public function created(SitePhone $sitePhone): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('sitephone');
     }
 
     /**
@@ -19,7 +21,8 @@ class SitePhoneObserver
      */
     public function updated(SitePhone $sitePhone): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('sitephone');
     }
 
     /**
@@ -27,7 +30,8 @@ class SitePhoneObserver
      */
     public function deleted(SitePhone $sitePhone): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('sitephone');
     }
 
     /**
@@ -35,7 +39,8 @@ class SitePhoneObserver
      */
     public function restored(SitePhone $sitePhone): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('sitephone');
     }
 
     /**
@@ -43,6 +48,7 @@ class SitePhoneObserver
      */
     public function forceDeleted(SitePhone $sitePhone): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('sitephone');
     }
 }

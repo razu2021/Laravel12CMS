@@ -9,6 +9,11 @@ use App\Models\Customescript;
 use App\Models\Managefooter;
 use App\Models\Manageheader;
 use App\Models\Preloader;
+use App\Models\SiteAddress;
+use App\Models\SiteEmail;
+use App\Models\SiteInfo;
+use App\Models\SitePhone;
+use App\Models\SiteSocial;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -69,6 +74,32 @@ class DataServiceProvider extends ServiceProvider
                 return AnaliticsTracking::where('public_status',1)->get(['key','value']);
             });
             
+
+            /**======== Site Social cache  =========== */
+            $sitesocials = cache()->rememberForever('SiteSocial',function(){
+                return SiteSocial::where('public_status',1)->get(['type','title','url','icon']);
+            });
+            /**======== Site address cache  =========== */
+            $siteaddress = cache()->rememberForever('siteaddress',function(){
+                return SiteAddress::where('public_status',1)->get(['type','address','title','description','google_map']);
+            });
+            
+            /**======== Site phone cache  =========== */
+            $sitephones = cache()->rememberForever('sitephone',function(){
+                return SitePhone::where('public_status',1)->get(['type','phone','title','description']);
+            });
+            /**======== Site Email cache  =========== */
+            $siteemails = cache()->rememberForever('siteemail',function(){
+                return SiteEmail::where('public_status',1)->get(['type','email','title','description']);
+            });
+
+            /**======== Site Email cache  =========== */
+            $siteinfo = cache()->rememberForever('siteinfo',function(){
+                return SiteInfo::where('public_status',1)->first();
+            });
+            
+
+
             /**
              * =========================================================
              * category subcategory and childcategory cache 
@@ -110,6 +141,10 @@ class DataServiceProvider extends ServiceProvider
                 'preloader' => $preloader,
                 'analitics' => $analitics,
                 'categorys' => $categorys,
+                'sitesocials' => $sitesocials,
+                'siteaddress' => $siteaddress,
+                'sitephones' => $sitephones,
+                'siteemails' => $siteemails,
             ]);
 
         });

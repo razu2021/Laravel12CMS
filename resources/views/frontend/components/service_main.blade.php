@@ -5,6 +5,12 @@
         <div class="bg-shape shape-2"></div>
     </div>
 
+
+    
+
+<h1>{{$sectionsdata->description}} ddg</h1>
+
+
     <div class="container">
         <!-- section heading start here  -->
         @includeif('frontend/components/ui/sectionheading2', [

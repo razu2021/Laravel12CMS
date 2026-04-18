@@ -195,14 +195,14 @@ const handleUpdate = () => {
 
               <!-- end -->
                 <div>
-                    <label class="text-sm font-medium text-slate-600">Name</label>
+                    <label class="text-sm font-medium text-slate-600">Section Heading</label>
                     <input type="text" placeholder="Enter title" v-model="form.section_heading"
                     class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
                     <div class="text-small text-red-500" v-if="form.errors.section_heading">{{ form.errors.section_heading }}</div>
                 </div>
                     <!-- end -->
                 <div>
-                    <label class="text-sm font-medium text-slate-600">Meta Title</label>
+                    <label class="text-sm font-medium text-slate-600">Section Title</label>
                     <input type="text" placeholder="Enter title" v-model="form.section_title"
                     class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
                     <div class="text-small text-red-500" v-if="form.errors.section_title">{{ form.errors.section_title }}</div>
@@ -210,7 +210,7 @@ const handleUpdate = () => {
                     <!-- end -->
 
                 <div>
-                    <label class="text-sm font-medium text-slate-600">Meta Description</label>
+                    <label class="text-sm font-medium text-slate-600">Section Description</label>
                     <textarea
                     rows="5"
                     placeholder="Write something meaningful..." v-model="form.description"

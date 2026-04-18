@@ -12,6 +12,7 @@ const form = useForm('contact_address', {
   address: '',
   title: '',
   description: '',
+  google_map: '',
   slug: '',
   order: '',
   public_status: false,
@@ -93,10 +94,17 @@ const form = useForm('contact_address', {
                   placeholder="Write something meaningful..." v-model="form.description"
                   class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500"></textarea>
                 <div class="text-small text-red-500" v-if="form.errors.description">{{ form.errors.description }}</div>
-                </div>
-              <div>
-                
               </div>
+              <div>
+                <label class="text-sm font-medium text-slate-600"> Embed Google Map</label>
+                <textarea
+                  rows="5"
+                  placeholder="https://www.google.com/maps?q=Dhaka,Bangladesh&output=embed" v-model="form.google_map"
+                  class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500"></textarea>
+                <div class="text-small text-red-500" v-if="form.errors.google_map">{{ form.errors.google_map }}</div>
+              </div>
+
+          
           
 
           </div>

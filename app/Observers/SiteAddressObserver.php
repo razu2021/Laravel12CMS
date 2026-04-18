@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\SiteAddress;
-
+use Illuminate\Support\Facades\Cache;
 class SiteAddressObserver
 {
     /**
@@ -11,7 +11,8 @@ class SiteAddressObserver
      */
     public function created(SiteAddress $siteAddress): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('siteaddress');
     }
 
     /**
@@ -19,7 +20,8 @@ class SiteAddressObserver
      */
     public function updated(SiteAddress $siteAddress): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('siteaddress');
     }
 
     /**
@@ -27,7 +29,8 @@ class SiteAddressObserver
      */
     public function deleted(SiteAddress $siteAddress): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('siteaddress');
     }
 
     /**
@@ -35,7 +38,8 @@ class SiteAddressObserver
      */
     public function restored(SiteAddress $siteAddress): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('siteaddress');
     }
 
     /**
@@ -43,6 +47,7 @@ class SiteAddressObserver
      */
     public function forceDeleted(SiteAddress $siteAddress): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('siteaddress');
     }
 }

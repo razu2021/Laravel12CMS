@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\SiteSocial;
-
+use Illuminate\Support\Facades\Cache;
 class SiteSocialObserver
 {
     /**
@@ -11,7 +11,8 @@ class SiteSocialObserver
      */
     public function created(SiteSocial $siteSocial): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('SiteSocial');
     }
 
     /**
@@ -19,7 +20,8 @@ class SiteSocialObserver
      */
     public function updated(SiteSocial $siteSocial): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('SiteSocial');
     }
 
     /**
@@ -27,7 +29,8 @@ class SiteSocialObserver
      */
     public function deleted(SiteSocial $siteSocial): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('SiteSocial');
     }
 
     /**
@@ -35,7 +38,8 @@ class SiteSocialObserver
      */
     public function restored(SiteSocial $siteSocial): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('SiteSocial');
     }
 
     /**
@@ -43,6 +47,7 @@ class SiteSocialObserver
      */
     public function forceDeleted(SiteSocial $siteSocial): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('SiteSocial');
     }
 }

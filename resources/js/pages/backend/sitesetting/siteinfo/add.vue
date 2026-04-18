@@ -16,6 +16,7 @@ const form = useForm('site_info', {
   site_title: '',
   site_slogan: '',
   site_description: '',
+  opening: '',
   cover_image: null as File | null,
   thumbnail: null as File | null,
   order: '',
@@ -99,13 +100,23 @@ const handleSubmit = () => {
 
               <div>
                 <label class="text-sm font-medium text-slate-600">Description</label>
-                <textarea
-                  rows="5"
-                  placeholder="Write something meaningful..." v-model="form.site_description"
-                  class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500"></textarea>
-                <div class="text-small text-red-500" v-if="form.errors.site_description">{{ form.errors.site_description }}</div>
+                  <textarea
+                    rows="5"
+                    placeholder="Write something meaningful..." v-model="form.site_description"
+                    class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500"></textarea>
+                    <div class="text-small text-red-500" v-if="form.errors.site_description">{{ form.errors.site_description }}</div>
                 </div>
                 <!-- end  -->
+              <div>
+                <label class="text-sm font-medium text-slate-600">Opening Houre</label>
+                  <textarea
+                    rows="5"
+                    placeholder="Office time ? " v-model="form.opening"
+                    class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500"></textarea>
+                    <div class="text-small text-red-500" v-if="form.errors.opening">{{ form.errors.opening }}</div>
+                </div>
+                <!-- end  -->
+
               <div>
               </div>
           </div>

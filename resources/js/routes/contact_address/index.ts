@@ -402,7 +402,7 @@ submit.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     submit.form = submitForm
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::update
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:135
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:136
  * @route '/admin/dashboad/manage/setting/contact/address/update'
  */
 export const update = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -417,7 +417,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::update
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:135
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:136
  * @route '/admin/dashboad/manage/setting/contact/address/update'
  */
 update.url = (options?: RouteQueryOptions) => {
@@ -426,7 +426,7 @@ update.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::update
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:135
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:136
  * @route '/admin/dashboad/manage/setting/contact/address/update'
  */
 update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -436,7 +436,7 @@ update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::update
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:135
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:136
  * @route '/admin/dashboad/manage/setting/contact/address/update'
  */
     const updateForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -451,7 +451,7 @@ update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::update
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:135
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:136
  * @route '/admin/dashboad/manage/setting/contact/address/update'
  */
         updateForm.patch = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -467,7 +467,7 @@ update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     update.form = updateForm
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::active
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:182
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:184
  * @route '/admin/dashboad/manage/setting/contact/address/active/{id}/{slug}'
  */
 export const active = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -482,7 +482,7 @@ active.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::active
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:182
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:184
  * @route '/admin/dashboad/manage/setting/contact/address/active/{id}/{slug}'
  */
 active.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
@@ -508,7 +508,7 @@ active.url = (args: { id: string | number, slug: string | number } | [id: string
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::active
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:182
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:184
  * @route '/admin/dashboad/manage/setting/contact/address/active/{id}/{slug}'
  */
 active.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -517,7 +517,7 @@ active.get = (args: { id: string | number, slug: string | number } | [id: string
 })
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::active
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:182
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:184
  * @route '/admin/dashboad/manage/setting/contact/address/active/{id}/{slug}'
  */
 active.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -527,7 +527,7 @@ active.head = (args: { id: string | number, slug: string | number } | [id: strin
 
     /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::active
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:182
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:184
  * @route '/admin/dashboad/manage/setting/contact/address/active/{id}/{slug}'
  */
     const activeForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -537,7 +537,7 @@ active.head = (args: { id: string | number, slug: string | number } | [id: strin
 
             /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::active
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:182
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:184
  * @route '/admin/dashboad/manage/setting/contact/address/active/{id}/{slug}'
  */
         activeForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -546,7 +546,7 @@ active.head = (args: { id: string | number, slug: string | number } | [id: strin
         })
             /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::active
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:182
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:184
  * @route '/admin/dashboad/manage/setting/contact/address/active/{id}/{slug}'
  */
         activeForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -562,7 +562,7 @@ active.head = (args: { id: string | number, slug: string | number } | [id: strin
     active.form = activeForm
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::deactive
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:198
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:200
  * @route '/admin/dashboad/manage/setting/contact/address/deactive/{id}/{slug}'
  */
 export const deactive = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -577,7 +577,7 @@ deactive.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::deactive
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:198
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:200
  * @route '/admin/dashboad/manage/setting/contact/address/deactive/{id}/{slug}'
  */
 deactive.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
@@ -603,7 +603,7 @@ deactive.url = (args: { id: string | number, slug: string | number } | [id: stri
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::deactive
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:198
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:200
  * @route '/admin/dashboad/manage/setting/contact/address/deactive/{id}/{slug}'
  */
 deactive.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -612,7 +612,7 @@ deactive.get = (args: { id: string | number, slug: string | number } | [id: stri
 })
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::deactive
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:198
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:200
  * @route '/admin/dashboad/manage/setting/contact/address/deactive/{id}/{slug}'
  */
 deactive.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -622,7 +622,7 @@ deactive.head = (args: { id: string | number, slug: string | number } | [id: str
 
     /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::deactive
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:198
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:200
  * @route '/admin/dashboad/manage/setting/contact/address/deactive/{id}/{slug}'
  */
     const deactiveForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -632,7 +632,7 @@ deactive.head = (args: { id: string | number, slug: string | number } | [id: str
 
             /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::deactive
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:198
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:200
  * @route '/admin/dashboad/manage/setting/contact/address/deactive/{id}/{slug}'
  */
         deactiveForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -641,7 +641,7 @@ deactive.head = (args: { id: string | number, slug: string | number } | [id: str
         })
             /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::deactive
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:198
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:200
  * @route '/admin/dashboad/manage/setting/contact/address/deactive/{id}/{slug}'
  */
         deactiveForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -657,7 +657,7 @@ deactive.head = (args: { id: string | number, slug: string | number } | [id: str
     deactive.form = deactiveForm
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::softdelete
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:213
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:215
  * @route '/admin/dashboad/manage/setting/contact/address/softdelete/{id}'
  */
 export const softdelete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -672,7 +672,7 @@ softdelete.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::softdelete
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:213
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:215
  * @route '/admin/dashboad/manage/setting/contact/address/softdelete/{id}'
  */
 softdelete.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -700,7 +700,7 @@ softdelete.url = (args: { id: string | number } | [id: string | number ] | strin
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::softdelete
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:213
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:215
  * @route '/admin/dashboad/manage/setting/contact/address/softdelete/{id}'
  */
 softdelete.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -710,7 +710,7 @@ softdelete.delete = (args: { id: string | number } | [id: string | number ] | st
 
     /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::softdelete
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:213
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:215
  * @route '/admin/dashboad/manage/setting/contact/address/softdelete/{id}'
  */
     const softdeleteForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -725,7 +725,7 @@ softdelete.delete = (args: { id: string | number } | [id: string | number ] | st
 
             /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::softdelete
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:213
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:215
  * @route '/admin/dashboad/manage/setting/contact/address/softdelete/{id}'
  */
         softdeleteForm.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -741,7 +741,7 @@ softdelete.delete = (args: { id: string | number } | [id: string | number ] | st
     softdelete.form = softdeleteForm
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::deleteMethod
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:228
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:230
  * @route '/admin/dashboad/manage/setting/contact/address/delete/{id}'
  */
 export const deleteMethod = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -756,7 +756,7 @@ deleteMethod.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::deleteMethod
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:228
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:230
  * @route '/admin/dashboad/manage/setting/contact/address/delete/{id}'
  */
 deleteMethod.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -784,7 +784,7 @@ deleteMethod.url = (args: { id: string | number } | [id: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::deleteMethod
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:228
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:230
  * @route '/admin/dashboad/manage/setting/contact/address/delete/{id}'
  */
 deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -794,7 +794,7 @@ deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | 
 
     /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::deleteMethod
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:228
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:230
  * @route '/admin/dashboad/manage/setting/contact/address/delete/{id}'
  */
     const deleteMethodForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -809,7 +809,7 @@ deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | 
 
             /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::deleteMethod
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:228
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:230
  * @route '/admin/dashboad/manage/setting/contact/address/delete/{id}'
  */
         deleteMethodForm.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -825,7 +825,7 @@ deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | 
     deleteMethod.form = deleteMethodForm
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::recycle
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:244
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:246
  * @route '/admin/dashboad/manage/setting/contact/address/recycle'
  */
 export const recycle = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -840,7 +840,7 @@ recycle.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::recycle
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:244
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:246
  * @route '/admin/dashboad/manage/setting/contact/address/recycle'
  */
 recycle.url = (options?: RouteQueryOptions) => {
@@ -849,7 +849,7 @@ recycle.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::recycle
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:244
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:246
  * @route '/admin/dashboad/manage/setting/contact/address/recycle'
  */
 recycle.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -858,7 +858,7 @@ recycle.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::recycle
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:244
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:246
  * @route '/admin/dashboad/manage/setting/contact/address/recycle'
  */
 recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -868,7 +868,7 @@ recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::recycle
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:244
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:246
  * @route '/admin/dashboad/manage/setting/contact/address/recycle'
  */
     const recycleForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -878,7 +878,7 @@ recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::recycle
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:244
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:246
  * @route '/admin/dashboad/manage/setting/contact/address/recycle'
  */
         recycleForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -887,7 +887,7 @@ recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::recycle
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:244
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:246
  * @route '/admin/dashboad/manage/setting/contact/address/recycle'
  */
         recycleForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -903,7 +903,7 @@ recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     recycle.form = recycleForm
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::bulkAction
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:278
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:280
  * @route '/admin/dashboad/manage/setting/contact/address/bulk/action'
  */
 export const bulkAction = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -918,7 +918,7 @@ bulkAction.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::bulkAction
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:278
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:280
  * @route '/admin/dashboad/manage/setting/contact/address/bulk/action'
  */
 bulkAction.url = (options?: RouteQueryOptions) => {
@@ -927,7 +927,7 @@ bulkAction.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::bulkAction
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:278
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:280
  * @route '/admin/dashboad/manage/setting/contact/address/bulk/action'
  */
 bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -937,7 +937,7 @@ bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::bulkAction
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:278
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:280
  * @route '/admin/dashboad/manage/setting/contact/address/bulk/action'
  */
     const bulkActionForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -947,7 +947,7 @@ bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::bulkAction
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:278
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:280
  * @route '/admin/dashboad/manage/setting/contact/address/bulk/action'
  */
         bulkActionForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -958,7 +958,7 @@ bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     bulkAction.form = bulkActionForm
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::single_pdf_export
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:372
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:374
  * @route '/admin/dashboad/manage/setting/contact/address/export/single/pdf/{id}/{slug}'
  */
 export const single_pdf_export = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -973,7 +973,7 @@ single_pdf_export.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::single_pdf_export
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:372
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:374
  * @route '/admin/dashboad/manage/setting/contact/address/export/single/pdf/{id}/{slug}'
  */
 single_pdf_export.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
@@ -999,7 +999,7 @@ single_pdf_export.url = (args: { id: string | number, slug: string | number } | 
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::single_pdf_export
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:372
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:374
  * @route '/admin/dashboad/manage/setting/contact/address/export/single/pdf/{id}/{slug}'
  */
 single_pdf_export.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1008,7 +1008,7 @@ single_pdf_export.get = (args: { id: string | number, slug: string | number } | 
 })
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::single_pdf_export
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:372
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:374
  * @route '/admin/dashboad/manage/setting/contact/address/export/single/pdf/{id}/{slug}'
  */
 single_pdf_export.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1018,7 +1018,7 @@ single_pdf_export.head = (args: { id: string | number, slug: string | number } |
 
     /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::single_pdf_export
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:372
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:374
  * @route '/admin/dashboad/manage/setting/contact/address/export/single/pdf/{id}/{slug}'
  */
     const single_pdf_exportForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1028,7 +1028,7 @@ single_pdf_export.head = (args: { id: string | number, slug: string | number } |
 
             /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::single_pdf_export
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:372
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:374
  * @route '/admin/dashboad/manage/setting/contact/address/export/single/pdf/{id}/{slug}'
  */
         single_pdf_exportForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1037,7 +1037,7 @@ single_pdf_export.head = (args: { id: string | number, slug: string | number } |
         })
             /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::single_pdf_export
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:372
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:374
  * @route '/admin/dashboad/manage/setting/contact/address/export/single/pdf/{id}/{slug}'
  */
         single_pdf_exportForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1053,7 +1053,7 @@ single_pdf_export.head = (args: { id: string | number, slug: string | number } |
     single_pdf_export.form = single_pdf_exportForm
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_excel
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:401
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:403
  * @route '/admin/dashboad/manage/setting/contact/address/export/excel'
  */
 export const export_excel = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1068,7 +1068,7 @@ export_excel.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_excel
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:401
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:403
  * @route '/admin/dashboad/manage/setting/contact/address/export/excel'
  */
 export_excel.url = (options?: RouteQueryOptions) => {
@@ -1077,7 +1077,7 @@ export_excel.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_excel
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:401
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:403
  * @route '/admin/dashboad/manage/setting/contact/address/export/excel'
  */
 export_excel.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1086,7 +1086,7 @@ export_excel.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_excel
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:401
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:403
  * @route '/admin/dashboad/manage/setting/contact/address/export/excel'
  */
 export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1096,7 +1096,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_excel
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:401
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:403
  * @route '/admin/dashboad/manage/setting/contact/address/export/excel'
  */
     const export_excelForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1106,7 +1106,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_excel
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:401
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:403
  * @route '/admin/dashboad/manage/setting/contact/address/export/excel'
  */
         export_excelForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1115,7 +1115,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_excel
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:401
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:403
  * @route '/admin/dashboad/manage/setting/contact/address/export/excel'
  */
         export_excelForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1131,7 +1131,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     export_excel.form = export_excelForm
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_csv
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:408
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:410
  * @route '/admin/dashboad/manage/setting/contact/address/export/csv'
  */
 export const export_csv = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1146,7 +1146,7 @@ export_csv.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_csv
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:408
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:410
  * @route '/admin/dashboad/manage/setting/contact/address/export/csv'
  */
 export_csv.url = (options?: RouteQueryOptions) => {
@@ -1155,7 +1155,7 @@ export_csv.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_csv
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:408
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:410
  * @route '/admin/dashboad/manage/setting/contact/address/export/csv'
  */
 export_csv.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1164,7 +1164,7 @@ export_csv.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_csv
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:408
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:410
  * @route '/admin/dashboad/manage/setting/contact/address/export/csv'
  */
 export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1174,7 +1174,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_csv
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:408
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:410
  * @route '/admin/dashboad/manage/setting/contact/address/export/csv'
  */
     const export_csvForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1184,7 +1184,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_csv
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:408
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:410
  * @route '/admin/dashboad/manage/setting/contact/address/export/csv'
  */
         export_csvForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1193,7 +1193,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_csv
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:408
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:410
  * @route '/admin/dashboad/manage/setting/contact/address/export/csv'
  */
         export_csvForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1209,7 +1209,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     export_csv.form = export_csvForm
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_pdf
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:386
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:388
  * @route '/admin/dashboad/manage/setting/contact/address/export/pdf'
  */
 export const export_pdf = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1224,7 +1224,7 @@ export_pdf.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_pdf
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:386
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:388
  * @route '/admin/dashboad/manage/setting/contact/address/export/pdf'
  */
 export_pdf.url = (options?: RouteQueryOptions) => {
@@ -1233,7 +1233,7 @@ export_pdf.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_pdf
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:386
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:388
  * @route '/admin/dashboad/manage/setting/contact/address/export/pdf'
  */
 export_pdf.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1242,7 +1242,7 @@ export_pdf.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_pdf
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:386
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:388
  * @route '/admin/dashboad/manage/setting/contact/address/export/pdf'
  */
 export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1252,7 +1252,7 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_pdf
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:386
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:388
  * @route '/admin/dashboad/manage/setting/contact/address/export/pdf'
  */
     const export_pdfForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1262,7 +1262,7 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_pdf
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:386
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:388
  * @route '/admin/dashboad/manage/setting/contact/address/export/pdf'
  */
         export_pdfForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1271,7 +1271,7 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\setting\SiteAddressController::export_pdf
- * @see app/Http/Controllers/backend/setting/SiteAddressController.php:386
+ * @see app/Http/Controllers/backend/setting/SiteAddressController.php:388
  * @route '/admin/dashboad/manage/setting/contact/address/export/pdf'
  */
         export_pdfForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

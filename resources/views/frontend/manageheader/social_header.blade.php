@@ -1,20 +1,40 @@
+             
+
 <section class="mainsocialmenu1">
     <div class="container main_socialmenu">
 
         <div class="main_scial">
             <ul>
-                <li><a href="#"><span><i class="bi bi-facebook"></i></span></a></li>
-                <li><a href="#"><span><i class="bi bi-instagram"></i></span></a></li>
-                <li><a href="#"><span><i class="bi bi-linkedin"></i></span></a></li>
-                <li><a href="#"><span><i class="bi bi-youtube"></i></span></a></li>
+                @if(!empty($sitesocials) &&  $sitesocials->count() > 0)
+                    @foreach($sitesocials as $sitecoail)
+                        @if($sitecoail->type == 'primary')
+                            <li><a href="{{$sitecoail->url ?? '#'}}"><span><i class="{{$sitecoail->icon ?? 'bi bi-facebook'}}"></i></span></a></li>
+                        @endif
+                    @endforeach
+                @endif
+                
             </ul>
         </div>
 
         <div class="main_contact">
             <ul>
-                <li><a href="#"><span><i class="bi bi-telephone"></i></span> 01817823569 </a></li>
-                <li><a href="#"><span><i class="bi bi-whatsapp"></i></span> 012548585 </a></li>
-                <li><a href="#"><span><i class="bi bi-envelope"></i></span> admin@gmail.com </a></li>
+                <!-- site phone -->
+                @if(!empty($sitephones) &&  $sitephones->count() > 0)
+                    @foreach($sitephones->take(2) as $sitephone)
+                        @if($sitephone->type == 'primary')
+                             <li><a href="tel:{{$sitephone->phone ?? '01858-xxxxxxx'}}"><span><i class="bi bi-telephone"></i></span> {{$sitephone->phone ?? '01858-xxxxxxx'}} </a></li>
+                        @endif
+                    @endforeach
+                @endif
+
+                <!-- site email -->
+                @if(!empty($siteemails) &&  $siteemails->count() > 0)
+                    @foreach($siteemails->take(2) as $siteemail)
+                        @if($siteemail->type == 'primary')
+                             <li><a href="mailto:{{$siteemail->email ?? ''}}"><span><i class="bi bi-telephone"></i></span> {{$siteemail->email ?? 'admin@example.com'}} </a></li>
+                        @endif
+                    @endforeach
+                @endif
             </ul>
         </div>
 

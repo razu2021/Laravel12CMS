@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\SiteEmail;
-
+use Illuminate\Support\Facades\Cache;
 class SiteEmailObserver
 {
     /**
@@ -11,7 +11,8 @@ class SiteEmailObserver
      */
     public function created(SiteEmail $siteEmail): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('siteemail');
     }
 
     /**
@@ -19,7 +20,8 @@ class SiteEmailObserver
      */
     public function updated(SiteEmail $siteEmail): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('siteemail');
     }
 
     /**
@@ -27,7 +29,8 @@ class SiteEmailObserver
      */
     public function deleted(SiteEmail $siteEmail): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('siteemail');
     }
 
     /**
@@ -35,7 +38,8 @@ class SiteEmailObserver
      */
     public function restored(SiteEmail $siteEmail): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('siteemail');
     }
 
     /**
@@ -43,6 +47,7 @@ class SiteEmailObserver
      */
     public function forceDeleted(SiteEmail $siteEmail): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('siteemail');
     }
 }

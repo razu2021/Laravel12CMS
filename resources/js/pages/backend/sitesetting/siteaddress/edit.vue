@@ -13,6 +13,7 @@ const props= defineProps<{
         title: string,
         url: string,
         description: string,
+        google_map: string,
         //-------------
         public_status: boolean,
         id: number,
@@ -28,6 +29,7 @@ const form  = useForm(
     address: props.data.address,
     title: props.data.title,
     description: props.data.description,
+    google_map: props.data.google_map,
     url: props.data.url,
     order: props.data.order,
     public_status : Boolean(props.data.public_status),
@@ -123,7 +125,15 @@ const handleUpdate = () => {
                     placeholder="Write something meaningful..." v-model="form.description"
                     class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500"></textarea>
                     <div class="text-small text-red-500" v-if="form.errors.description">{{ form.errors.description }}</div>
-                    </div>
+                </div>
+                <div>
+                    <label class="text-sm font-medium text-slate-600"> Update Google Map</label>
+                    <textarea
+                    rows="5"
+                    placeholder="Write something meaningful..." v-model="form.google_map"
+                    class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500"></textarea>
+                    <div class="text-small text-red-500" v-if="form.errors.google_map">{{ form.errors.google_map }}</div>
+                </div>
                 
 
             </div>
