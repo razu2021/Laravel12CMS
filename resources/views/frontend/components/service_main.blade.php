@@ -7,8 +7,7 @@
 
 
     
-
-<h1>{{$sectionsdata->description}} ddg</h1>
+<!-- change  -->
 
 
     <div class="container">
