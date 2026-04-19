@@ -31,6 +31,19 @@ require __DIR__.'/settings.php';
 
 
 
+/**
+ * ===================================================
+ *  Details page route start here =
+ * ===================================================
+ */
+
+Route::controller(frontendController::class)->name('details.')->group(function(){
+    Route::get('service/details/{id}/{slug}','serviceDetails')->name('service');
+});
+
+
+
+
 // home route start here =========
  
  

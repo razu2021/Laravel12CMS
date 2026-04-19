@@ -5,6 +5,7 @@ namespace App\Http\Controllers\frontend;
 use App\Http\Controllers\Controller;
 use App\Models\CategoryPage;
 use App\Models\ChildCategoryPage;
+use App\Models\Service;
 use App\Models\SubCategoryPage;
 
 use Illuminate\Http\Request;
@@ -64,8 +65,17 @@ class frontendController extends Controller
     
 
 
+    /**
+     * ===============================================================
+     * All Details page functionality is start here 
+     * ===============================================================
+     */
 
-
+    public function serviceDetails($id,$slug){
+        $allservice = Service::where('public_status', 1)->where('id', '!=', $id)->inRandomOrder()->take(6)->get();
+        $data = Service::where('id',$id)->where('slug',$slug)->firstOrFail();
+        return view('frontend.detailsPages.service_details',compact('data','allservice'));
+    }
 
 
 

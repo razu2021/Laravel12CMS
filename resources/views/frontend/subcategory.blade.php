@@ -6,7 +6,7 @@
 @section('web_content')
     @if(!empty($subcategorys))
     @foreach ($subcategorys->getCategorySection as $sections)
-        @includeIf('frontend/components/'.$sections->section_key,['contents' => $sections->contents ])   
+        @includeIf('frontend/components/'.$sections->section_key,['contents' => $sections->contents,'sectionsdata'=>$sections ])   
     @endforeach
     @endif
 @endsection

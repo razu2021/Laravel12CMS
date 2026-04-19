@@ -1,3 +1,10 @@
+@php 
+    $words = explode(' ' ,$data->section_heading ?? ' Sections Heading Defualt');
+    $lastword = array_pop($words);
+    $first = implode(' ' , $words);
+    $date = now();
+@endphp
+
 <div class="section-head-ultimate text-center">
     <div class="head-icons">
         <div class="icon-circle c-1"><i class="bi bi-rocket-takeoff"></i></div>
@@ -6,13 +13,13 @@
 
     <div class="ultimate-badge">
         <span class="pulse-ring"></span>
-        <span class="text">Innovating Global Careers</span>
+        <span class="text">{{$data->section_title ?? 'Defualt Section Title'}}</span>
     </div>
 
     <h2 class="main-title">
-        The Future of <br>
+        {{ $first ?? '' }} <br>
         <span class="highlight-wrapper">
-            <span class="text-mask">Global Education</span>
+            <span class="text-mask">{{$lastword ?? ''}}</span>
             <svg class="title-underline" viewBox="0 0 400 20" preserveAspectRatio="none">
                 <path d="M0,10 C100,20 300,0 400,10" stroke-width="6" fill="none" />
             </svg>
@@ -21,8 +28,7 @@
 
     <div class="desc-wrapper">
         <p class="description">
-            Amra shudhu rasta dekhai na, amra protiti dhap-e apnar shathe thaki. 
-            Amader expert counseling ebong premium processing apnar sopno-ke kore tole bastob.
+        {{ Str::words($data->description,25 ?? '') }}
         </p>
     </div>
 

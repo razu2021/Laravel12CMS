@@ -3,13 +3,8 @@
     <div class="service_slider1__bg">
         <div class="bg-shape shape-1"></div>
         <div class="bg-shape shape-2"></div>
-    </div>
-
-
-    
+    </div> 
 <!-- change  -->
-
-
     <div class="container">
         <!-- section heading start here  -->
         @includeif('frontend/components/ui/sectionheading2',['data' => $sectionsdata,])
@@ -27,14 +22,13 @@
                         <div class="content-area">
                             <h4>{{$service->title ?? ''}}</h4>
                             <p>{{Str::words($service->short_des , 15 ?? '' )}}</p>
-                            <a href="{{ $service->button_url ?? '#' }}"
+                            <a target="_blank" href="{{ route('details.service',[$service->id,$service->slug]) }}"
                                 class="arrow-btn">{{ $service->button ?? 'Explore now' }} 
                                 <i class="bi bi-arrow-right-short"></i></a>
                         </div>
                     </div>
                 </div>
                 @endforeach
-
             </div>
             <div class="swiper-pagination"></div>
         </div>

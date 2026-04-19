@@ -1,5 +1,5 @@
 @php 
-    $words = explode(' ' ,$data->section_heading ?? '');
+    $words = explode(' ' ,$data->section_heading ?? ' Sections Heading ');
     $lasetword = array_pop($words);
     $first = implode(' ' , $words);
     $date = now();
@@ -16,7 +16,7 @@
                     <span class="sub-title">{{$data->section_title ?? 'Expertise & Innovation'}}</span>
                     <h2 class="main-title">
                         {{$first ?? 'Crafting Digital'}} <br> 
-                        <span class="strok-text">{{$lasetword ?? ''}}</span> 
+                        <span class="strok-text">{{$lasetword ?? 'Section Sub Heading'}}</span> 
                     </h2>
                 </div>
             </div>
@@ -24,7 +24,7 @@
 
         <div class="col-lg-4">
             <div class="desc-box">
-                <p>{{Str::words($data->description,25 ?? '')}}</p>
+                <p>{{Str::words($data->description, 25 ?? 'Description fgfg')}}</p>
                 <div class="animated-progress-line">
                     <span class="fill"></span>
                 </div>

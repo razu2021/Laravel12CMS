@@ -692,3 +692,173 @@
   }
 }
 // project details end =============
+
+
+// ============= Service Page Details SCSS Start ============= 
+.service-details-wrapper {
+    background-color: #f8f9fa;
+    padding-bottom: clamp(4rem, 8vw, 8rem); // 40px to 80px responsive
+
+    // Hero Section
+    .details-hero {
+        height: clamp(40rem, 60vh, 60rem); // 400px to 600px based on viewport
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            color: #ffffff;
+
+            .badge-top {
+                display: inline-block;
+                padding: 0.5rem 1.5rem; // 5px 15px
+                background: #ffcc00;
+                color: #000;
+                font-size: clamp(1.2rem, 1.4vw, 1.4rem);
+                font-weight: 700;
+                border-radius: 0.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .hero-heading {
+                // Responsive size: Min 40px, Max 80px
+                font-size: clamp(4rem, 8vw, 8rem); 
+                font-weight: 900;
+                line-height: 1.1;
+
+                .stroke-text {
+                    color: transparent;
+                    -webkit-text-stroke: 0.1rem #ffffff; // 1px stroke
+                }
+            }
+
+            .hero-meta {
+                margin-top: 3rem;
+                display: flex;
+                gap: clamp(1.5rem, 2.5vw, 2.5rem);
+                font-size: clamp(1.4rem, 1.6vw, 1.6rem);
+                font-weight: 300;
+                color: #ddd;
+            }
+        }
+    }
+
+    // Main Card
+    .main-content-section {
+        // Card pull-up effect: Responsive from -50px to -100px
+        margin-top: clamp(-10rem, -10vw, -5rem); 
+        position: relative;
+        z-index: 10;
+    }
+
+    .details-card {
+        background: #ffffff;
+        padding: clamp(2rem, 5vw, 5rem); // Padding reduces on mobile
+        border-radius: clamp(1.5rem, 3vw, 3rem);
+        box-shadow: 0 2rem 5rem rgba(0,0,0,0.1);
+
+        .content-title {
+            font-size: clamp(2.8rem, 4.2vw, 4.2rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #111;
+        }
+
+        .content-subtitle {
+            font-size: clamp(1.8rem, 2.2vw, 2.2rem);
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .short-info-box {
+            background: #fdfdfd;
+            border-left: 0.5rem solid #000;
+            padding: clamp(1.5rem, 2.5vw, 2.5rem);
+            font-size: clamp(1.6rem, 2vw, 2rem);
+            line-height: 1.6;
+            margin-bottom: 4rem;
+            font-style: italic;
+        }
+
+        .rounded-custom {
+            border-radius: 2rem;
+        }
+
+        .long-description {
+            font-size: clamp(1.5rem, 1.7vw, 1.7rem);
+            line-height: 1.8;
+            color: #333;
+            
+            h3 { 
+                font-size: clamp(2.2rem, 2.8vw, 2.8rem); 
+                font-weight: 700; 
+                margin-top: 3rem; 
+            }
+            ul { margin-top: 1.5rem; li { margin-bottom: 1rem; } }
+        }
+    }
+
+    // Sidebar
+    .sticky-sidebar {
+        position: sticky;
+        top: 3rem;
+
+        .sidebar-box {
+            background: #ffffff;
+            padding: clamp(2rem, 3vw, 3rem);
+            border-radius: 2rem;
+            box-shadow: 0 1rem 3rem rgba(0,0,0,0.05);
+
+            .sidebar-title {
+                font-size: clamp(1.8rem, 2.2vw, 2.2rem);
+                font-weight: 700;
+                margin-bottom: 2.5rem;
+                border-bottom: 0.2rem solid #f0f0f0;
+                padding-bottom: 1rem;
+            }
+        }
+
+        .mini-service-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+
+            img { 
+                width: 6rem; height: 6rem; 
+                border-radius: 1.2rem; 
+                object-fit: cover; 
+            }
+            h6 { margin: 0; font-size: 1.6rem; font-weight: 700; }
+            small { color: #888; font-size: 1.3rem; }
+
+            &:hover { transform: translateX(0.5rem); color: #ffcc00; }
+        }
+
+        .tag-pill {
+            display: inline-block;
+            background: #eee;
+            padding: 0.8rem 1.8rem;
+            border-radius: 5rem;
+            font-size: 1.3rem;
+            margin: 0.4rem;
+            transition: 0.3s;
+            text-decoration: none;
+            color: inherit;
+            &:hover { background: #000; color: #fff; }
+        }
+    }
+}
