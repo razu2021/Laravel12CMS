@@ -12,11 +12,7 @@
 
     <div class="container">
         <!-- section heading start here  -->
-        @includeif('frontend/components/ui/sectionheading2', [
-        'title' => 'Our Philosophy',
-        'heading' => 'Driven Global Success',
-        'description' => 'Amra bisshas kori protiti manusher sopno unique, tai amader kache apnar success-er priority
-        shobcheye beshi.'])
+        @includeif('frontend/components/ui/sectionheading2',['data' => $sectionsdata,])
         <!-- section heading end here  -->
         <div class="swiper serviceSwiper">
             <div class="swiper-wrapper">

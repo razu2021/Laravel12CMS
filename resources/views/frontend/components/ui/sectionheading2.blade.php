@@ -1,15 +1,22 @@
+@php 
+    $words = explode(' ' ,$data->section_heading ?? '');
+    $lasetword = array_pop($words);
+    $first = implode(' ' , $words);
+    $date = now();
+@endphp
+
 <div class="sectionheading2 container">
     <div class="row align-items-end">
         <div class="col-lg-8">
             <div class="heading-wrapper">
                 <div class="vertical-tag">
-                    <span>SINCE 2024</span>
+                    <span>{{$date->format('d-M-Y')}}</span>
                 </div>
                 <div class="title-content">
-                    <span class="sub-title">Expertise & Innovation</span>
+                    <span class="sub-title">{{$data->section_title ?? 'Expertise & Innovation'}}</span>
                     <h2 class="main-title">
-                        Crafting Digital <br> 
-                        <span class="strok-text">Solutions</span> & Strategies
+                        {{$first ?? 'Crafting Digital'}} <br> 
+                        <span class="strok-text">{{$lasetword ?? ''}}</span> 
                     </h2>
                 </div>
             </div>
@@ -17,7 +24,7 @@
 
         <div class="col-lg-4">
             <div class="desc-box">
-                <p>Amra bisshas kori projukti ebong manobik unnoyer somonboye। Protiti project amader kache ekti notun somvabona।</p>
+                <p>{{Str::words($data->description,25 ?? '')}}</p>
                 <div class="animated-progress-line">
                     <span class="fill"></span>
                 </div>
