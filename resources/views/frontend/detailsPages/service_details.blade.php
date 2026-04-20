@@ -1,9 +1,12 @@
 @extends('layouts/frontend')
-@section('web_content')
-{{-- @includeif('frontend/components/breadcrumb')  --}}
+{{-- Meta Title  --}}
+@section('meta_title', Str::limit($data->title ??  config('app.name'), 60))
+@section('meta_description', Str::limit(strip_tags(html_entity_decode($data->short_des ?? '')), 160, '...'))
+{{-- Meta Description  --}}
 
+@section('web_content')
 <div class="service-details-wrapper">
-    <section class="details-hero" style="background-image: url({{ asset($data->thumbnail ?? 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop') }});">
+    <section class="details-hero" style="background-image: url('{{ asset($data->thumbnail) }}');">
         <div class="hero-overlay"></div>
         <div class="container">
             <div class="hero-content">
@@ -56,7 +59,7 @@
                             <div class="mini-service-item">
                                 <img src="{{ asset($service->cover_image ?? '') }}" alt="service image">
                                 <div>
-                                    <h6><a href={{ route('details.service',[$service->id,$service->slug]) }}>{{ Str::words($service->title,3 ?? '') }}</a></h6>
+                                    <h6><a href="{{ route('details.service',[$service->id,Str::slug($service->title)]) }}">{{ Str::words($service->title,3 ?? '') }}</a></h6>
                                     <small>{{Str::words($service->short_des,5 ?? '')}}</small>
                                 </div>
                             </div>

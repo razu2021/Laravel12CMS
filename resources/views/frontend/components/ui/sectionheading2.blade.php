@@ -24,7 +24,7 @@
 
         <div class="col-lg-4">
             <div class="desc-box">
-                <p>{{Str::words($data->description, 25 ?? 'Description fgfg')}}</p>
+                <p>{{Str::words($data->description, 25 ?? 'Description')}}</p>
                 <div class="animated-progress-line">
                     <span class="fill"></span>
                 </div>

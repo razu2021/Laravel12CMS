@@ -59,7 +59,7 @@
                             <div class="mini-service-item">
                                 <img src="{{ asset($alldata->cover_image ?? '') }}" alt="{{$alldata->title ?? 'image'}} ">
                                 <div>
-                                    <h6><a href="{{ route('details.blog',[$alldata->id,Str::slug($alldata->title)]) }}">{{ Str::words($alldata->title,3 ?? '') }}</a></h6>
+                                    <h6><a href="{{ route('details.casestudy',[$alldata->id,Str::slug($alldata->title)]) }}">{{ Str::words($alldata->title,3 ?? '') }}</a></h6>
                                     <small>{{Str::words($alldata->short_des,5 ?? '')}}</small>
                                 </div>
                             </div>

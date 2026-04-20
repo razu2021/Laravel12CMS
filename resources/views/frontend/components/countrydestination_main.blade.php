@@ -8,11 +8,8 @@
 
     <div class="container mb-3">
         <!-- section heading start here  -->
-        @includeif('frontend/components/ui/sectionheading2', [
-            'title' => 'Explore Top Destinations',
-            'heading' => 'Your Global Journey Starts Here',
-            'description' => 'Discover your ideal study destination with our expert guidance. We help you navigate the best universities and programs worldwide, turning your global education dreams into reality.'])
-        <!-- section heading end here  -->          
+        @includeif('frontend/components/ui/sectionheading2', [ 'data' => $sectionsdata, ])
+        <!-- section heading end here  -->         
     </div>
 
     <div class="swiper destinationSlider">
@@ -28,7 +25,7 @@
                     <div class="content-box">
                         <h3>{{$country->title ?? ''}}</h3>
                         <p>{{Str::words($country->short_des , 20 ?? '')}}</p>
-                        <a href="{{ $country->button_url ?? '' }}" class="link">{{ $country->button ?? 'About More' }} <i class="fas fa-chevron-right"></i></a>
+                        <a href="{{ route('details.casestudy',[$country->id,Str::slug($country->title)]) }}" class="link">{{ $country->button ?? 'About More' }} <i class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
             </div>

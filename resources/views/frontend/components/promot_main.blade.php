@@ -19,7 +19,7 @@
                                         {{$promot->short_des ?? ''}}
                                     </p>
                                     <div class="promot5-actions">
-                                        <a href="{{$promot->button_url ?? ''}}" class="promot5-btn-main">{{$promot->button ?? ''}}</a>
+                                        <a href="{{route('details.promot',[$promot->id,Str::slug($promot->title)])}}" class="promot5-btn-main">{{$promot->button ?? ''}}</a>
                                         <div class="promot5-video-play">
                                             <button class="promot5-play-btn"></button>
                                         </div>
