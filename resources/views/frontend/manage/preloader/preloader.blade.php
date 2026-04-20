@@ -44,7 +44,7 @@
 
 
 
-@if (!empty($preloader))
+@if (!empty($preloader) && $preloader->count() > 0)
     @if ($preloader->type === 'is_image')
     <div id="preloader">
     <div class="preloader-content">

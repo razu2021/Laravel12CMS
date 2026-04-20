@@ -2,7 +2,7 @@
 <section class="pt-5">
     <div class="container py-5">
        <div class="mb-5">
- <!-- section heading start here  -->
+        <!-- section heading start here  -->
         @includeif('frontend/components/ui/sectionheading2', ['data' => $sectionsdata,]) 
         <!--section heading end here -->
        </div>

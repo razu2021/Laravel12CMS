@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('subject')->nullable();
-            $table->string('short_des')->nullable();
+            $table->text('short_des')->nullable();
             $table->longText('description')->nullable();
             $table->integer('order')->nullable();
             $table->string('slug',255)->nullable();

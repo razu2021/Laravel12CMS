@@ -8,13 +8,9 @@
     <div class="container">
         
         <div>
-            {{-- section heading --}}
-            @includeIf('frontend.components.ui.sectionheading1',[
-                'title'=>'section title',
-                'heading'=>'section title',
-                'description'=>'section title',
-            ])
-            {{-- section heading --}}
+        <!-- section heading start here  -->
+        @includeif('frontend/components/ui/sectionheading2', ['data' => $sectionsdata,]) 
+        <!--section heading end here -->
         </div>
 
         <div class="swiper partnerSwiper">

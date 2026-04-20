@@ -862,3 +862,267 @@
         }
     }
 }
+
+
+
+// =========== Team details page 
+.team-details-section {
+    background-color: #fcfcfd;
+    padding: 8rem 0;
+
+    // Profile Card (Left)
+    .profile-card {
+        border-radius: 3rem;
+        background: #fff;
+        
+        .cover-wrapper {
+            height: 16rem;
+            position: relative;
+            z-index: 1; // Lower Z-index
+
+            .cover-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .profile-body {
+            position: relative;
+            padding: 0 3rem 4rem;
+            z-index: 5; // Higher Z-index to stay on top
+
+            .thumb-container {
+                width: 13rem;
+                height: 13rem;
+                margin: -6.5rem auto 2rem; // Pulling up half the height
+                border-radius: 50%;
+                border: 0.6rem solid #fff;
+                overflow: hidden;
+                position: relative;
+                z-index: 10; // Extra layer of Z-index
+                box-shadow: 0 1.5rem 3.5rem rgba(0,0,0,0.12);
+
+                .thumb-img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .name {
+                font-size: clamp(2.4rem, 2.5vw, 3rem);
+                font-weight: 800;
+                color: #1a1a1a;
+            }
+
+            .badge-designation {
+                display: inline-block;
+                padding: 0.6rem 1.5rem;
+                background: #eef2ff;
+                color: #4f46e5;
+                font-size: 1.2rem;
+                font-weight: 700;
+                border-radius: 5rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .social-box .s-link {
+                width: 4.5rem;
+                height: 4.5rem;
+                line-height: 4.5rem;
+                background: #f8fafc;
+                color: #64748b;
+                border-radius: 1.2rem;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                
+                &:hover {
+                    background: #4f46e5;
+                    color: #fff;
+                    transform: translateY(-0.5rem);
+                }
+            }
+        }
+    }
+
+    // Details Content (Right)
+    .content-card {
+        background: #fff;
+        border-radius: 3rem;
+        box-shadow: 0 1rem 4rem rgba(0,0,0,0.03);
+
+        .bio-header {
+            .sub-heading {
+                font-size: 1.3rem;
+                letter-spacing: 0.3rem;
+                color: #6366f1;
+                font-weight: 700;
+            }
+            .main-heading {
+                font-size: clamp(3rem, 4vw, 4.2rem);
+                font-weight: 900;
+                color: #0f172a;
+            }
+            .accent-line {
+                width: 8rem;
+                height: 0.5rem;
+                background: linear-gradient(to right, #6366f1, #a855f7);
+                border-radius: 1rem;
+            }
+        }
+
+        .short-bio-box {
+            background: #f8fafc;
+            padding: 3rem;
+            border-radius: 2rem;
+            border-left: 0.6rem solid #6366f1;
+
+            .short-text {
+                font-size: clamp(1.8rem, 2vw, 2.2rem);
+                font-weight: 500;
+                color: #334155;
+                line-height: 1.5;
+            }
+        }
+
+        .long-bio-content p {
+            font-size: 1.6rem;
+            line-height: 1.9;
+            color: #475569;
+        }
+
+        .skill-section {
+            .skill-title {
+                font-size: 2.2rem;
+                font-weight: 700;
+                color: #1e293b;
+            }
+
+            .skill-card {
+                label { font-size: 1.5rem; font-weight: 600; color: #334155; }
+                .p-value { font-size: 1.4rem; font-weight: 700; color: #6366f1; }
+
+                .custom-progress {
+                    height: 1rem;
+                    background: #f1f5f9;
+                    border-radius: 1rem;
+                    overflow: hidden;
+
+                    .fill {
+                        height: 100%;
+                        background: linear-gradient(90deg, #6366f1, #8b5cf6);
+                        border-radius: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}
+// ============= blank section design code here 
+.empty-state-section {
+    min-height: 60vh;
+    padding: 10rem 0;
+    background-color: #fafbfc;
+
+    .empty-card {
+        background: #ffffff;
+        border-radius: 4rem;
+        border: 0.1rem solid rgba(0,0,0,0.05);
+
+        .icon-wrapper {
+            position: relative;
+            width: 15rem;
+            height: 15rem;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            // Geometric background shapes
+            .shape {
+                position: absolute;
+                border-radius: 35% 65% 70% 30% / 30% 30% 70% 70%;
+                filter: blur(2rem);
+                z-index: 1;
+            }
+
+            .shape-1 {
+                width: 100%;
+                height: 100%;
+                background: rgba(99, 102, 241, 0.15); // Indigo
+                animation: morph 8s ease-in-out infinite;
+            }
+
+            .shape-2 {
+                width: 80%;
+                height: 80%;
+                background: rgba(168, 85, 247, 0.1); // Purple
+                animation: morph 12s ease-in-out infinite reverse;
+            }
+
+            .main-icon {
+                font-size: 6rem;
+                color: #6366f1;
+                position: relative;
+                z-index: 5;
+            }
+        }
+
+        .empty-title {
+            font-size: clamp(2.4rem, 3vw, 3.6rem);
+            font-weight: 800;
+            color: #1e293b;
+        }
+
+        .empty-text {
+            font-size: clamp(1.4rem, 1.5vw, 1.8rem);
+            line-height: 1.6;
+            color: #64748b;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+
+        .btn-custom-outline {
+            display: inline-block;
+            padding: 1.5rem 3.5rem;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #6366f1;
+            text-decoration: none;
+            border: 0.2rem solid #6366f1;
+            border-radius: 10rem;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: #6366f1;
+                color: #fff;
+                box-shadow: 0 1rem 2rem rgba(99, 102, 241, 0.3);
+                transform: translateY(-0.3rem);
+            }
+        }
+    }
+}
+
+// Subtle morphing animation for shapes
+@keyframes morph {
+    0% { border-radius: 35% 65% 70% 30% / 30% 30% 70% 70%; }
+    50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
+    100% { border-radius: 35% 65% 70% 30% / 30% 30% 70% 70%; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,9 +1,10 @@
 @if(!empty($contents) && $contents->count() > 0)
 <section class="team py-5">
     <div class="container">
-        <div class="team__header text-center mb-5">
-            <h2 class="team__title">Our Team</h2>
-            <p class="team__subtitle">Meet the people behind our success</p>
+        <div class=" mb-5">
+        <!-- section heading start here  -->
+        @includeif('frontend/components/ui/sectionheading2',['data' => $sectionsdata,])
+        <!-- section heading end here  -->
         </div>
 
         <div class="row g-4">

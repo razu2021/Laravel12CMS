@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Announcment;
-
+use Illuminate\Support\Facades\Cache;
 class AnnouncmentObserver
 {
     /**
@@ -11,7 +11,8 @@ class AnnouncmentObserver
      */
     public function created(Announcment $announcment): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('announcement');
     }
 
     /**
@@ -19,7 +20,8 @@ class AnnouncmentObserver
      */
     public function updated(Announcment $announcment): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('announcement');
     }
 
     /**
@@ -27,7 +29,8 @@ class AnnouncmentObserver
      */
     public function deleted(Announcment $announcment): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('announcement');
     }
 
     /**
@@ -35,7 +38,8 @@ class AnnouncmentObserver
      */
     public function restored(Announcment $announcment): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('announcement');
     }
 
     /**
@@ -43,6 +47,7 @@ class AnnouncmentObserver
      */
     public function forceDeleted(Announcment $announcment): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('announcement');
     }
 }

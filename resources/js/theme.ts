@@ -426,6 +426,21 @@ export const teamThemes: Theme[] = [
     preview: 'https://picsum.photos/400/250?5'
   },
   {
+    key: 'team_1',
+    name: 'Theme 1',
+    preview: 'https://picsum.photos/400/250?5'
+  },
+  {
+    key: 'team_2',
+    name: 'Theme 2',
+    preview: 'https://picsum.photos/400/250?5'
+  },
+  {
+    key: 'team_3',
+    name: 'Theme 3',
+    preview: 'https://picsum.photos/400/250?5'
+  },
+  {
     key: 'team_all',
     name: 'Theme 2',
     preview: 'https://picsum.photos/400/250?5'

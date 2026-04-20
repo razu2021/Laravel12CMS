@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\AnaliticsTracking;
+use App\Models\Announcment;
 use App\Models\CategoryPage;
 use App\Models\Customcss;
 use App\Models\Customescript;
@@ -66,7 +67,7 @@ class DataServiceProvider extends ServiceProvider
            
             /**======== Footer cache  =========== */
             $preloader = cache()->rememberForever('preloaders',function(){
-                return Preloader::where('public_status',1)->first();
+                return Preloader::where('public_status',1)->first(['type','title','thumbnail']);
             });
 
             /**======== Analitics & Tracking  cache  =========== */
@@ -96,6 +97,10 @@ class DataServiceProvider extends ServiceProvider
             /**======== Site Email cache  =========== */
             $siteinfo = cache()->rememberForever('siteinfo',function(){
                 return SiteInfo::where('public_status',1)->first();
+            });
+            /**======== Site Announcement cache  =========== */
+            $announcements = cache()->rememberForever('announcement',function(){
+                return Announcment::where('public_status',1)->first(['type','heading','title','description','thumbnail']);
             });
             
 
@@ -145,6 +150,7 @@ class DataServiceProvider extends ServiceProvider
                 'siteaddress' => $siteaddress,
                 'sitephones' => $sitephones,
                 'siteemails' => $siteemails,
+                'announcements' => $announcements,
             ]);
 
         });

@@ -3,12 +3,9 @@
     <div class="container">
         <!-- Header -->
         <div class="mb-5">
-            <!-- section heading start here  -->
-            @includeif('frontend/components/ui/sectionheading2', [
-                'title' => 'Our Philosophy',
-                'heading' => 'Driven Global Success',
-                'description' => 'Amra bisshas kori protiti manusher sopno unique, tai amader kache apnar success-er priority shobcheye beshi.'])
-            <!-- section heading end here  -->  
+        <!-- section heading start here  -->
+        @includeif('frontend/components/ui/sectionheading2', ['data' => $sectionsdata,]) 
+        <!--section heading end here -->
 
         </div>
 

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->morphs('sectionable');
             $table->string('section_heading')->nullable();
             $table->string('section_title')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->integer('order')->nullable();
             $table->string('dynamic_route')->nullable();
             $table->string('payload_json')->nullable();

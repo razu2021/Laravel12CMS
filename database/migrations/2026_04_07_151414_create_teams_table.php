@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('icon')->nullable();
             $table->string('name')->nullable();
             $table->string('designation')->nullable();
-            $table->string('short_des')->nullable();
+            $table->text('short_des')->nullable();
             $table->longText('description')->nullable();
             $table->string('thumbnail')->nullable();
             $table->string('cover_image')->nullable();

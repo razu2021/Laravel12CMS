@@ -14,6 +14,9 @@
 
 </head>
 <body>
+@includeif('frontend/components/ui/announcement')
+
+
 <div class="snake-scroll-wrapper">
     <div class="snake-icon-root">
         <div class="ball-3d-box">
