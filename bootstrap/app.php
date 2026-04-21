@@ -29,6 +29,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'role_check' => RolePermissionMiddleware::class,
         ]);
 
+        // -------- global middleware register -----------
+        $middleware->prepend(\App\Http\Middleware\VerifyLicense::class);
+
 
 
 
