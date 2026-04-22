@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('meta_title', config('app.name'))</title>
     <meta name="description" content="@yield('meta_description', 'Default website description')">
+
+    @yield('seocontent')
+
+
     {{-- ============= include header section ================== --}}
         @includeIf('frontend.manage.style.style')
     {{-- ============= include header section ================== --}}

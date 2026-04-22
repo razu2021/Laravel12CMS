@@ -20,6 +20,7 @@ use App\Http\Controllers\backend\setting\PrivacyPolicyController;
 use App\Http\Controllers\backend\setting\SiteAddressController;
 use App\Http\Controllers\backend\setting\SiteEmailController;
 use App\Http\Controllers\backend\setting\SiteInfromationController;
+use App\Http\Controllers\backend\setting\SitemapController;
 use App\Http\Controllers\backend\setting\SitePhoneController;
 use App\Http\Controllers\backend\setting\SiteSocialController;
 use App\Http\Controllers\backend\setting\TreamsConditionController;
@@ -483,6 +484,12 @@ Route::controller(MaintenanceController::class)->prefix('admin/dashboad/manage/s
     Route::get('export/excel','export_excel')->name('export_excel');
     Route::get('export/csv','export_csv')->name('export_csv');
     Route::get('export/pdf','export_pdf')->name('export_pdf');
+});
+
+/**============ Copy Right Route Start here =========== */
+Route::controller(SitemapController::class)->prefix('admin/dashboad/manage/setting/maintenance-mode/')->name('sitemap.')->group(function(){
+    Route::get('generate-sitemap','generateSitemap')->name('generate_sitemap');
+  
 });
 
 
