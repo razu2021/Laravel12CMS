@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition } from './../../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\backend\setting\SitemapController::generateSitemap
- * @see app/Http/Controllers/backend/setting/SitemapController.php:0
+ * @see app/Http/Controllers/backend/setting/SitemapController.php:13
  * @route '/admin/dashboad/manage/setting/maintenance-mode/generate-sitemap'
  */
 export const generateSitemap = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ generateSitemap.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SitemapController::generateSitemap
- * @see app/Http/Controllers/backend/setting/SitemapController.php:0
+ * @see app/Http/Controllers/backend/setting/SitemapController.php:13
  * @route '/admin/dashboad/manage/setting/maintenance-mode/generate-sitemap'
  */
 generateSitemap.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ generateSitemap.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SitemapController::generateSitemap
- * @see app/Http/Controllers/backend/setting/SitemapController.php:0
+ * @see app/Http/Controllers/backend/setting/SitemapController.php:13
  * @route '/admin/dashboad/manage/setting/maintenance-mode/generate-sitemap'
  */
 generateSitemap.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -34,7 +34,7 @@ generateSitemap.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => (
 })
 /**
 * @see \App\Http\Controllers\backend\setting\SitemapController::generateSitemap
- * @see app/Http/Controllers/backend/setting/SitemapController.php:0
+ * @see app/Http/Controllers/backend/setting/SitemapController.php:13
  * @route '/admin/dashboad/manage/setting/maintenance-mode/generate-sitemap'
  */
 generateSitemap.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -44,7 +44,7 @@ generateSitemap.head = (options?: RouteQueryOptions): RouteDefinition<'head'> =>
 
     /**
 * @see \App\Http\Controllers\backend\setting\SitemapController::generateSitemap
- * @see app/Http/Controllers/backend/setting/SitemapController.php:0
+ * @see app/Http/Controllers/backend/setting/SitemapController.php:13
  * @route '/admin/dashboad/manage/setting/maintenance-mode/generate-sitemap'
  */
     const generateSitemapForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -54,7 +54,7 @@ generateSitemap.head = (options?: RouteQueryOptions): RouteDefinition<'head'> =>
 
             /**
 * @see \App\Http\Controllers\backend\setting\SitemapController::generateSitemap
- * @see app/Http/Controllers/backend/setting/SitemapController.php:0
+ * @see app/Http/Controllers/backend/setting/SitemapController.php:13
  * @route '/admin/dashboad/manage/setting/maintenance-mode/generate-sitemap'
  */
         generateSitemapForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -63,7 +63,7 @@ generateSitemap.head = (options?: RouteQueryOptions): RouteDefinition<'head'> =>
         })
             /**
 * @see \App\Http\Controllers\backend\setting\SitemapController::generateSitemap
- * @see app/Http/Controllers/backend/setting/SitemapController.php:0
+ * @see app/Http/Controllers/backend/setting/SitemapController.php:13
  * @route '/admin/dashboad/manage/setting/maintenance-mode/generate-sitemap'
  */
         generateSitemapForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
