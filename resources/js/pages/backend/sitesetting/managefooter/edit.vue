@@ -3,13 +3,14 @@ import Button from '@/components/ui/button/Button.vue'
 import AdminLayout from '@/layouts/AdminLayout.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
-import { headeroption ,allheaders } from '@/headeroption'
+import { footeroption ,allfooters, footerthemes } from '@/footeroption'
 
 
 const props= defineProps<{
     data: {
         order: number,
         type: string,
+        theme: string,
         title: string,
         description: string,
         //-------------
@@ -25,6 +26,7 @@ const form  = useForm(
     id: props.data.id,
     type: props.data.type,
     title: props.data.title,
+    theme: props.data.theme,
     description: props.data.description,
     order: props.data.order,
     public_status : Boolean(props.data.public_status),
@@ -91,12 +93,21 @@ const handleUpdate = () => {
                  <div>
                 <label class="text-sm font-medium text-slate-600">Select Type</label>
                   <select name="type" id="type" required  v-model="form.type" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:outline-none transition-colors duration-200">
-                    <option value="">Select Header Type</option>
-                    <option v-for="header in allheaders" :value="header.key">{{ header.name ?? '' }}</option>
+                    <option value="">Select Footer Type</option>
+                    <option v-for="header in allfooters" :value="header.key">{{ header.name ?? '' }}</option>
                    
                   </select>
                   <div class="text-small text-red-500" v-if="form.errors.type">{{ form.errors.type }}</div>
               </div>
+            <div>
+                <label class="text-sm font-medium text-slate-600">Choose Footer Theme</label>
+                  <select name="type" id="type" required  v-model="form.theme" class="block w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-700 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:outline-none transition-colors duration-200">
+                    <option value="">Select Header Type </option>
+                    <option v-for="header in footerthemes"  :value="header.key">{{ header.name }}</option>
+                  </select>
+                  <div class="text-small text-red-500" v-if="form.errors.theme">{{ form.errors.theme }}</div>
+              </div>
+                <!-- end -->
                 <!-- end -->
                 <div>
                     <label class="text-sm font-medium text-slate-600"> Title</label>

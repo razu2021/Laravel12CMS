@@ -3,19 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{asset($siteinfo->cover_image ?? '')}}" type="image/x-icon" style="border-radius:20%">
     <title>@yield('meta_title', config('app.name'))</title>
     <meta name="description" content="@yield('meta_description', 'Default website description')">
-
     @yield('seocontent')
-
-
     {{-- ============= include header section ================== --}}
         @includeIf('frontend.manage.style.style')
     {{-- ============= include header section ================== --}}
     {{-- ============= include header section ================== --}}
         @includeIf('frontend.manage.header.analitics')
     {{-- ============= include header section ================== --}}
-
 </head>
 <body>
 @includeif('frontend/components/ui/announcement')

@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Copyright;
-
+use Illuminate\Support\Facades\Cache;
 class CopyrightObserver
 {
     /**
@@ -11,7 +11,8 @@ class CopyrightObserver
      */
     public function created(Copyright $copyright): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('copyright');
     }
 
     /**
@@ -19,7 +20,8 @@ class CopyrightObserver
      */
     public function updated(Copyright $copyright): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('copyright');
     }
 
     /**
@@ -27,7 +29,8 @@ class CopyrightObserver
      */
     public function deleted(Copyright $copyright): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('copyright');
     }
 
     /**
@@ -35,7 +38,8 @@ class CopyrightObserver
      */
     public function restored(Copyright $copyright): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('copyright');
     }
 
     /**
@@ -43,6 +47,7 @@ class CopyrightObserver
      */
     public function forceDeleted(Copyright $copyright): void
     {
-        //
+        //======= forget cache ----
+        Cache::forget('copyright');
     }
 }

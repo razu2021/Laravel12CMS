@@ -17,6 +17,7 @@ use App\Http\Controllers\backend\setting\ManageHeaderController;
 use App\Http\Controllers\backend\setting\NoticeBoardController;
 use App\Http\Controllers\backend\setting\PreloaderController;
 use App\Http\Controllers\backend\setting\PrivacyPolicyController;
+use App\Http\Controllers\backend\setting\SeoManageController;
 use App\Http\Controllers\backend\setting\SiteAddressController;
 use App\Http\Controllers\backend\setting\SiteEmailController;
 use App\Http\Controllers\backend\setting\SiteInfromationController;
@@ -487,8 +488,29 @@ Route::controller(MaintenanceController::class)->prefix('admin/dashboad/manage/s
 });
 
 /**============ Copy Right Route Start here =========== */
-Route::controller(SitemapController::class)->prefix('admin/dashboad/manage/setting/maintenance-mode/')->name('sitemap.')->group(function(){
+Route::controller(SitemapController::class)->prefix('admin/dashboad/manage/setting/generate/sitemap/')->name('sitemap.')->group(function(){
     Route::get('generate-sitemap','generateSitemap')->name('generate_sitemap');
+  
+});
+
+/**============ Copy Right Route Start here =========== */
+Route::controller(SeoManageController::class)->prefix('admin/dashboad/manage/setting/manage/seo/')->name('manage_seo.')->group(function(){
+    Route::get('all','index')->name('all');
+    Route::get('add','add')->name('add');
+    Route::get('view/{id}/{slug}','view')->name('view');
+    Route::get('edit/{id}/{slug}','edit')->name('edit');
+    Route::post('submit','insert')->name('submit');
+    Route::patch('update','update')->name('update');
+    Route::get('active/{id}/{slug}','active')->name('active');
+    Route::get('deactive/{id}/{slug}','deactive')->name('deactive');
+    Route::delete('softdelete/{id}','softdelete')->name('softdelete');
+    Route::delete('delete/{id}','delete')->name('delete');
+    Route::get('recycle','recycle')->name('recycle');
+    Route::post('bulk/action' ,'bulkAction')->name('bulkAction');
+    Route::get('export/single/pdf/{id}/{slug}','exportPdf')->name('single_pdf_export');
+    Route::get('export/excel','export_excel')->name('export_excel');
+    Route::get('export/csv','export_csv')->name('export_csv');
+    Route::get('export/pdf','export_pdf')->name('export_pdf');
   
 });
 

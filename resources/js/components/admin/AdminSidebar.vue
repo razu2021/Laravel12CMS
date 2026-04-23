@@ -409,6 +409,9 @@ const toggleMenu = (key:string)=>{
           <Link :href="route('sitemap.generate_sitemap')" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
               Generate Sitemap 
           </Link>
+          <Link :href="route('manage_seo.all')" class="px-3 py-1.5 text-sm text-gray-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-md transition">
+              Manage SEO
+          </Link>
         </div>
       </div>
       <!-- ====== dropdown Site Seo end here ====== -->

@@ -2,7 +2,7 @@ import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFo
 /**
 * @see \App\Http\Controllers\backend\setting\SitemapController::generateSitemap
  * @see app/Http/Controllers/backend/setting/SitemapController.php:13
- * @route '/admin/dashboad/manage/setting/maintenance-mode/generate-sitemap'
+ * @route '/admin/dashboad/manage/setting/generate/sitemap/generate-sitemap'
  */
 export const generateSitemap = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: generateSitemap.url(options),
@@ -11,13 +11,13 @@ export const generateSitemap = (options?: RouteQueryOptions): RouteDefinition<'g
 
 generateSitemap.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/manage/setting/maintenance-mode/generate-sitemap',
+    url: '/admin/dashboad/manage/setting/generate/sitemap/generate-sitemap',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\backend\setting\SitemapController::generateSitemap
  * @see app/Http/Controllers/backend/setting/SitemapController.php:13
- * @route '/admin/dashboad/manage/setting/maintenance-mode/generate-sitemap'
+ * @route '/admin/dashboad/manage/setting/generate/sitemap/generate-sitemap'
  */
 generateSitemap.url = (options?: RouteQueryOptions) => {
     return generateSitemap.definition.url + queryParams(options)
@@ -26,7 +26,7 @@ generateSitemap.url = (options?: RouteQueryOptions) => {
 /**
 * @see \App\Http\Controllers\backend\setting\SitemapController::generateSitemap
  * @see app/Http/Controllers/backend/setting/SitemapController.php:13
- * @route '/admin/dashboad/manage/setting/maintenance-mode/generate-sitemap'
+ * @route '/admin/dashboad/manage/setting/generate/sitemap/generate-sitemap'
  */
 generateSitemap.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: generateSitemap.url(options),
@@ -35,7 +35,7 @@ generateSitemap.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => (
 /**
 * @see \App\Http\Controllers\backend\setting\SitemapController::generateSitemap
  * @see app/Http/Controllers/backend/setting/SitemapController.php:13
- * @route '/admin/dashboad/manage/setting/maintenance-mode/generate-sitemap'
+ * @route '/admin/dashboad/manage/setting/generate/sitemap/generate-sitemap'
  */
 generateSitemap.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: generateSitemap.url(options),
@@ -45,7 +45,7 @@ generateSitemap.head = (options?: RouteQueryOptions): RouteDefinition<'head'> =>
     /**
 * @see \App\Http\Controllers\backend\setting\SitemapController::generateSitemap
  * @see app/Http/Controllers/backend/setting/SitemapController.php:13
- * @route '/admin/dashboad/manage/setting/maintenance-mode/generate-sitemap'
+ * @route '/admin/dashboad/manage/setting/generate/sitemap/generate-sitemap'
  */
     const generateSitemapForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: generateSitemap.url(options),
@@ -55,7 +55,7 @@ generateSitemap.head = (options?: RouteQueryOptions): RouteDefinition<'head'> =>
             /**
 * @see \App\Http\Controllers\backend\setting\SitemapController::generateSitemap
  * @see app/Http/Controllers/backend/setting/SitemapController.php:13
- * @route '/admin/dashboad/manage/setting/maintenance-mode/generate-sitemap'
+ * @route '/admin/dashboad/manage/setting/generate/sitemap/generate-sitemap'
  */
         generateSitemapForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: generateSitemap.url(options),
@@ -64,7 +64,7 @@ generateSitemap.head = (options?: RouteQueryOptions): RouteDefinition<'head'> =>
             /**
 * @see \App\Http\Controllers\backend\setting\SitemapController::generateSitemap
  * @see app/Http/Controllers/backend/setting/SitemapController.php:13
- * @route '/admin/dashboad/manage/setting/maintenance-mode/generate-sitemap'
+ * @route '/admin/dashboad/manage/setting/generate/sitemap/generate-sitemap'
  */
         generateSitemapForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: generateSitemap.url({

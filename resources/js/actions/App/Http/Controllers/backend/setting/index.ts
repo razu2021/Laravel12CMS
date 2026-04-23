@@ -22,6 +22,7 @@ import ManageFooterController from './ManageFooterController'
 import FaveiconController from './FaveiconController'
 import MaintenanceController from './MaintenanceController'
 import SitemapController from './SitemapController'
+import SeoManageController from './SeoManageController'
 const setting = {
     SiteEmailController: Object.assign(SiteEmailController, SiteEmailController),
 SitePhoneController: Object.assign(SitePhoneController, SitePhoneController),
@@ -47,6 +48,7 @@ ManageFooterController: Object.assign(ManageFooterController, ManageFooterContro
 FaveiconController: Object.assign(FaveiconController, FaveiconController),
 MaintenanceController: Object.assign(MaintenanceController, MaintenanceController),
 SitemapController: Object.assign(SitemapController, SitemapController),
+SeoManageController: Object.assign(SeoManageController, SeoManageController),
 }
 
 export default setting

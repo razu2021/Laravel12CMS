@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Seo extends Model
 {
      use SoftDeletes;
+     
+        protected $casts = [
+            'structured_data' => 'array',
+        ];
 
     protected $primaryKey = 'id';
     protected $guarded = [];

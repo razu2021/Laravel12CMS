@@ -147,6 +147,7 @@ class ChildCategoryPageController extends Controller
         $insert->seo()->create([
             'meta_title'=>$insert->title ?? 'title',
             'meta_description'=>$insert->title ?? 'description',
+            'slug'=>$slug,
         ]);
 
         //---------------------- if insert ------

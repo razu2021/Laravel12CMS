@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\AnaliticsTracking;
 use App\Models\Announcment;
 use App\Models\CategoryPage;
+use App\Models\Copyright;
 use App\Models\Customcss;
 use App\Models\Customescript;
 use App\Models\Managefooter;
@@ -102,6 +103,10 @@ class DataServiceProvider extends ServiceProvider
             $announcements = cache()->rememberForever('announcement',function(){
                 return Announcment::where('public_status',1)->first(['type','heading','title','description','thumbnail']);
             });
+            /**======== Site Announcement cache  =========== */
+            $copyright = cache()->rememberForever('copyright',function(){
+                return Copyright::where('public_status',1)->first(['receved_by','design_by','receiver_url','designer_url','receiver_icon','designer_icon']);
+            });
             
 
 
@@ -150,7 +155,9 @@ class DataServiceProvider extends ServiceProvider
                 'siteaddress' => $siteaddress,
                 'sitephones' => $sitephones,
                 'siteemails' => $siteemails,
+                'siteinfo' => $siteinfo,
                 'announcements' => $announcements,
+                'copyright' => $copyright,
             ]);
 
         });

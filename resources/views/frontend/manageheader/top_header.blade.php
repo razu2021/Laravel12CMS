@@ -2,17 +2,18 @@
     <div class="container">
         <!-- Office Info -->
         <div class="office-info">
+        @if(!empty($siteaddress) && $siteaddress->count() > 0)
+            @foreach($siteaddress->take(1) as $address)
             <div class="info-item">
                 <i class="bi bi-geo-alt-fill"></i>
-                <span>Kaliganj, Bangladesh</span>
+                <span>{{$address->address ?? 'Dhaka, Bangladesh'}}</span>
             </div>
+            @endforeach
+        @endif
+
             <div class="info-item">
                 <i class="bi bi-clock-fill"></i>
-                <span>Mon - Fri: 9:00 AM - 6:00 PM</span>
-            </div>
-            <div class="info-item">
-                <i class="bi bi-calendar-event-fill"></i>
-                <span>Holiday: Sat & Sun</span>
+                <span>{{$siteinfo->opening ?? 'Mon - Fri: 9:00 AM - 6:00 PM'}}</span>
             </div>
         </div>
 

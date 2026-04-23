@@ -1,8 +1,8 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../wayfinder'
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::all
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:24
- * @route '/admin/dashboad/category/sub-category-page/all'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::all
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:23
+ * @route '/admin/dashboad/manage/setting/manage/seo/all'
  */
 export const all = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: all.url(options),
@@ -11,31 +11,31 @@ export const all = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 all.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/category/sub-category-page/all',
+    url: '/admin/dashboad/manage/setting/manage/seo/all',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::all
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:24
- * @route '/admin/dashboad/category/sub-category-page/all'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::all
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:23
+ * @route '/admin/dashboad/manage/setting/manage/seo/all'
  */
 all.url = (options?: RouteQueryOptions) => {
     return all.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::all
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:24
- * @route '/admin/dashboad/category/sub-category-page/all'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::all
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:23
+ * @route '/admin/dashboad/manage/setting/manage/seo/all'
  */
 all.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: all.url(options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::all
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:24
- * @route '/admin/dashboad/category/sub-category-page/all'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::all
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:23
+ * @route '/admin/dashboad/manage/setting/manage/seo/all'
  */
 all.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: all.url(options),
@@ -43,9 +43,9 @@ all.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::all
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:24
- * @route '/admin/dashboad/category/sub-category-page/all'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::all
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:23
+ * @route '/admin/dashboad/manage/setting/manage/seo/all'
  */
     const allForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: all.url(options),
@@ -53,18 +53,18 @@ all.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::all
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:24
- * @route '/admin/dashboad/category/sub-category-page/all'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::all
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:23
+ * @route '/admin/dashboad/manage/setting/manage/seo/all'
  */
         allForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: all.url(options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::all
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:24
- * @route '/admin/dashboad/category/sub-category-page/all'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::all
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:23
+ * @route '/admin/dashboad/manage/setting/manage/seo/all'
  */
         allForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: all.url({
@@ -78,9 +78,9 @@ all.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     
     all.form = allForm
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::add
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:50
- * @route '/admin/dashboad/category/sub-category-page/add'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::add
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:48
+ * @route '/admin/dashboad/manage/setting/manage/seo/add'
  */
 export const add = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: add.url(options),
@@ -89,31 +89,31 @@ export const add = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 add.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/category/sub-category-page/add',
+    url: '/admin/dashboad/manage/setting/manage/seo/add',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::add
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:50
- * @route '/admin/dashboad/category/sub-category-page/add'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::add
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:48
+ * @route '/admin/dashboad/manage/setting/manage/seo/add'
  */
 add.url = (options?: RouteQueryOptions) => {
     return add.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::add
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:50
- * @route '/admin/dashboad/category/sub-category-page/add'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::add
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:48
+ * @route '/admin/dashboad/manage/setting/manage/seo/add'
  */
 add.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: add.url(options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::add
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:50
- * @route '/admin/dashboad/category/sub-category-page/add'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::add
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:48
+ * @route '/admin/dashboad/manage/setting/manage/seo/add'
  */
 add.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: add.url(options),
@@ -121,9 +121,9 @@ add.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::add
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:50
- * @route '/admin/dashboad/category/sub-category-page/add'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::add
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:48
+ * @route '/admin/dashboad/manage/setting/manage/seo/add'
  */
     const addForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: add.url(options),
@@ -131,18 +131,18 @@ add.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::add
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:50
- * @route '/admin/dashboad/category/sub-category-page/add'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::add
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:48
+ * @route '/admin/dashboad/manage/setting/manage/seo/add'
  */
         addForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: add.url(options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::add
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:50
- * @route '/admin/dashboad/category/sub-category-page/add'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::add
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:48
+ * @route '/admin/dashboad/manage/setting/manage/seo/add'
  */
         addForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: add.url({
@@ -156,9 +156,9 @@ add.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     
     add.form = addForm
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::view
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:62
- * @route '/admin/dashboad/category/sub-category-page/view/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::view
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:57
+ * @route '/admin/dashboad/manage/setting/manage/seo/view/{id}/{slug}'
  */
 export const view = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: view.url(args, options),
@@ -167,13 +167,13 @@ export const view = (args: { id: string | number, slug: string | number } | [id:
 
 view.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/category/sub-category-page/view/{id}/{slug}',
+    url: '/admin/dashboad/manage/setting/manage/seo/view/{id}/{slug}',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::view
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:62
- * @route '/admin/dashboad/category/sub-category-page/view/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::view
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:57
+ * @route '/admin/dashboad/manage/setting/manage/seo/view/{id}/{slug}'
  */
 view.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
     if (Array.isArray(args)) {
@@ -197,18 +197,18 @@ view.url = (args: { id: string | number, slug: string | number } | [id: string |
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::view
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:62
- * @route '/admin/dashboad/category/sub-category-page/view/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::view
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:57
+ * @route '/admin/dashboad/manage/setting/manage/seo/view/{id}/{slug}'
  */
 view.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: view.url(args, options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::view
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:62
- * @route '/admin/dashboad/category/sub-category-page/view/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::view
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:57
+ * @route '/admin/dashboad/manage/setting/manage/seo/view/{id}/{slug}'
  */
 view.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: view.url(args, options),
@@ -216,9 +216,9 @@ view.head = (args: { id: string | number, slug: string | number } | [id: string 
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::view
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:62
- * @route '/admin/dashboad/category/sub-category-page/view/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::view
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:57
+ * @route '/admin/dashboad/manage/setting/manage/seo/view/{id}/{slug}'
  */
     const viewForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: view.url(args, options),
@@ -226,18 +226,18 @@ view.head = (args: { id: string | number, slug: string | number } | [id: string 
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::view
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:62
- * @route '/admin/dashboad/category/sub-category-page/view/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::view
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:57
+ * @route '/admin/dashboad/manage/setting/manage/seo/view/{id}/{slug}'
  */
         viewForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: view.url(args, options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::view
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:62
- * @route '/admin/dashboad/category/sub-category-page/view/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::view
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:57
+ * @route '/admin/dashboad/manage/setting/manage/seo/view/{id}/{slug}'
  */
         viewForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: view.url(args, {
@@ -251,9 +251,9 @@ view.head = (args: { id: string | number, slug: string | number } | [id: string 
     
     view.form = viewForm
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::edit
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:74
- * @route '/admin/dashboad/category/sub-category-page/edit/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::edit
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:69
+ * @route '/admin/dashboad/manage/setting/manage/seo/edit/{id}/{slug}'
  */
 export const edit = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
@@ -262,13 +262,13 @@ export const edit = (args: { id: string | number, slug: string | number } | [id:
 
 edit.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/category/sub-category-page/edit/{id}/{slug}',
+    url: '/admin/dashboad/manage/setting/manage/seo/edit/{id}/{slug}',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::edit
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:74
- * @route '/admin/dashboad/category/sub-category-page/edit/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::edit
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:69
+ * @route '/admin/dashboad/manage/setting/manage/seo/edit/{id}/{slug}'
  */
 edit.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
     if (Array.isArray(args)) {
@@ -292,18 +292,18 @@ edit.url = (args: { id: string | number, slug: string | number } | [id: string |
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::edit
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:74
- * @route '/admin/dashboad/category/sub-category-page/edit/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::edit
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:69
+ * @route '/admin/dashboad/manage/setting/manage/seo/edit/{id}/{slug}'
  */
 edit.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::edit
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:74
- * @route '/admin/dashboad/category/sub-category-page/edit/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::edit
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:69
+ * @route '/admin/dashboad/manage/setting/manage/seo/edit/{id}/{slug}'
  */
 edit.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: edit.url(args, options),
@@ -311,9 +311,9 @@ edit.head = (args: { id: string | number, slug: string | number } | [id: string 
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::edit
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:74
- * @route '/admin/dashboad/category/sub-category-page/edit/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::edit
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:69
+ * @route '/admin/dashboad/manage/setting/manage/seo/edit/{id}/{slug}'
  */
     const editForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: edit.url(args, options),
@@ -321,18 +321,18 @@ edit.head = (args: { id: string | number, slug: string | number } | [id: string 
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::edit
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:74
- * @route '/admin/dashboad/category/sub-category-page/edit/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::edit
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:69
+ * @route '/admin/dashboad/manage/setting/manage/seo/edit/{id}/{slug}'
  */
         editForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: edit.url(args, options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::edit
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:74
- * @route '/admin/dashboad/category/sub-category-page/edit/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::edit
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:69
+ * @route '/admin/dashboad/manage/setting/manage/seo/edit/{id}/{slug}'
  */
         editForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: edit.url(args, {
@@ -346,9 +346,9 @@ edit.head = (args: { id: string | number, slug: string | number } | [id: string 
     
     edit.form = editForm
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::submit
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:94
- * @route '/admin/dashboad/category/sub-category-page/submit'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::submit
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:86
+ * @route '/admin/dashboad/manage/setting/manage/seo/submit'
  */
 export const submit = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: submit.url(options),
@@ -357,22 +357,22 @@ export const submit = (options?: RouteQueryOptions): RouteDefinition<'post'> => 
 
 submit.definition = {
     methods: ["post"],
-    url: '/admin/dashboad/category/sub-category-page/submit',
+    url: '/admin/dashboad/manage/setting/manage/seo/submit',
 } satisfies RouteDefinition<["post"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::submit
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:94
- * @route '/admin/dashboad/category/sub-category-page/submit'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::submit
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:86
+ * @route '/admin/dashboad/manage/setting/manage/seo/submit'
  */
 submit.url = (options?: RouteQueryOptions) => {
     return submit.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::submit
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:94
- * @route '/admin/dashboad/category/sub-category-page/submit'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::submit
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:86
+ * @route '/admin/dashboad/manage/setting/manage/seo/submit'
  */
 submit.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: submit.url(options),
@@ -380,9 +380,9 @@ submit.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::submit
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:94
- * @route '/admin/dashboad/category/sub-category-page/submit'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::submit
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:86
+ * @route '/admin/dashboad/manage/setting/manage/seo/submit'
  */
     const submitForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: submit.url(options),
@@ -390,9 +390,9 @@ submit.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::submit
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:94
- * @route '/admin/dashboad/category/sub-category-page/submit'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::submit
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:86
+ * @route '/admin/dashboad/manage/setting/manage/seo/submit'
  */
         submitForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: submit.url(options),
@@ -401,9 +401,9 @@ submit.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     
     submit.form = submitForm
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::update
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:165
- * @route '/admin/dashboad/category/sub-category-page/update'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::update
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:135
+ * @route '/admin/dashboad/manage/setting/manage/seo/update'
  */
 export const update = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update.url(options),
@@ -412,22 +412,22 @@ export const update = (options?: RouteQueryOptions): RouteDefinition<'patch'> =>
 
 update.definition = {
     methods: ["patch"],
-    url: '/admin/dashboad/category/sub-category-page/update',
+    url: '/admin/dashboad/manage/setting/manage/seo/update',
 } satisfies RouteDefinition<["patch"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::update
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:165
- * @route '/admin/dashboad/category/sub-category-page/update'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::update
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:135
+ * @route '/admin/dashboad/manage/setting/manage/seo/update'
  */
 update.url = (options?: RouteQueryOptions) => {
     return update.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::update
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:165
- * @route '/admin/dashboad/category/sub-category-page/update'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::update
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:135
+ * @route '/admin/dashboad/manage/setting/manage/seo/update'
  */
 update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update.url(options),
@@ -435,9 +435,9 @@ update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::update
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:165
- * @route '/admin/dashboad/category/sub-category-page/update'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::update
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:135
+ * @route '/admin/dashboad/manage/setting/manage/seo/update'
  */
     const updateForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: update.url({
@@ -450,9 +450,9 @@ update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::update
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:165
- * @route '/admin/dashboad/category/sub-category-page/update'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::update
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:135
+ * @route '/admin/dashboad/manage/setting/manage/seo/update'
  */
         updateForm.patch = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: update.url({
@@ -466,9 +466,9 @@ update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     
     update.form = updateForm
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::active
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:226
- * @route '/admin/dashboad/category/sub-category-page/active/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::active
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:216
+ * @route '/admin/dashboad/manage/setting/manage/seo/active/{id}/{slug}'
  */
 export const active = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: active.url(args, options),
@@ -477,13 +477,13 @@ export const active = (args: { id: string | number, slug: string | number } | [i
 
 active.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/category/sub-category-page/active/{id}/{slug}',
+    url: '/admin/dashboad/manage/setting/manage/seo/active/{id}/{slug}',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::active
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:226
- * @route '/admin/dashboad/category/sub-category-page/active/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::active
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:216
+ * @route '/admin/dashboad/manage/setting/manage/seo/active/{id}/{slug}'
  */
 active.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
     if (Array.isArray(args)) {
@@ -507,18 +507,18 @@ active.url = (args: { id: string | number, slug: string | number } | [id: string
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::active
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:226
- * @route '/admin/dashboad/category/sub-category-page/active/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::active
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:216
+ * @route '/admin/dashboad/manage/setting/manage/seo/active/{id}/{slug}'
  */
 active.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: active.url(args, options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::active
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:226
- * @route '/admin/dashboad/category/sub-category-page/active/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::active
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:216
+ * @route '/admin/dashboad/manage/setting/manage/seo/active/{id}/{slug}'
  */
 active.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: active.url(args, options),
@@ -526,9 +526,9 @@ active.head = (args: { id: string | number, slug: string | number } | [id: strin
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::active
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:226
- * @route '/admin/dashboad/category/sub-category-page/active/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::active
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:216
+ * @route '/admin/dashboad/manage/setting/manage/seo/active/{id}/{slug}'
  */
     const activeForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: active.url(args, options),
@@ -536,18 +536,18 @@ active.head = (args: { id: string | number, slug: string | number } | [id: strin
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::active
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:226
- * @route '/admin/dashboad/category/sub-category-page/active/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::active
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:216
+ * @route '/admin/dashboad/manage/setting/manage/seo/active/{id}/{slug}'
  */
         activeForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: active.url(args, options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::active
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:226
- * @route '/admin/dashboad/category/sub-category-page/active/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::active
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:216
+ * @route '/admin/dashboad/manage/setting/manage/seo/active/{id}/{slug}'
  */
         activeForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: active.url(args, {
@@ -561,9 +561,9 @@ active.head = (args: { id: string | number, slug: string | number } | [id: strin
     
     active.form = activeForm
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::deactive
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:242
- * @route '/admin/dashboad/category/sub-category-page/deactive/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::deactive
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:232
+ * @route '/admin/dashboad/manage/setting/manage/seo/deactive/{id}/{slug}'
  */
 export const deactive = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: deactive.url(args, options),
@@ -572,13 +572,13 @@ export const deactive = (args: { id: string | number, slug: string | number } | 
 
 deactive.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/category/sub-category-page/deactive/{id}/{slug}',
+    url: '/admin/dashboad/manage/setting/manage/seo/deactive/{id}/{slug}',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::deactive
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:242
- * @route '/admin/dashboad/category/sub-category-page/deactive/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::deactive
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:232
+ * @route '/admin/dashboad/manage/setting/manage/seo/deactive/{id}/{slug}'
  */
 deactive.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
     if (Array.isArray(args)) {
@@ -602,18 +602,18 @@ deactive.url = (args: { id: string | number, slug: string | number } | [id: stri
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::deactive
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:242
- * @route '/admin/dashboad/category/sub-category-page/deactive/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::deactive
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:232
+ * @route '/admin/dashboad/manage/setting/manage/seo/deactive/{id}/{slug}'
  */
 deactive.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: deactive.url(args, options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::deactive
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:242
- * @route '/admin/dashboad/category/sub-category-page/deactive/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::deactive
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:232
+ * @route '/admin/dashboad/manage/setting/manage/seo/deactive/{id}/{slug}'
  */
 deactive.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: deactive.url(args, options),
@@ -621,9 +621,9 @@ deactive.head = (args: { id: string | number, slug: string | number } | [id: str
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::deactive
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:242
- * @route '/admin/dashboad/category/sub-category-page/deactive/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::deactive
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:232
+ * @route '/admin/dashboad/manage/setting/manage/seo/deactive/{id}/{slug}'
  */
     const deactiveForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: deactive.url(args, options),
@@ -631,18 +631,18 @@ deactive.head = (args: { id: string | number, slug: string | number } | [id: str
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::deactive
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:242
- * @route '/admin/dashboad/category/sub-category-page/deactive/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::deactive
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:232
+ * @route '/admin/dashboad/manage/setting/manage/seo/deactive/{id}/{slug}'
  */
         deactiveForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: deactive.url(args, options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::deactive
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:242
- * @route '/admin/dashboad/category/sub-category-page/deactive/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::deactive
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:232
+ * @route '/admin/dashboad/manage/setting/manage/seo/deactive/{id}/{slug}'
  */
         deactiveForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: deactive.url(args, {
@@ -656,9 +656,9 @@ deactive.head = (args: { id: string | number, slug: string | number } | [id: str
     
     deactive.form = deactiveForm
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::softdelete
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:258
- * @route '/admin/dashboad/category/sub-category-page/softdelete/{id}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::softdelete
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:247
+ * @route '/admin/dashboad/manage/setting/manage/seo/softdelete/{id}'
  */
 export const softdelete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: softdelete.url(args, options),
@@ -667,13 +667,13 @@ export const softdelete = (args: { id: string | number } | [id: string | number 
 
 softdelete.definition = {
     methods: ["delete"],
-    url: '/admin/dashboad/category/sub-category-page/softdelete/{id}',
+    url: '/admin/dashboad/manage/setting/manage/seo/softdelete/{id}',
 } satisfies RouteDefinition<["delete"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::softdelete
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:258
- * @route '/admin/dashboad/category/sub-category-page/softdelete/{id}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::softdelete
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:247
+ * @route '/admin/dashboad/manage/setting/manage/seo/softdelete/{id}'
  */
 softdelete.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
@@ -699,9 +699,9 @@ softdelete.url = (args: { id: string | number } | [id: string | number ] | strin
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::softdelete
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:258
- * @route '/admin/dashboad/category/sub-category-page/softdelete/{id}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::softdelete
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:247
+ * @route '/admin/dashboad/manage/setting/manage/seo/softdelete/{id}'
  */
 softdelete.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: softdelete.url(args, options),
@@ -709,9 +709,9 @@ softdelete.delete = (args: { id: string | number } | [id: string | number ] | st
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::softdelete
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:258
- * @route '/admin/dashboad/category/sub-category-page/softdelete/{id}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::softdelete
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:247
+ * @route '/admin/dashboad/manage/setting/manage/seo/softdelete/{id}'
  */
     const softdeleteForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: softdelete.url(args, {
@@ -724,9 +724,9 @@ softdelete.delete = (args: { id: string | number } | [id: string | number ] | st
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::softdelete
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:258
- * @route '/admin/dashboad/category/sub-category-page/softdelete/{id}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::softdelete
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:247
+ * @route '/admin/dashboad/manage/setting/manage/seo/softdelete/{id}'
  */
         softdeleteForm.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: softdelete.url(args, {
@@ -740,9 +740,9 @@ softdelete.delete = (args: { id: string | number } | [id: string | number ] | st
     
     softdelete.form = softdeleteForm
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::deleteMethod
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:273
- * @route '/admin/dashboad/category/sub-category-page/delete/{id}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::deleteMethod
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:262
+ * @route '/admin/dashboad/manage/setting/manage/seo/delete/{id}'
  */
 export const deleteMethod = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: deleteMethod.url(args, options),
@@ -751,13 +751,13 @@ export const deleteMethod = (args: { id: string | number } | [id: string | numbe
 
 deleteMethod.definition = {
     methods: ["delete"],
-    url: '/admin/dashboad/category/sub-category-page/delete/{id}',
+    url: '/admin/dashboad/manage/setting/manage/seo/delete/{id}',
 } satisfies RouteDefinition<["delete"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::deleteMethod
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:273
- * @route '/admin/dashboad/category/sub-category-page/delete/{id}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::deleteMethod
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:262
+ * @route '/admin/dashboad/manage/setting/manage/seo/delete/{id}'
  */
 deleteMethod.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
@@ -783,9 +783,9 @@ deleteMethod.url = (args: { id: string | number } | [id: string | number ] | str
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::deleteMethod
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:273
- * @route '/admin/dashboad/category/sub-category-page/delete/{id}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::deleteMethod
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:262
+ * @route '/admin/dashboad/manage/setting/manage/seo/delete/{id}'
  */
 deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: deleteMethod.url(args, options),
@@ -793,9 +793,9 @@ deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | 
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::deleteMethod
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:273
- * @route '/admin/dashboad/category/sub-category-page/delete/{id}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::deleteMethod
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:262
+ * @route '/admin/dashboad/manage/setting/manage/seo/delete/{id}'
  */
     const deleteMethodForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: deleteMethod.url(args, {
@@ -808,9 +808,9 @@ deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | 
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::deleteMethod
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:273
- * @route '/admin/dashboad/category/sub-category-page/delete/{id}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::deleteMethod
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:262
+ * @route '/admin/dashboad/manage/setting/manage/seo/delete/{id}'
  */
         deleteMethodForm.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: deleteMethod.url(args, {
@@ -824,9 +824,9 @@ deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | 
     
     deleteMethod.form = deleteMethodForm
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::recycle
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:289
- * @route '/admin/dashboad/category/sub-category-page/recycle'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::recycle
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:278
+ * @route '/admin/dashboad/manage/setting/manage/seo/recycle'
  */
 export const recycle = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: recycle.url(options),
@@ -835,31 +835,31 @@ export const recycle = (options?: RouteQueryOptions): RouteDefinition<'get'> => 
 
 recycle.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/category/sub-category-page/recycle',
+    url: '/admin/dashboad/manage/setting/manage/seo/recycle',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::recycle
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:289
- * @route '/admin/dashboad/category/sub-category-page/recycle'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::recycle
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:278
+ * @route '/admin/dashboad/manage/setting/manage/seo/recycle'
  */
 recycle.url = (options?: RouteQueryOptions) => {
     return recycle.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::recycle
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:289
- * @route '/admin/dashboad/category/sub-category-page/recycle'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::recycle
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:278
+ * @route '/admin/dashboad/manage/setting/manage/seo/recycle'
  */
 recycle.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: recycle.url(options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::recycle
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:289
- * @route '/admin/dashboad/category/sub-category-page/recycle'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::recycle
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:278
+ * @route '/admin/dashboad/manage/setting/manage/seo/recycle'
  */
 recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: recycle.url(options),
@@ -867,9 +867,9 @@ recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::recycle
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:289
- * @route '/admin/dashboad/category/sub-category-page/recycle'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::recycle
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:278
+ * @route '/admin/dashboad/manage/setting/manage/seo/recycle'
  */
     const recycleForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: recycle.url(options),
@@ -877,18 +877,18 @@ recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::recycle
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:289
- * @route '/admin/dashboad/category/sub-category-page/recycle'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::recycle
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:278
+ * @route '/admin/dashboad/manage/setting/manage/seo/recycle'
  */
         recycleForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: recycle.url(options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::recycle
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:289
- * @route '/admin/dashboad/category/sub-category-page/recycle'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::recycle
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:278
+ * @route '/admin/dashboad/manage/setting/manage/seo/recycle'
  */
         recycleForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: recycle.url({
@@ -902,9 +902,9 @@ recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     
     recycle.form = recycleForm
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::bulkAction
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:323
- * @route '/admin/dashboad/category/sub-category-page/bulk/action'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::bulkAction
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:312
+ * @route '/admin/dashboad/manage/setting/manage/seo/bulk/action'
  */
 export const bulkAction = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: bulkAction.url(options),
@@ -913,22 +913,22 @@ export const bulkAction = (options?: RouteQueryOptions): RouteDefinition<'post'>
 
 bulkAction.definition = {
     methods: ["post"],
-    url: '/admin/dashboad/category/sub-category-page/bulk/action',
+    url: '/admin/dashboad/manage/setting/manage/seo/bulk/action',
 } satisfies RouteDefinition<["post"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::bulkAction
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:323
- * @route '/admin/dashboad/category/sub-category-page/bulk/action'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::bulkAction
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:312
+ * @route '/admin/dashboad/manage/setting/manage/seo/bulk/action'
  */
 bulkAction.url = (options?: RouteQueryOptions) => {
     return bulkAction.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::bulkAction
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:323
- * @route '/admin/dashboad/category/sub-category-page/bulk/action'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::bulkAction
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:312
+ * @route '/admin/dashboad/manage/setting/manage/seo/bulk/action'
  */
 bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: bulkAction.url(options),
@@ -936,9 +936,9 @@ bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::bulkAction
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:323
- * @route '/admin/dashboad/category/sub-category-page/bulk/action'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::bulkAction
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:312
+ * @route '/admin/dashboad/manage/setting/manage/seo/bulk/action'
  */
     const bulkActionForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
         action: bulkAction.url(options),
@@ -946,9 +946,9 @@ bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::bulkAction
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:323
- * @route '/admin/dashboad/category/sub-category-page/bulk/action'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::bulkAction
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:312
+ * @route '/admin/dashboad/manage/setting/manage/seo/bulk/action'
  */
         bulkActionForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
             action: bulkAction.url(options),
@@ -957,9 +957,9 @@ bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     
     bulkAction.form = bulkActionForm
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:414
- * @route '/admin/dashboad/category/sub-category-page/export/single/pdf/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::single_pdf_export
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:408
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/single/pdf/{id}/{slug}'
  */
 export const single_pdf_export = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: single_pdf_export.url(args, options),
@@ -968,13 +968,13 @@ export const single_pdf_export = (args: { id: string | number, slug: string | nu
 
 single_pdf_export.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/category/sub-category-page/export/single/pdf/{id}/{slug}',
+    url: '/admin/dashboad/manage/setting/manage/seo/export/single/pdf/{id}/{slug}',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:414
- * @route '/admin/dashboad/category/sub-category-page/export/single/pdf/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::single_pdf_export
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:408
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/single/pdf/{id}/{slug}'
  */
 single_pdf_export.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
     if (Array.isArray(args)) {
@@ -998,18 +998,18 @@ single_pdf_export.url = (args: { id: string | number, slug: string | number } | 
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:414
- * @route '/admin/dashboad/category/sub-category-page/export/single/pdf/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::single_pdf_export
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:408
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/single/pdf/{id}/{slug}'
  */
 single_pdf_export.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: single_pdf_export.url(args, options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:414
- * @route '/admin/dashboad/category/sub-category-page/export/single/pdf/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::single_pdf_export
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:408
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/single/pdf/{id}/{slug}'
  */
 single_pdf_export.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: single_pdf_export.url(args, options),
@@ -1017,9 +1017,9 @@ single_pdf_export.head = (args: { id: string | number, slug: string | number } |
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:414
- * @route '/admin/dashboad/category/sub-category-page/export/single/pdf/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::single_pdf_export
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:408
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/single/pdf/{id}/{slug}'
  */
     const single_pdf_exportForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: single_pdf_export.url(args, options),
@@ -1027,18 +1027,18 @@ single_pdf_export.head = (args: { id: string | number, slug: string | number } |
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:414
- * @route '/admin/dashboad/category/sub-category-page/export/single/pdf/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::single_pdf_export
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:408
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/single/pdf/{id}/{slug}'
  */
         single_pdf_exportForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: single_pdf_export.url(args, options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:414
- * @route '/admin/dashboad/category/sub-category-page/export/single/pdf/{id}/{slug}'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::single_pdf_export
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:408
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/single/pdf/{id}/{slug}'
  */
         single_pdf_exportForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: single_pdf_export.url(args, {
@@ -1052,9 +1052,9 @@ single_pdf_export.head = (args: { id: string | number, slug: string | number } |
     
     single_pdf_export.form = single_pdf_exportForm
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_excel
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:443
- * @route '/admin/dashboad/category/sub-category-page/export/excel'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_excel
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:437
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/excel'
  */
 export const export_excel = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: export_excel.url(options),
@@ -1063,31 +1063,31 @@ export const export_excel = (options?: RouteQueryOptions): RouteDefinition<'get'
 
 export_excel.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/category/sub-category-page/export/excel',
+    url: '/admin/dashboad/manage/setting/manage/seo/export/excel',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_excel
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:443
- * @route '/admin/dashboad/category/sub-category-page/export/excel'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_excel
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:437
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/excel'
  */
 export_excel.url = (options?: RouteQueryOptions) => {
     return export_excel.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_excel
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:443
- * @route '/admin/dashboad/category/sub-category-page/export/excel'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_excel
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:437
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/excel'
  */
 export_excel.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: export_excel.url(options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_excel
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:443
- * @route '/admin/dashboad/category/sub-category-page/export/excel'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_excel
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:437
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/excel'
  */
 export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: export_excel.url(options),
@@ -1095,9 +1095,9 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_excel
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:443
- * @route '/admin/dashboad/category/sub-category-page/export/excel'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_excel
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:437
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/excel'
  */
     const export_excelForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: export_excel.url(options),
@@ -1105,18 +1105,18 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_excel
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:443
- * @route '/admin/dashboad/category/sub-category-page/export/excel'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_excel
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:437
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/excel'
  */
         export_excelForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: export_excel.url(options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_excel
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:443
- * @route '/admin/dashboad/category/sub-category-page/export/excel'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_excel
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:437
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/excel'
  */
         export_excelForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: export_excel.url({
@@ -1130,9 +1130,9 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     
     export_excel.form = export_excelForm
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_csv
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:450
- * @route '/admin/dashboad/category/sub-category-page/export/csv'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_csv
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:444
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/csv'
  */
 export const export_csv = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: export_csv.url(options),
@@ -1141,31 +1141,31 @@ export const export_csv = (options?: RouteQueryOptions): RouteDefinition<'get'> 
 
 export_csv.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/category/sub-category-page/export/csv',
+    url: '/admin/dashboad/manage/setting/manage/seo/export/csv',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_csv
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:450
- * @route '/admin/dashboad/category/sub-category-page/export/csv'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_csv
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:444
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/csv'
  */
 export_csv.url = (options?: RouteQueryOptions) => {
     return export_csv.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_csv
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:450
- * @route '/admin/dashboad/category/sub-category-page/export/csv'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_csv
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:444
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/csv'
  */
 export_csv.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: export_csv.url(options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_csv
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:450
- * @route '/admin/dashboad/category/sub-category-page/export/csv'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_csv
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:444
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/csv'
  */
 export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: export_csv.url(options),
@@ -1173,9 +1173,9 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_csv
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:450
- * @route '/admin/dashboad/category/sub-category-page/export/csv'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_csv
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:444
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/csv'
  */
     const export_csvForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: export_csv.url(options),
@@ -1183,18 +1183,18 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_csv
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:450
- * @route '/admin/dashboad/category/sub-category-page/export/csv'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_csv
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:444
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/csv'
  */
         export_csvForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: export_csv.url(options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_csv
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:450
- * @route '/admin/dashboad/category/sub-category-page/export/csv'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_csv
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:444
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/csv'
  */
         export_csvForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: export_csv.url({
@@ -1208,9 +1208,9 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     
     export_csv.form = export_csvForm
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_pdf
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:428
- * @route '/admin/dashboad/category/sub-category-page/export/pdf'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_pdf
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:422
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/pdf'
  */
 export const export_pdf = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: export_pdf.url(options),
@@ -1219,31 +1219,31 @@ export const export_pdf = (options?: RouteQueryOptions): RouteDefinition<'get'> 
 
 export_pdf.definition = {
     methods: ["get","head"],
-    url: '/admin/dashboad/category/sub-category-page/export/pdf',
+    url: '/admin/dashboad/manage/setting/manage/seo/export/pdf',
 } satisfies RouteDefinition<["get","head"]>
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_pdf
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:428
- * @route '/admin/dashboad/category/sub-category-page/export/pdf'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_pdf
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:422
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/pdf'
  */
 export_pdf.url = (options?: RouteQueryOptions) => {
     return export_pdf.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_pdf
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:428
- * @route '/admin/dashboad/category/sub-category-page/export/pdf'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_pdf
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:422
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/pdf'
  */
 export_pdf.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: export_pdf.url(options),
     method: 'get',
 })
 /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_pdf
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:428
- * @route '/admin/dashboad/category/sub-category-page/export/pdf'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_pdf
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:422
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/pdf'
  */
 export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: export_pdf.url(options),
@@ -1251,9 +1251,9 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
     /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_pdf
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:428
- * @route '/admin/dashboad/category/sub-category-page/export/pdf'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_pdf
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:422
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/pdf'
  */
     const export_pdfForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
         action: export_pdf.url(options),
@@ -1261,18 +1261,18 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     })
 
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_pdf
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:428
- * @route '/admin/dashboad/category/sub-category-page/export/pdf'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_pdf
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:422
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/pdf'
  */
         export_pdfForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: export_pdf.url(options),
             method: 'get',
         })
             /**
-* @see \App\Http\Controllers\backend\cms\SubCategoryPageController::export_pdf
- * @see app/Http/Controllers/backend/cms/SubCategoryPageController.php:428
- * @route '/admin/dashboad/category/sub-category-page/export/pdf'
+* @see \App\Http\Controllers\backend\setting\SeoManageController::export_pdf
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:422
+ * @route '/admin/dashboad/manage/setting/manage/seo/export/pdf'
  */
         export_pdfForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
             action: export_pdf.url({
@@ -1285,7 +1285,7 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
     
     export_pdf.form = export_pdfForm
-const sub_category_page = {
+const manage_seo = {
     all: Object.assign(all, all),
 add: Object.assign(add, add),
 view: Object.assign(view, view),
@@ -1304,4 +1304,4 @@ export_csv: Object.assign(export_csv, export_csv),
 export_pdf: Object.assign(export_pdf, export_pdf),
 }
 
-export default sub_category_page
+export default manage_seo

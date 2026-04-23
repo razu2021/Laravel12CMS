@@ -22,7 +22,7 @@
     <meta name="pinterest-description" content="{{ $category->seo->pinterest_description ?? $category->seo->meta_description }}">
     @if($category->seo->structured_data)
     <script type="application/ld+json">
-            {!! $category->seo->structured_data !!}
+        {!! json_encode($category->seo->structured_data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) !!}
     </script>
 @endif
 @endif

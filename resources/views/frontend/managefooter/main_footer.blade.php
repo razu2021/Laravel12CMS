@@ -9,7 +9,6 @@
                     <h4> About us</h4>
                     @foreach($siteaddress->take(1) as $address)
                         <p> {{$address->description ?? ''}}</p>
-            
                         <h4>{{$address->title ?? ''}}</h4>
                         <address class="text-white">
                             {{$address->address ?? ''}}

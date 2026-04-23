@@ -173,7 +173,9 @@ class SiteInfromationController extends Controller
 
 
         // ----- insert record into database 
-        $update = SiteInfo::where('id',$id)->where('slug',$slug)->update([
+        $update = SiteInfo::where('id',$id)->where('slug',$slug)->firstOrFail();
+
+        $update->update([
             'site_name'=>$request->site_name,
             'site_title'=>$request->site_title,
             'site_slogan'=>$request->site_slogan,
@@ -232,11 +234,12 @@ class SiteInfromationController extends Controller
      * ======== Active Functionality Start here ==========
      */
     public function active($id,$slug){
-        $active = SiteInfo::where('id',$id)->where('slug',$slug)->where('public_status',0)->update([
+        $active = SiteInfo::where('id',$id)->where('slug',$slug)->where('public_status',0)->firstOrFail();
+        if($active){
+            $active->update([
             'public_status' => 1,
         ]);
 
-        if($active){
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -250,11 +253,12 @@ class SiteInfromationController extends Controller
      */
     public function deactive($id,$slug){
 
-        $active = SiteInfo::where('id',$id)->where('slug',$slug)->where('public_status',1)->update([
-            'public_status' => 0,
-        ]);
+        $active = SiteInfo::where('id',$id)->where('slug',$slug)->where('public_status',1)->firstOrFail();
 
         if($active){
+            $active->update([
+            'public_status' => 0,
+        ]);
             flash()->success('Status Updated Successfully !');
         }else{
             flash()->error('Status Updated Faild !');
@@ -363,16 +367,18 @@ class SiteInfromationController extends Controller
 
         // ---------- Multiple Items active code start here ----------
         if($action === 'active'){
-            $categorys = SiteInfo::whereIn('id',$ids)->where('public_status',0)->update([
-                'public_status'=>1,
-            ]);
+            $categorys = SiteInfo::whereIn('id',$ids)->where('public_status',0)->get();
+            foreach($categorys as $items){
+                $items->update(['public_status'=>1,]);
+            }
  
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
-            $categorys = SiteInfo::whereIn('id',$ids)->where('public_status',1)->update([
-                'public_status'=>0,
-            ]);
+            $categorys = SiteInfo::whereIn('id',$ids)->where('public_status',1)->get();
+            foreach($categorys as $items){
+                $items->update(['public_status'=>0,]);
+            }
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){

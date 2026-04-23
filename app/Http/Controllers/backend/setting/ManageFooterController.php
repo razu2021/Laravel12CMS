@@ -113,8 +113,8 @@ class ManageFooterController extends Controller
     public function insert(Request $request){
          /**--- validation code -- */
         $request->validate( [
-                'type' => ['required','string',Rule::unique('manageheaders','type')],
-                'theme' => ['required','string',Rule::unique('manageheaders','theme')],
+                'type' => ['required','string',Rule::unique('managefooters','type')],
+                'theme' => ['required','string',Rule::unique('managefooters','theme')],
                 'title' => ['required', 'string', 'max:255'],
 
             ],[
@@ -161,8 +161,8 @@ class ManageFooterController extends Controller
     public function update(Request $request){
          /**--- validation code -- */
         $request->validate( [
-                'type' => ['required','string',Rule::unique('manageheaders','type')->ignore($request->id)],
-                'theme' => ['required','string',Rule::unique('manageheaders','theme')->ignore($request->id)],
+                'type' => ['required','string',Rule::unique('managefooters','type')->ignore($request->id)],
+                'theme' => ['required','string',Rule::unique('managefooters','theme')->ignore($request->id)],
                 'title' => ['required', 'string', 'max:255'],
 
             ],[
