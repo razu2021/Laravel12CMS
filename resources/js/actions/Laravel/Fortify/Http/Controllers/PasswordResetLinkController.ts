@@ -134,8 +134,4 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     store.form = storeForm
 const PasswordResetLinkController = { create, store }
 
-export default PasswordResetLinkController    
-    store.form = storeForm
-const PasswordResetLinkController = { create, store }
-
 export default PasswordResetLinkController

@@ -1384,6 +1384,4 @@ getSubcategory.head = (args: { categoryId: string | number } | [categoryId: stri
     getSubcategory.form = getSubcategoryForm
 const ChildCategoryPageController = { index, add, view, edit, insert, update, active, deactive, softdelete, deleteMethod, recycle, bulkAction, exportPdf, export_excel, export_csv, export_pdf, getSubcategory, delete: deleteMethod }
 
-export default ChildCategoryPageControllerecycle, bulkAction, exportPdf, export_excel, export_csv, export_pdf, getSubcategory, delete: deleteMethod }
-
 export default ChildCategoryPageController
