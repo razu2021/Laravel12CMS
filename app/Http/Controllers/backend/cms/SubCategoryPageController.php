@@ -137,6 +137,7 @@ class SubCategoryPageController extends Controller
 
         // ---------- seo data insert into seo table 
         $insert->seo()->create([
+            'user_id'=>$creator_id,
             'meta_title'=>$insert->title ?? 'title',
             'meta_description'=>$insert->title ?? 'description',
             'slug'=>$slug,

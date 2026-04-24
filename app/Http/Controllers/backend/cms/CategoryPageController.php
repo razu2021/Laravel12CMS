@@ -127,6 +127,7 @@ class CategoryPageController extends Controller
 
         // ---------- seo data insert into seo table 
         $insert->seo()->create([
+            'user_id'=>$creator_id,
             'meta_title'=>$insert->title ?? 'title',
             'meta_description'=>$insert->title ?? 'description',
             'slug'=>$slug,
@@ -321,7 +322,11 @@ class CategoryPageController extends Controller
 
         // ---------- soft delete code start here 
         if($action === 'delete'){
-            $data = CategoryPage::whereIn('id',$ids)->delete();
+            $data = CategoryPage::whereIn('id',$ids)->get();
+            foreach($data as $items){
+                $items->delete();
+            }
+            flash()->success(' Informations deleted successfully.');
             return back();
         }
 

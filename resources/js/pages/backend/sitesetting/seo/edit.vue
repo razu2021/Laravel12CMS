@@ -3,7 +3,8 @@ import Button from '@/components/ui/button/Button.vue'
 import AdminLayout from '@/layouts/AdminLayout.vue'
 import { Head, Link, useForm } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
-
+import { useListManager } from '@/composables/useListManager'
+import { watch } from 'vue'
 
 const props= defineProps<{
     data: {
@@ -49,7 +50,7 @@ const form  = useForm(
     
     meta_title: props.data.meta_title,
     meta_description: props.data.meta_description,
-    meta_keywords: props.data.meta_keywords,
+    meta_keywords: props.data.meta_keywords || '',
     meta_robots: props.data.meta_robots,
     canonical_url: props.data.canonical_url,
     hreflang_tags: props.data.hreflang_tags,
@@ -73,12 +74,24 @@ const form  = useForm(
   })
 
 // ✅ wrap remembered data with useForm
+// --- ১. Meta Keywords এর জন্য ব্যবহার ---
+const { 
+    userInput: keywordInput, 
+    items: keywordList, 
+    addItem: addKeyword, 
+    removeItem: removeKeyword 
+} = useListManager(form.meta_keywords ? form.meta_keywords.split(',') : []);
+
+watch(keywordList, (newVal) => {
+    form.meta_keywords = newVal.join(',');
+}, { deep: true });
+
+
 
 
 // ✅ submit MUST use form
 const handleUpdate = () => {
   form.patch(route('manage_seo.update'))
-  
 }
 </script>
 
@@ -130,6 +143,9 @@ const handleUpdate = () => {
                 </div>
             
               <!-- end -->
+                
+
+
                 <div>
                     <label class="text-sm font-medium text-slate-600">Meta Title</label>
                     <input type="text" placeholder="Enter title" v-model="form.meta_title"
@@ -144,12 +160,20 @@ const handleUpdate = () => {
                     <div class="text-small text-red-500" v-if="form.errors.meta_description">{{ form.errors.meta_description }}</div>
                 </div>
                 <!-- end -->
-                <div>
-                    <label class="text-sm font-medium text-slate-600">Meta keywords</label>
-                    <input type="text" placeholder="Enter title" v-model="form.meta_keywords"
-                    class="mt-1 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm focus:border-indigo-500 focus:bg-white focus:ring-indigo-500">
-                    <div class="text-small text-red-500" v-if="form.errors.meta_keywords">{{ form.errors.meta_keywords }}</div>
-                </div>
+                    <div class="space-y-1">
+                        <label class="text-sm font-medium text-slate-600">Meta Keywords</label>
+                            <div class="flex flex-wrap gap-2 p-2 border rounded-md focus-within:ring-2 ring-blue-500 bg-white">
+                                <span v-for="(tag, index) in keywordList" :key="index" 
+                                    class="inline-flex items-center gap-1 px-3 py-1 bg-slate-700 text-white text-xs font-bold rounded-full">
+                                    {{ tag }}
+                                    <button type="button" @click="removeKeyword(index)" class="hover:text-red-200 ml-1">×</button>
+                                </span>
+                                <input v-model="keywordInput" @keydown.enter.prevent="addKeyword" @keydown.comma.prevent="addKeyword" 
+                                    placeholder="Add keywords..." class="flex-1 outline-none text-sm"/>
+                            </div>
+                        <div class="text-[10px] text-slate-400">Enter বা কমা (,) চেপে ট্যাগ অ্যাড করুন।</div>
+                        <div class="text-xs text-red-500 mt-1" v-if="form.errors.meta_keywords">{{ form.errors.meta_keywords }}</div>
+                    </div>
                 <!-- end -->
                 <div>
                     <label class="text-sm font-medium text-slate-600">Meta Robots</label>

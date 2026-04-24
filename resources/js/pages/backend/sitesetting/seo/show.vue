@@ -60,34 +60,29 @@ const {data} = defineProps<{
                       <!-- Table Body -->
                       <tbody class="divide-y divide-gray-200">
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800">Type</td>
+                          <td class="py-3 px-5 text-gray-800">Meta Title </td>
                           <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800">{{ data.type ?? '' }}</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.meta_title ?? '' }}</td>
                         </tr>
                         <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800">Phone</td>
+                          <td class="py-3 px-5 text-gray-800">Meta description </td>
                           <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800">{{ data.phone ?? '' }}</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.meta_description ?? '' }}</td>
                         </tr>
                         <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800"> Order</td>
+                          <td class="py-3 px-5 text-gray-800">Meta keywords </td>
                           <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800">{{ data.order ?? '0'}}</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.meta_keywords ?? '' }}</td>
                         </tr>
-                        <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800"> Title</td>
+                          <td class="py-3 px-5 text-gray-800">Meta Robots </td>
                           <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800">{{ data.title ?? ''}}</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.meta_robots ?? '' }}</td>
                         </tr>
-                        <!-- end -->
-                        <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800"> Description</td>
-                          <td class="py-3 px-5 text-gray-800">:</td>
-                          <td class="py-3 px-5 text-gray-800">{{ data.description ?? '' }}</td>
-                        </tr>
+
+
                         <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
                           <td class="py-3 px-5 text-gray-800">Slug</td>
@@ -156,7 +151,7 @@ const {data} = defineProps<{
                   </svg>
                   <span class="font-medium text-gray-700">Creator</span>
                 </div>
-                <span class="text-gray-800 font-semibold">{{ data.creator.name ?? ''}}</span>
+                <span class="text-gray-800 font-semibold">{{ data.creator.name ?? ' '}}</span>
               </div>
 
               <!-- Editor -->

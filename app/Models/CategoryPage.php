@@ -2,6 +2,7 @@
 namespace App\Models;
 
 use App\Observers\CategoryPageObserver;
+use App\Traits\HandleMorphDelete;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
@@ -10,6 +11,7 @@ class CategoryPage extends Model
 {
 
     use SoftDeletes;
+    use HandleMorphDelete;
 
     protected $primaryKey = 'id';
     protected $guarded = [];
