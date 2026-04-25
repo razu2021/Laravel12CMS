@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Traits;
 
 use App\Models\PageSection;
@@ -32,6 +31,21 @@ protected static function bootHandleMorphDelete(){
 // ========= define the morphrelations function 
 
 protected static function deleteMorphRelations($model,$isForce){
+
+    if(property_exists($model, 'cascadeRelations') && is_array($model->cascadeRelations)){
+        foreach($model->cascadeRelations as $relation){
+            if(method_exists($model, $relation)){
+                // get() করে প্রতিটি আইটেমকে আলাদাভাবে ধরা হচ্ছে
+                $model->$relation()->withTrashed()->get()->each(function ($item) use ($isForce) {
+                    // এখানে প্রতিটি $item এর ওপর আলাদাভাবে ডিলিট কল হবে
+                    // ফলে ওই চাইল্ডের ট্রেইট রান করবে এবং তার SEO ডিলিট করবে
+                    $isForce ? $item->forceDelete() : $item->delete();
+                });
+            }
+        }
+    }
+
+
 
 // ======== Delete SEO Table data 
     if(method_exists($model,'seo')){

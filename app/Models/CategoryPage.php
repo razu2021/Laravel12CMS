@@ -16,6 +16,7 @@ class CategoryPage extends Model
     protected $primaryKey = 'id';
     protected $guarded = [];
 
+    public $cascadeRelations = ['subCategory'];
 
     // --------- 
 

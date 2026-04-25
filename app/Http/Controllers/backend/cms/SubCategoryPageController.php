@@ -12,6 +12,7 @@ use App\Models\CategoryPage;
 use Illuminate\Support\Str;
 use App\Models\SubCategoryPage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
@@ -334,8 +335,13 @@ class SubCategoryPageController extends Controller
 
         // ---------- soft delete code start here 
         if($action === 'delete'){
-            $data = SubCategoryPage::whereIn('id',$ids)->delete();
-            return back();
+            $data = SubCategoryPage::whereIn('id',$ids)->get();
+            foreach($data as $items){
+                $items->delete();
+            }
+            flash()->success(' Informations deleted successfully.');
+            return redirect()->back();
+     
         }
 
         // ---------- Multiple Items active code start here ----------
@@ -344,7 +350,8 @@ class SubCategoryPageController extends Controller
             foreach($categorys as $items){
                 $items->update(['public_status'=>1,]);
             }
- 
+            flash()->success(' Informations Active successfully.');
+            return redirect()->back();
         }
         // ---------- Multiple Items Inactive code start here ----------
         if($action === 'InActive'){
@@ -352,6 +359,8 @@ class SubCategoryPageController extends Controller
             foreach($categorys as $items){
                 $items->update(['public_status'=>0,]);
             }
+            flash()->success(' Informations Inactive successfully.');
+            return redirect()->back();
         }
         // ---------- Multiple Items Heard Delete code start here ----------
         if($action === 'Heard_Delete'){
@@ -360,6 +369,8 @@ class SubCategoryPageController extends Controller
                 foreach ($categorys as $category) {
                     $category->forceDelete();
                 }
+            flash()->success(' Informations deleted successfully.');
+            return redirect()->back();
 
         }
         // ---------- Multiple Items Heard Delete code start here ----------
@@ -369,6 +380,8 @@ class SubCategoryPageController extends Controller
                 foreach ($categorys as $category) {
                     $category->restore();
                 }
+            flash()->success(' Informations Restore successfully.');
+            return redirect()->back();
 
         }
 

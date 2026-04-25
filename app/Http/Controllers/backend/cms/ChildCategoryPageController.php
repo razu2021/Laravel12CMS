@@ -342,7 +342,11 @@ class ChildCategoryPageController extends Controller
 
         // ---------- soft delete code start here 
         if($action === 'delete'){
-            $data = ChildCategoryPage::whereIn('id',$ids)->delete();
+            $data = ChildCategoryPage::whereIn('id',$ids)->get();
+            foreach($data as $items){
+                $items->delete();
+            }
+            flash()->success(' Informations deleted successfully.');
             return back();
         }
 

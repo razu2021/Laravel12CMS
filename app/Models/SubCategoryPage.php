@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Observers\SubCategoryPageObserver;
+use App\Traits\HandleMorphDelete;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
@@ -11,11 +12,12 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 class SubCategoryPage extends Model
 {
     use SoftDeletes;
+    use HandleMorphDelete;  // this is a delete traits 
 
     protected $primaryKey = 'id';
     protected $guarded = [];
 
-
+    public $cascadeRelations = ['childCategory'];
     // --------- 
 
     public function creator()

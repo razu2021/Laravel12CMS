@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Observers\ChildCategoryPageObserver;
+use App\Traits\HandleMorphDelete;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 class ChildCategoryPage extends Model
 {
     use SoftDeletes;
+    use HandleMorphDelete;
 
     protected $primaryKey = 'id';
     protected $guarded = [];

@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Hero;
+use App\Traits\HandleMorphDelete;
 use Illuminate\Support\Facades\Log;
 class PageSection extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes , HandleMorphDelete;
 
     protected $casts = [
     'payload_json' => 'array',
