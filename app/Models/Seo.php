@@ -20,12 +20,12 @@ class Seo extends Model
 
     public function creator()
     {
-        return $this->belongsTo(User::class, 'creator_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function editor()
     {
-        return $this->belongsTo(User::class, 'editor_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
 

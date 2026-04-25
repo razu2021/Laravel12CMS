@@ -60,29 +60,127 @@ const {data} = defineProps<{
                       <!-- Table Body -->
                       <tbody class="divide-y divide-gray-200">
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800">Meta Title </td>
+                          <td class="py-3 px-5 text-gray-800">Meta Title</td>
                           <td class="py-3 px-5 text-gray-800">:</td>
                           <td class="py-3 px-5 text-gray-800">{{ data.meta_title ?? '' }}</td>
                         </tr>
                         <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800">Meta description </td>
+                          <td class="py-3 px-5 text-gray-800">Meta Description</td>
                           <td class="py-3 px-5 text-gray-800">:</td>
                           <td class="py-3 px-5 text-gray-800">{{ data.meta_description ?? '' }}</td>
                         </tr>
                         <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800">Meta keywords </td>
+                          <td class="py-3 px-5 text-gray-800">Meta Keywords</td>
                           <td class="py-3 px-5 text-gray-800">:</td>
                           <td class="py-3 px-5 text-gray-800">{{ data.meta_keywords ?? '' }}</td>
                         </tr>
+                        <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
-                          <td class="py-3 px-5 text-gray-800">Meta Robots </td>
+                          <td class="py-3 px-5 text-gray-800">Meta Robots</td>
                           <td class="py-3 px-5 text-gray-800">:</td>
                           <td class="py-3 px-5 text-gray-800">{{ data.meta_robots ?? '' }}</td>
                         </tr>
-
-
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800"> Canonical url</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.canonical_url ?? '' }}</td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800"> hreflang tags</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.hreflang_tags ?? '' }}</td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">Structured data</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.structured_data ?? '' }}</td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">og Title</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.og_title ?? '' }}</td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">og Description</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.og_description ?? '' }}</td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">og URL</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.og_url ?? '' }}</td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">og Type</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.og_type ?? '' }}</td>
+                        </tr>
+                        <!-- end -->
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">og Locale</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.og_locale ?? '' }}</td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">Twitter Card</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.twitter_card ?? '' }}</td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">Twitter title</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.twitter_title ?? '' }}</td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">Twitter Description</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.twitter_description ?? '' }}</td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">Twitter site</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.twitter_site ?? '' }}</td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">Pinterest Description</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.pinterest_description ?? '' }}</td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">Pinterest Rich Pin</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.pinterest_rich_pin ?? '' }}</td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">Whatsapp Title</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.whatsapp_title ?? '' }}</td>
+                        </tr>
+                        <!-- end -->
+                        <tr class="hover:bg-blue-50 transition-colors duration-200">
+                          <td class="py-3 px-5 text-gray-800">Whatsapp Title</td>
+                          <td class="py-3 px-5 text-gray-800">:</td>
+                          <td class="py-3 px-5 text-gray-800">{{ data.whatsapp_description ?? '' }}</td>
+                        </tr>
+                        <!-- end -->
+                       
                         <!-- end -->
                         <tr class="hover:bg-blue-50 transition-colors duration-200">
                           <td class="py-3 px-5 text-gray-800">Slug</td>
@@ -151,7 +249,7 @@ const {data} = defineProps<{
                   </svg>
                   <span class="font-medium text-gray-700">Creator</span>
                 </div>
-                <span class="text-gray-800 font-semibold">{{ data.creator.name ?? ' '}}</span>
+                <span class="text-gray-800 font-semibold">{{ data.creator.name ?? ''}}</span>
               </div>
 
               <!-- Editor -->
@@ -163,7 +261,7 @@ const {data} = defineProps<{
                   <span class="font-medium text-gray-700"> Editor </span>
                 </div>
 
-                <span class="text-gray-800 font-semibold" v-if="data.editor">{{ data.editor.name ?? ' ' }}</span>
+                <span class="text-gray-800 font-semibold" v-if="data.editor">{{ data.editor.name ?? '' }}</span>
                 <span class="text-gray-800 font-semibold" v-else="data.editor">N/A</span>
               </div>
 

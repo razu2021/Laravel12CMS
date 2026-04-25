@@ -405,7 +405,10 @@ class PageSectionController extends Controller
 
         // ---------- soft delete code start here 
         if($action === 'delete'){
-            $data = PageSection::whereIn('id',$ids)->delete();
+            $data = PageSection::whereIn('id',$ids)->get();
+            foreach($data as $items){
+                $items->delete();
+            }
             return back();
         }
 

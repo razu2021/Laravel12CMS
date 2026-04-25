@@ -958,7 +958,7 @@ bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     bulkAction.form = bulkActionForm
 /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:423
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:427
  * @route '/admin/dashboad/category/child-category-page/export/single/pdf/{id}/{slug}'
  */
 export const single_pdf_export = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -973,7 +973,7 @@ single_pdf_export.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:423
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:427
  * @route '/admin/dashboad/category/child-category-page/export/single/pdf/{id}/{slug}'
  */
 single_pdf_export.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
@@ -999,7 +999,7 @@ single_pdf_export.url = (args: { id: string | number, slug: string | number } | 
 
 /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:423
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:427
  * @route '/admin/dashboad/category/child-category-page/export/single/pdf/{id}/{slug}'
  */
 single_pdf_export.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1008,7 +1008,7 @@ single_pdf_export.get = (args: { id: string | number, slug: string | number } | 
 })
 /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:423
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:427
  * @route '/admin/dashboad/category/child-category-page/export/single/pdf/{id}/{slug}'
  */
 single_pdf_export.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1018,7 +1018,7 @@ single_pdf_export.head = (args: { id: string | number, slug: string | number } |
 
     /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:423
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:427
  * @route '/admin/dashboad/category/child-category-page/export/single/pdf/{id}/{slug}'
  */
     const single_pdf_exportForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1028,7 +1028,7 @@ single_pdf_export.head = (args: { id: string | number, slug: string | number } |
 
             /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:423
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:427
  * @route '/admin/dashboad/category/child-category-page/export/single/pdf/{id}/{slug}'
  */
         single_pdf_exportForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1037,7 +1037,7 @@ single_pdf_export.head = (args: { id: string | number, slug: string | number } |
         })
             /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::single_pdf_export
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:423
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:427
  * @route '/admin/dashboad/category/child-category-page/export/single/pdf/{id}/{slug}'
  */
         single_pdf_exportForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1053,7 +1053,7 @@ single_pdf_export.head = (args: { id: string | number, slug: string | number } |
     single_pdf_export.form = single_pdf_exportForm
 /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_excel
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:452
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:456
  * @route '/admin/dashboad/category/child-category-page/export/excel'
  */
 export const export_excel = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1068,7 +1068,7 @@ export_excel.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_excel
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:452
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:456
  * @route '/admin/dashboad/category/child-category-page/export/excel'
  */
 export_excel.url = (options?: RouteQueryOptions) => {
@@ -1077,7 +1077,7 @@ export_excel.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_excel
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:452
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:456
  * @route '/admin/dashboad/category/child-category-page/export/excel'
  */
 export_excel.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1086,7 +1086,7 @@ export_excel.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_excel
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:452
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:456
  * @route '/admin/dashboad/category/child-category-page/export/excel'
  */
 export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1096,7 +1096,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_excel
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:452
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:456
  * @route '/admin/dashboad/category/child-category-page/export/excel'
  */
     const export_excelForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1106,7 +1106,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_excel
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:452
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:456
  * @route '/admin/dashboad/category/child-category-page/export/excel'
  */
         export_excelForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1115,7 +1115,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_excel
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:452
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:456
  * @route '/admin/dashboad/category/child-category-page/export/excel'
  */
         export_excelForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1131,7 +1131,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     export_excel.form = export_excelForm
 /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_csv
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:459
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:463
  * @route '/admin/dashboad/category/child-category-page/export/csv'
  */
 export const export_csv = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1146,7 +1146,7 @@ export_csv.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_csv
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:459
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:463
  * @route '/admin/dashboad/category/child-category-page/export/csv'
  */
 export_csv.url = (options?: RouteQueryOptions) => {
@@ -1155,7 +1155,7 @@ export_csv.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_csv
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:459
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:463
  * @route '/admin/dashboad/category/child-category-page/export/csv'
  */
 export_csv.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1164,7 +1164,7 @@ export_csv.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_csv
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:459
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:463
  * @route '/admin/dashboad/category/child-category-page/export/csv'
  */
 export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1174,7 +1174,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_csv
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:459
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:463
  * @route '/admin/dashboad/category/child-category-page/export/csv'
  */
     const export_csvForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1184,7 +1184,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_csv
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:459
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:463
  * @route '/admin/dashboad/category/child-category-page/export/csv'
  */
         export_csvForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1193,7 +1193,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_csv
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:459
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:463
  * @route '/admin/dashboad/category/child-category-page/export/csv'
  */
         export_csvForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1209,7 +1209,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     export_csv.form = export_csvForm
 /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_pdf
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:437
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:441
  * @route '/admin/dashboad/category/child-category-page/export/pdf'
  */
 export const export_pdf = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1224,7 +1224,7 @@ export_pdf.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_pdf
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:437
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:441
  * @route '/admin/dashboad/category/child-category-page/export/pdf'
  */
 export_pdf.url = (options?: RouteQueryOptions) => {
@@ -1233,7 +1233,7 @@ export_pdf.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_pdf
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:437
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:441
  * @route '/admin/dashboad/category/child-category-page/export/pdf'
  */
 export_pdf.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1242,7 +1242,7 @@ export_pdf.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_pdf
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:437
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:441
  * @route '/admin/dashboad/category/child-category-page/export/pdf'
  */
 export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1252,7 +1252,7 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_pdf
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:437
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:441
  * @route '/admin/dashboad/category/child-category-page/export/pdf'
  */
     const export_pdfForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1262,7 +1262,7 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_pdf
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:437
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:441
  * @route '/admin/dashboad/category/child-category-page/export/pdf'
  */
         export_pdfForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1271,7 +1271,7 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\cms\ChildCategoryPageController::export_pdf
- * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:437
+ * @see app/Http/Controllers/backend/cms/ChildCategoryPageController.php:441
  * @route '/admin/dashboad/category/child-category-page/export/pdf'
  */
         export_pdfForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

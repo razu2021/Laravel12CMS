@@ -198,6 +198,10 @@ class PageSection extends Model
 
 
 
+    // ==== morph delete code use for traits 
+    public function getCascadeRelations(){
+        return array_values($this->sectionRelations);
+    }
 
 
 

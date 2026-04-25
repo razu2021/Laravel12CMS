@@ -958,7 +958,7 @@ bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     bulkAction.form = bulkActionForm
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::exportPdf
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:484
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:487
  * @route '/admin/dashboad/manage/page-section/export/single/pdf/{id}/{slug}'
  */
 export const exportPdf = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -973,7 +973,7 @@ exportPdf.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::exportPdf
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:484
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:487
  * @route '/admin/dashboad/manage/page-section/export/single/pdf/{id}/{slug}'
  */
 exportPdf.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
@@ -999,7 +999,7 @@ exportPdf.url = (args: { id: string | number, slug: string | number } | [id: str
 
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::exportPdf
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:484
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:487
  * @route '/admin/dashboad/manage/page-section/export/single/pdf/{id}/{slug}'
  */
 exportPdf.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1008,7 +1008,7 @@ exportPdf.get = (args: { id: string | number, slug: string | number } | [id: str
 })
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::exportPdf
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:484
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:487
  * @route '/admin/dashboad/manage/page-section/export/single/pdf/{id}/{slug}'
  */
 exportPdf.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1018,7 +1018,7 @@ exportPdf.head = (args: { id: string | number, slug: string | number } | [id: st
 
     /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::exportPdf
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:484
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:487
  * @route '/admin/dashboad/manage/page-section/export/single/pdf/{id}/{slug}'
  */
     const exportPdfForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1028,7 +1028,7 @@ exportPdf.head = (args: { id: string | number, slug: string | number } | [id: st
 
             /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::exportPdf
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:484
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:487
  * @route '/admin/dashboad/manage/page-section/export/single/pdf/{id}/{slug}'
  */
         exportPdfForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1037,7 +1037,7 @@ exportPdf.head = (args: { id: string | number, slug: string | number } | [id: st
         })
             /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::exportPdf
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:484
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:487
  * @route '/admin/dashboad/manage/page-section/export/single/pdf/{id}/{slug}'
  */
         exportPdfForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1053,7 +1053,7 @@ exportPdf.head = (args: { id: string | number, slug: string | number } | [id: st
     exportPdf.form = exportPdfForm
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_excel
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:513
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:516
  * @route '/admin/dashboad/manage/page-section/export/excel'
  */
 export const export_excel = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1068,7 +1068,7 @@ export_excel.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_excel
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:513
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:516
  * @route '/admin/dashboad/manage/page-section/export/excel'
  */
 export_excel.url = (options?: RouteQueryOptions) => {
@@ -1077,7 +1077,7 @@ export_excel.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_excel
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:513
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:516
  * @route '/admin/dashboad/manage/page-section/export/excel'
  */
 export_excel.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1086,7 +1086,7 @@ export_excel.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_excel
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:513
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:516
  * @route '/admin/dashboad/manage/page-section/export/excel'
  */
 export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1096,7 +1096,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_excel
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:513
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:516
  * @route '/admin/dashboad/manage/page-section/export/excel'
  */
     const export_excelForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1106,7 +1106,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_excel
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:513
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:516
  * @route '/admin/dashboad/manage/page-section/export/excel'
  */
         export_excelForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1115,7 +1115,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_excel
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:513
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:516
  * @route '/admin/dashboad/manage/page-section/export/excel'
  */
         export_excelForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1131,7 +1131,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     export_excel.form = export_excelForm
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_csv
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:520
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:523
  * @route '/admin/dashboad/manage/page-section/export/csv'
  */
 export const export_csv = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1146,7 +1146,7 @@ export_csv.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_csv
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:520
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:523
  * @route '/admin/dashboad/manage/page-section/export/csv'
  */
 export_csv.url = (options?: RouteQueryOptions) => {
@@ -1155,7 +1155,7 @@ export_csv.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_csv
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:520
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:523
  * @route '/admin/dashboad/manage/page-section/export/csv'
  */
 export_csv.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1164,7 +1164,7 @@ export_csv.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_csv
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:520
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:523
  * @route '/admin/dashboad/manage/page-section/export/csv'
  */
 export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1174,7 +1174,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_csv
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:520
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:523
  * @route '/admin/dashboad/manage/page-section/export/csv'
  */
     const export_csvForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1184,7 +1184,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_csv
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:520
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:523
  * @route '/admin/dashboad/manage/page-section/export/csv'
  */
         export_csvForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1193,7 +1193,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_csv
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:520
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:523
  * @route '/admin/dashboad/manage/page-section/export/csv'
  */
         export_csvForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1209,7 +1209,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     export_csv.form = export_csvForm
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_pdf
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:498
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:501
  * @route '/admin/dashboad/manage/page-section/export/pdf'
  */
 export const export_pdf = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1224,7 +1224,7 @@ export_pdf.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_pdf
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:498
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:501
  * @route '/admin/dashboad/manage/page-section/export/pdf'
  */
 export_pdf.url = (options?: RouteQueryOptions) => {
@@ -1233,7 +1233,7 @@ export_pdf.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_pdf
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:498
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:501
  * @route '/admin/dashboad/manage/page-section/export/pdf'
  */
 export_pdf.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1242,7 +1242,7 @@ export_pdf.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_pdf
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:498
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:501
  * @route '/admin/dashboad/manage/page-section/export/pdf'
  */
 export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1252,7 +1252,7 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_pdf
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:498
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:501
  * @route '/admin/dashboad/manage/page-section/export/pdf'
  */
     const export_pdfForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1262,7 +1262,7 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_pdf
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:498
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:501
  * @route '/admin/dashboad/manage/page-section/export/pdf'
  */
         export_pdfForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1271,7 +1271,7 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::export_pdf
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:498
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:501
  * @route '/admin/dashboad/manage/page-section/export/pdf'
  */
         export_pdfForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1521,7 +1521,7 @@ getChildcategory.head = (options?: RouteQueryOptions): RouteDefinition<'head'> =
     getChildcategory.form = getChildcategoryForm
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::changeTheme
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:527
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:530
  * @route '/admin/dashboad/manage/page-section/change/section/theme/{id}/{slug}'
  */
 export const changeTheme = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1536,7 +1536,7 @@ changeTheme.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::changeTheme
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:527
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:530
  * @route '/admin/dashboad/manage/page-section/change/section/theme/{id}/{slug}'
  */
 changeTheme.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
@@ -1562,7 +1562,7 @@ changeTheme.url = (args: { id: string | number, slug: string | number } | [id: s
 
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::changeTheme
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:527
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:530
  * @route '/admin/dashboad/manage/page-section/change/section/theme/{id}/{slug}'
  */
 changeTheme.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1571,7 +1571,7 @@ changeTheme.get = (args: { id: string | number, slug: string | number } | [id: s
 })
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::changeTheme
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:527
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:530
  * @route '/admin/dashboad/manage/page-section/change/section/theme/{id}/{slug}'
  */
 changeTheme.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1581,7 +1581,7 @@ changeTheme.head = (args: { id: string | number, slug: string | number } | [id: 
 
     /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::changeTheme
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:527
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:530
  * @route '/admin/dashboad/manage/page-section/change/section/theme/{id}/{slug}'
  */
     const changeThemeForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1591,7 +1591,7 @@ changeTheme.head = (args: { id: string | number, slug: string | number } | [id: 
 
             /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::changeTheme
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:527
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:530
  * @route '/admin/dashboad/manage/page-section/change/section/theme/{id}/{slug}'
  */
         changeThemeForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1600,7 +1600,7 @@ changeTheme.head = (args: { id: string | number, slug: string | number } | [id: 
         })
             /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::changeTheme
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:527
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:530
  * @route '/admin/dashboad/manage/page-section/change/section/theme/{id}/{slug}'
  */
         changeThemeForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1616,7 +1616,7 @@ changeTheme.head = (args: { id: string | number, slug: string | number } | [id: 
     changeTheme.form = changeThemeForm
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::themeUpdate
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:536
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:539
  * @route '/admin/dashboad/manage/page-section/theme/update'
  */
 export const themeUpdate = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -1631,7 +1631,7 @@ themeUpdate.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::themeUpdate
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:536
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:539
  * @route '/admin/dashboad/manage/page-section/theme/update'
  */
 themeUpdate.url = (options?: RouteQueryOptions) => {
@@ -1640,7 +1640,7 @@ themeUpdate.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::themeUpdate
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:536
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:539
  * @route '/admin/dashboad/manage/page-section/theme/update'
  */
 themeUpdate.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -1650,7 +1650,7 @@ themeUpdate.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => (
 
     /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::themeUpdate
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:536
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:539
  * @route '/admin/dashboad/manage/page-section/theme/update'
  */
     const themeUpdateForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -1665,7 +1665,7 @@ themeUpdate.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => (
 
             /**
 * @see \App\Http\Controllers\backend\cms\PageSectionController::themeUpdate
- * @see app/Http/Controllers/backend/cms/PageSectionController.php:536
+ * @see app/Http/Controllers/backend/cms/PageSectionController.php:539
  * @route '/admin/dashboad/manage/page-section/theme/update'
  */
         themeUpdateForm.patch = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
