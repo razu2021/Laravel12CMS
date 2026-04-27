@@ -44,7 +44,7 @@ return new class extends Migration
                         // WhatsApp & Messenger Meta
                         $table->string('whatsapp_title')->nullable();
                         $table->text('whatsapp_description')->nullable();
-                        $table->string('seo_image')->nullable();
+                        $table->string('cover_image')->nullable();
                         // Defualt 
                         $table->string('slug',255)->nullable();
                         $table->integer('creator_id')->nullable();

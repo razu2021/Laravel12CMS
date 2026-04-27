@@ -144,7 +144,7 @@ return [
 
     'redis' => [
 
-        'client' => env('REDIS_CLIENT', 'phpredis'),
+        'client' => env('REDIS_CLIENT', 'predis'),
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
@@ -152,6 +152,7 @@ return [
             'persistent' => env('REDIS_PERSISTENT', false),
         ],
 
+        // Database 0: using for defualt work   
         'default' => [
             'url' => env('REDIS_URL'),
             'host' => env('REDIS_HOST', '127.0.0.1'),
@@ -165,6 +166,7 @@ return [
             'backoff_cap' => env('REDIS_BACKOFF_CAP', 1000),
         ],
 
+        // Database 1: using for cachign data for show data only . exmple. post,blog, service, or others 
         'cache' => [
             'url' => env('REDIS_URL'),
             'host' => env('REDIS_HOST', '127.0.0.1'),
@@ -177,6 +179,37 @@ return [
             'backoff_base' => env('REDIS_BACKOFF_BASE', 100),
             'backoff_cap' => env('REDIS_BACKOFF_CAP', 1000),
         ],
+
+        // Database 2: using for session store 
+            'session' => [
+                'url' => env('REDIS_URL'),
+                'host' => env('REDIS_HOST', '127.0.0.1'),
+                'username' => env('REDIS_USERNAME'),
+                'password' => env('REDIS_PASSWORD'),
+                'port' => env('REDIS_PORT', '6379'),
+                'database' => env('REDIS_SESSION_DB', '2'), // <--- ২ নম্বর ডাটাবেজ
+                'max_retries' => env('REDIS_MAX_RETRIES', 3),
+                'backoff_algorithm' => env('REDIS_BACKOFF_ALGORITHM', 'decorrelated_jitter'),
+                'backoff_base' => env('REDIS_BACKOFF_BASE', 100),
+                'backoff_cap' => env('REDIS_BACKOFF_CAP', 1000),
+            ],
+
+            // Database 3: using for Queue or large task background 
+            'queue' => [
+                'url' => env('REDIS_URL'),
+                'host' => env('REDIS_HOST', '127.0.0.1'),
+                'username' => env('REDIS_USERNAME'),
+                'password' => env('REDIS_PASSWORD'),
+                'port' => env('REDIS_PORT', '6379'),
+                'database' => env('REDIS_QUEUE_DB', '3'), // <--- ৩ নম্বর ডাটাবেজ
+                'max_retries' => env('REDIS_MAX_RETRIES', 3),
+                'backoff_algorithm' => env('REDIS_BACKOFF_ALGORITHM', 'decorrelated_jitter'),
+                'backoff_base' => env('REDIS_BACKOFF_BASE', 100),
+                'backoff_cap' => env('REDIS_BACKOFF_CAP', 1000),
+            ],
+
+
+
 
     ],
 

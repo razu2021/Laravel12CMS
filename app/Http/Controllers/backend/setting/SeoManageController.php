@@ -13,7 +13,8 @@ use App\Models\Seo;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
-
+use App\Services\ImageUploadService;
+use Illuminate\Support\Facades\File; 
 
 class SeoManageController extends Controller
 {
@@ -152,7 +153,7 @@ class SeoManageController extends Controller
         // ----- insert record into database 
         
         $update = Seo::where('id',$id)->where('slug',$slug)->firstOrFail();
-       
+        
 
             $structuredData = $request->input('structured_data');
 
@@ -173,7 +174,7 @@ class SeoManageController extends Controller
                 $structuredData = null;
             }
 
-           
+         
 
         if($update){
             $update->update([
@@ -199,6 +200,22 @@ class SeoManageController extends Controller
             'editor_id' => $editor_id,
             'updated_at' => Carbon::now()->toDateTimeString(),
         ]);
+
+        /**======== upload image via the service class start ====== */
+        if ($request->hasFile('cover_image')) {
+            //---- find old image for delete -----
+            $exixtimage = Seo::where('id', $id)->first();
+            $oldimage = $exixtimage->cover_image;
+            // upload image in local folder path via tha service class
+            $upload = (new ImageUploadService($request->file('cover_image')))
+                        ->setPath('uploads/website/')->setResize(1200, 800)->setOldImage($oldimage ?? '')->upload();
+            // ------  save image in database 
+            $insert = Seo::where('id', $id)
+                        ->where('slug', $slug)->update([
+                            'cover_image' => $upload,
+                        ]);
+            }
+
             flash()->success('Information Updated successfully!');
             return redirect()->route('manage_seo.view',[$id,$slug]);
         }else{

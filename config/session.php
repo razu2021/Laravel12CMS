@@ -70,10 +70,11 @@ return [
     | When using the "database" or "redis" session drivers, you may specify a
     | connection that should be used to manage these sessions. This should
     | correspond to a connection in your database configuration options.
+    |   razu--- session add 
     |
     */
 
-    'connection' => env('SESSION_CONNECTION'),
+    'connection' => env('SESSION_CONNECTION', null),
 
     /*
     |--------------------------------------------------------------------------

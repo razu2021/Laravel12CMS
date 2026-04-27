@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, type RouteFormDefinition, applyUrlDefaults } from './../../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::index
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:23
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:24
  * @route '/admin/dashboad/manage/setting/manage/seo/all'
  */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::index
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:23
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:24
  * @route '/admin/dashboad/manage/setting/manage/seo/all'
  */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::index
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:23
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:24
  * @route '/admin/dashboad/manage/setting/manage/seo/all'
  */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -34,7 +34,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::index
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:23
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:24
  * @route '/admin/dashboad/manage/setting/manage/seo/all'
  */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -44,7 +44,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::index
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:23
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:24
  * @route '/admin/dashboad/manage/setting/manage/seo/all'
  */
     const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -54,7 +54,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::index
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:23
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:24
  * @route '/admin/dashboad/manage/setting/manage/seo/all'
  */
         indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -63,7 +63,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::index
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:23
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:24
  * @route '/admin/dashboad/manage/setting/manage/seo/all'
  */
         indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -79,7 +79,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     index.form = indexForm
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::add
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:48
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:49
  * @route '/admin/dashboad/manage/setting/manage/seo/add'
  */
 export const add = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -94,7 +94,7 @@ add.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::add
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:48
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:49
  * @route '/admin/dashboad/manage/setting/manage/seo/add'
  */
 add.url = (options?: RouteQueryOptions) => {
@@ -103,7 +103,7 @@ add.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::add
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:48
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:49
  * @route '/admin/dashboad/manage/setting/manage/seo/add'
  */
 add.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -112,7 +112,7 @@ add.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::add
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:48
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:49
  * @route '/admin/dashboad/manage/setting/manage/seo/add'
  */
 add.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -122,7 +122,7 @@ add.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::add
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:48
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:49
  * @route '/admin/dashboad/manage/setting/manage/seo/add'
  */
     const addForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -132,7 +132,7 @@ add.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::add
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:48
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:49
  * @route '/admin/dashboad/manage/setting/manage/seo/add'
  */
         addForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -141,7 +141,7 @@ add.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::add
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:48
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:49
  * @route '/admin/dashboad/manage/setting/manage/seo/add'
  */
         addForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -157,7 +157,7 @@ add.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     add.form = addForm
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::view
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:57
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:58
  * @route '/admin/dashboad/manage/setting/manage/seo/view/{id}/{slug}'
  */
 export const view = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -172,7 +172,7 @@ view.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::view
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:57
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:58
  * @route '/admin/dashboad/manage/setting/manage/seo/view/{id}/{slug}'
  */
 view.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
@@ -198,7 +198,7 @@ view.url = (args: { id: string | number, slug: string | number } | [id: string |
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::view
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:57
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:58
  * @route '/admin/dashboad/manage/setting/manage/seo/view/{id}/{slug}'
  */
 view.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -207,7 +207,7 @@ view.get = (args: { id: string | number, slug: string | number } | [id: string |
 })
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::view
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:57
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:58
  * @route '/admin/dashboad/manage/setting/manage/seo/view/{id}/{slug}'
  */
 view.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -217,7 +217,7 @@ view.head = (args: { id: string | number, slug: string | number } | [id: string 
 
     /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::view
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:57
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:58
  * @route '/admin/dashboad/manage/setting/manage/seo/view/{id}/{slug}'
  */
     const viewForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -227,7 +227,7 @@ view.head = (args: { id: string | number, slug: string | number } | [id: string 
 
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::view
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:57
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:58
  * @route '/admin/dashboad/manage/setting/manage/seo/view/{id}/{slug}'
  */
         viewForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -236,7 +236,7 @@ view.head = (args: { id: string | number, slug: string | number } | [id: string 
         })
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::view
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:57
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:58
  * @route '/admin/dashboad/manage/setting/manage/seo/view/{id}/{slug}'
  */
         viewForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -252,7 +252,7 @@ view.head = (args: { id: string | number, slug: string | number } | [id: string 
     view.form = viewForm
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::edit
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:69
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:70
  * @route '/admin/dashboad/manage/setting/manage/seo/edit/{id}/{slug}'
  */
 export const edit = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -267,7 +267,7 @@ edit.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::edit
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:69
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:70
  * @route '/admin/dashboad/manage/setting/manage/seo/edit/{id}/{slug}'
  */
 edit.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
@@ -293,7 +293,7 @@ edit.url = (args: { id: string | number, slug: string | number } | [id: string |
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::edit
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:69
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:70
  * @route '/admin/dashboad/manage/setting/manage/seo/edit/{id}/{slug}'
  */
 edit.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -302,7 +302,7 @@ edit.get = (args: { id: string | number, slug: string | number } | [id: string |
 })
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::edit
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:69
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:70
  * @route '/admin/dashboad/manage/setting/manage/seo/edit/{id}/{slug}'
  */
 edit.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -312,7 +312,7 @@ edit.head = (args: { id: string | number, slug: string | number } | [id: string 
 
     /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::edit
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:69
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:70
  * @route '/admin/dashboad/manage/setting/manage/seo/edit/{id}/{slug}'
  */
     const editForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -322,7 +322,7 @@ edit.head = (args: { id: string | number, slug: string | number } | [id: string 
 
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::edit
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:69
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:70
  * @route '/admin/dashboad/manage/setting/manage/seo/edit/{id}/{slug}'
  */
         editForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -331,7 +331,7 @@ edit.head = (args: { id: string | number, slug: string | number } | [id: string 
         })
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::edit
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:69
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:70
  * @route '/admin/dashboad/manage/setting/manage/seo/edit/{id}/{slug}'
  */
         editForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -347,7 +347,7 @@ edit.head = (args: { id: string | number, slug: string | number } | [id: string 
     edit.form = editForm
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::insert
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:86
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:87
  * @route '/admin/dashboad/manage/setting/manage/seo/submit'
  */
 export const insert = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -362,7 +362,7 @@ insert.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::insert
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:86
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:87
  * @route '/admin/dashboad/manage/setting/manage/seo/submit'
  */
 insert.url = (options?: RouteQueryOptions) => {
@@ -371,7 +371,7 @@ insert.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::insert
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:86
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:87
  * @route '/admin/dashboad/manage/setting/manage/seo/submit'
  */
 insert.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -381,7 +381,7 @@ insert.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::insert
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:86
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:87
  * @route '/admin/dashboad/manage/setting/manage/seo/submit'
  */
     const insertForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -391,7 +391,7 @@ insert.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::insert
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:86
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:87
  * @route '/admin/dashboad/manage/setting/manage/seo/submit'
  */
         insertForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -402,7 +402,7 @@ insert.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     insert.form = insertForm
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::update
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:135
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:136
  * @route '/admin/dashboad/manage/setting/manage/seo/update'
  */
 export const update = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -417,7 +417,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::update
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:135
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:136
  * @route '/admin/dashboad/manage/setting/manage/seo/update'
  */
 update.url = (options?: RouteQueryOptions) => {
@@ -426,7 +426,7 @@ update.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::update
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:135
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:136
  * @route '/admin/dashboad/manage/setting/manage/seo/update'
  */
 update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -436,7 +436,7 @@ update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::update
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:135
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:136
  * @route '/admin/dashboad/manage/setting/manage/seo/update'
  */
     const updateForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -451,7 +451,7 @@ update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::update
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:135
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:136
  * @route '/admin/dashboad/manage/setting/manage/seo/update'
  */
         updateForm.patch = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -467,7 +467,7 @@ update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     update.form = updateForm
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::active
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:216
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:233
  * @route '/admin/dashboad/manage/setting/manage/seo/active/{id}/{slug}'
  */
 export const active = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -482,7 +482,7 @@ active.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::active
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:216
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:233
  * @route '/admin/dashboad/manage/setting/manage/seo/active/{id}/{slug}'
  */
 active.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
@@ -508,7 +508,7 @@ active.url = (args: { id: string | number, slug: string | number } | [id: string
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::active
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:216
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:233
  * @route '/admin/dashboad/manage/setting/manage/seo/active/{id}/{slug}'
  */
 active.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -517,7 +517,7 @@ active.get = (args: { id: string | number, slug: string | number } | [id: string
 })
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::active
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:216
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:233
  * @route '/admin/dashboad/manage/setting/manage/seo/active/{id}/{slug}'
  */
 active.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -527,7 +527,7 @@ active.head = (args: { id: string | number, slug: string | number } | [id: strin
 
     /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::active
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:216
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:233
  * @route '/admin/dashboad/manage/setting/manage/seo/active/{id}/{slug}'
  */
     const activeForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -537,7 +537,7 @@ active.head = (args: { id: string | number, slug: string | number } | [id: strin
 
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::active
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:216
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:233
  * @route '/admin/dashboad/manage/setting/manage/seo/active/{id}/{slug}'
  */
         activeForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -546,7 +546,7 @@ active.head = (args: { id: string | number, slug: string | number } | [id: strin
         })
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::active
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:216
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:233
  * @route '/admin/dashboad/manage/setting/manage/seo/active/{id}/{slug}'
  */
         activeForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -562,7 +562,7 @@ active.head = (args: { id: string | number, slug: string | number } | [id: strin
     active.form = activeForm
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::deactive
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:232
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:249
  * @route '/admin/dashboad/manage/setting/manage/seo/deactive/{id}/{slug}'
  */
 export const deactive = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -577,7 +577,7 @@ deactive.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::deactive
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:232
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:249
  * @route '/admin/dashboad/manage/setting/manage/seo/deactive/{id}/{slug}'
  */
 deactive.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
@@ -603,7 +603,7 @@ deactive.url = (args: { id: string | number, slug: string | number } | [id: stri
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::deactive
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:232
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:249
  * @route '/admin/dashboad/manage/setting/manage/seo/deactive/{id}/{slug}'
  */
 deactive.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -612,7 +612,7 @@ deactive.get = (args: { id: string | number, slug: string | number } | [id: stri
 })
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::deactive
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:232
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:249
  * @route '/admin/dashboad/manage/setting/manage/seo/deactive/{id}/{slug}'
  */
 deactive.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -622,7 +622,7 @@ deactive.head = (args: { id: string | number, slug: string | number } | [id: str
 
     /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::deactive
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:232
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:249
  * @route '/admin/dashboad/manage/setting/manage/seo/deactive/{id}/{slug}'
  */
     const deactiveForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -632,7 +632,7 @@ deactive.head = (args: { id: string | number, slug: string | number } | [id: str
 
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::deactive
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:232
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:249
  * @route '/admin/dashboad/manage/setting/manage/seo/deactive/{id}/{slug}'
  */
         deactiveForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -641,7 +641,7 @@ deactive.head = (args: { id: string | number, slug: string | number } | [id: str
         })
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::deactive
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:232
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:249
  * @route '/admin/dashboad/manage/setting/manage/seo/deactive/{id}/{slug}'
  */
         deactiveForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -657,7 +657,7 @@ deactive.head = (args: { id: string | number, slug: string | number } | [id: str
     deactive.form = deactiveForm
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::softdelete
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:247
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:264
  * @route '/admin/dashboad/manage/setting/manage/seo/softdelete/{id}'
  */
 export const softdelete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -672,7 +672,7 @@ softdelete.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::softdelete
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:247
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:264
  * @route '/admin/dashboad/manage/setting/manage/seo/softdelete/{id}'
  */
 softdelete.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -700,7 +700,7 @@ softdelete.url = (args: { id: string | number } | [id: string | number ] | strin
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::softdelete
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:247
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:264
  * @route '/admin/dashboad/manage/setting/manage/seo/softdelete/{id}'
  */
 softdelete.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -710,7 +710,7 @@ softdelete.delete = (args: { id: string | number } | [id: string | number ] | st
 
     /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::softdelete
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:247
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:264
  * @route '/admin/dashboad/manage/setting/manage/seo/softdelete/{id}'
  */
     const softdeleteForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -725,7 +725,7 @@ softdelete.delete = (args: { id: string | number } | [id: string | number ] | st
 
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::softdelete
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:247
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:264
  * @route '/admin/dashboad/manage/setting/manage/seo/softdelete/{id}'
  */
         softdeleteForm.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -741,7 +741,7 @@ softdelete.delete = (args: { id: string | number } | [id: string | number ] | st
     softdelete.form = softdeleteForm
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::deleteMethod
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:262
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:279
  * @route '/admin/dashboad/manage/setting/manage/seo/delete/{id}'
  */
 export const deleteMethod = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -756,7 +756,7 @@ deleteMethod.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::deleteMethod
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:262
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:279
  * @route '/admin/dashboad/manage/setting/manage/seo/delete/{id}'
  */
 deleteMethod.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -784,7 +784,7 @@ deleteMethod.url = (args: { id: string | number } | [id: string | number ] | str
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::deleteMethod
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:262
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:279
  * @route '/admin/dashboad/manage/setting/manage/seo/delete/{id}'
  */
 deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -794,7 +794,7 @@ deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | 
 
     /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::deleteMethod
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:262
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:279
  * @route '/admin/dashboad/manage/setting/manage/seo/delete/{id}'
  */
     const deleteMethodForm = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -809,7 +809,7 @@ deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | 
 
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::deleteMethod
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:262
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:279
  * @route '/admin/dashboad/manage/setting/manage/seo/delete/{id}'
  */
         deleteMethodForm.delete = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -825,7 +825,7 @@ deleteMethod.delete = (args: { id: string | number } | [id: string | number ] | 
     deleteMethod.form = deleteMethodForm
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::recycle
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:278
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:295
  * @route '/admin/dashboad/manage/setting/manage/seo/recycle'
  */
 export const recycle = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -840,7 +840,7 @@ recycle.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::recycle
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:278
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:295
  * @route '/admin/dashboad/manage/setting/manage/seo/recycle'
  */
 recycle.url = (options?: RouteQueryOptions) => {
@@ -849,7 +849,7 @@ recycle.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::recycle
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:278
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:295
  * @route '/admin/dashboad/manage/setting/manage/seo/recycle'
  */
 recycle.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -858,7 +858,7 @@ recycle.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::recycle
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:278
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:295
  * @route '/admin/dashboad/manage/setting/manage/seo/recycle'
  */
 recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -868,7 +868,7 @@ recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::recycle
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:278
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:295
  * @route '/admin/dashboad/manage/setting/manage/seo/recycle'
  */
     const recycleForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -878,7 +878,7 @@ recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::recycle
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:278
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:295
  * @route '/admin/dashboad/manage/setting/manage/seo/recycle'
  */
         recycleForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -887,7 +887,7 @@ recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::recycle
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:278
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:295
  * @route '/admin/dashboad/manage/setting/manage/seo/recycle'
  */
         recycleForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -903,7 +903,7 @@ recycle.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     recycle.form = recycleForm
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::bulkAction
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:312
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:329
  * @route '/admin/dashboad/manage/setting/manage/seo/bulk/action'
  */
 export const bulkAction = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -918,7 +918,7 @@ bulkAction.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::bulkAction
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:312
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:329
  * @route '/admin/dashboad/manage/setting/manage/seo/bulk/action'
  */
 bulkAction.url = (options?: RouteQueryOptions) => {
@@ -927,7 +927,7 @@ bulkAction.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::bulkAction
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:312
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:329
  * @route '/admin/dashboad/manage/setting/manage/seo/bulk/action'
  */
 bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -937,7 +937,7 @@ bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::bulkAction
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:312
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:329
  * @route '/admin/dashboad/manage/setting/manage/seo/bulk/action'
  */
     const bulkActionForm = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -947,7 +947,7 @@ bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::bulkAction
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:312
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:329
  * @route '/admin/dashboad/manage/setting/manage/seo/bulk/action'
  */
         bulkActionForm.post = (options?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -958,7 +958,7 @@ bulkAction.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     bulkAction.form = bulkActionForm
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::exportPdf
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:408
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:425
  * @route '/admin/dashboad/manage/setting/manage/seo/export/single/pdf/{id}/{slug}'
  */
 export const exportPdf = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -973,7 +973,7 @@ exportPdf.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::exportPdf
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:408
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:425
  * @route '/admin/dashboad/manage/setting/manage/seo/export/single/pdf/{id}/{slug}'
  */
 exportPdf.url = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions) => {
@@ -999,7 +999,7 @@ exportPdf.url = (args: { id: string | number, slug: string | number } | [id: str
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::exportPdf
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:408
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:425
  * @route '/admin/dashboad/manage/setting/manage/seo/export/single/pdf/{id}/{slug}'
  */
 exportPdf.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1008,7 +1008,7 @@ exportPdf.get = (args: { id: string | number, slug: string | number } | [id: str
 })
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::exportPdf
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:408
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:425
  * @route '/admin/dashboad/manage/setting/manage/seo/export/single/pdf/{id}/{slug}'
  */
 exportPdf.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1018,7 +1018,7 @@ exportPdf.head = (args: { id: string | number, slug: string | number } | [id: st
 
     /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::exportPdf
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:408
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:425
  * @route '/admin/dashboad/manage/setting/manage/seo/export/single/pdf/{id}/{slug}'
  */
     const exportPdfForm = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1028,7 +1028,7 @@ exportPdf.head = (args: { id: string | number, slug: string | number } | [id: st
 
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::exportPdf
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:408
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:425
  * @route '/admin/dashboad/manage/setting/manage/seo/export/single/pdf/{id}/{slug}'
  */
         exportPdfForm.get = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1037,7 +1037,7 @@ exportPdf.head = (args: { id: string | number, slug: string | number } | [id: st
         })
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::exportPdf
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:408
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:425
  * @route '/admin/dashboad/manage/setting/manage/seo/export/single/pdf/{id}/{slug}'
  */
         exportPdfForm.head = (args: { id: string | number, slug: string | number } | [id: string | number, slug: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1053,7 +1053,7 @@ exportPdf.head = (args: { id: string | number, slug: string | number } | [id: st
     exportPdf.form = exportPdfForm
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_excel
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:437
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:454
  * @route '/admin/dashboad/manage/setting/manage/seo/export/excel'
  */
 export const export_excel = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1068,7 +1068,7 @@ export_excel.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_excel
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:437
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:454
  * @route '/admin/dashboad/manage/setting/manage/seo/export/excel'
  */
 export_excel.url = (options?: RouteQueryOptions) => {
@@ -1077,7 +1077,7 @@ export_excel.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_excel
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:437
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:454
  * @route '/admin/dashboad/manage/setting/manage/seo/export/excel'
  */
 export_excel.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1086,7 +1086,7 @@ export_excel.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_excel
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:437
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:454
  * @route '/admin/dashboad/manage/setting/manage/seo/export/excel'
  */
 export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1096,7 +1096,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_excel
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:437
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:454
  * @route '/admin/dashboad/manage/setting/manage/seo/export/excel'
  */
     const export_excelForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1106,7 +1106,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_excel
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:437
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:454
  * @route '/admin/dashboad/manage/setting/manage/seo/export/excel'
  */
         export_excelForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1115,7 +1115,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_excel
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:437
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:454
  * @route '/admin/dashboad/manage/setting/manage/seo/export/excel'
  */
         export_excelForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1131,7 +1131,7 @@ export_excel.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     export_excel.form = export_excelForm
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_csv
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:444
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:461
  * @route '/admin/dashboad/manage/setting/manage/seo/export/csv'
  */
 export const export_csv = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1146,7 +1146,7 @@ export_csv.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_csv
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:444
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:461
  * @route '/admin/dashboad/manage/setting/manage/seo/export/csv'
  */
 export_csv.url = (options?: RouteQueryOptions) => {
@@ -1155,7 +1155,7 @@ export_csv.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_csv
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:444
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:461
  * @route '/admin/dashboad/manage/setting/manage/seo/export/csv'
  */
 export_csv.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1164,7 +1164,7 @@ export_csv.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_csv
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:444
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:461
  * @route '/admin/dashboad/manage/setting/manage/seo/export/csv'
  */
 export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1174,7 +1174,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_csv
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:444
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:461
  * @route '/admin/dashboad/manage/setting/manage/seo/export/csv'
  */
     const export_csvForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1184,7 +1184,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_csv
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:444
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:461
  * @route '/admin/dashboad/manage/setting/manage/seo/export/csv'
  */
         export_csvForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1193,7 +1193,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_csv
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:444
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:461
  * @route '/admin/dashboad/manage/setting/manage/seo/export/csv'
  */
         export_csvForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1209,7 +1209,7 @@ export_csv.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     export_csv.form = export_csvForm
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_pdf
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:422
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:439
  * @route '/admin/dashboad/manage/setting/manage/seo/export/pdf'
  */
 export const export_pdf = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1224,7 +1224,7 @@ export_pdf.definition = {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_pdf
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:422
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:439
  * @route '/admin/dashboad/manage/setting/manage/seo/export/pdf'
  */
 export_pdf.url = (options?: RouteQueryOptions) => {
@@ -1233,7 +1233,7 @@ export_pdf.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_pdf
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:422
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:439
  * @route '/admin/dashboad/manage/setting/manage/seo/export/pdf'
  */
 export_pdf.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -1242,7 +1242,7 @@ export_pdf.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_pdf
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:422
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:439
  * @route '/admin/dashboad/manage/setting/manage/seo/export/pdf'
  */
 export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -1252,7 +1252,7 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_pdf
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:422
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:439
  * @route '/admin/dashboad/manage/setting/manage/seo/export/pdf'
  */
     const export_pdfForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1262,7 +1262,7 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_pdf
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:422
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:439
  * @route '/admin/dashboad/manage/setting/manage/seo/export/pdf'
  */
         export_pdfForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -1271,7 +1271,7 @@ export_pdf.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\backend\setting\SeoManageController::export_pdf
- * @see app/Http/Controllers/backend/setting/SeoManageController.php:422
+ * @see app/Http/Controllers/backend/setting/SeoManageController.php:439
  * @route '/admin/dashboad/manage/setting/manage/seo/export/pdf'
  */
         export_pdfForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
