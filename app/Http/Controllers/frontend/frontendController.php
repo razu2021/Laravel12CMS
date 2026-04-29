@@ -18,27 +18,55 @@ use App\Models\SubCategoryPage;
 use App\Models\Team;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Cache;
 
 class frontendController extends Controller
 {
     //---------- home page function start here 
 
     public function index(){
+        $cacheKey = 'frontend_home_page_data';
+        $category = Cache::rememberForever($cacheKey, function () {
+            $data = CategoryPage::with(['seo','getCategorySection'=>function($q){
+                $q->where('public_status',1)->orderBy('order','asc');
+            }])->where('public_status',1)->orderBy('order','asc')->first();
 
-        $category = CategoryPage::with(['getCategorySection','seo'])->where('public_status',1)->where('name','home')->first();
+            // ---------- call private function 
+            return $this->loadPageSections($data);
+    
+        });
+        
+
+        if (!$category) {
+            return "No data found for 'home'.";
+        }
 
         return view('frontend.index',compact('category'));
+
     }
 
 
-    public function categoryPage($category){
+    public function categoryPage($category) {
+        
+        $cacheKey = "frontend_page_{$category}";
 
-        $category = CategoryPage::with(['getCategorySection','seo'])->where('public_status',1)->where('url',$category)->first();
-   
+        $categoryData = Cache::rememberForever($cacheKey, function () use ($category) {
+            $data = CategoryPage::with(['seo', 'getCategorySection' => function($q) {
+                $q->where('public_status', 1)->orderBy('order', 'asc');
+            }])
+            ->where('public_status', 1)
+            ->where('url', $category) // এখানে $category স্লাগটি কাজ করবে
+            ->first();
 
-        return view('frontend.category',compact('category'));
+            // আপনার সেই প্রাইভেট ফাংশনটি কল করা হলো
+            return $this->loadPageSections($data);
+        });
 
+        if (!$categoryData) {
+            abort(404); // ডাটা না থাকলে ৪MD৪ পেজ দেখাবে
+        }
+
+        return view('frontend.category', ['category' => $categoryData]);
     }
 
 
@@ -187,8 +215,20 @@ class frontendController extends Controller
 
 
 
+// ============= loaded page section private function start here ================
+// ata ekta private function just page er section gulo load kora junno 
 
-
+private function loadPageSections($data) {
+    if ($data && $data->getCategorySection) {
+        foreach ($data->getCategorySection as $section) {
+            $relation = $section->sectionRelations[$section->dynamic_route] ?? null;
+            if ($relation && method_exists($section, $relation)) {
+                $section->load($relation);
+            }
+        }
+    }
+    return $data;
+}
 
 
 

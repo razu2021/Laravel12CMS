@@ -10,6 +10,7 @@ use Closure;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class VerifyLicense
 {
@@ -21,7 +22,12 @@ class VerifyLicense
 
     public function handle(Request $request, Closure $next): Response
     {
-        $data = License::first();
+
+        $data = Cache::rememberForever('license_status', function () {
+            return License::first();
+        });
+
+     
 
         if(!$data){
             return response()->view('errors.license', ['message' => "No activation record found!"], 403);

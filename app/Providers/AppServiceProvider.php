@@ -29,12 +29,12 @@ class AppServiceProvider extends ServiceProvider
 
         /**============ share frontend data ============== */
 
-        view::composer('layouts.frontend',function($view){
-            $view->with([
-                'categorys' => CategoryPage::with(['subCategory','subCategory.childCategory'])->whereNotIn('url',['index','home'])->where('public_status',1)->orderBy('order','asc')->get(),
+        // view::composer('layouts.frontend',function($view){
+        //     $view->with([
+        //         'categorys' => CategoryPage::with(['subCategory','subCategory.childCategory'])->whereNotIn('url',['index','home'])->where('public_status',1)->orderBy('order','asc')->get(),
                 
-            ]);
-        });
+        //     ]);
+        // });
 
 
 

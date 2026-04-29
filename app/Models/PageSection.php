@@ -138,19 +138,13 @@ class PageSection extends Model
             return collect(); // empty collection if no relation
         }
 
-        // if (!$this->relationLoaded($relation)) {
-        //     $this->load($relation); // eager load if not already loaded
-        // }
+        if (!$this->relationLoaded($relation)) {
+            $this->load($relation); // eager load if not already loaded
+        }
 
-       $cacheKey = "page_section_forever_{$this->id}_{$this->dynamic_route}";
+     
 
-        // ৩. ক্যাশ থেকে ডাটা নেওয়া অথবা ডাটাবেস থেকে তুলে ক্যাশে রাখা
-            return cache()->rememberForever($cacheKey, function () use ($relation) {
-                // ক্লোজার ফাংশনের ভেতর রিলেশন কুয়েরি চালানো
-                return $this->$relation()->get();
-            });
-
-        //return $this->$relation;
+        return $this->$relation;
 
       
     }
