@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\CacheBuster;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 class Blog extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,CacheBuster;
 
     protected $primaryKey = 'id';
     protected $guarded = [];
@@ -31,5 +32,10 @@ class Blog extends Model
     // get data by assending order 
     public function scopeOrdered($query){
         return $query->orderBy('order','asc');
+    }
+
+        // ------------ relations design with parent model pagesection model 
+    public function pageSection(){
+        return $this->belongsTo(PageSection::class,'page_section_id','id');
     }
 }

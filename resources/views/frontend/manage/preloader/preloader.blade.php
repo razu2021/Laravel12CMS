@@ -67,7 +67,7 @@
 @endif
 
 
-
+@if (!empty($preloader) && $preloader->count() > 0)
 <script>
 window.addEventListener("load", function(){
     const preloader = document.getElementById("preloader");
@@ -79,3 +79,4 @@ window.addEventListener("load", function(){
     },400);
 });
 </script>
+@endif

@@ -17,7 +17,7 @@ class PageSection extends Model
     protected $primaryKey = 'id';
     protected $guarded = [];
 
-
+    public $cascadeRelations = ['postSection'];
     // --------- 
 
     public function creator()
@@ -32,7 +32,7 @@ class PageSection extends Model
     
 
 
-    //=== define Relationship with Section Content model ->>>>>>>> start here =========
+    //=== define Relationship with Section Content model  start here =========
     public function aboutSection(){
         return $this->hasMany(About::class,'page_section_id','id')->with(['features' =>function($q){$q->active()->ordered();}])->where('public_status', 1)->orderBy('order','desc');
     }
@@ -138,11 +138,19 @@ class PageSection extends Model
             return collect(); // empty collection if no relation
         }
 
-        if (!$this->relationLoaded($relation)) {
-            $this->load($relation); // eager load if not already loaded
-        }
+        // if (!$this->relationLoaded($relation)) {
+        //     $this->load($relation); // eager load if not already loaded
+        // }
 
-        return $this->$relation;
+       $cacheKey = "page_section_forever_{$this->id}_{$this->dynamic_route}";
+
+        // ৩. ক্যাশ থেকে ডাটা নেওয়া অথবা ডাটাবেস থেকে তুলে ক্যাশে রাখা
+            return cache()->rememberForever($cacheKey, function () use ($relation) {
+                // ক্লোজার ফাংশনের ভেতর রিলেশন কুয়েরি চালানো
+                return $this->$relation()->get();
+            });
+
+        //return $this->$relation;
 
       
     }
@@ -198,10 +206,6 @@ class PageSection extends Model
 
 
 
-    // ==== morph delete code use for traits 
-    public function getCascadeRelations(){
-        return array_values($this->sectionRelations);
-    }
 
 
 
