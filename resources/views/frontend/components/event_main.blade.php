@@ -1,4 +1,4 @@
-@if(!empty($contents) && $contents->count() > 0)
+@if($contents)
 <section class="pt-5">
     <div class="container py-5">
        <div class="mb-5">

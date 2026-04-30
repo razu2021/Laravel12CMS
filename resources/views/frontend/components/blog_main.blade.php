@@ -1,9 +1,10 @@
-@if(!empty($contents) && $contents->count() > 0)
+@if(isset($contents) && $contents->isNotEmpty())
 <section class="pt-5">
     <div class="container py-5">
        <div class="mb-5">
         <!-- section heading start here  -->
         @includeif('frontend/components/ui/sectionheading2', ['data' => $sectionsdata,]) 
+       
         <!--section heading end here -->
        </div>
         <div class="row">
@@ -11,7 +12,7 @@
             <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 col-xxl-3 mb-3 gap-3">
                 <div class="card1">
                     <div class="card1-img">
-                        <img src="{{ asset($blog->cover_image ?? 'https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=800&auto=format&fit=crop') }}" alt="card image">
+                        <img src="{{ asset($blog->cover_image ?? 'https://images.unsplash.com/photo-1559028012-481c04fa702d?q=80&w=800&auto=format&fit=crop') }}" alt="card image" loading="lazy">
                     </div>
 
                     <div class="card1-body">
@@ -22,7 +23,7 @@
                         </h4>
 
                         <p class="card1-text">
-                           {{Str::words($blog->short_des, 20 ?? '')}}
+                           {{Str::words($blog->short_des ?? '' , 20 )}}
                         </p>
 
                         <div class="card1-footer">

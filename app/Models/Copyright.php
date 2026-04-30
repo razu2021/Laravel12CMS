@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Observers\CopyrightObserver;
+use App\Traits\CacheBuster;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 #[ObservedBy([CopyrightObserver::class])]
 class Copyright extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,CacheBuster;
 
     protected $primaryKey = 'id';
     protected $guarded = [];

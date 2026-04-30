@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Observers\ChildCategoryPageObserver;
+use App\Traits\CacheBuster;
 use App\Traits\HandleMorphDelete;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,6 +13,7 @@ class ChildCategoryPage extends Model
 {
     use SoftDeletes;
     use HandleMorphDelete;
+    use CacheBuster;
 
     protected $primaryKey = 'id';
     protected $guarded = [];
@@ -39,9 +41,8 @@ class ChildCategoryPage extends Model
     /**===========  section get === */
 
     public function getCategorySection(){
-        return $this->morphMany(PageSection::class, 'sectionable');
+        return $this->morphMany(PageSection::class, 'sectionable')->where('public_status',1)->orderBy('order','asc');
     }
-
 
     // get active data 
     public function scopeActive($query){

@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Hero;
+use App\Traits\CacheBuster;
 use App\Traits\HandleMorphDelete;
 use Illuminate\Support\Facades\Log;
 class PageSection extends Model
 {
-    use SoftDeletes , HandleMorphDelete;
+    use SoftDeletes , HandleMorphDelete,CacheBuster;
 
     protected $casts = [
     'payload_json' => 'array',
@@ -78,7 +79,7 @@ class PageSection extends Model
     public function promotSection(){
         return $this->hasMany(Promot::class,'page_section_id','id')->active()->ordered();
     }
-    public function RoadmapSection(){
+    public function roadmapSection(){
         return $this->hasMany(Roadmap::class,'page_section_id','id')->active()->ordered();
     }
     public function sectionxSection(){
@@ -117,7 +118,7 @@ class PageSection extends Model
         'partner_manage' => 'partnerSection',
         'protfolio_manage' => 'protfoliioSection',
         'promot_manage' => 'promotSection',
-        'roadmap_manage' => 'RoadmapSection',
+        'roadmap_manage' => 'roadmapSection',
         'service_manage' => 'serviceSection',
         'team_manage' => 'teamSection',
         'testimonial_manage' => 'testimonialSection',
@@ -127,7 +128,10 @@ class PageSection extends Model
         // future 50+ models
     ];
 
-        
+    public function getDynamicRelationName()
+    {
+        return $this->sectionRelations[$this->dynamic_route] ?? null;
+    }    
 
     public function getContentsAttribute()
     {
@@ -143,7 +147,7 @@ class PageSection extends Model
         }
 
      
-
+  
         return $this->$relation;
 
       

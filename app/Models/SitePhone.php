@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Observers\SitePhoneObserver;
+use App\Traits\CacheBuster;
 use App\Traits\Orderable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 #[ObservedBy([SitePhoneObserver::class])]
 class SitePhone extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,CacheBuster;
     use Orderable;
 
     protected $primaryKey = 'id';

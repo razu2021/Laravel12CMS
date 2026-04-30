@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\CacheBuster;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 class About extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,CacheBuster;
 
     protected $primaryKey = 'id';
     protected $guarded = [];

@@ -2,6 +2,7 @@
 namespace App\Models;
 
 use App\Observers\PreloaderObserver;
+use App\Traits\CacheBuster;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 #[ObservedBy([PreloaderObserver::class])]
 class Preloader extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,CacheBuster;
 
     protected $primaryKey = 'id';
     protected $guarded = [];

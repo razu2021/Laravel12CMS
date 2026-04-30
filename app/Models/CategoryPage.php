@@ -2,6 +2,7 @@
 namespace App\Models;
 
 use App\Observers\CategoryPageObserver;
+use App\Traits\CacheBuster;
 use App\Traits\HandleMorphDelete;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 class CategoryPage extends Model
 {
 
-    use SoftDeletes;
+    use SoftDeletes,CacheBuster;
     use HandleMorphDelete;
 
     protected $primaryKey = 'id';
@@ -34,7 +35,7 @@ class CategoryPage extends Model
     //--------------- Relationship with sub category model 
 
     public function subCategory(){
-        return $this->hasMany(SubCategoryPage::class,'category_id','id');
+        return $this->hasMany(SubCategoryPage::class,'category_id','id')->active()->ordered();
     }
 
 

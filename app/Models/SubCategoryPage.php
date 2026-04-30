@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Observers\SubCategoryPageObserver;
+use App\Traits\CacheBuster;
 use App\Traits\HandleMorphDelete;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 
 class SubCategoryPage extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,CacheBuster;
     use HandleMorphDelete;  // this is a delete traits 
 
     protected $primaryKey = 'id';
@@ -45,8 +46,8 @@ class SubCategoryPage extends Model
 
     /**===========  section get === */
 
-    public function getCategorySection(){
-        return $this->morphMany(PageSection::class, 'sectionable');
+      public function getCategorySection(){
+        return $this->morphMany(PageSection::class, 'sectionable')->where('public_status',1)->orderBy('order','asc');
     }
 
     // get active data 

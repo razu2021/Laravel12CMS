@@ -19,6 +19,7 @@ use App\Models\Team;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class frontendController extends Controller
 {
@@ -27,38 +28,38 @@ class frontendController extends Controller
     public function index(){
         $cacheKey = 'frontend_home_page_data';
         $category = Cache::rememberForever($cacheKey, function () {
-            $data = CategoryPage::with(['seo','getCategorySection'=>function($q){
-                $q->where('public_status',1)->orderBy('order','asc');
-            }])->where('public_status',1)->orderBy('order','asc')->first();
-
+            $data = CategoryPage::with(['seo','getCategorySection'])->active()->Ordered()->first();
             // ---------- call private function 
+            
             return $this->loadPageSections($data);
-    
         });
         
+
 
         if (!$category) {
             return "No data found for 'home'.";
         }
 
+    
         return view('frontend.index',compact('category'));
 
     }
 
 
-    public function categoryPage($category) {
-        
-        $cacheKey = "frontend_page_{$category}";
 
+/**
+ * ===============================================================
+ * category page functionality start here -
+ * ===============================================================
+ */
+    public function categoryPage($category) {
+        $cacheKey = "frontend_page_{$category}";
         $categoryData = Cache::rememberForever($cacheKey, function () use ($category) {
-            $data = CategoryPage::with(['seo', 'getCategorySection' => function($q) {
-                $q->where('public_status', 1)->orderBy('order', 'asc');
-            }])
-            ->where('public_status', 1)
+            $data = CategoryPage::with(['seo', 'getCategorySection'])
+            ->active()
+            ->ordered()
             ->where('url', $category) // এখানে $category স্লাগটি কাজ করবে
             ->first();
-
-            // আপনার সেই প্রাইভেট ফাংশনটি কল করা হলো
             return $this->loadPageSections($data);
         });
 
@@ -66,6 +67,7 @@ class frontendController extends Controller
             abort(404); // ডাটা না থাকলে ৪MD৪ পেজ দেখাবে
         }
 
+     
         return view('frontend.category', ['category' => $categoryData]);
     }
 
@@ -76,29 +78,67 @@ class frontendController extends Controller
      */
 
     public function subCategoryPage($category,$subcategory){
+        $cacheKey = "frontend_subcategory_{$category}_{$subcategory}";
 
-        $category = CategoryPage::where('url',$category)->first();
+        $subcategoryData = Cache::rememberForever($cacheKey,function() use ($category,$subcategory){
+            $category = CategoryPage::where('url',$category)->first();
+            if(!$category){
+                return null;
+            }
 
+            $data = subCategoryPage::with(['seo','getCategorySection'])->where('category_id',$category->id)->where('url',$subcategory)->active()->ordered()->first();
 
-        $subcategorys = SubCategoryPage::with(['getCategorySection','seo'])->where('url',$subcategory)->first();
+            return $this->loadPageSections($data);
 
-     //dd( $subcategorys);
-
-        return view('frontend.subcategory',compact('subcategorys'));
+        });
+       return view('frontend.category', ['subcategorys' => $subcategoryData,'category'=>$subcategoryData]);
     }
 
 
 
 
 
+   /**==
+     * ====================================================
+     * child category page functionality start here 
+     * ======================
+     */
 
+public function childCategoryPage($category, $subcategory, $childcategory) {
+    $cacheKey = "frontend_childcategory_{$category}_{$subcategory}_{$childcategory}";
 
-    public function childCategoryPage($category,$subcategory,$childcategory){
+    $childcategoryData = Cache::rememberForever($cacheKey, function() use ($category, $subcategory, $childcategory) {
+        $categoryData = CategoryPage::where('url', $category)->active()->first();
+        if (!$categoryData) {
+            return null;
+        }
 
-        $childCategorys = ChildCategoryPage::with(['getCategorySection'])->where('url',$childcategory)->first();
+        $subcategoryData = SubCategoryPage::where('category_id', $categoryData->id)
+            ->where('url', $subcategory)
+            ->active()
+            ->first();
 
-        return view('frontend.childcategory',compact('childCategorys'));
+        if (!$subcategoryData) {
+            return null;
+        }
+
+        $data = ChildCategoryPage::with(['seo', 'getCategorySection'])
+            ->where('subcategory_id', $subcategoryData->id)
+            ->where('url', $childcategory)
+            ->active()
+            ->first();
+
+        return $data ? $this->loadPageSections($data) : null;
+    });
+    if (!$childcategoryData) {
+        abort(404);
     }
+
+    return view('frontend.childcategory', [
+        'childCategorys' => $childcategoryData,
+        'category' => $childcategoryData 
+    ]);
+}
 
     
 
@@ -221,15 +261,15 @@ class frontendController extends Controller
 private function loadPageSections($data) {
     if ($data && $data->getCategorySection) {
         foreach ($data->getCategorySection as $section) {
-            $relation = $section->sectionRelations[$section->dynamic_route] ?? null;
+            $relation = $section->getDynamicRelationName();
+           
             if ($relation && method_exists($section, $relation)) {
                 $section->load($relation);
-            }
+            } 
         }
     }
     return $data;
 }
-
 
 
 

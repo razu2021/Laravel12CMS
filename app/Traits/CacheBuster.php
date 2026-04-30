@@ -37,16 +37,16 @@ trait CacheBuster
 
 
 
-    public function forgetSectionCache()
-        {
-            // আপনার কন্টেন্ট মডেলে pageSection রিলেশনটি থাকতে হবে
-            $section = $this->pageSection;
+public function forgetSectionCache()
+{
+  
 
-            if ($section) {
-                $cacheKey = "page_section_forever_{$section->id}_{$section->dynamic_route}";
-                Cache::forget($cacheKey);
-            } 
-        }
+    try {
+        cache()->flush();
+    } catch (\Exception $e) {
+        //\Log::error("Cache Flush Failed: " . $e->getMessage());
+    }
+}
 
 
 

@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\CacheBuster;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Tags\HasTags;
 
 class Team extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,CacheBuster;
     use HasTags;
 
     protected $primaryKey = 'id';

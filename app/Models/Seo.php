@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Traits\CacheBuster;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 class Seo extends Model
 {
-     use SoftDeletes;
+     use SoftDeletes,CacheBuster;
      
     protected $casts = [
         'structured_data' => 'array',
