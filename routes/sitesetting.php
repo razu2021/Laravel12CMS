@@ -22,6 +22,7 @@ use App\Http\Controllers\backend\setting\SiteAddressController;
 use App\Http\Controllers\backend\setting\SiteEmailController;
 use App\Http\Controllers\backend\setting\SiteInfromationController;
 use App\Http\Controllers\backend\setting\SitemapController;
+use App\Http\Controllers\backend\setting\SiteOptimizeController;
 use App\Http\Controllers\backend\setting\SitePhoneController;
 use App\Http\Controllers\backend\setting\SiteSocialController;
 use App\Http\Controllers\backend\setting\TreamsConditionController;
@@ -485,6 +486,16 @@ Route::controller(MaintenanceController::class)->prefix('admin/dashboad/manage/s
     Route::get('export/excel','export_excel')->name('export_excel');
     Route::get('export/csv','export_csv')->name('export_csv');
     Route::get('export/pdf','export_pdf')->name('export_pdf');
+    // ========== other route start here =============
+});
+// ============= site optimize route start her =============
+Route::controller(SiteOptimizeController::class)->prefix('admin/dashboad/manage/setting/optimize/')->name('system_optimize.')->group(function(){
+    Route::get('cache-setting','cacheSetting')->name('cache_setting');
+    Route::get('system-cache-clear','systemCacheClear')->name('systemCache_clear');
+    Route::get('production','systemOptimize')->name('systemOPtimize_production');
+    Route::get('route-cache','routeCache')->name('route_cache');
+    Route::get('view-cache','viewCache')->name('view_cache');
+    Route::get('config-cache','configCache')->name('config_cache');
 });
 
 /**============ Copy Right Route Start here =========== */

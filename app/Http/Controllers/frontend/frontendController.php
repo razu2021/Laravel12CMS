@@ -36,9 +36,9 @@ class frontendController extends Controller
         
 
 
-        if (!$category) {
-            return "No data found for 'home'.";
-        }
+        // if (!$category) {
+        //     return "No data found for 'home'.";
+        // }
 
     
         return view('frontend.index',compact('category'));

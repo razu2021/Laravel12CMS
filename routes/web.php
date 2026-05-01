@@ -4,10 +4,13 @@ use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\frontend\frontendController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Events\TestMassages;
 
 
-
-
+Route::get('/fire', function () {
+    broadcast(new TestMassages("সাফল্যের সাথে ডাটা আসলো!"));
+    return "ইভেন্ট পাঠানো হয়েছে!";
+});
 
 Route::get('/',[frontendController::class , 'index'])->name('index');
 

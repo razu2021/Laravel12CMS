@@ -21,6 +21,7 @@ import ManageHeaderController from './ManageHeaderController'
 import ManageFooterController from './ManageFooterController'
 import FaveiconController from './FaveiconController'
 import MaintenanceController from './MaintenanceController'
+import SiteOptimizeController from './SiteOptimizeController'
 import SitemapController from './SitemapController'
 import SeoManageController from './SeoManageController'
 const setting = {
@@ -47,6 +48,7 @@ ManageHeaderController: Object.assign(ManageHeaderController, ManageHeaderContro
 ManageFooterController: Object.assign(ManageFooterController, ManageFooterController),
 FaveiconController: Object.assign(FaveiconController, FaveiconController),
 MaintenanceController: Object.assign(MaintenanceController, MaintenanceController),
+SiteOptimizeController: Object.assign(SiteOptimizeController, SiteOptimizeController),
 SitemapController: Object.assign(SitemapController, SitemapController),
 SeoManageController: Object.assign(SeoManageController, SeoManageController),
 }
