@@ -14,6 +14,8 @@ Route::get('/fire', function () {
 
 Route::get('/',[frontendController::class , 'index'])->name('index');
 
+Route::get('/html/sitemap',[frontendController::class , 'htmlSitemap'])->name('html_sitemap');
+
 Route::get('site/manage/users/dashboard/', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified','role_check:user'])->name('dashboard');

@@ -8925,6 +8925,72 @@ html {
     border-radius: 35% 65% 70% 30%/30% 30% 70% 70%;
   }
 }
+.sitemap-section {
+  padding: clamp(4rem, 5vw, 8rem) 0;
+  background-color: #f8f9fa;
+}
+.sitemap-section .sitemap-title {
+  font-size: clamp(3.2rem, 4vw, 4.8rem);
+  font-weight: 800;
+  margin-bottom: clamp(3rem, 4vw, 5rem);
+  text-align: center;
+  color: #1a1a1a;
+}
+.sitemap-section .sitemap-card {
+  background: #fff;
+  padding: clamp(2rem, 3vw, 3.5rem);
+  border-radius: 1.2rem;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.05);
+  height: 100%;
+}
+.sitemap-section .sitemap-category-header {
+  font-size: clamp(2rem, 2.5vw, 2.4rem);
+  color: #0d6efd;
+  border-bottom: 0.2rem solid #e9ecef;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+.sitemap-section .sitemap-sub-header {
+  font-size: clamp(1.6rem, 2vw, 1.8rem);
+  color: #495057;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+.sitemap-section .sitemap-list {
+  list-style: none;
+  padding-left: 0;
+}
+.sitemap-section .sitemap-list li {
+  margin-bottom: 0.8rem;
+  position: relative;
+}
+.sitemap-section .sitemap-list li a {
+  font-size: 1.5rem;
+  color: #212529;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.sitemap-section .sitemap-list li a:hover {
+  color: #0d6efd;
+  padding-left: 0.5rem;
+}
+.sitemap-section .sitemap-list.main-cat > li > a {
+  font-weight: 600;
+}
+.sitemap-section .sitemap-list .sub-cat {
+  list-style: none;
+  padding-left: 2rem;
+  margin-top: 0.8rem;
+  border-left: 0.1rem solid #dee2e6;
+}
+.sitemap-section .sitemap-list .sub-cat .child-cat {
+  list-style: none;
+  padding-left: 1.5rem;
+  font-style: italic;
+  opacity: 0.8;
+}
+
 .btn-wrap {
   display: flex;
   gap: 1.2rem;

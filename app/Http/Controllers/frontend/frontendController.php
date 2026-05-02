@@ -274,6 +274,26 @@ private function loadPageSections($data) {
 
 
 
+// ======================================
+// html sitemap function 
+//==================================================
+
+public function htmlSitemap(){
+
+    $data = Cache::rememberForever('html_sitemap_data',function(){
+        return[
+            $blogs = Blog::where('public_status',1)->get(),
+            $events = Event::where('public_status',1)->get(),
+            $posts = Post::where('public_status',1)->get(),
+            $newss = News::where('public_status',1)->get(),
+            $casestudy = Casestudy::where('public_status',1)->get(),
+        ];
+    });
+
+    return view('frontend.html_sitemap',compact('data'));
+
+}
+
 
 
     public function section(){

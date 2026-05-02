@@ -7,19 +7,7 @@ import Separator from '@/components/ui/separator/Separator.vue';
 import AdminLayout from '@/layouts/AdminLayout.vue';
 
 
-import { useEcho } from '@laravel/echo-vue';
-import { onMounted } from 'vue';
 
-// echo কে টাইপ কাস্টিং করে দিন অথবা সরাসরি ব্যবহার করুন
-const echo = useEcho();
-
-onMounted(() => {
-    // সরাসরি ইকো ইন্সট্যান্স ব্যবহার করে
-    echo.private('test-channel')
-        .listen('TestMassages', (e: any) => {
-            console.log('সাফল্যের সাথে ডাটা এসেছে:', e.message);
-        });
-});
 
 </script>
 

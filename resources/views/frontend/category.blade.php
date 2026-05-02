@@ -4,7 +4,7 @@
 @section('meta_description', $category->description ?? '')
 {{-- Meta Description  --}}
 @section('seocontent')
-@if($category->seo)
+@if(!empty($category->seo))
     <meta name="keywords" content="{{ $category->seo->meta_keywords }}">
     <meta name="robots" content="{{ $category->seo->meta_robots }}">
     <link rel="canonical" href="{{ $category->seo->canonical_url ?? url()->current() }}">

@@ -7,6 +7,16 @@ import { initializeTheme } from './composables/useAppearance';
 import { configureEcho } from '@laravel/echo-vue';
 import flasher from '@flasher/flasher';
 import { configureEcho } from '@laravel/echo-vue';
+import { configureEcho } from '@laravel/echo-vue';
+import { configureEcho } from '@laravel/echo-vue';
+
+configureEcho({
+    broadcaster: 'reverb',
+});
+
+configureEcho({
+    broadcaster: 'reverb',
+});
 
 configureEcho({
     broadcaster: 'reverb',

@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('thumbnail')->nullable();
             $table->string('cover_image')->nullable();
             $table->integer('order')->nullable();
+            $table->string('url')->nullable();
+            $table->integer('count')->default(1);
             $table->string('slug',255)->nullable();
             $table->integer('creator_id')->nullable();
             $table->integer('editor_id')->nullable();

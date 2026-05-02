@@ -1118,7 +1118,83 @@
 
 
 
+// ================= html site map css 
+.sitemap-section {
+    padding: clamp(4rem, 5vw, 8rem) 0; // 40px to 80px
+    background-color: #f8f9fa;
 
+    .sitemap-title {
+        font-size: clamp(3.2rem, 4vw, 4.8rem); // 32px to 48px
+        font-weight: 800;
+        margin-bottom: clamp(3rem, 4vw, 5rem);
+        text-align: center;
+        color: #1a1a1a;
+    }
+
+    .sitemap-card {
+        background: #fff;
+        padding: clamp(2rem, 3vw, 3.5rem); // 20px to 35px
+        border-radius: 1.2rem; // 12px
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.05);
+        height: 100%;
+    }
+
+    .sitemap-category-header {
+        font-size: clamp(2rem, 2.5vw, 2.4rem); // 20px to 24px
+        color: #0d6efd;
+        border-bottom: 0.2rem solid #e9ecef;
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+        font-weight: 700;
+    }
+
+    .sitemap-sub-header {
+        font-size: clamp(1.6rem, 2vw, 1.8rem); // 16px to 18px
+        color: #495057;
+        font-weight: 600;
+        margin-bottom: 1.2rem;
+    }
+
+    .sitemap-list {
+        list-style: none;
+        padding-left: 0;
+
+        li {
+            margin-bottom: 0.8rem;
+            position: relative;
+
+            a {
+                font-size: 1.5rem; // 15px
+                color: #212529;
+                text-decoration: none;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    color: #0d6efd;
+                    padding-left: 0.5rem;
+                }
+            }
+        }
+
+        &.main-cat > li > a {
+            font-weight: 600;
+        }
+
+        .sub-cat {
+            list-style: none;
+            padding-left: 2rem;
+            margin-top: 0.8rem;
+            border-left: 0.1rem solid #dee2e6;
+
+            .child-cat {
+                list-style: none;
+                padding-left: 1.5rem;
+                font-style: italic;
+                opacity: 0.8;
+            }
+        }
+    }
+}
 
 
 
