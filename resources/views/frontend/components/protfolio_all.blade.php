@@ -19,12 +19,12 @@
           <div class="portfolio-card__thumb">
             <img src="{{asset($prot->cover_image ?? 'https://picsum.photos/400/300?random=1')}}" alt="{{$prot->title ?? 'Protfolio image'}}">
             <div class="portfolio-card__overlay">
-              <a href="{{$prot->button_url ?? '#'}}" class="portfolio-card__btn">{{$prot->button ?? 'Explore More'}}</a>
+              <a href="{{route('details.protfolios',[$prot->id,$port->url])}}" class="portfolio-card__btn">{{$prot->button ?? 'Explore More'}}</a>
             </div>
           </div>
           <div class="portfolio-card__content">
             <h5 class="portfolio-card__title">{{$prot->title ?? ''}}</h5>
-            <p class="portfolio-card__desc">{{Str::words($prot->short_des, 20 ?? '')}}</p>
+            <p class="portfolio-card__desc">{{Str::words($prot->short_des ?? '' ,20)}}</p>
           </div>
         </div>
       </div>

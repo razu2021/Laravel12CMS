@@ -89,25 +89,23 @@ class NewsController extends Controller
      * =======================================================================
      */
     public function insert(Request $request){
-
-
          /**--- validation code -- */
-        // $request->validate( [
-        //         'name' => ['required', 'string', 'max:255',Rule::unique('category_pages','name')],
-        //         'slug' => ['required', 'string', 'max:255', Rule::unique('category_pages','url')],
-               
-        //     ],[
-        //         'name.required'=> 'Name field is Required !',
-        //         'slug.required'=> 'Slug field is Required !',
-        //         'name.unique'=> 'This name already exists. !',
-        //         'slug.unique'=> 'This URL already exists. !',
-        //     ]
-        // );
+        $request->validate( [
+                'title' => ['required', 'string', 'max:255',Rule::unique('news','title')],
+                'short_des' => ['required', 'string'],
+                
+            ],[
+                'title.required'=> 'Title field is Required !',
+                'title.unique'=> 'This Title already exists. !',
+                'short_des'=> 'Short Description is Required . !',
+            ]
+        );
+
 
         //---------- get authenticate use id and create a slug
         $creator_id = Auth::user()->id;
         $slug = uniqid('20').Str::random(20) . '_'.mt_rand(10000, 100000).'-'.time();
-
+        $url - Str::slug($request->title);
        
         // ----- insert record into database 
         $insert = News::create([
@@ -122,6 +120,7 @@ class NewsController extends Controller
             'button'=>$request->button,
             'button_url'=>$request->button_url,
             'video_url'=>$request->video_url,
+            'url'=>$url,
             'order'=>$request->order,
             'public_status'=>$request->public_status ?? 0,
             'slug'=>$slug,
@@ -173,13 +172,22 @@ class NewsController extends Controller
      */
 
     public function update(Request $request){
-     
-       
+         /**--- validation code -- */
+        $request->validate( [
+                'title' => ['required', 'string', 'max:255',Rule::unique('news','title')->ignore($request->id)],
+                'short_des' => ['required', 'string'],
+                
+            ],[
+                'title.required'=> 'Title field is Required !',
+                'title.unique'=> 'This Title already exists. !',
+                'short_des'=> 'Short Description is Required . !',
+            ]
+        );
         //---------- get authenticate use id and create a slug
         $editor_id = Auth::user()->id;
         $slug = $request->slug;
         $id = $request->id;
-
+        $url = Str::slug($request->title);
 
         // ----- insert record into database 
         $update = News::where('id',$id)->where('slug',$slug)->firstOrFail();
@@ -194,6 +202,7 @@ class NewsController extends Controller
             'button'=>$request->button,
             'button_url'=>$request->button_url,
             'video_url'=>$request->video_url,
+            'url'=>$url,
             'order'=>$request->order,
             'public_status'=>$request->public_status ?? 0,
             'editor_id' => $editor_id,

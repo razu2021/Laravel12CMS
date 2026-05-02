@@ -26,7 +26,7 @@
                         </p>
 
                         <div class="card1-footer">
-                            <a target="_blank" href="{{ route('details.post',[$post->id,Str::slug($post->title)]) }}" class="card1-btn">R{{ $post->button ?? 'Read More' }} →</a>
+                            <a target="_blank" href="{{ route('details.post',[$post->id,$post->url]) }}" class="card1-btn">R{{ $post->button ?? 'Read More' }} →</a>
                         </div>
                     </div>
                 </div>

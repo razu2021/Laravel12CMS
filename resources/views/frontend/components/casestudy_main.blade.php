@@ -26,7 +26,7 @@
                         </p>
 
                         <div class="card1-footer">
-                            <a href="{{ route('details.casestudy',[$case->id,Str::slug($case->title)]) }}" class="card1-btn">R{{ $case->button ?? 'Read More' }} →</a>
+                            <a href="{{ route('details.casestudy',[$case->id,$case->url]) }}" class="card1-btn">R{{ $case->button ?? 'Read More' }} →</a>
                         </div>
                     </div>
                 </div>

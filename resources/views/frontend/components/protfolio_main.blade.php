@@ -17,11 +17,11 @@
                         </h4>
 
                         <p class="card1-text">
-                           {{Str::words($prot->short_des , 20 ?? '')}}
+                           {{Str::words($prot->short_des ?? '' ,20)}}
                         </p>
 
                         <div class="card1-footer">
-                            <a href="{{$prot->button_url ?? '#'}}" class="card1-btn">{{$prot->button ?? 'Explore More'}} →</a>
+                            <a href="{{route('details.protfolios',[$prot->id,$port->url])}}" class="card1-btn">{{$prot->button ?? 'Explore More'}} →</a>
                         </div>
                     </div>
                 </div>

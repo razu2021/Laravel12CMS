@@ -212,7 +212,7 @@ register.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     register.form = registerForm
 /**
 * @see \App\Http\Controllers\frontend\frontendController::index
- * @see app/Http/Controllers/frontend/frontendController.php:28
+ * @see app/Http/Controllers/frontend/frontendController.php:29
  * @route '/'
  */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -227,7 +227,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\frontend\frontendController::index
- * @see app/Http/Controllers/frontend/frontendController.php:28
+ * @see app/Http/Controllers/frontend/frontendController.php:29
  * @route '/'
  */
 index.url = (options?: RouteQueryOptions) => {
@@ -236,7 +236,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\frontend\frontendController::index
- * @see app/Http/Controllers/frontend/frontendController.php:28
+ * @see app/Http/Controllers/frontend/frontendController.php:29
  * @route '/'
  */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -245,7 +245,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\frontend\frontendController::index
- * @see app/Http/Controllers/frontend/frontendController.php:28
+ * @see app/Http/Controllers/frontend/frontendController.php:29
  * @route '/'
  */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -255,7 +255,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\frontend\frontendController::index
- * @see app/Http/Controllers/frontend/frontendController.php:28
+ * @see app/Http/Controllers/frontend/frontendController.php:29
  * @route '/'
  */
     const indexForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -265,7 +265,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\frontend\frontendController::index
- * @see app/Http/Controllers/frontend/frontendController.php:28
+ * @see app/Http/Controllers/frontend/frontendController.php:29
  * @route '/'
  */
         indexForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -274,7 +274,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\frontend\frontendController::index
- * @see app/Http/Controllers/frontend/frontendController.php:28
+ * @see app/Http/Controllers/frontend/frontendController.php:29
  * @route '/'
  */
         indexForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -289,7 +289,85 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     
     index.form = indexForm
 /**
- * @see routes/web.php:17
+* @see \App\Http\Controllers\frontend\frontendController::html_sitemap
+ * @see app/Http/Controllers/frontend/frontendController.php:244
+ * @route '/html/sitemap'
+ */
+export const html_sitemap = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: html_sitemap.url(options),
+    method: 'get',
+})
+
+html_sitemap.definition = {
+    methods: ["get","head"],
+    url: '/html/sitemap',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\frontend\frontendController::html_sitemap
+ * @see app/Http/Controllers/frontend/frontendController.php:244
+ * @route '/html/sitemap'
+ */
+html_sitemap.url = (options?: RouteQueryOptions) => {
+    return html_sitemap.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\frontend\frontendController::html_sitemap
+ * @see app/Http/Controllers/frontend/frontendController.php:244
+ * @route '/html/sitemap'
+ */
+html_sitemap.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: html_sitemap.url(options),
+    method: 'get',
+})
+/**
+* @see \App\Http\Controllers\frontend\frontendController::html_sitemap
+ * @see app/Http/Controllers/frontend/frontendController.php:244
+ * @route '/html/sitemap'
+ */
+html_sitemap.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: html_sitemap.url(options),
+    method: 'head',
+})
+
+    /**
+* @see \App\Http\Controllers\frontend\frontendController::html_sitemap
+ * @see app/Http/Controllers/frontend/frontendController.php:244
+ * @route '/html/sitemap'
+ */
+    const html_sitemapForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+        action: html_sitemap.url(options),
+        method: 'get',
+    })
+
+            /**
+* @see \App\Http\Controllers\frontend\frontendController::html_sitemap
+ * @see app/Http/Controllers/frontend/frontendController.php:244
+ * @route '/html/sitemap'
+ */
+        html_sitemapForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+            action: html_sitemap.url(options),
+            method: 'get',
+        })
+            /**
+* @see \App\Http\Controllers\frontend\frontendController::html_sitemap
+ * @see app/Http/Controllers/frontend/frontendController.php:244
+ * @route '/html/sitemap'
+ */
+        html_sitemapForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+            action: html_sitemap.url({
+                        [options?.mergeQuery ? 'mergeQuery' : 'query']: {
+                            _method: 'HEAD',
+                            ...(options?.query ?? options?.mergeQuery ?? {}),
+                        }
+                    }),
+            method: 'get',
+        })
+    
+    html_sitemap.form = html_sitemapForm
+/**
+ * @see routes/web.php:19
  * @route '/site/manage/users/dashboard'
  */
 export const dashboard = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -303,7 +381,7 @@ dashboard.definition = {
 } satisfies RouteDefinition<["get","head"]>
 
 /**
- * @see routes/web.php:17
+ * @see routes/web.php:19
  * @route '/site/manage/users/dashboard'
  */
 dashboard.url = (options?: RouteQueryOptions) => {
@@ -311,7 +389,7 @@ dashboard.url = (options?: RouteQueryOptions) => {
 }
 
 /**
- * @see routes/web.php:17
+ * @see routes/web.php:19
  * @route '/site/manage/users/dashboard'
  */
 dashboard.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -319,7 +397,7 @@ dashboard.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     method: 'get',
 })
 /**
- * @see routes/web.php:17
+ * @see routes/web.php:19
  * @route '/site/manage/users/dashboard'
  */
 dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -328,7 +406,7 @@ dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
     /**
- * @see routes/web.php:17
+ * @see routes/web.php:19
  * @route '/site/manage/users/dashboard'
  */
     const dashboardForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -337,7 +415,7 @@ dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     })
 
             /**
- * @see routes/web.php:17
+ * @see routes/web.php:19
  * @route '/site/manage/users/dashboard'
  */
         dashboardForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -345,7 +423,7 @@ dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
             method: 'get',
         })
             /**
- * @see routes/web.php:17
+ * @see routes/web.php:19
  * @route '/site/manage/users/dashboard'
  */
         dashboardForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -361,7 +439,7 @@ dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     dashboard.form = dashboardForm
 /**
 * @see \App\Http\Controllers\frontend\frontendController::section
- * @see app/Http/Controllers/frontend/frontendController.php:279
+ * @see app/Http/Controllers/frontend/frontendController.php:266
  * @route '/section'
  */
 export const section = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -376,7 +454,7 @@ section.definition = {
 
 /**
 * @see \App\Http\Controllers\frontend\frontendController::section
- * @see app/Http/Controllers/frontend/frontendController.php:279
+ * @see app/Http/Controllers/frontend/frontendController.php:266
  * @route '/section'
  */
 section.url = (options?: RouteQueryOptions) => {
@@ -385,7 +463,7 @@ section.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\frontend\frontendController::section
- * @see app/Http/Controllers/frontend/frontendController.php:279
+ * @see app/Http/Controllers/frontend/frontendController.php:266
  * @route '/section'
  */
 section.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -394,7 +472,7 @@ section.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 })
 /**
 * @see \App\Http\Controllers\frontend\frontendController::section
- * @see app/Http/Controllers/frontend/frontendController.php:279
+ * @see app/Http/Controllers/frontend/frontendController.php:266
  * @route '/section'
  */
 section.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -404,7 +482,7 @@ section.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
     /**
 * @see \App\Http\Controllers\frontend\frontendController::section
- * @see app/Http/Controllers/frontend/frontendController.php:279
+ * @see app/Http/Controllers/frontend/frontendController.php:266
  * @route '/section'
  */
     const sectionForm = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -414,7 +492,7 @@ section.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
             /**
 * @see \App\Http\Controllers\frontend\frontendController::section
- * @see app/Http/Controllers/frontend/frontendController.php:279
+ * @see app/Http/Controllers/frontend/frontendController.php:266
  * @route '/section'
  */
         sectionForm.get = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -423,7 +501,7 @@ section.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
         })
             /**
 * @see \App\Http\Controllers\frontend\frontendController::section
- * @see app/Http/Controllers/frontend/frontendController.php:279
+ * @see app/Http/Controllers/frontend/frontendController.php:266
  * @route '/section'
  */
         sectionForm.head = (options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -517,7 +595,7 @@ admin_dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> =>
     admin_dashboard.form = admin_dashboardForm
 /**
 * @see \App\Http\Controllers\frontend\frontendController::categorypage
- * @see app/Http/Controllers/frontend/frontendController.php:55
+ * @see app/Http/Controllers/frontend/frontendController.php:56
  * @route '/{category}'
  */
 export const categorypage = (args: { category: string | number } | [category: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -532,7 +610,7 @@ categorypage.definition = {
 
 /**
 * @see \App\Http\Controllers\frontend\frontendController::categorypage
- * @see app/Http/Controllers/frontend/frontendController.php:55
+ * @see app/Http/Controllers/frontend/frontendController.php:56
  * @route '/{category}'
  */
 categorypage.url = (args: { category: string | number } | [category: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -560,7 +638,7 @@ categorypage.url = (args: { category: string | number } | [category: string | nu
 
 /**
 * @see \App\Http\Controllers\frontend\frontendController::categorypage
- * @see app/Http/Controllers/frontend/frontendController.php:55
+ * @see app/Http/Controllers/frontend/frontendController.php:56
  * @route '/{category}'
  */
 categorypage.get = (args: { category: string | number } | [category: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -569,7 +647,7 @@ categorypage.get = (args: { category: string | number } | [category: string | nu
 })
 /**
 * @see \App\Http\Controllers\frontend\frontendController::categorypage
- * @see app/Http/Controllers/frontend/frontendController.php:55
+ * @see app/Http/Controllers/frontend/frontendController.php:56
  * @route '/{category}'
  */
 categorypage.head = (args: { category: string | number } | [category: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -579,7 +657,7 @@ categorypage.head = (args: { category: string | number } | [category: string | n
 
     /**
 * @see \App\Http\Controllers\frontend\frontendController::categorypage
- * @see app/Http/Controllers/frontend/frontendController.php:55
+ * @see app/Http/Controllers/frontend/frontendController.php:56
  * @route '/{category}'
  */
     const categorypageForm = (args: { category: string | number } | [category: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -589,7 +667,7 @@ categorypage.head = (args: { category: string | number } | [category: string | n
 
             /**
 * @see \App\Http\Controllers\frontend\frontendController::categorypage
- * @see app/Http/Controllers/frontend/frontendController.php:55
+ * @see app/Http/Controllers/frontend/frontendController.php:56
  * @route '/{category}'
  */
         categorypageForm.get = (args: { category: string | number } | [category: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -598,7 +676,7 @@ categorypage.head = (args: { category: string | number } | [category: string | n
         })
             /**
 * @see \App\Http\Controllers\frontend\frontendController::categorypage
- * @see app/Http/Controllers/frontend/frontendController.php:55
+ * @see app/Http/Controllers/frontend/frontendController.php:56
  * @route '/{category}'
  */
         categorypageForm.head = (args: { category: string | number } | [category: string | number ] | string | number, options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -614,7 +692,7 @@ categorypage.head = (args: { category: string | number } | [category: string | n
     categorypage.form = categorypageForm
 /**
 * @see \App\Http\Controllers\frontend\frontendController::sub_categorypage
- * @see app/Http/Controllers/frontend/frontendController.php:80
+ * @see app/Http/Controllers/frontend/frontendController.php:81
  * @route '/{category}/{subcategory}'
  */
 export const sub_categorypage = (args: { category: string | number, subcategory: string | number } | [category: string | number, subcategory: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -629,7 +707,7 @@ sub_categorypage.definition = {
 
 /**
 * @see \App\Http\Controllers\frontend\frontendController::sub_categorypage
- * @see app/Http/Controllers/frontend/frontendController.php:80
+ * @see app/Http/Controllers/frontend/frontendController.php:81
  * @route '/{category}/{subcategory}'
  */
 sub_categorypage.url = (args: { category: string | number, subcategory: string | number } | [category: string | number, subcategory: string | number ], options?: RouteQueryOptions) => {
@@ -655,7 +733,7 @@ sub_categorypage.url = (args: { category: string | number, subcategory: string |
 
 /**
 * @see \App\Http\Controllers\frontend\frontendController::sub_categorypage
- * @see app/Http/Controllers/frontend/frontendController.php:80
+ * @see app/Http/Controllers/frontend/frontendController.php:81
  * @route '/{category}/{subcategory}'
  */
 sub_categorypage.get = (args: { category: string | number, subcategory: string | number } | [category: string | number, subcategory: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -664,7 +742,7 @@ sub_categorypage.get = (args: { category: string | number, subcategory: string |
 })
 /**
 * @see \App\Http\Controllers\frontend\frontendController::sub_categorypage
- * @see app/Http/Controllers/frontend/frontendController.php:80
+ * @see app/Http/Controllers/frontend/frontendController.php:81
  * @route '/{category}/{subcategory}'
  */
 sub_categorypage.head = (args: { category: string | number, subcategory: string | number } | [category: string | number, subcategory: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -674,7 +752,7 @@ sub_categorypage.head = (args: { category: string | number, subcategory: string 
 
     /**
 * @see \App\Http\Controllers\frontend\frontendController::sub_categorypage
- * @see app/Http/Controllers/frontend/frontendController.php:80
+ * @see app/Http/Controllers/frontend/frontendController.php:81
  * @route '/{category}/{subcategory}'
  */
     const sub_categorypageForm = (args: { category: string | number, subcategory: string | number } | [category: string | number, subcategory: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -684,7 +762,7 @@ sub_categorypage.head = (args: { category: string | number, subcategory: string 
 
             /**
 * @see \App\Http\Controllers\frontend\frontendController::sub_categorypage
- * @see app/Http/Controllers/frontend/frontendController.php:80
+ * @see app/Http/Controllers/frontend/frontendController.php:81
  * @route '/{category}/{subcategory}'
  */
         sub_categorypageForm.get = (args: { category: string | number, subcategory: string | number } | [category: string | number, subcategory: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -693,7 +771,7 @@ sub_categorypage.head = (args: { category: string | number, subcategory: string 
         })
             /**
 * @see \App\Http\Controllers\frontend\frontendController::sub_categorypage
- * @see app/Http/Controllers/frontend/frontendController.php:80
+ * @see app/Http/Controllers/frontend/frontendController.php:81
  * @route '/{category}/{subcategory}'
  */
         sub_categorypageForm.head = (args: { category: string | number, subcategory: string | number } | [category: string | number, subcategory: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -709,7 +787,7 @@ sub_categorypage.head = (args: { category: string | number, subcategory: string 
     sub_categorypage.form = sub_categorypageForm
 /**
 * @see \App\Http\Controllers\frontend\frontendController::child_CategoryPage
- * @see app/Http/Controllers/frontend/frontendController.php:107
+ * @see app/Http/Controllers/frontend/frontendController.php:108
  * @route '/{category}/{subcategory}/{childcategory}'
  */
 export const child_CategoryPage = (args: { category: string | number, subcategory: string | number, childcategory: string | number } | [category: string | number, subcategory: string | number, childcategory: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -724,7 +802,7 @@ child_CategoryPage.definition = {
 
 /**
 * @see \App\Http\Controllers\frontend\frontendController::child_CategoryPage
- * @see app/Http/Controllers/frontend/frontendController.php:107
+ * @see app/Http/Controllers/frontend/frontendController.php:108
  * @route '/{category}/{subcategory}/{childcategory}'
  */
 child_CategoryPage.url = (args: { category: string | number, subcategory: string | number, childcategory: string | number } | [category: string | number, subcategory: string | number, childcategory: string | number ], options?: RouteQueryOptions) => {
@@ -753,7 +831,7 @@ child_CategoryPage.url = (args: { category: string | number, subcategory: string
 
 /**
 * @see \App\Http\Controllers\frontend\frontendController::child_CategoryPage
- * @see app/Http/Controllers/frontend/frontendController.php:107
+ * @see app/Http/Controllers/frontend/frontendController.php:108
  * @route '/{category}/{subcategory}/{childcategory}'
  */
 child_CategoryPage.get = (args: { category: string | number, subcategory: string | number, childcategory: string | number } | [category: string | number, subcategory: string | number, childcategory: string | number ], options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -762,7 +840,7 @@ child_CategoryPage.get = (args: { category: string | number, subcategory: string
 })
 /**
 * @see \App\Http\Controllers\frontend\frontendController::child_CategoryPage
- * @see app/Http/Controllers/frontend/frontendController.php:107
+ * @see app/Http/Controllers/frontend/frontendController.php:108
  * @route '/{category}/{subcategory}/{childcategory}'
  */
 child_CategoryPage.head = (args: { category: string | number, subcategory: string | number, childcategory: string | number } | [category: string | number, subcategory: string | number, childcategory: string | number ], options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -772,7 +850,7 @@ child_CategoryPage.head = (args: { category: string | number, subcategory: strin
 
     /**
 * @see \App\Http\Controllers\frontend\frontendController::child_CategoryPage
- * @see app/Http/Controllers/frontend/frontendController.php:107
+ * @see app/Http/Controllers/frontend/frontendController.php:108
  * @route '/{category}/{subcategory}/{childcategory}'
  */
     const child_CategoryPageForm = (args: { category: string | number, subcategory: string | number, childcategory: string | number } | [category: string | number, subcategory: string | number, childcategory: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -782,7 +860,7 @@ child_CategoryPage.head = (args: { category: string | number, subcategory: strin
 
             /**
 * @see \App\Http\Controllers\frontend\frontendController::child_CategoryPage
- * @see app/Http/Controllers/frontend/frontendController.php:107
+ * @see app/Http/Controllers/frontend/frontendController.php:108
  * @route '/{category}/{subcategory}/{childcategory}'
  */
         child_CategoryPageForm.get = (args: { category: string | number, subcategory: string | number, childcategory: string | number } | [category: string | number, subcategory: string | number, childcategory: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -791,7 +869,7 @@ child_CategoryPage.head = (args: { category: string | number, subcategory: strin
         })
             /**
 * @see \App\Http\Controllers\frontend\frontendController::child_CategoryPage
- * @see app/Http/Controllers/frontend/frontendController.php:107
+ * @see app/Http/Controllers/frontend/frontendController.php:108
  * @route '/{category}/{subcategory}/{childcategory}'
  */
         child_CategoryPageForm.head = (args: { category: string | number, subcategory: string | number, childcategory: string | number } | [category: string | number, subcategory: string | number, childcategory: string | number ], options?: RouteQueryOptions): RouteFormDefinition<'get'> => ({

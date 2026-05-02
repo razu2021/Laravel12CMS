@@ -22,8 +22,8 @@
                     <div class="content-box">
                         <div class="icon-wrap"><i class="{{ $service->icon ?? 'bi bi-briefcase-fill' }}"></i></div>
                         <h4>{{$service->title ?? ''}}</h4>
-                        <p>{{Str::words($service->short_des , 15 ?? '')}}</p>
-                        <a href="{{ $service->button_url ?? '#' }}" class="btn-link">{{ $service->button ?? '' }} <i class="bi bi-arrow-right"></i></a>
+                        <p>{{Str::words($service->short_des ?? '' ,15)}}</p>
+                        <a href="{{ route('details.service',[$service->id,$service->url]) }}" class="btn-link">{{ $service->button ?? '' }} <i class="bi bi-arrow-right"></i></a>
                     </div>
                     <div class="glow-effect"></div>
                 </div>

@@ -99,7 +99,7 @@ class TeamController extends Controller
 
          /**--- validation code -- */
         $request->validate( [
-                'name' => ['required', 'string'],
+                'name' => ['required', 'string',Rule::unique('teams','name')],
                 'short_des' => ['required', 'string'],
             ],[
                 'name.required'=> 'Name field is Required !',
@@ -107,10 +107,11 @@ class TeamController extends Controller
             ]
         );
 
+
         //---------- get authenticate use id and create a slug
         $creator_id = Auth::user()->id;
         $slug = uniqid('20').Str::random(20) . '_'.mt_rand(10000, 100000).'-'.time();
-
+        $url = Str::slug($request->name);
        
         // ----- insert record into database 
         $insert = Team::create([
@@ -121,6 +122,7 @@ class TeamController extends Controller
             'short_des'=>$request->short_des,
             'description'=>$request->description,
             'order'=>$request->order,
+            'url'=>$url,
             'public_status'=>$request->public_status ?? 0,
             'slug'=>$slug,
             'creator_id' => $creator_id,
@@ -179,7 +181,7 @@ class TeamController extends Controller
 
         /**--- validation code -- */
         $request->validate( [
-                'name' => ['required', 'string'],
+                'name' => ['required', 'string',Rule::unique('teams','name')->ignore($request->id)],
             ],[
                 'name.required'=> 'Name field is Required !',
             ]
@@ -200,6 +202,7 @@ class TeamController extends Controller
             'short_des'=>$request->short_des,
             'description'=>$request->description,
             'order'=>$request->order,
+            'url'=>$url,
             'public_status'=>$request->public_status ?? 0,
             'editor_id' => $editor_id,
             'updated_at' => Carbon::now()->toDateTimeString(),

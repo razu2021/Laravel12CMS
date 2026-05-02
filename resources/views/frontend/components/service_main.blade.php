@@ -22,7 +22,7 @@
                         <div class="content-area">
                             <h4>{{$service->title ?? ''}}</h4>
                             <p>{{Str::words($service->short_des , 15 ?? '' )}}</p>
-                            <a target="_blank" href="{{ route('details.service',[$service->id,Str::slug($service->title)]) }}"
+                            <a target="_blank" href="{{ route('details.service',[$service->id,$service->url]) }}"
                                 class="arrow-btn">{{ $service->button ?? 'Explore now' }} 
                                 <i class="bi bi-arrow-right-short"></i></a>
                         </div>

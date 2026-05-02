@@ -25,7 +25,7 @@
                     <div class="content-box">
                         <h3>{{$country->title ?? ''}}</h3>
                         <p>{{Str::words($country->short_des , 20 ?? '')}}</p>
-                        <a href="{{ route('details.casestudy',[$country->id,Str::slug($country->title)]) }}" class="link">{{ $country->button ?? 'About More' }} <i class="fas fa-chevron-right"></i></a>
+                        <a href="{{ route('details.casestudy',[$country->id,$country->url]) }}" class="link">{{ $country->button ?? 'About More' }} <i class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
             </div>

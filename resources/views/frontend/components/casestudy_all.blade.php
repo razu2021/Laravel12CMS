@@ -62,7 +62,7 @@
 
                                 <div class="card_footer">
                                     <span class="date">{{ $case->created_at->format('M,d,Y') }}</span>
-                                    <a href="{{ $case->button_url ?? '#' }}" class="read_more">{{ $case->button ?? 'Read more ' }} →</a>
+                                    <a href="{{route('details.casestudy',[$case->id,$case->url]) }}" class="read_more">{{ $case->button ?? 'Read more ' }} →</a>
                                 </div>
                             </div>
 

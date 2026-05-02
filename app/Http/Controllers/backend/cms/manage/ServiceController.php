@@ -97,21 +97,23 @@ class ServiceController extends Controller
      */
     public function insert(Request $request){
          /**--- validation code -- */
+         /**--- validation code -- */
         $request->validate( [
-                'type' => ['required', 'string'],
-                'title' => ['required', 'string'],
+                'title' => ['required', 'string', 'max:255',Rule::unique('services','title')],
                 'short_des' => ['required', 'string'],
+                'type' => ['required', 'string'],
+                
             ],[
-                'type.required'=> 'Type field is Required !',
                 'title.required'=> 'Title field is Required !',
-                'short_des.required'=> 'Short Description field is Required !',
+                'title.unique'=> 'This Title already exists. !',
+                'short_des'=> 'Short Description is Required . !',
             ]
         );
 
         //---------- get authenticate use id and create a slug
         $creator_id = Auth::user()->id;
         $slug = uniqid('20').Str::random(20) . '_'.mt_rand(10000, 100000).'-'.time();
-
+        $url = Str::slug($request->title);
        
         // ----- insert record into database 
         $insert = Service::create([
@@ -128,6 +130,7 @@ class ServiceController extends Controller
             'button_url'=>$request->button_url,
             'video_url'=>$request->video_url,
             'order'=>$request->order,
+            'url'=>$url,
             'public_status'=>$request->public_status ?? 0,
             'slug'=>$slug,
             'creator_id' => $creator_id,
@@ -178,12 +181,16 @@ class ServiceController extends Controller
      */
 
     public function update(Request $request){
-
-        /**--- validation code -- */
+         /**--- validation code -- */
         $request->validate( [
+                'title' => ['required', 'string', 'max:255',Rule::unique('services','title')->ignore($request->id)],
+                'short_des' => ['required', 'string'],
                 'type' => ['required', 'string'],
+                
             ],[
-                'type.required'=> 'Type field is Required !',
+                'title.required'=> 'Title field is Required !',
+                'title.unique'=> 'This Title already exists. !',
+                'short_des'=> 'Short Description is Required . !',
             ]
         );
        
@@ -191,7 +198,7 @@ class ServiceController extends Controller
         $editor_id = Auth::user()->id;
         $slug = $request->slug;
         $id = $request->id;
-
+        $url = Str::slug($request->title);
 
         // ----- insert record into database 
         $update = Service::where('id',$id)->where('slug',$slug)->firstOrFail();
@@ -208,6 +215,7 @@ class ServiceController extends Controller
             'button_url'=>$request->button_url,
             'video_url'=>$request->video_url,
             'order'=>$request->order,
+            'url'=>$url,
             'public_status'=>$request->public_status ?? 0,
             'editor_id' => $editor_id,
             'updated_at' => Carbon::now()->toDateTimeString(),

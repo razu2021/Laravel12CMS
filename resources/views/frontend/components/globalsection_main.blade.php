@@ -21,7 +21,7 @@
                                         {{$item->short_des ?? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'}}
                                     </p>
                                     <div class="promot5-actions">
-                                        <a href="{{route('details.casestudy',[$item->id,Str::slug($item->title)])}}" class="promot5-btn-main">{{$item->button ?? 'Explore Services'}}</a>
+                                        <a href="{{route('details.casestudy',[$item->id,$item->url])}}" class="promot5-btn-main">{{$item->button ?? 'Explore Services'}}</a>
                                     </div>
                                 </div>
                             </div>

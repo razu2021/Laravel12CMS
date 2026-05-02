@@ -16,7 +16,7 @@
                     <div class="dest-card__info">
                         <h3>{{$country->title ?? ''}}</h3>
                         <p>{{Str::words($country->short_des,20 ?? '')}}</p>
-                        <a href="{{ $country->button_url ?? '#' }}" class="explore-btn">{{ $country->button ?? 'About More' }} <i class="fas fa-arrow-right"></i></a>
+                        <a href="{{ route('details.casestudy',[$country->id,$country->url]) }}" class="explore-btn">{{ $country->button ?? 'About More' }} <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>

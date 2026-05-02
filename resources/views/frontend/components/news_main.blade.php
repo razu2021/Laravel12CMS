@@ -26,7 +26,7 @@
                         </p>
 
                         <div class="card1-footer">
-                            <a href="{{ route('details.news',[$news->id,Str::slug($news->title)]) }}" class="card1-btn">R{{ $news->button ?? 'Read More' }} →</a>
+                            <a href="{{ route('details.news',[$news->id,$news->url]) }}" class="card1-btn">R{{ $news->button ?? 'Read More' }} →</a>
                         </div>
                     </div>
                 </div>

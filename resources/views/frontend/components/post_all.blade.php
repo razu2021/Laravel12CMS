@@ -62,7 +62,7 @@
 
                                 <div class="card_footer">
                                     <span class="date">{{ $post->created_at->format('M,d,Y') }}</span>
-                                    <a href="{{ $post->button_url ?? '#' }}" class="read_more">{{ $post->button ?? 'Read more ' }} →</a>
+                                    <a href="{{ route('details.post',[$post->id,$post->url]) }}" class="read_more">{{ $post->button ?? 'Read more ' }} →</a>
                                 </div>
                             </div>
 

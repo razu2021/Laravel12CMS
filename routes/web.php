@@ -49,8 +49,9 @@ Route::controller(frontendController::class)->name('details.')->group(function()
     Route::get('post/details/{id}/{slug}','postDetails')->name('post');
     Route::get('news/details/{id}/{slug}','newsDetails')->name('news');
     Route::get('promot/details/{id}/{slug}','promotDetails')->name('promot');
-    Route::get('casestudy/details/{id}/{slug}','casestudyDetails')->name('casestudy');
-    Route::get('country/details/{id}/{slug}','countryDetails')->name('country');
+    Route::get('protfolio/details/{id}/{slug}','protfoliosDetails')->name('protfolios');
+    Route::get('case-study/details/{id}/{slug}','casestudyDetails')->name('casestudy');
+    Route::get('our-preferable-country/details/{id}/{slug}','countryDetails')->name('country');
     Route::get('section/details/{id}/{slug}','sectionsxDetails')->name('sectionx');
     Route::get('team/details/{id}/{slug}','teamDetails')->name('team');
 });
