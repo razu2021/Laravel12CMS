@@ -4,6 +4,7 @@ import { Head, Link } from '@inertiajs/vue3'
 import { route } from 'ziggy-js'
 import {Gitlab, LayoutDashboard ,ChevronDown,Component,LayoutTemplate, Columns2, SlidersVertical, MailPlus, ContactIcon, SignatureIcon, PickaxeIcon, LockIcon, WebhookIcon, LucidePieChart } from 'lucide-vue-next';
 import AdminSeparetor from './ui/AdminSeparetor.vue';
+import Marketing from './ui/pro/marketing.vue';
 
 
 
@@ -163,7 +164,7 @@ const toggleMenu = (key:string)=>{
             Social Media
           </Link>
         </div>
-      </div>
+    </div>
       <!-- ====== dropdown menu end here ====== -->
     <div class="flex flex-col space-y-1">
         <!-- Parent Button -->
@@ -199,7 +200,7 @@ const toggleMenu = (key:string)=>{
             Announcment
           </Link>
         </div>
-      </div>
+    </div>
       <!-- ====== dropdown menu end here ====== -->
     <div class="flex flex-col space-y-1">
         <!-- Parent Button -->
@@ -224,7 +225,7 @@ const toggleMenu = (key:string)=>{
           </Link>
          
         </div>
-      </div>
+    </div>
       <!-- ====== dropdown menu end here ====== -->
     <div class="flex flex-col space-y-1">
         <!-- Parent Button -->
@@ -269,7 +270,7 @@ const toggleMenu = (key:string)=>{
             Copy Ritght 
           </Link>
         </div>
-      </div>
+    </div>
       <!-- ====== dropdown menu end here ====== -->
     <div class="flex flex-col space-y-1">
         <!-- Parent Button -->
@@ -306,7 +307,7 @@ const toggleMenu = (key:string)=>{
           </a>
          
         </div>
-      </div>
+    </div>
       <!-- ====== dropdown menu end here ====== -->
     <div class="flex flex-col space-y-1">
         <!-- Parent Button -->
@@ -336,7 +337,7 @@ const toggleMenu = (key:string)=>{
             Cookie Policy
           </Link>
         </div>
-      </div>
+    </div>
       <!-- ====== dropdown menu end here ====== -->
     <div class="flex flex-col space-y-1">
         <!-- Parent Button -->
@@ -361,7 +362,7 @@ const toggleMenu = (key:string)=>{
           </Link>
          
         </div>
-      </div>
+    </div>
        
       <!-- ====== dropdown menu end here ====== -->
     <div class="flex flex-col space-y-1">
@@ -386,7 +387,7 @@ const toggleMenu = (key:string)=>{
               Tracking Management 
           </Link>
         </div>
-      </div>
+    </div>
       <!-- ====== dropdown menu end here ====== -->
     <div class="flex flex-col space-y-1">
         <!-- Parent Button -->
@@ -413,7 +414,7 @@ const toggleMenu = (key:string)=>{
               Manage SEO
           </Link>
         </div>
-      </div>
+    </div>
       <!-- ====== dropdown Site Seo end here ====== -->
 
 
@@ -422,22 +423,9 @@ const toggleMenu = (key:string)=>{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <AdminSeparetor title="Marketing Tolls" />
+    <Marketing/>
+    <!-- Marketing Section  -->
 
 
 

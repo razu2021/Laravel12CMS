@@ -21,7 +21,7 @@
                         </p>
 
                         <div class="card1-footer">
-                            <a href="{{route('details.protfolios',[$prot->id,$port->url])}}" class="card1-btn">{{$prot->button ?? 'Explore More'}} →</a>
+                            <a href="{{route('details.protfolios',[$prot->id,$prot->url])}}" class="card1-btn">{{$prot->button ?? 'Explore More'}} →</a>
                         </div>
                     </div>
                 </div>
