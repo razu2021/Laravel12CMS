@@ -31,7 +31,7 @@
                 @if(!empty($siteemails) &&  $siteemails->count() > 0)
                     @foreach($siteemails->take(2) as $siteemail)
                         @if($siteemail->type == 'primary')
-                             <li><a href="mailto:{{$siteemail->email ?? ''}}"><span><i class="bi bi-telephone"></i></span> {{$siteemail->email ?? 'admin@example.com'}} </a></li>
+                             <li><a href="mailto:{{$siteemail->email ?? ''}}"><span><i class="bi bi-envelope"></i></span> {{$siteemail->email ?? 'admin@example.com'}} </a></li>
                         @endif
                     @endforeach
                 @endif

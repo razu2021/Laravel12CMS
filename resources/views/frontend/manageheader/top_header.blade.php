@@ -4,10 +4,12 @@
         <div class="office-info">
         @if(!empty($siteaddress) && $siteaddress->count() > 0)
             @foreach($siteaddress->take(1) as $address)
+            @if($address->type == 'primary')
             <div class="info-item">
                 <i class="bi bi-geo-alt-fill"></i>
                 <span>{{$address->address ?? 'Dhaka, Bangladesh'}}</span>
             </div>
+            @endif
             @endforeach
         @endif
 
