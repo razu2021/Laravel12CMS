@@ -15,8 +15,8 @@
           <div class="geo-shape shape-circle"></div>
         </div>
 
-        <div class="container h-100 position-relative z-index-50">
-          <div class="row h-100 align-items-center">
+        <div class="container position-relative z-index-50">
+          <div class="row  align-items-center">
             
             <div class="col-xl-8 col-lg-10 col-12">
               <div class="content-v6-wrapper">
@@ -53,5 +53,16 @@
     <div class="swiper-pagination v6-pagination"></div>
   </div>
 
+  <div class="shapes-container">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <div class="grid-lines"></div>
+
+  <div class="geo-shape shape-square"></div>
+  <div class="geo-shape shape-circle"></div>
+
+  <div class="glow-orb"></div>
+</div>
 </section>
 

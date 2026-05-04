@@ -1,4 +1,4 @@
-<div class="video-trigger-box text-center py-5">
+<!-- <div class="video-trigger-box text-center py-5">
     <button type="button" class="btn-play-video" data-bs-toggle="modal" data-bs-target="#videoModal" data-video-url="https://www.youtube.com/embed/dQw4w9WgXcQ">
         <div class="play-icon-wrapper">
             <i class="fas fa-play"></i>
@@ -6,7 +6,7 @@
         </div>
         <span>Watch Resort Tour</span>
     </button>
-</div>
+</div> -->
 
 <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
